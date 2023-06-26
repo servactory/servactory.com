@@ -25,7 +25,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  // organizationName: 'afuno',
+  // organizationName: 'servactory',
   // projectName: 'servactory',
 
   onBrokenLinks: 'throw',
@@ -131,7 +131,7 @@ const config = {
             position: 'left'
           },
           {
-            href: 'https://github.com/afuno/servactory',
+            href: 'https://github.com/servactory/servactory',
             label: 'GitHub',
             position: 'right',
           },

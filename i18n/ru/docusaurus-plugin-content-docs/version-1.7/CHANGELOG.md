@@ -12,11 +12,11 @@ pagination_label: Changelog
 
 ### Изменено
 
-- Изменена работа с `input`, `output` и `internal` атрибутами ([#76](https://github.com/afuno/servactory/pull/76))
+- Изменена работа с `input`, `output` и `internal` атрибутами ([#76](https://github.com/servactory/servactory/pull/76))
 
 ### Улучшено
 
-- Улучшена производительность ([#76](https://github.com/afuno/servactory/pull/76))
+- Улучшена производительность ([#76](https://github.com/servactory/servactory/pull/76))
 
 ## 1.6.14
 

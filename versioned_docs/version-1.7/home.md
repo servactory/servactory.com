@@ -12,7 +12,7 @@ pagination_label: Overview
 A set of tools for building reliable services of any complexity.
 
 [![Gem version](https://img.shields.io/gem/v/servactory?logo=rubygems&logoColor=fff)](https://rubygems.org/gems/servactory)
-[![Release Date](https://img.shields.io/github/release-date/afuno/servactory)](https://github.com/afuno/servactory/releases)
+[![Release Date](https://img.shields.io/github/release-date/servactory/servactory)](https://github.com/servactory/servactory/releases)
 
 ## About Servactory
 
