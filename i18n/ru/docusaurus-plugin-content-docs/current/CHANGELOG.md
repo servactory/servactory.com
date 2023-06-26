@@ -8,6 +8,18 @@ pagination_label: Changelog
 
 # Changelog
 
+## [Unreleased](https://github.com/servactory/servactory/tree/HEAD)
+
+[Full Changelog](https://github.com/servactory/servactory/compare/v1.8.1...HEAD)
+
+**Implemented enhancements:**
+
+- Steep and RBS [\#89](https://github.com/servactory/servactory/pull/89) ([afuno](https://github.com/afuno))
+
+**Documentation:**
+
+- Move documentation to separate repository [\#90](https://github.com/servactory/servactory/pull/90) ([afuno](https://github.com/afuno))
+
 ## [v1.8.1](https://github.com/servactory/servactory/tree/v1.8.1) (2023-06-24)
 
 [Full Changelog](https://github.com/servactory/servactory/compare/v1.8.0...v1.8.1)
