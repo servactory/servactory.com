@@ -8,6 +8,22 @@ pagination_label: Changelog
 
 # Changelog
 
+## [v1.8.5](https://github.com/servactory/servactory/tree/v1.8.5) (2023-06-29)
+
+[Full Changelog](https://github.com/servactory/servactory/compare/v1.8.4...v1.8.5)
+
+**Implemented enhancements:**
+
+- Add query attributes [\#94](https://github.com/servactory/servactory/pull/94) ([afuno](https://github.com/afuno))
+
+## [v1.8.4](https://github.com/servactory/servactory/tree/v1.8.4) (2023-06-29)
+
+[Full Changelog](https://github.com/servactory/servactory/compare/v1.8.3...v1.8.4)
+
+**Fixed:**
+
+- Harmlessly getting data from internals and outputs [\#93](https://github.com/servactory/servactory/pull/93) ([afuno](https://github.com/afuno))
+
 ## [v1.8.3](https://github.com/servactory/servactory/tree/v1.8.3) (2023-06-28)
 
 [Full Changelog](https://github.com/servactory/servactory/compare/v1.8.2...v1.8.3)
