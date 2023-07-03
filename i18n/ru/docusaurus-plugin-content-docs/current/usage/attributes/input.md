@@ -273,8 +273,8 @@ end
 
 ## Методы предикаты
 
-У любого описанного input'а есть метод с вопросительным знаком.
-Ознакомиться с логикой обработки данных можно [здесь](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
+У любого input'а есть метод с вопросительным знаком.
+С логикой обработки данных можно ознакомиться [здесь](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
 
 ```ruby
 input :first_name, type: String

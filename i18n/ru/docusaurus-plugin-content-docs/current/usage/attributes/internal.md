@@ -68,8 +68,8 @@ end
 
 ## Методы предикаты
 
-У любого описанного internal'а есть метод с вопросительным знаком.
-Ознакомиться с логикой обработки данных можно [здесь](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
+У любого internal'а есть метод с вопросительным знаком.
+С логикой обработки данных можно ознакомиться [здесь](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
 
 ```ruby
 # ...

@@ -58,3 +58,23 @@ class NotificationService::Create < ApplicationService::Base
   end
 end
 ```
+
+## Predicate methods
+
+Every output has a method with a question mark.
+The data processing logic can be found [here](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
+
+```ruby
+# ...
+
+output :full_name, type: String
+
+# ...
+
+def something
+  # highlight-next-line
+  return unless outputs.full_name? # instead of `outputs.full_name.present?`
+
+  # ...
+end
+```

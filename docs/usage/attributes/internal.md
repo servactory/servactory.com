@@ -65,3 +65,23 @@ class NotificationService::Create < ApplicationService::Base
   end
 end
 ```
+
+## Predicate methods
+
+Every internal has a method with a question mark.
+The data processing logic can be found [here](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
+
+```ruby
+# ...
+
+internal :full_name, type: String
+
+# ...
+
+def something
+  # highlight-next-line
+  return unless internals.full_name? # instead of `internals.full_name.present?`
+  
+  # ...
+end
+```
