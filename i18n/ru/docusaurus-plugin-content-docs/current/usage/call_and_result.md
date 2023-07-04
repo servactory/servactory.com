@@ -59,6 +59,8 @@ Notification::SendJob.perform_later(service_result.user.id)
 
 Все что было добавлено через метод `output` в сервисе будет доступно в `Result`.
 
+Output'ы в `Result` имеют методы предикаты аналогично тому как внутри сервиса.
+
 #### Хелперы
 
 В результате работы сервиса присутствуют методы `success?` и `failure?`, 

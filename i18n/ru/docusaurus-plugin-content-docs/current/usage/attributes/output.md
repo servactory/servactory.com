@@ -58,3 +58,23 @@ class NotificationService::Create < ApplicationService::Base
   end
 end
 ```
+
+## Методы предикаты
+
+У любого output'а есть метод с вопросительным знаком.
+С логикой обработки данных можно ознакомиться [здесь](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
+
+```ruby
+# ...
+
+output :full_name, type: String
+
+# ...
+
+def something
+  # highlight-next-line
+  return unless outputs.full_name? # вместо `outputs.full_name.present?`
+  
+  # ...
+end
+```

@@ -65,3 +65,23 @@ class NotificationService::Create < ApplicationService::Base
   end
 end
 ```
+
+## Методы предикаты
+
+У любого internal'а есть метод с вопросительным знаком.
+С логикой обработки данных можно ознакомиться [здесь](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
+
+```ruby
+# ...
+
+internal :full_name, type: String
+
+# ...
+
+def something
+  # highlight-next-line
+  return unless internals.full_name? # вместо `internals.full_name.present?`
+  
+  # ...
+end
+```
