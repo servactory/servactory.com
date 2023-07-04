@@ -59,6 +59,8 @@ Notification::SendJob.perform_later(service_result.user.id)
 
 Anything that has been added via the `output` method in the service will be available in `Result`.
 
+Outputs in `Result` have predicate methods similar to those inside a service.
+
 #### Helpers
 
 As a result of the work of the service, there are `success?` and `failure?` methods, 

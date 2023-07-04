@@ -271,6 +271,24 @@ class PymentsService::Send < ApplicationService::Base
 end
 ```
 
+## Методы предикаты
+
+У любого input'а есть метод с вопросительным знаком.
+С логикой обработки данных можно ознакомиться [здесь](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
+
+```ruby
+input :first_name, type: String
+
+# ...
+
+def something
+  # highlight-next-line
+  return unless inputs.user? # вместо `inputs.user.present?`
+  
+  # ...
+end
+```
+
 ## Расширенный режим
 
 Расширенный режим подразумевает более детальную работу с опцией.
