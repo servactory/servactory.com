@@ -58,7 +58,7 @@ Before calling the method, the condition described in `if` will be checked.
 ```ruby
 make :something,
      # highlight-next-line
-     if: ->(**) { Settings.something.enabled }
+     if: ->(**) { Settings.features.preview.enabled }
 
 def something
   # ...
@@ -72,7 +72,7 @@ The opposite of the `if` option.
 ```ruby
 make :something,
      # highlight-next-line
-     unless: ->(**) { Settings.something.disabled }
+     unless: ->(**) { Settings.features.preview.disabled }
 
 def something
   # ...
@@ -144,6 +144,20 @@ stage do
   make :create_post_for_user_blog!
 end
 ```
+
+### Option `only_unless`
+
+```ruby {2}
+stage do
+  only_if ->(context:) { Settings.features.preview.disabled }
+  
+  make :create_user!
+  make :create_blog_for_user!
+  make :create_post_for_user_blog!
+end
+```
+
+The opposite of the `only_if` option.
 
 ### Option `wrap_in`
 

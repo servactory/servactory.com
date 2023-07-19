@@ -58,7 +58,7 @@ end
 ```ruby
 make :something,
      # highlight-next-line
-     if: ->(**) { Settings.something.enabled }
+     if: ->(**) { Settings.features.preview.enabled }
 
 def something
   # ...
@@ -72,7 +72,7 @@ end
 ```ruby
 make :something,
      # highlight-next-line
-     unless: ->(**) { Settings.something.disabled }
+     unless: ->(**) { Settings.features.preview.disabled }
 
 def something
   # ...
@@ -138,6 +138,20 @@ end
 ```ruby {2}
 stage do
   only_if ->(context:) { Settings.features.preview.enabled }
+  
+  make :create_user!
+  make :create_blog_for_user!
+  make :create_post_for_user_blog!
+end
+```
+
+### Опция `only_unless`
+
+Противоположность опции `only_if`.
+
+```ruby {2}
+stage do
+  only_if ->(context:) { Settings.features.preview.disabled }
   
   make :create_user!
   make :create_blog_for_user!
