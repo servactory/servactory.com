@@ -50,7 +50,7 @@ const config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: '1.8',
+              label: '1.9',
               path: '/',
             },
           },
