@@ -8,6 +8,34 @@ pagination_label: Changelog
 
 # Changelog
 
+## [v1.9.3](https://github.com/servactory/servactory/tree/v1.9.3) (2023-07-27)
+
+[Full Changelog](https://github.com/servactory/servactory/compare/v1.9.2...v1.9.3)
+
+**Implemented enhancements:**
+
+- Improve errors about undefined attributes [\#107](https://github.com/servactory/servactory/pull/107) ([afuno](https://github.com/afuno))
+
+**Dependencies:**
+
+- Update libraries from 27.07.2023 [\#108](https://github.com/servactory/servactory/pull/108) ([afuno](https://github.com/afuno))
+
+## [v1.9.2](https://github.com/servactory/servactory/tree/v1.9.2) (2023-07-24)
+
+[Full Changelog](https://github.com/servactory/servactory/compare/v1.9.1...v1.9.2)
+
+**Fixed:**
+
+- Fix definition of inputs when passing from params [\#106](https://github.com/servactory/servactory/pull/106) ([afuno](https://github.com/afuno))
+
+## [v1.9.1](https://github.com/servactory/servactory/tree/v1.9.1) (2023-07-24)
+
+[Full Changelog](https://github.com/servactory/servactory/compare/v1.9.0...v1.9.1)
+
+**Fixed:**
+
+- Fix definition of inputs when passing from params [\#105](https://github.com/servactory/servactory/pull/105) ([afuno](https://github.com/afuno))
+
 ## [v1.9.0](https://github.com/servactory/servactory/tree/v1.9.0) (2023-07-20)
 
 [Full Changelog](https://github.com/servactory/servactory/compare/v1.8.8...v1.9.0)
