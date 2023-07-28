@@ -106,7 +106,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      metadata: [{name: 'keywords', content: 'ruby, rails, services, service-factory, servactory'}],
+      metadata: [
+        {
+          name: 'keywords',
+          content: 'ruby, rails, services, service object, service-factory, servactory'
+        }
+      ],
       // Replace with your project's social card
       // image: 'img/social-card.jpg',
       colorMode: {
