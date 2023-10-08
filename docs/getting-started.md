@@ -1,6 +1,9 @@
 ---
 title: Getting started
 description: Description and examples of use
+keywords:
+  - ruby classes
+  - service objects
 slug: getting-started
 sidebar_label: Getting started
 sidebar_position: 2

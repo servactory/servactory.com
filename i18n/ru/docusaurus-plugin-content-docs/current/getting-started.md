@@ -1,6 +1,9 @@
 ---
 title: Приступая к работе
 description: Описание и примеры использования
+keywords:
+  - ruby classes
+  - service objects
 slug: getting-started
 sidebar_label: Приступая к работе
 sidebar_position: 2

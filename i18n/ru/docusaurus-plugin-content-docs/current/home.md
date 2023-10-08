@@ -1,6 +1,9 @@
 ---
 title: Обзор
 description: Набор инструментов для построения надежных Ruby сервисов любой сложности
+keywords: 
+  - ruby classes
+  - service objects
 slug: /
 sidebar_label: Обзор
 sidebar_position: 1

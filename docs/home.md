@@ -1,6 +1,9 @@
 ---
 title: Overview
 description: A set of tools for building reliable Ruby services of any complexity
+keywords:
+  - ruby classes
+  - service objects
 slug: /
 sidebar_label: Overview
 sidebar_position: 1
