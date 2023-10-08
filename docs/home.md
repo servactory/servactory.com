@@ -74,7 +74,7 @@ class NotificationService::Send < ApplicationService::Base
   end
 
   def send_notification
-    service_result = NotificatorService::API::Send.call(notification:)
+    service_result = NotificatorService::API::Send.call(notification: outputs.notification)
 
     return fail!(message: service_result.error.message) if service_result.failure?
 
@@ -82,11 +82,11 @@ class NotificationService::Send < ApplicationService::Base
   end
 
   def update_notification!
-    outputs.notification.update!(original_data: response)
+    outputs.notification.update!(original_data: internals.response)
   end
 
   def update_comment!
-    inputs.comment.update!(status:)
+    inputs.comment.update!(status: internals.status)
   end
 end
 ```
