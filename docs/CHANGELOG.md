@@ -16,10 +16,13 @@ pagination_label: Changelog
 
 - Refuse `required` option from `internal` [\#116](https://github.com/servactory/servactory/pull/116) ([afuno](https://github.com/afuno))
 
+**Implemented enhancements:**
+
+- Add support for extensions [\#118](https://github.com/servactory/servactory/pull/118) ([afuno](https://github.com/afuno))
+
 **Dependencies:**
 
 - Update libraries from 07.10.2023 [\#119](https://github.com/servactory/servactory/pull/119) ([afuno](https://github.com/afuno))
-- Add support for extensions [\#118](https://github.com/servactory/servactory/pull/118) ([afuno](https://github.com/afuno))
 - Update libraries from 11.09.2023 [\#115](https://github.com/servactory/servactory/pull/115) ([afuno](https://github.com/afuno))
 
 ## [v1.9.5](https://github.com/servactory/servactory/tree/v1.9.5) (2023-08-19)
