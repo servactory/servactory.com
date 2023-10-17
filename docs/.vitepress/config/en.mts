@@ -14,7 +14,8 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     siteTitle: false,
 
     nav: [
-      { text: 'Guide', link: '/getting-started' }
+      { text: 'Guide', link: '/getting-started' },
+      { text: 'v1', link: 'https://v1.servactory.com' }
     ],
 
     sidebar: [

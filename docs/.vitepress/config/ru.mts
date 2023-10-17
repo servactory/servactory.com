@@ -14,7 +14,8 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     siteTitle: false,
 
     nav: [
-      { text: 'Руководство', link: '/ru/getting-started' }
+      { text: 'Руководство', link: '/ru/getting-started' },
+      { text: 'v1', link: 'https://v1.servactory.com/ru' }
     ],
 
     sidebar: [
