@@ -1,5 +1,8 @@
 ---
 title: Service call and result of work
+description: Description and examples of how to use service call
+prev: Service actions
+next: Configuration
 ---
 
 # Service call and result of work

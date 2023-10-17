@@ -1,5 +1,8 @@
 ---
 title: Service internal attributes
+description: Description and examples of using internal attributes of service
+prev: Service input arguments
+next: Service output attributes
 ---
 
 # Service internal attributes

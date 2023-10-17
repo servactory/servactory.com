@@ -1,5 +1,8 @@
 ---
 title: Testing services
+description: Information about testing services
+prev: Internationalization (I18n)
+next: false
 ---
 
 # Testing services

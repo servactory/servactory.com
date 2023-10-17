@@ -1,5 +1,8 @@
 ---
 title: Service input arguments
+description: Description and examples of using input arguments of service
+prev: Getting started
+next: Service internal attributes
 ---
 
 # Service input arguments

@@ -1,5 +1,8 @@
 ---
-title: Service failures
+title: Service failures and error handling
+description: Description and examples of use of service failures
+prev: Configuration
+next: Internationalization (I18n)
 ---
 
 # Failures

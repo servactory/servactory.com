@@ -1,10 +1,13 @@
 ---
-title: Действия в сервисе
+title: Service actions
+description: Description and examples of using service method calls
+prev: Service output attributes
+next: Service call and result of work
 ---
 
-# Действия в сервисе
+# Service actions
 
-Действия в сервисе подразумевают вызов методов.
+Actions in the service imply calling methods.
 Service methods are called only with `make` method.
 
 ## Examples
@@ -129,7 +132,7 @@ end
 
 ### Option `only_if`
 
-Перед вызовом методов внутри `stage` будет проверено условие, описанное в `only_if`.
+Before calling methods inside `stage`, the condition described in `only_if` will be checked.
 
 ```ruby {2}
 stage do

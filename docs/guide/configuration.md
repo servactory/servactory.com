@@ -1,5 +1,8 @@
 ---
 title: Configuration
+description: Description and examples of service configuration
+prev: Service call and result of work
+next: Service failures and error handling
 ---
 
 # Configuration
