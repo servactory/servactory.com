@@ -5,6 +5,14 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: {
+      light: "/img/logo-full-light.svg",
+      dark: "/img/logo-full-dark.svg",
+      alt: "Servactory"
+    },
+
+    siteTitle: false,
+
     nav: [
       { text: 'Guide', link: '/getting-started' }
     ],
