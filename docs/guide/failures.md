@@ -18,25 +18,21 @@ Base method that allows to pass text as message and additional information via `
 
 When the service is called via the `.call!` method, there will be called an exception with the class `Servactory::Errors::Failure`.
 
-```ruby
+```ruby{6}
 make :check!
 
 def check!
   return if inputs.invoice_number.start_with?("AA")
 
-  # highlight-next-line
   fail!(message: "Invalid invoice number")
 end
 ```
 
-```ruby
+```ruby{3-5}
 fail!(
   message: "Invalid invoice number",
-  # highlight-next-line
   meta: {
-    # highlight-next-line
     invoice_number: inputs.invoice_number
-    # highlight-next-line
   }
 )
 ```
@@ -54,13 +50,12 @@ This method differs from `.fail!` by obligatory indication of input-argument nam
 
 If service is called through `.call!` method, it will cause exception with class `Servactory::Errors::InputError`.
 
-```ruby
+```ruby{6}
 make :check!
 
 def check!
   return if inputs.invoice_number.start_with?("AA")
 
-  # highlight-next-line
   fail_input!(:invoice_number, message: "Invalid invoice number")
 end
 ```

@@ -39,11 +39,10 @@ This option is validation.
 It will check that the value set to `internal` corresponds to the specified type (class).
 In this case `is_a?` method is used.
 
-```ruby
+```ruby{4,14}
 class NotificationService::Create < ApplicationService::Base
   input :user, type: User
 
-  # highlight-next-line
   internal :inviter, type: User
 
   output :notification, type: Notification
@@ -54,7 +53,6 @@ class NotificationService::Create < ApplicationService::Base
   private
 
   def assign_inviter
-    # highlight-next-line
     internals.inviter = inputs.user.inviter
   end
 
@@ -69,7 +67,7 @@ end
 Every internal has a method with a question mark.
 The data processing logic can be found [here](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
 
-```ruby
+```ruby{8}
 # ...
 
 internal :full_name, type: String
@@ -77,7 +75,6 @@ internal :full_name, type: String
 # ...
 
 def something
-  # highlight-next-line
   return unless internals.full_name? # instead of `internals.full_name.present?`
 
   # ...

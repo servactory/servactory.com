@@ -19,25 +19,21 @@ next: Интернационализация (I18n)
 
 При вызове сервиса через метод `.call!` будет вызываться exception с классом `Servactory::Errors::Failure`.
 
-```ruby
+```ruby{6}
 make :check!
 
 def check!
   return if inputs.invoice_number.start_with?("AA")
 
-  # highlight-next-line
   fail!(message: "Invalid invoice number")
 end
 ```
 
-```ruby
+```ruby{3-5}
 fail!(
   message: "Invalid invoice number",
-  # highlight-next-line
   meta: {
-    # highlight-next-line
     invoice_number: inputs.invoice_number
-    # highlight-next-line
   }
 )
 ```
@@ -55,13 +51,12 @@ exception.meta              # => {:invoice_number=>"BB-7650AE"}
 
 При вызове сервиса через метод `.call!` будет явзяться exception с классом `Servactory::Errors::InputError`.
 
-```ruby
+```ruby{6}
 make :check!
 
 def check!
   return if inputs.invoice_number.start_with?("AA")
 
-  # highlight-next-line
   fail_input!(:invoice_number, message: "Invalid invoice number")
 end
 ```

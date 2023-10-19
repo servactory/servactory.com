@@ -38,20 +38,18 @@ The `is_a?` method is used.
 
 Always required to specify. May contain one or more classes.
 
-```ruby
+```ruby{3}
 class UsersService::Accept < ApplicationService::Base
   input :user,
-        # highlight-next-line
         type: User
 
   # ...
 end
 ```
 
-```ruby
+```ruby{3}
 class ToggleService < ApplicationService::Base
   input :flag,
-        # highlight-next-line
         type: [TrueClass, FalseClass]
 
   # ...
@@ -66,14 +64,13 @@ The `present?` method is used to check if the value is not `nil` or an empty str
 
 By default, `required` is set to `true`.
 
-```ruby
+```ruby{7}
 class UsersService::Create < ApplicationService::Base
   input :first_name,
         type: String
   
   input :middle_name,
         type: String,
-        # highlight-next-line
         required: false
   
   input :last_name,
@@ -89,10 +86,9 @@ This option is not validation.
 Used to prepare the input argument.
 This option changes the name of the input within the service.
 
-```ruby
+```ruby{3,14}
 class NotificationService::Create < ApplicationService::Base
   input :customer,
-        # highlight-next-line
         as: :user,
         type: User
 
@@ -104,7 +100,6 @@ class NotificationService::Create < ApplicationService::Base
   private
 
   def create_notification!
-    # highlight-next-line
     outputs.notification = Notification.create!(user: inputs.user)
   end
 end
@@ -116,11 +111,10 @@ This option is validation.
 It will check if the value set to `input` is an array and corresponds to the specified type (class).
 The `is_a?` method is used. Works together with options [`type`](#option-type) and [`required`](#option-required).
 
-```ruby
+```ruby{4}
 class PymentsService::Send < ApplicationService::Base
   input :invoice_numbers,
         type: String,
-        # highlight-next-line
         array: true
 
   # ...
@@ -133,11 +127,10 @@ This option is validation.
 Checks that the value set in `input` is in the specified array.
 The `include?` method is used.
 
-```ruby
+```ruby{4}
 class EventService::Send < ApplicationService::Base
   input :event_name,
         type: String,
-        # highlight-next-line
         inclusion: %w[created rejected approved]
 
   # ...
@@ -149,20 +142,15 @@ end
 This option is validation.
 Unlike other validation options, `must` allows to describe the validation internally.
 
-```ruby
+```ruby{5-9}
 class PymentsService::Send < ApplicationService::Base
   input :invoice_numbers,
         type: String,
         array: true,
-        # highlight-next-line
         must: {
-          # highlight-next-line
           be_6_characters: {
-            # highlight-next-line
             is: ->(value:) { value.all? { |id| id.size == 6 } }
-            # highlight-next-line
           }
-          # highlight-next-line
         }
 
   # ...
@@ -180,12 +168,11 @@ Use the `prepare` option carefully and only for simple actions.
 
 :::
 
-```ruby
+```ruby{5}
 class PymentsService::Send < ApplicationService::Base
   input :amount_cents,
         as: :amount,
         type: Integer,
-        # highlight-next-line
         prepare: ->(value:) { Money.new(cents: value, currency: :USD) }
 
   # then `inputs.balance` is used in the service
@@ -200,13 +187,12 @@ end
 
 This helper is equivalent to `required: false`.
 
-```ruby
+```ruby{6}
 class UsersService::Create < ApplicationService::Base
   input :first_name,
         type: String
 
   input :middle_name,
-        # highlight-next-line
         :optional,
         type: String
 
@@ -221,10 +207,9 @@ end
 
 This helper is equivalent to `array: true`.
 
-```ruby
+```ruby{3}
 class PymentsService::Send < ApplicationService::Base
   input :invoice_numbers,
-        # highlight-next-line
         :as_array,
         type: String
 
@@ -243,10 +228,9 @@ Adding is done via the `input_option_helpers` method in `configuration`.
 
 #### Example with `must`
 
-```ruby
+```ruby{3}
 class PymentsService::Send < ApplicationService::Base
   input :invoice_numbers,
-        # highlight-next-line
         :must_be_6_characters,
         type: String,
         array: true
@@ -257,10 +241,9 @@ end
 
 #### Example with `prepare`
 
-```ruby
+```ruby{3}
 class PymentsService::Send < ApplicationService::Base
   input :amount_cents,
-        # highlight-next-line
         :to_money,
         as: :amount,
         type: Integer
@@ -274,13 +257,12 @@ end
 Every input has a method with a question mark.
 The data processing logic can be found [here](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
 
-```ruby
+```ruby{6}
 input :first_name, type: String
 
 # ...
 
 def something
-  # highlight-next-line
   return unless inputs.user? # instead of `inputs.user.present?`
   
   # ...

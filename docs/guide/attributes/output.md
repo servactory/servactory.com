@@ -39,11 +39,10 @@ This option is validation.
 It will check that the value set to `output` corresponds to the specified type (class).
 In this case `is_a?` method is used.
 
-```ruby
+```ruby{4,11}
 class NotificationService::Create < ApplicationService::Base
   input :user, type: User
 
-  # highlight-next-line
   output :notification, type: Notification
 
   make :create_notification!
@@ -51,7 +50,6 @@ class NotificationService::Create < ApplicationService::Base
   private
   
   def create_notification!
-    # highlight-next-line
     outputs.notification = Notification.create!(user: inputs.user)
   end
 end
@@ -62,7 +60,7 @@ end
 Every output has a method with a question mark.
 The data processing logic can be found [here](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
 
-```ruby
+```ruby{8}
 # ...
 
 output :full_name, type: String
@@ -70,7 +68,6 @@ output :full_name, type: String
 # ...
 
 def something
-  # highlight-next-line
   return unless outputs.full_name? # instead of `outputs.full_name.present?`
 
   # ...

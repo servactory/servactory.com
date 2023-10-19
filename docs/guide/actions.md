@@ -24,25 +24,19 @@ end
 
 ### Several methods
 
-```ruby
-# highlight-next-line
+```ruby{1-3,5,9,13}
 make :assign_api_model
-# highlight-next-line
 make :perform_api_request
-# highlight-next-line
 make :process_result
 
-# highlight-next-line
 def assign_api_model
   internals.api_model = APIModel.new
 end
 
-# highlight-next-line
 def perform_api_request
   internals.response = APIClient.resource.create(internals.api_model)
 end
 
-# highlight-next-line
 def process_result
   ARModel.create!(internals.response)
 end
@@ -54,9 +48,8 @@ end
 
 Before calling the method, the condition described in `if` will be checked.
 
-```ruby
+```ruby{2}
 make :something,
-     # highlight-next-line
      if: ->(**) { Settings.features.preview.enabled }
 
 def something
@@ -68,9 +61,8 @@ end
 
 The opposite of the `if` option.
 
-```ruby
+```ruby{2}
 make :something,
-     # highlight-next-line
      unless: ->(**) { Settings.features.preview.disabled }
 
 def something
@@ -84,10 +76,9 @@ All methods have a position.
 If a method needs to be called at a different time than it was added via `make`, then the `position` option can be used.
 Can be useful at service inheritance.
 
-```ruby
+```ruby{3,14}
 class SomeApiService::Base < ApplicationService::Base
   make :api_request!,
-       # highlight-next-line
        position: 2
 
   # ...
@@ -99,7 +90,6 @@ class SomeApiService::Posts::Create < SomeApiService::Base
   # ...
   
   make :validate!,
-       # highlight-next-line
        position: 1
 
   private
