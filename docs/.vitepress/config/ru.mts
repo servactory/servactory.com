@@ -41,6 +41,7 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           { text: 'Вызов и результат', link: '/ru/guide/call-and-result' },
           { text: 'Конфигурация', link: '/ru/guide/configuration' },
           { text: 'Неудачи', link: '/ru/guide/failures' },
+          { text: 'Расширения', link: '/ru/guide/extensions' },
           { text: 'I18n', link: '/ru/guide/i18n' },
           { text: 'Тестирование', link: '/ru/guide/testing' },
         ]

@@ -41,6 +41,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           { text: 'Call and Result', link: '/guide/call-and-result' },
           { text: 'Configuration', link: '/guide/configuration' },
           { text: 'Failures', link: '/guide/failures' },
+          { text: 'Extensions', link: '/guide/extensions' },
           { text: 'I18n', link: '/guide/i18n' },
           { text: 'Testing', link: '/guide/testing' },
         ]
