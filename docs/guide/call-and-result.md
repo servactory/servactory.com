@@ -21,7 +21,7 @@ UsersService::Accept.call!(user: User.first)
 
 ### Via `.call`
 
-The `.call` method will only fail if it catches an exception in the input arguments.
+The `.call` method will only fail if it catches an exception in the input attributes.
 Internal and output attributes, as well as methods for failures — all this will be collected in the result.
 
 ```ruby

@@ -1,7 +1,7 @@
 ---
 title: Service internal attributes
 description: Description and examples of using internal attributes of service
-prev: Service input arguments
+prev: Service input attributes
 next: Service output attributes
 ---
 
@@ -11,7 +11,7 @@ Internal private attributes can be defined through the `internal` method.
 
 ## Usage
 
-The assignment and use of internal service arguments is done through the `internals=`/`internals` methods or their `int=`/`int` aliases.
+The assignment and use of internal service attributes is done through the `internals=`/`internals` methods or their `int=`/`int` aliases.
 
 ```ruby
 class UsersService::Create < ApplicationService::Base

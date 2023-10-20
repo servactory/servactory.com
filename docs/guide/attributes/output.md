@@ -11,7 +11,7 @@ All attributes the service must return in `Result` should be described through t
 
 ## Usage
 
-The assignment and use of service output arguments is done through the `outputs=`/`outputs` methods or their `out=`/`out` aliases.
+The assignment and use of service output attributes is done through the `outputs=`/`outputs` methods or their `out=`/`out` aliases.
 
 ```ruby
 class UsersService::Create < ApplicationService::Base

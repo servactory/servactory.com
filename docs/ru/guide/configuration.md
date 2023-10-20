@@ -70,7 +70,7 @@ module ApplicationService
           Servactory::Inputs::OptionHelper.new(
             name: :to_money,
             equivalent: {
-              prepare: ->(value:) { Money.new(cents: value, currency: :USD) }
+              prepare: ->(value:) { Money.from_cents(value, :USD)  }
             }
           )
         ]

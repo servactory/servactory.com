@@ -1,18 +1,18 @@
 ---
-title: Service input arguments
-description: Description and examples of using input arguments of service
+title: Service input attributes
+description: Description and examples of using input attributes of service
 prev: Getting started
 next: Service internal attributes
 ---
 
-# Service input arguments
+# Service input attributes
 
 All attributes that the service should expect when called must be added using the `input` method.
 If the service receives attributes that were not added via the `input` method, it will return an error.
 
 ## Usage
 
-The use of the arguments included in the service is done through the `inputs` method or its `inp` alias.
+The use of the attributes included in the service is done through the `inputs` method or its `inp` alias.
 
 ```ruby
 class UsersService::Create < ApplicationService::Base

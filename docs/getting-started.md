@@ -2,7 +2,7 @@
 title: Getting started
 description: Описание и примеры использования
 prev:  Why Servactory
-next: Service input arguments
+next: Service input attributes
 ---
 
 # Getting started

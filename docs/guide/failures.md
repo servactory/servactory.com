@@ -46,7 +46,7 @@ exception.meta              # => {:invoice_number=>"BB-7650AE"}
 
 ## Fail for input
 
-This method differs from `.fail!` by obligatory indication of input-argument name.
+This method differs from `.fail!` by obligatory indication of input-attribute name.
 
 If service is called through `.call!` method, it will cause exception with class `Servactory::Errors::InputError`.
 
