@@ -23,10 +23,18 @@ class UsersService::Create < ApplicationService::Base
 
   # ...
 
-  def something
-    outputs.full_name = [inputs.first_name, inputs.middle_name, inputs.last_name].compact.join(" ")
+  def assign_full_name
+    outputs.full_name = [
+      inputs.first_name,
+      inputs.middle_name,
+      inputs.last_name
+    ].compact.join(" ")
     # или
-    # out.full_name = [inp.first_name, inp.middle_name, inp.last_name].compact.join(" ")
+    # out.full_name = [
+    #   inp.first_name,
+    #   inp.middle_name,
+    #   inp.last_name
+    # ].compact.join(" ")
   end
 end
 ```
