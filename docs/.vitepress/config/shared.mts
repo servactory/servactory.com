@@ -26,6 +26,8 @@ export const sharedConfig = defineConfig({
 
   cleanUrls: true,
 
+  appearance: 'dark',
+
   markdown: {
     // https://github.com/shikijs/shiki/blob/main/docs/themes.md
     // node_modules/shiki/themes
