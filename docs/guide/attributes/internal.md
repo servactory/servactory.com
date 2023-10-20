@@ -7,7 +7,7 @@ next: Service output attributes
 
 # Service internal attributes
 
-Internal private attributes can be defined through the `internal` method.
+Internal private attributes can be added via the `internal` method.
 
 ## Usage
 
@@ -64,8 +64,8 @@ end
 
 ## Predicate methods
 
-Every internal has a method with a question mark.
-The data processing logic can be found [here](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
+Any internal attribute can be accessed as a predicate method.
+
 
 ```ruby{8}
 # ...
