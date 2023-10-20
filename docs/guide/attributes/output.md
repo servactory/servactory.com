@@ -7,7 +7,7 @@ next:  Service actions
 
 # Service output attributes
 
-All attributes the service must return in `Result` should be described through the `output` method.
+All attributes that the service should return in `Result` must be added using the `output` method.
 
 ## Usage
 
@@ -57,8 +57,8 @@ end
 
 ## Predicate methods
 
-Every output has a method with a question mark.
-The data processing logic can be found [here](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
+Any output attribute can be accessed as a predicate method.
+
 
 ```ruby{8}
 # ...
