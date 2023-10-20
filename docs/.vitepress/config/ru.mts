@@ -51,6 +51,11 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       { text: 'Contributing', link: '/contributing' }
     ],
 
+    outline: {
+      label: 'На этой странице',
+      level: [2, 3]
+    },
+
     socialLinks: [
       { icon: 'github', link: 'https://github.com/servactory/servactory' }
     ],

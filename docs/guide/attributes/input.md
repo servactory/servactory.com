@@ -7,8 +7,8 @@ next: Service internal attributes
 
 # Service input arguments
 
-All arguments that service must expect should be described through `input` method.
-If the service receives an argument that hasn't been described through input method, it will return an error.
+All attributes that the service should expect when called must be added using the `input` method.
+If the service receives attributes that were not added via the `input` method, it will return an error.
 
 ## Usage
 
@@ -83,8 +83,9 @@ end
 ### Option `as`
 
 This option is not validation.
-Used to prepare the input argument.
-This option changes the name of the input within the service.
+It is used to prepare the input attribute.
+The input attribute will be assigned a new name, which is specified via the `as` option.
+The original name inside the service will no longer be available.
 
 ```ruby{3,14}
 class NotificationService::Create < ApplicationService::Base
@@ -102,22 +103,6 @@ class NotificationService::Create < ApplicationService::Base
   def create_notification!
     outputs.notification = Notification.create!(user: inputs.user)
   end
-end
-```
-
-### Option `array`
-
-This option is validation.
-It will check if the value set to `input` is an array and corresponds to the specified type (class).
-The `is_a?` method is used. Works together with options [`type`](#option-type) and [`required`](#option-required).
-
-```ruby{4}
-class PymentsService::Send < ApplicationService::Base
-  input :invoice_numbers,
-        type: String,
-        array: true
-
-  # ...
 end
 ```
 
@@ -140,7 +125,7 @@ end
 ### Option `must`
 
 This option is validation.
-Unlike other validation options, `must` allows to describe the validation internally.
+But unlike other validation options, `must` allows you to describe any kind of validation internally.
 
 ```ruby{5-9}
 class PymentsService::Send < ApplicationService::Base
@@ -160,9 +145,9 @@ end
 ### Option `prepare`
 
 This option is not validation.
-Used to prepare the value of the input argument.
+It is used to prepare the value of the input attribute.
 
-:::caution
+::: warning
 
 Use the `prepare` option carefully and only for simple actions.
 
@@ -173,7 +158,7 @@ class PymentsService::Send < ApplicationService::Base
   input :amount_cents,
         as: :amount,
         type: Integer,
-        prepare: ->(value:) { Money.new(cents: value, currency: :USD) }
+        prepare: ->(value:) { Money.from_cents(value, :USD)  }
 
   # then `inputs.balance` is used in the service
 
@@ -182,6 +167,10 @@ end
 ```
 
 ## Helpers
+
+Servactory has a set of ready-made helpers, and also allows you to add custom helpers for project purposes.
+
+By helper we mean some shorthand spelling that, when used, expands into a specific option.
 
 ### Helper `optional`
 
@@ -203,26 +192,11 @@ class UsersService::Create < ApplicationService::Base
 end
 ```
 
-### Helper `as_array`
-
-This helper is equivalent to `array: true`.
-
-```ruby{3}
-class PymentsService::Send < ApplicationService::Base
-  input :invoice_numbers,
-        :as_array,
-        type: String
-
-  # ...
-end
-```
-
 ### Custom
 
-It is possible to add custom helpers.
-It is based on the `must` and `prepare` options.
+Custom helpers can be added using the `input_option_helpers` method in `configuration`.
 
-Adding is done via the `input_option_helpers` method in `configuration`.
+Such helpers can be based on the `must` and `prepare` options.
 
 [Configuration example](../configuration.md#helpers-for-input)
 
@@ -254,8 +228,7 @@ end
 
 ## Predicate methods
 
-Every input has a method with a question mark.
-The data processing logic can be found [here](https://github.com/servactory/servactory/blob/main/lib/servactory/utils.rb#L39-L52).
+Any input attribute can be accessed as a predicate method.
 
 ```ruby{6}
 input :first_name, type: String
@@ -271,7 +244,7 @@ end
 
 ## Advanced mode
 
-Advanced mode provides more detailed work with the option.
+Advanced mode involves more detailed work with the attribute option.
 
 ### Option `required`
 
@@ -317,7 +290,7 @@ input :event_name,
 
 ### Option `must`
 
-:::note
+::: info
 
 The `must` option can work only in advanced mode.
 

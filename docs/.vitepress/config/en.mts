@@ -51,6 +51,11 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       { text: 'Contributing', link: '/contributing' }
     ],
 
+    outline: {
+      // label: 'On this page',
+      level: [2, 3]
+    },
+
     socialLinks: [
       { icon: 'github', link: 'https://github.com/servactory/servactory' }
     ],
