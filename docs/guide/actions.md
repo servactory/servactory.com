@@ -138,7 +138,7 @@ end
 
 ```ruby {2}
 stage do
-  only_if ->(context:) { Settings.features.preview.disabled }
+  only_unless ->(context:) { Settings.features.preview.disabled }
   
   make :create_user!
   make :create_blog_for_user!

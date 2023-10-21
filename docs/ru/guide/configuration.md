@@ -11,9 +11,11 @@ next: Неудачи и обработка ошибок
 
 ## Примеры конфигурации
 
-### Для ошибок
+### Для исключений
 
-```ruby {4-6,8} title="app/services/application_service/base.rb"
+::: code-group
+
+```ruby {4-6,8} [app/services/application_service/base.rb]
 module ApplicationService
   class Base < Servactory::Base
     configuration do
@@ -27,13 +29,29 @@ module ApplicationService
 end
 ```
 
+```ruby {3-5,7} [app/services/application_service/errors.rb]
+module ApplicationService
+  module Errors
+    class InputError < Servactory::Errors::InputError; end
+    class OutputError < Servactory::Errors::OutputError; end
+    class InternalError < Servactory::Errors::InternalError; end
+
+    class Failure < Servactory::Errors::Failure; end
+  end
+end
+```
+
+:::
+
 ### Хелперы для `input`
 
 Пользовательские хелперы для `input` основываются на опциях `must` и `prepare`.
 
 #### Пример с `must`
 
-```ruby {4-20} title="app/services/application_service/base.rb"
+::: code-group
+
+```ruby {4-20} [app/services/application_service/base.rb]
 module ApplicationService
   class Base < Servactory::Base
     configuration do
@@ -59,9 +77,13 @@ module ApplicationService
 end
 ```
 
+:::
+
 #### Пример с `prepare`
 
-```ruby {4-13} title="app/services/application_service/base.rb"
+::: code-group
+
+```ruby {4-13} [app/services/application_service/base.rb]
 module ApplicationService
   class Base < Servactory::Base
     configuration do
@@ -70,7 +92,7 @@ module ApplicationService
           Servactory::Inputs::OptionHelper.new(
             name: :to_money,
             equivalent: {
-              prepare: ->(value:) { Money.from_cents(value, :USD)  }
+              prepare: ->(value:) { Money.from_cents(value, :USD) }
             }
           )
         ]
@@ -80,17 +102,25 @@ module ApplicationService
 end
 ```
 
+:::
+
 ### Алиасы для `make`
 
-```ruby {2} title="app/services/application_service/base.rb"
+::: code-group
+
+```ruby {2} [app/services/application_service/base.rb]
 configuration do
   aliases_for_make %i[execute]
 end
 ```
 
+:::
+
 ### Сокращения для `make`
 
-```ruby {4} title="app/services/application_service/base.rb"
+::: code-group
+
+```ruby {4} [app/services/application_service/base.rb]
 module ApplicationService
   class Base < Servactory::Base
     configuration do
@@ -99,3 +129,5 @@ module ApplicationService
   end
 end
 ```
+
+:::

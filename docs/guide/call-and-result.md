@@ -13,7 +13,7 @@ Services can only be called via `.call` and `.call!` methods.
 
 ### Via `.call!`
 
-The `.call!` method will fail if it catches any exception.
+Calling a service via the `.call!` method will fail with an error for any type of exception.
 
 ```ruby
 UsersService::Accept.call!(user: User.first)
@@ -21,7 +21,7 @@ UsersService::Accept.call!(user: User.first)
 
 ### Via `.call`
 
-The `.call` method will only fail if it catches an exception in the input attributes.
+Calling a service via the `.call` method will only fail if it catches an exception in the input attributes.
 Internal and output attributes, as well as methods for failures — all this will be collected in the result.
 
 ```ruby
@@ -58,8 +58,7 @@ Outputs in `Result` have predicate methods similar to those inside a service.
 
 #### Helpers
 
-As a result of the work of the service, there are `success?` and `failure?` methods,
-which can help determine the result of the work for further processing.
+As a result of the service, there are `success?` and `failure?` methods that can help determine the scenario for further processing.
 
 ```ruby
 service_result.success? # => true

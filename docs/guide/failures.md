@@ -7,16 +7,17 @@ next: Extensions
 
 # Failures
 
-In a simple use case, all service failures will come from input, output or internal attributes.
+In a simple use case, all service failures (or exceptions) will come from input, internal, or output.
 That would be considered as unexpected behavior in service operation.
 
-In order to describe expected service crashes, the following methods were prepared.
+But in addition to this, you can also describe expected errors in the service.
+The methods presented below are provided for this.
 
-## Fail
+## Method `fail!`
 
-Base method that allows to pass text as message and additional information via `meta` attribute.
+The basic `fail!` method allows you to pass the error text, as well as additional information through the `meta` attribute.
 
-When the service is called via the `.call!` method, there will be called an exception with the class `Servactory::Errors::Failure`.
+When calling a service through the `.call!` method, an exception with the class `Servactory::Errors::Failure` will occur.
 
 ```ruby{6}
 make :check!
@@ -44,11 +45,11 @@ exception.type              # => :fail
 exception.meta              # => {:invoice_number=>"BB-7650AE"}
 ```
 
-## Fail for input
+## Method `fail_input!`
 
-This method differs from `.fail!` by obligatory indication of input-attribute name.
+It differs from `fail!` by the mandatory indication of the name of the input attribute on behalf of which the error will be created.
 
-If service is called through `.call!` method, it will cause exception with class `Servactory::Errors::InputError`.
+When calling a service through the `.call!` method, an exception with the class `Servactory::Errors::InputError` will be thrown.
 
 ```ruby{6}
 make :check!

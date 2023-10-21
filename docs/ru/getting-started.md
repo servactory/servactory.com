@@ -32,7 +32,7 @@ bundle install
 
 ### ApplicationService::Errors
 
-```ruby title="app/services/application_service/errors.rb"
+```ruby [app/services/application_service/errors.rb]
 module ApplicationService
   module Errors
     class InputError < Servactory::Errors::InputError; end
@@ -46,7 +46,7 @@ end
 
 ### ApplicationService::Base
 
-```ruby title="app/services/application_service/base.rb"
+```ruby [app/services/application_service/base.rb]
 module ApplicationService
   class Base < Servactory::Base
     configuration do
