@@ -32,6 +32,8 @@ As a first step, it is recommended to prepare the base class for further inherit
 
 ### ApplicationService::Errors
 
+::: code-group
+
 ```ruby [app/services/application_service/errors.rb]
 module ApplicationService
   module Errors
@@ -44,7 +46,11 @@ module ApplicationService
 end
 ```
 
+:::
+
 ### ApplicationService::Base
+
+::: code-group
 
 ```ruby [app/services/application_service/base.rb]
 module ApplicationService
@@ -59,3 +65,5 @@ module ApplicationService
   end
 end
 ```
+
+:::
