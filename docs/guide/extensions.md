@@ -7,4 +7,96 @@ next: Internationalization (I18n)
 
 # Extensions
 
-Information will be available soon
+You can expand the basic functionality by adding your own extensions.
+
+It is recommended to create extensions in the `app/services/application_service/extensions` directory.
+Also, as a recommendation, create extensions in their own directory.
+
+## Example of implementation
+
+### Connecting
+
+You can add extensions using the `with_extensions` method.
+
+::: code-group
+
+```ruby [app/services/application_service/base.rb]
+require_relative "extensions/status_active/dsl"
+
+module ApplicationService
+  class Base
+    include Servactory::DSL.with_extensions(
+      ApplicationService::Extensions::StatusActive::DSL
+    )
+  end
+end
+```
+
+:::
+
+### Extension code
+
+::: code-group
+
+```ruby [app/services/application_service/extensions/status_active/dsl.rb]
+module ApplicationService
+  module Extensions
+    module StatusActive
+      module DSL
+        def self.included(base)
+          base.extend(ClassMethods)
+          base.include(InstanceMethods)
+        end
+
+        module ClassMethods
+          private
+
+          attr_accessor :status_active_model_name
+
+          def status_active!(model_name)
+            self.status_active_model_name = model_name
+          end
+        end
+
+        module InstanceMethods
+          private
+
+          def call!(**)
+            super
+
+            status_active_model_name = self.class.send(:status_active_model_name)
+            return if status_active_model_name.nil?
+
+            is_active = inputs.send(status_active_model_name).active?
+            return if is_active
+
+            fail!(message: "User is not active")
+          end
+        end
+      end
+    end
+  end
+end
+```
+
+:::
+
+### Usage
+
+```ruby{5}
+module PostsService
+  class Create < ApplicationService::Base
+    input :user, type: User
+
+    status_active! :user
+    
+    make :something
+    
+    private
+
+    def something
+      # ...
+    end
+  end
+end
+```
