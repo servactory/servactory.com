@@ -1,13 +1,8 @@
 ---
 title: Getting started
-description: Description and examples of use
-keywords:
-  - ruby classes
-  - service objects
-slug: getting-started
-sidebar_label: Getting started
-sidebar_position: 2
-pagination_label: Getting started
+description: Описание и примеры использования
+prev:  Why Servactory
+next: Service input attributes
 ---
 
 # Getting started
@@ -37,7 +32,9 @@ As a first step, it is recommended to prepare the base class for further inherit
 
 ### ApplicationService::Errors
 
-```ruby title="app/services/application_service/errors.rb"
+::: code-group
+
+```ruby [app/services/application_service/errors.rb]
 module ApplicationService
   module Errors
     class InputError < Servactory::Errors::InputError; end
@@ -49,9 +46,13 @@ module ApplicationService
 end
 ```
 
+:::
+
 ### ApplicationService::Base
 
-```ruby title="app/services/application_service/base.rb"
+::: code-group
+
+```ruby [app/services/application_service/base.rb]
 module ApplicationService
   class Base < Servactory::Base
     configuration do
@@ -64,3 +65,5 @@ module ApplicationService
   end
 end
 ```
+
+:::

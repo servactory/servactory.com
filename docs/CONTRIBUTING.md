@@ -1,9 +1,7 @@
 ---
 title: Contributing
-slug: contributing
-sidebar_label: Contributing
-sidebar_position: 6
-pagination_label: Contributing
+prev: false
+next: false
 ---
 
 # Contributing
