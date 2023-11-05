@@ -188,11 +188,11 @@ end
 
 ## Алиасы для `make`
 
-Через конфигурацию `aliases_for_make` можно добавить алиас для метода `make`.
+Через конфигурацию `action_aliases` можно добавить алиас для метода `make`.
 
 ```ruby {2,5}
 configuration do
-  aliases_for_make %i[execute]
+  action_aliases %i[execute]
 end
 
 execute :something

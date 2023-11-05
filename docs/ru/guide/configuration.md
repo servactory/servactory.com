@@ -110,7 +110,7 @@ end
 
 ```ruby {2} [app/services/application_service/base.rb]
 configuration do
-  aliases_for_make %i[execute]
+  action_aliases %i[execute]
 end
 ```
 
