@@ -22,19 +22,23 @@ features:
       light: /img/icons/database-add-light.svg
       dark: /img/icons/database-add-dark.svg
     details: Добавляйте ожидаемые для работы сервиса данные с использованием типов и различных опций
+    link: /ru/guide/attributes/input
   - title: Действия
     icon:
       light: /img/icons/code-square-light.svg
       dark: /img/icons/code-square-dark.svg
     details: Применяйте методы или группы методов для поочередного выполнения действий
-  - title: Кастомизация
+    link: /ru/guide/actions
+  - title: Конфигурация
     icon:
       light: /img/icons/tools-light.svg
       dark: /img/icons/tools-dark.svg
-    details: Подготавливайте среду под стиль вашего проекта
+    details: Подготавливайте среду сервисов под стиль вашего проекта
+    link: /ru/guide/configuration
   - title: Расширения
     icon:
       light: /img/icons/plugin-light.svg
       dark: /img/icons/plugin-dark.svg
     details: Реализовывайте и применяйте собственные расширения, предназначенные под цели вашего проекта
+    link: /ru/guide/extensions
 ---
