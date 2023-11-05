@@ -7,11 +7,11 @@ next:  Service actions
 
 # Service output attributes
 
-All attributes that the service should return in `Result` must be added using the `output` method.
+All attributes that the service should return as a result through the `Result` class must be added using the `output` method.
 
 ## Usage
 
-The assignment and use of service output attributes is done through the `outputs=`/`outputs` methods or their `out=`/`out` aliases.
+The assignment and use of service output attributes is done through the `outputs=`/`outputs` methods.
 
 ```ruby
 class UsersService::Create < ApplicationService::Base
@@ -29,12 +29,6 @@ class UsersService::Create < ApplicationService::Base
       inputs.middle_name,
       inputs.last_name
     ].compact.join(" ")
-    # or
-    # out.full_name = [
-    #   inp.first_name,
-    #   inp.middle_name,
-    #   inp.last_name
-    # ].compact.join(" ")
   end
 end
 ```

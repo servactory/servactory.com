@@ -11,7 +11,7 @@ Internal private attributes can be added via the `internal` method.
 
 ## Usage
 
-The assignment and use of internal service attributes is done through the `internals=`/`internals` methods or their `int=`/`int` aliases.
+The assignment and use of internal service attributes is done through the `internals=`/`internals` methods.
 
 ```ruby
 class UsersService::Create < ApplicationService::Base
@@ -29,12 +29,6 @@ class UsersService::Create < ApplicationService::Base
       inputs.middle_name,
       inputs.last_name
     ].compact.join(" ")
-    # or
-    # int.full_name = [
-    #   inp.first_name,
-    #   inp.middle_name,
-    #   inp.last_name
-    # ].compact.join(" ")
   end
 end
 ```

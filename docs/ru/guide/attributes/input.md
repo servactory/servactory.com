@@ -12,7 +12,7 @@ next: Внутренние атрибуты сервиса
 
 ## Использование
 
-Использование входящих в сервис атрибутов осуществляется через метод `inputs` или его алиас `inp`.
+Использование входящих в сервис атрибутов осуществляется через метод `inputs`.
 
 ```ruby
 class UsersService::Create < ApplicationService::Base
@@ -22,8 +22,6 @@ class UsersService::Create < ApplicationService::Base
 
   def create!
     outputs.user = User.create!(nickname: inputs.nickname)
-    # или
-    # outputs.user = User.create!(nickname: inp.nickname)
   end
 end
 ```

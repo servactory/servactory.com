@@ -12,7 +12,7 @@ If the service receives attributes that were not added via the `input` method, i
 
 ## Usage
 
-The use of the attributes included in the service is done through the `inputs` method or its `inp` alias.
+The use of the attributes included in the service is done through the `inputs` method.
 
 ```ruby
 class UsersService::Create < ApplicationService::Base
@@ -22,8 +22,6 @@ class UsersService::Create < ApplicationService::Base
 
   def create!
     outputs.user = User.create!(nickname: inputs.nickname)
-    # or
-    # outputs.user = User.create!(nickname: inp.nickname)
   end
 end
 ```

@@ -11,7 +11,7 @@ next: Выходящие атрибуты сервиса
 
 ## Использование
 
-Назначение и использование внутренних атрибутов сервиса осуществляется через методы `internals=`/`internals` или их алиасы `int=`/`int`.
+Назначение и использование внутренних атрибутов сервиса осуществляется через методы `internals=`/`internals`.
 
 ```ruby
 class UsersService::Create < ApplicationService::Base
@@ -29,12 +29,6 @@ class UsersService::Create < ApplicationService::Base
       inputs.middle_name,
       inputs.last_name
     ].compact.join(" ")
-    # или
-    # int.full_name = [
-    #   inp.first_name,
-    #   inp.middle_name,
-    #   inp.last_name
-    # ].compact.join(" ")
   end
 end
 ```

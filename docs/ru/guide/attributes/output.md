@@ -7,11 +7,12 @@ next: Действия в сервисе
 
 # Выходящие атрибуты сервиса
 
-Все атрибуты, которые должен возвращать сервис в `Result` необходимо добавить с использованием метода `output`.
+Все атрибуты, которые должен возвращать сервис в результате через класс `Result`
+необходимо добавить с использованием метода `output`.
 
 ## Использование
 
-Назначение и использование выходящих атрибутов сервиса осуществляется через методы `outputs=`/`outputs` или их алиасы `out=`/`out`.
+Назначение и использование выходящих атрибутов сервиса осуществляется через методы `outputs=`/`outputs`.
 
 ```ruby
 class UsersService::Create < ApplicationService::Base
@@ -29,12 +30,6 @@ class UsersService::Create < ApplicationService::Base
       inputs.middle_name,
       inputs.last_name
     ].compact.join(" ")
-    # или
-    # out.full_name = [
-    #   inp.first_name,
-    #   inp.middle_name,
-    #   inp.last_name
-    # ].compact.join(" ")
   end
 end
 ```
