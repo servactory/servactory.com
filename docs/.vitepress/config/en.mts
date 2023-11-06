@@ -4,15 +4,6 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
   description: "A set of tools for building reliable Ruby services of any complexity",
 
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    logo: {
-      light: "/img/logo-full-light.svg",
-      dark: "/img/logo-full-dark.svg",
-      alt: "Servactory"
-    },
-
-    siteTitle: false,
-
     nav: [
       { text: 'Guide', link: '/getting-started' },
       { text: 'v1', link: 'https://v1.servactory.com' }
@@ -54,14 +45,6 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     outline: {
       // label: 'On this page',
       level: [2, 3]
-    },
-
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/servactory/servactory' }
-    ],
-
-    search: {
-      provider: 'local'
     },
 
     // footer: {

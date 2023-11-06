@@ -28,6 +28,25 @@ export const sharedConfig = defineConfig({
 
   appearance: 'dark',
 
+  themeConfig: {
+    // https://vitepress.dev/reference/default-theme-config
+    logo: {
+      light: "/img/logo-full-light.svg",
+      dark: "/img/logo-full-dark.svg",
+      alt: "Servactory"
+    },
+
+    siteTitle: false,
+
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/servactory/servactory' }
+    ],
+
+    search: {
+      provider: 'local'
+    },
+  },
+
   markdown: {
     // https://github.com/shikijs/shiki/blob/main/docs/themes.md
     // node_modules/shiki/themes

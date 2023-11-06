@@ -4,15 +4,6 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
   description: "Набор инструментов для построения надежных сервисов любой сложности",
 
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-    logo: {
-      light: "/img/logo-full-light.svg",
-      dark: "/img/logo-full-dark.svg",
-      alt: "Servactory"
-    },
-
-    siteTitle: false,
-
     nav: [
       { text: 'Руководство', link: '/ru/getting-started' },
       { text: 'v1', link: 'https://v1.servactory.com/ru' }
@@ -54,14 +45,6 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     outline: {
       label: 'На этой странице',
       level: [2, 3]
-    },
-
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/servactory/servactory' }
-    ],
-
-    search: {
-      provider: 'local'
     },
 
     // footer: {
