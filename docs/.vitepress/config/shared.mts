@@ -81,5 +81,9 @@ export const sharedConfig = defineConfig({
       light: 'github-light',
       dark: 'github-dark'
     }
+  },
+
+  sitemap: {
+    hostname: 'https://servactory.com'
   }
 })
