@@ -43,7 +43,34 @@ export const sharedConfig = defineConfig({
     ],
 
     search: {
-      provider: 'local'
+      provider: 'local',
+      options: {
+        locales: {
+          ru: {
+            translations: {
+              button: {
+                buttonText: "Поиск",
+                buttonAriaLabel: "Поиск"
+              },
+              modal: {
+                displayDetails: 'Показать подробный список',
+                resetButtonTitle: 'Сбросить поиск',
+                backButtonTitle: 'Закрыть поиск',
+                noResultsText: 'Нет результатов для',
+                footer: {
+                  selectText: 'чтобы выбрать',
+                  selectKeyAriaLabel: 'enter',
+                  navigateText: 'для навигации',
+                  navigateUpKeyAriaLabel: 'up arrow',
+                  navigateDownKeyAriaLabel: 'down arrow',
+                  closeText: 'чтобы закрыть',
+                  closeKeyAriaLabel: 'escape'
+                }
+              }
+            }
+          }
+        }
+      }
     },
   },
 

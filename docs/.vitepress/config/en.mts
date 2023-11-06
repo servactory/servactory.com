@@ -1,7 +1,7 @@
 import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress'
 
 export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
-  description: "A set of tools for building reliable Ruby services of any complexity",
+  description: "A set of tools for building reliable Ruby services (Service Object) of any complexity",
 
   themeConfig: {
     nav: [
