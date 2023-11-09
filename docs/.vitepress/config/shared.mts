@@ -22,6 +22,18 @@ export const sharedConfig = defineConfig({
     //   'link',
     //   { rel: 'icon', href: '/favicon-dark.ico', type: 'image/png', media: '(prefers-color-scheme: dark)' }
     // ]
+    [
+      'script',
+      { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-TQZ1KR4XMT' }
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TQZ1KR4XMT');`
+    ],
   ],
 
   cleanUrls: true,
