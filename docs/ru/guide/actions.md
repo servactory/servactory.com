@@ -15,30 +15,34 @@ next: Вызов сервиса и результат его работы
 ### Минимальный
 
 ```ruby
-make :something
-
-def something
-  # ...
+class PostsService::Create < ApplicationService::Base
+  def call
+    # something
+  end
 end
 ```
 
 ### Несколько методов
 
-```ruby{1-3,5,9,13}
-make :assign_api_model
-make :perform_api_request
-make :process_result
+```ruby{4-6,8,12,16}
+class PostsService::Create < ApplicationService::Base
+  # ...
 
-def assign_api_model
-  internals.api_model = APIModel.new
-end
-
-def perform_api_request
-  internals.response = APIClient.resource.create(internals.api_model)
-end
-
-def process_result
-  ARModel.create!(internals.response)
+  make :assign_api_model
+  make :perform_api_request
+  make :process_result
+  
+  def assign_api_model
+    internals.api_model = APIModel.new
+  end
+  
+  def perform_api_request
+    internals.response = APIClient.resource.create(internals.api_model)
+  end
+  
+  def process_result
+    ARModel.create!(internals.response)
+  end
 end
 ```
 
@@ -204,12 +208,12 @@ end
 
 ## Сокращения для `make`
 
-Через конфигурацию `shortcuts_for_make` можно добавить часто используемые слова, которые используются в виде префиксов в именах методов.
+Через конфигурацию `action_shortcuts` можно добавить часто используемые слова, которые используются в виде префиксов в именах методов.
 Имена самих методов короче не станут, но это позволит сократить строки с применением метода `make` и улучшить читаемость кода сервиса, сделав его выразительнее.
 
 ```ruby {2,5,6,9,13}
 configuration do
-  shortcuts_for_make %i[assign perform]
+  action_shortcuts %i[assign perform]
 end
 
 assign :api_model

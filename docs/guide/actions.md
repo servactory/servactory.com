@@ -15,30 +15,34 @@ Service methods are called only with `make` method.
 ### Minimum
 
 ```ruby
-make :something
-
-def something
-  # ...
+class PostsService::Create < ApplicationService::Base
+  def call
+    # something
+  end
 end
 ```
 
 ### Several methods
 
-```ruby{1-3,5,9,13}
-make :assign_api_model
-make :perform_api_request
-make :process_result
+```ruby{4-6,8,12,16}
+class PostsService::Create < ApplicationService::Base
+  # ...
 
-def assign_api_model
-  internals.api_model = APIModel.new
-end
-
-def perform_api_request
-  internals.response = APIClient.resource.create(internals.api_model)
-end
-
-def process_result
-  ARModel.create!(internals.response)
+  make :assign_api_model
+  make :perform_api_request
+  make :process_result
+  
+  def assign_api_model
+    internals.api_model = APIModel.new
+  end
+  
+  def perform_api_request
+    internals.response = APIClient.resource.create(internals.api_model)
+  end
+  
+  def process_result
+    ARModel.create!(internals.response)
+  end
 end
 ```
 
@@ -204,12 +208,12 @@ end
 
 ## Shortcuts for `make`
 
-Add frequently used words that are used as prefixes in method names through the `shortcuts_for_make` configuration.
+Add frequently used words that are used as prefixes in method names through the `action_shortcuts` configuration.
 It won't make the names of methods shorter, but that will shorten the lines using the `make` method and improve the readability of the service code, making it more expressive.
 
 ```ruby {2,5,6,9,13}
 configuration do
-  shortcuts_for_make %i[assign perform]
+  action_shortcuts %i[assign perform]
 end
 
 assign :api_model
