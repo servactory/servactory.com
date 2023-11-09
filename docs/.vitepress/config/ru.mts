@@ -47,6 +47,11 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       level: [2, 3]
     },
 
+    editLink: {
+      pattern: 'https://github.com/servactory/servactory.com/edit/main/docs/:path',
+      text: 'Редактировать эту страницу на GitHub'
+    },
+
     // footer: {
     //   message: 'Released under the MIT License',
     //   copyright: 'Copyright © 2023'

@@ -47,6 +47,11 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       level: [2, 3]
     },
 
+    editLink: {
+      pattern: 'https://github.com/servactory/servactory.com/edit/main/docs/:path',
+      text: 'Edit this page on GitHub'
+    },
+
     // footer: {
     //   message: 'Released under the MIT License',
     //   copyright: 'Copyright © 2023'
