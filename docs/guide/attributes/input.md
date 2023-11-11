@@ -196,7 +196,7 @@ Custom helpers can be added using the `input_option_helpers` method in `configur
 
 Such helpers can be based on the `must` and `prepare` options.
 
-[Configuration example](../configuration.md#helpers-for-input)
+[Configuration example](../configuration#helpers-for-input)
 
 #### Example with `must`
 
