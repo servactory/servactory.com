@@ -128,8 +128,8 @@ But unlike other validation options, `must` allows you to describe any kind of v
 ```ruby{5-9}
 class PymentsService::Send < ApplicationService::Base
   input :invoice_numbers,
-        type: String,
-        array: true,
+        type: Array,
+        consists_of: String,
         must: {
           be_6_characters: {
             is: ->(value:) { value.all? { |id| id.size == 6 } }
@@ -204,8 +204,8 @@ Such helpers can be based on the `must` and `prepare` options.
 class PymentsService::Send < ApplicationService::Base
   input :invoice_numbers,
         :must_be_6_characters,
-        type: String,
-        array: true
+        type: Array,
+        consists_of: String
 
   # ...
 end
@@ -296,8 +296,8 @@ The `must` option can work only in advanced mode.
 
 ```ruby
 input :invoice_numbers,
-      type: String,
-      array: true,
+      type: Array,
+      consists_of: String,
       must: {
         be_6_characters: {
           is: ->(value:) { value.all? { |id| id.size == 6 } }
@@ -307,8 +307,8 @@ input :invoice_numbers,
 
 ```ruby
 input :invoice_numbers,
-      type: String,
-      array: true,
+      type: Array,
+      consists_of: String,
       must: {
         be_6_characters: {
           is: ->(value:) { value.all? { |id| id.size == 6 } },

@@ -128,8 +128,8 @@ end
 ```ruby{5-9}
 class PymentsService::Send < ApplicationService::Base
   input :invoice_numbers,
-        type: String,
-        array: true,
+        type: Array,
+        consists_of: String,
         must: {
           be_6_characters: {
             is: ->(value:) { value.all? { |id| id.size == 6 } }
@@ -292,8 +292,8 @@ end
 class PymentsService::Send < ApplicationService::Base
   input :invoice_numbers,
         :must_be_6_characters,
-        type: String,
-        array: true
+        type: Array,
+        consists_of: String
 
   # ...
 end
@@ -384,8 +384,8 @@ input :event_name,
 
 ```ruby
 input :invoice_numbers,
-      type: String,
-      array: true,
+      type: Array,
+      consists_of: String,
       must: {
         be_6_characters: {
           is: ->(value:) { value.all? { |id| id.size == 6 } }
@@ -395,8 +395,8 @@ input :invoice_numbers,
 
 ```ruby
 input :invoice_numbers,
-      type: String,
-      array: true,
+      type: Array,
+      consists_of: String,
       must: {
         be_6_characters: {
           is: ->(value:) { value.all? { |id| id.size == 6 } },
