@@ -43,6 +43,38 @@ end
 
 :::
 
+### Collection mode
+
+::: code-group
+
+```ruby {4} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      collection_mode_class_names([ActiveRecord::Relation])
+    end
+  end
+end
+```
+
+:::
+
+### Hash mode
+
+::: code-group
+
+```ruby {4} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      hash_mode_class_names([CustomHash])
+    end
+  end
+end
+```
+
+:::
+
 ### Helpers for `input`
 
 Custom helpers for `input` are based on the `must` and `prepare` options.

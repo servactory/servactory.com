@@ -7,12 +7,12 @@ next: Service call and result of work
 
 # Service actions
 
-Actions in the service imply calling methods.
-Service methods are called only with `make` method.
+Actions in the service are sequential calls to methods.
+Service methods are called using the `make` method.
 
 ## Examples
 
-### Minimum
+### Minimal
 
 ```ruby
 class PostsService::Create < ApplicationService::Base
@@ -31,15 +31,15 @@ class PostsService::Create < ApplicationService::Base
   make :assign_api_model
   make :perform_api_request
   make :process_result
-  
+
   def assign_api_model
-    internals.api_model = APIModel.new
+    internals.api_model = APIModel.new(...)
   end
-  
+
   def perform_api_request
     internals.response = APIClient.resource.create(internals.api_model)
   end
-  
+
   def process_result
     ARModel.create!(internals.response)
   end

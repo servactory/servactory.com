@@ -7,8 +7,8 @@ next: Вызов сервиса и результат его работы
 
 # Действия в сервисе
 
-Действия в сервисе подразумевают вызов методов.
-Вызов методов сервиса происходит только при помощи метода `make`.
+Действия в сервисе — это поочередный вызов методов.
+Вызов методов сервиса происходит при помощи метода `make`.
 
 ## Примеры
 
@@ -31,15 +31,15 @@ class PostsService::Create < ApplicationService::Base
   make :assign_api_model
   make :perform_api_request
   make :process_result
-  
+
   def assign_api_model
-    internals.api_model = APIModel.new
+    internals.api_model = APIModel.new(...)
   end
-  
+
   def perform_api_request
     internals.response = APIClient.resource.create(internals.api_model)
   end
-  
+
   def process_result
     ARModel.create!(internals.response)
   end

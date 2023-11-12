@@ -43,6 +43,38 @@ end
 
 :::
 
+### Режим коллекции
+
+::: code-group
+
+```ruby {4} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      collection_mode_class_names([ActiveRecord::Relation])
+    end
+  end
+end
+```
+
+:::
+
+### Режим хеша
+
+::: code-group
+
+```ruby {4} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      hash_mode_class_names([CustomHash])
+    end
+  end
+end
+```
+
+:::
+
 ### Хелперы для `input`
 
 Пользовательские хелперы для `input` основываются на опциях `must` и `prepare`.
