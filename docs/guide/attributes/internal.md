@@ -45,7 +45,7 @@ This option is validation.
 It will check that the passed value corresponds to the specified type (class).
 In this case `is_a?` method is used.
 
-```ruby{4,14}
+```ruby{4,14,19}
 class NotificationsService::Create < ApplicationService::Base
   input :user, type: User
 
@@ -63,10 +63,87 @@ class NotificationsService::Create < ApplicationService::Base
   end
 
   def create_notification!
-    outputs.notification = Notification.create!(user: inputs.user, inviter: internals.inviter)
+    outputs.notification =
+      Notification.create!(user: inputs.user, inviter: internals.inviter)
   end
 end
 ```
+
+## Operating modes
+
+The operating mode of an internal attribute depends on its type.
+Each operating mode has a set of its own options.
+
+### Collection mode
+
+To enable collection mode, you must specify `Array` or `Set` as the type of the internal attribute.
+You can also specify your own type for project purposes through the use of the `collection_mode_class_names` configuration.
+
+#### Options
+
+##### Option `consists_of`
+
+This option is validation.
+It will check that each value in the collection matches the specified type (class).
+The `is_a?` method is used.
+
+Explicit use of this option is optional.
+The default value is `String`.
+
+```ruby
+internal :ids,
+         type: Array,
+         consists_of: String
+```
+
+### Hash mode
+
+To enable hash mode, you must specify `Hash` as the type of the internal attribute.
+You can also specify your own type for project purposes through the use of the `hash_mode_class_names` configuration.
+
+#### Options
+
+##### Option `schema`
+
+This option is validation.
+Requires a hash value that must describe the value structure of the internal attribute.
+
+Explicit use of this option is optional.
+If the schema value is not specified, the validation will be skipped.
+By default, no value is specified.
+
+```ruby
+internal :payload,
+         type: Hash,
+         schema: {
+           request_id: { type: String, required: true },
+           user: {
+             type: Hash,
+             required: true,
+             first_name: { type: String, required: true },
+             middle_name: { type: String, required: false, default: "<unknown>" },
+             last_name: { type: String, required: true },
+             pass: {
+               type: Hash,
+               required: true,
+               series: { type: String, required: true },
+               number: { type: String, required: true }
+             }
+           }
+         }
+```
+
+Each expected hash key must be described in the following format:
+
+```ruby
+{
+  request_id: { type: String, required: true }
+}
+```
+
+The following options are allowed: `type`, `required` and the optional `default`.
+
+If the `type` value is `Hash`, then nesting can be described in the same format.
 
 ## Predicate methods
 
@@ -85,4 +162,30 @@ def something
 
   # ...
 end
+```
+
+## Advanced mode
+
+Advanced mode involves more detailed work with the attribute option.
+
+### Option `consists_of`
+
+Option from [collection mode](../attributes/internal#collection-mode).
+
+```ruby
+internal :ids,
+         type: Array,
+         consists_of: {
+           type: String,
+           message: "ID can only be of String type"
+         }
+```
+
+```ruby
+internal :ids,
+         type: Array,
+         # The default array element type is String
+         consists_of: {
+           message: "ID can only be of String type"
+         }
 ```
