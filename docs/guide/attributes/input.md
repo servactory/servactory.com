@@ -5,7 +5,7 @@ prev: Getting started
 next: Service internal attributes
 ---
 
-# Service input attributes
+# Input attributes
 
 All attributes that the service should expect when called must be added using the `input` method.
 If the service receives attributes that were not added via the `input` method, it will return an error.
@@ -31,7 +31,7 @@ end
 ### Option `type`
 
 This option is validation.
-It will check if the value set to `input` corresponds to the specified type (class).
+It will check that the passed value corresponds to the specified type (class).
 The `is_a?` method is used.
 
 Always required to specify. May contain one or more classes.
@@ -46,7 +46,7 @@ end
 ```
 
 ```ruby{3}
-class ToggleService < ApplicationService::Base
+class FeaturesService::Enable < ApplicationService::Base
   input :flag,
         type: [TrueClass, FalseClass]
 
@@ -57,8 +57,8 @@ end
 ### Option `required`
 
 This option is validation.
-Checks that the value set to `input` is not empty.
-The `present?` method is used to check if the value is not `nil` or an empty string.
+It will check that the passed value is not empty.
+The `present?` method is used.
 
 By default, `required` is set to `true`.
 
@@ -81,25 +81,20 @@ end
 ### Option `as`
 
 This option is not validation.
-It is used to prepare the input attribute.
-The input attribute will be assigned a new name, which is specified via the `as` option.
+It will indicate the new name of the input attribute to work within the service.
 The original name inside the service will no longer be available.
 
-```ruby{3,14}
-class NotificationService::Create < ApplicationService::Base
-  input :customer,
-        as: :user,
+```ruby{3,10}
+class NotificationsService::Create < ApplicationService::Base
+  input :user,
+        as: :recipient,
         type: User
 
-  output :notification,
-         type: Notification
+  # ...
 
-  make :create_notification!
-
-  private
-
-  def create_notification!
-    outputs.notification = Notification.create!(user: inputs.user)
+  def create!
+    outputs.notification =
+      Notification.create!(recipient: inputs.recipient)
   end
 end
 ```
@@ -107,11 +102,11 @@ end
 ### Option `inclusion`
 
 This option is validation.
-Checks that the value set in `input` is in the specified array.
+It will check that the passed value is in the specified array.
 The `include?` method is used.
 
 ```ruby{4}
-class EventService::Send < ApplicationService::Base
+class EventsService::Send < ApplicationService::Base
   input :event_name,
         type: String,
         inclusion: %w[created rejected approved]
@@ -123,10 +118,10 @@ end
 ### Option `must`
 
 This option is validation.
-But unlike other validation options, `must` allows you to describe any kind of validation internally.
+Allows you to create your own validations.
 
 ```ruby{5-9}
-class PymentsService::Send < ApplicationService::Base
+class PaymentsService::Create < ApplicationService::Base
   input :invoice_numbers,
         type: Array,
         consists_of: String,
@@ -143,36 +138,114 @@ end
 ### Option `prepare`
 
 This option is not validation.
-It is used to prepare the value of the input attribute.
+It is used to prepare the passed value.
 
 ::: warning
 
-Use the `prepare` option carefully and only for simple actions.
+Use the `prepare` option carefully and only for simple preparatory actions.
 
 :::
 
-```ruby{5}
-class PymentsService::Send < ApplicationService::Base
+```ruby{5,11}
+class PaymentsService::Create < ApplicationService::Base
   input :amount_cents,
         as: :amount,
         type: Integer,
-        prepare: ->(value:) { Money.from_cents(value, :USD)  }
-
-  # then `inputs.balance` is used in the service
+        prepare: ->(value:) { Money.from_cents(value, :USD) }
 
   # ...
+
+  def create!
+    outputs.payment = Payment.create!(amount: inputs.amount)
+  end
 end
 ```
+
+## Operating modes
+
+The operating mode of an input attribute depends on its type.
+Each operating mode has a set of its own options.
+
+### Collection mode
+
+To enable collection mode, you must specify `Array` or `Set` as the type of the input attribute.
+You can also specify your own type for project purposes through the use of the `collection_mode_class_names` configuration.
+
+#### Options
+
+##### Option `consists_of`
+
+This option is validation.
+It will check that each value in the collection matches the specified type (class).
+The `is_a?` method is used.
+
+Explicit use of this option is optional.
+The default value is `String`.
+
+```ruby
+input :ids,
+      type: Array,
+      consists_of: String
+```
+
+### Hash mode
+
+To enable hash mode, you must specify `Hash` as the type of the input attribute.
+You can also specify your own type for project purposes through the use of the `hash_mode_class_names` configuration.
+
+#### Options
+
+##### Option `schema`
+
+This option is validation.
+Requires a hash value that must describe the value structure of the input attribute.
+
+Explicit use of this option is optional.
+If the schema value is not specified, the validation will be skipped.
+By default, no value is specified.
+
+```ruby
+input :payload,
+      type: Hash,
+      schema: {
+        request_id: { type: String, required: true },
+        user: {
+          type: Hash,
+          required: true,
+          first_name: { type: String, required: true },
+          middle_name: { type: String, required: false, default: "<unknown>" },
+          last_name: { type: String, required: true },
+          pass: {
+            type: Hash,
+            required: true,
+            series: { type: String, required: true },
+            number: { type: String, required: true }
+          }
+        }
+      }
+```
+
+Each expected hash key must be described in the following format:
+
+```ruby
+{
+  request_id: { type: String, required: true }
+}
+```
+
+The following options are allowed: `type`, `required` and the optional `default`.
+
+If the `type` value is `Hash`, then nesting can be described in the same format.
 
 ## Helpers
 
 Servactory has a set of ready-made helpers, and also allows you to add custom helpers for project purposes.
 
-By helper we mean some shorthand spelling that, when used, expands into a specific option.
+By "helper" we mean some shorthand spelling that, when used, expands into a specific option.
 
 ### Helper `optional`
 
-This helper is equivalent to `required: false`.
+This helper is equivalent to the `required: false` option.
 
 ```ruby{6}
 class UsersService::Create < ApplicationService::Base
@@ -194,14 +267,14 @@ end
 
 Custom helpers can be added using the `input_option_helpers` method in `configuration`.
 
-Such helpers can be based on the `must` and `prepare` options.
+Such helpers can be based on existing options.
 
 [Configuration example](../configuration#helpers-for-input)
 
 #### Example with `must`
 
 ```ruby{3}
-class PymentsService::Send < ApplicationService::Base
+class PaymentsService::Create < ApplicationService::Base
   input :invoice_numbers,
         :must_be_6_characters,
         type: Array,
@@ -214,7 +287,7 @@ end
 #### Example with `prepare`
 
 ```ruby{3}
-class PymentsService::Send < ApplicationService::Base
+class PaymentsService::Create < ApplicationService::Base
   input :amount_cents,
         :to_money,
         as: :amount,
@@ -316,5 +389,27 @@ input :invoice_numbers,
             "Wrong IDs in `#{input.name}`"
           end
         }
+      }
+```
+
+### Option `consists_of`
+
+Option from [collection mode](../attributes/input#collection-mode).
+
+```ruby
+input :ids,
+      type: Array,
+      consists_of: {
+        type: String,
+        message: "ID can only be of String type"
+      }
+```
+
+```ruby
+input :ids,
+      type: Array,
+      # The default array element type is String
+      consists_of: {
+        message: "ID can only be of String type"
       }
 ```

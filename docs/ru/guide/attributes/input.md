@@ -5,7 +5,7 @@ prev: Начало работы
 next: Внутренние атрибуты сервиса
 ---
 
-# Входящие атрибуты сервиса
+# Входящие атрибуты
 
 Все атрибуты, которые должен ожидать сервис при вызове необходимо добавить с использованием метода `input`.
 Если сервис будет получать атрибуты, которые не были добавлены через метод `input`, то он будет возвращать ошибку.
@@ -31,7 +31,7 @@ end
 ### Опция `type`
 
 Эта опция является валидацией.
-Будет проверяться чтобы переданное как input значение соответствовало указанному типу (классу).
+Будет проверять чтобы переданное значение соответствовало указанному типу (классу).
 Используется метод `is_a?`.
 
 Всегда обязательно для указания. Может содержать один или несколько классов.
@@ -46,7 +46,7 @@ end
 ```
 
 ```ruby{3}
-class ToggleService < ApplicationService::Base
+class FeaturesService::Enable < ApplicationService::Base
   input :flag,
         type: [TrueClass, FalseClass]
 
@@ -57,8 +57,8 @@ end
 ### Опция `required`
 
 Эта опция является валидацией.
-Будет проверяться чтобы переданное как input значение не было пустым.
-Используется метод `present?` чтобы проверить, является ли значение не `nil` или не пустой строкой.
+Будет проверять чтобы переданное значение не было пустым.
+Используется метод `present?`.
 
 По умолчанию `required` имеет значение `true`.
 
@@ -81,25 +81,20 @@ end
 ### Опция `as`
 
 Эта опция не является валидацией.
-Она используется для подготовки атрибута input.
-Для атрибута input будет назначено новое имя, которое указано через опцию `as`.
+Будет указывать новое имя атрибута для работы внутри сервиса.
 Исходное имя внутри сервиса станет недоступным.
 
-```ruby{3,14}
-class NotificationService::Create < ApplicationService::Base
-  input :customer,
-        as: :user,
+```ruby{3,10}
+class NotificationsService::Create < ApplicationService::Base
+  input :user,
+        as: :recipient,
         type: User
 
-  output :notification,
-         type: Notification
+  # ...
 
-  make :create_notification!
-
-  private
-
-  def create_notification!
-    outputs.notification = Notification.create!(user: inputs.user)
+  def create!
+    outputs.notification =
+      Notification.create!(recipient: inputs.recipient)
   end
 end
 ```
@@ -107,11 +102,11 @@ end
 ### Опция `inclusion`
 
 Эта опция является валидацией.
-Будет проверяться чтобы переданное как input значение находилось в указанном массиве.
+Будет проверять чтобы переданное значение находилось в указанном массиве.
 Используется метод `include?`.
 
 ```ruby{4}
-class EventService::Send < ApplicationService::Base
+class EventsService::Send < ApplicationService::Base
   input :event_name,
         type: String,
         inclusion: %w[created rejected approved]
@@ -123,10 +118,10 @@ end
 ### Опция `must`
 
 Эта опция является валидацией.
-Но в отличие от других валидационных опций, `must` позволяет описывать любого вида валидацию внутри себя.
+Позволяет создавать собственные валидации.
 
 ```ruby{5-9}
-class PymentsService::Send < ApplicationService::Base
+class PaymentsService::Create < ApplicationService::Base
   input :invoice_numbers,
         type: Array,
         consists_of: String,
@@ -143,28 +138,30 @@ end
 ### Опция `prepare`
 
 Эта опция не является валидацией.
-Она используется для подготовки значения атрибута input.
+Она используется для подготовки переданное значения.
 
 ::: warning
 
-Используйте опцию `prepare` осторожно и только для простых действий.
+Используйте опцию `prepare` осторожно и только для простых подготовительных действий.
 
 :::
 
-```ruby{5}
-class PymentsService::Send < ApplicationService::Base
+```ruby{5,11}
+class PaymentsService::Create < ApplicationService::Base
   input :amount_cents,
         as: :amount,
         type: Integer,
         prepare: ->(value:) { Money.from_cents(value, :USD) }
 
-  # затем в сервисе используется `inputs.amount`
-
   # ...
+
+  def create!
+    outputs.payment = Payment.create!(amount: inputs.amount)
+  end
 end
 ```
 
-## Режимы
+## Режимы работы
 
 Режим работы входящего атрибута зависит от его типа.
 Каждый из режимов работы имеет набор собственных опций.
@@ -179,10 +176,10 @@ end
 ##### Опция `consists_of`
 
 Эта опция является валидацией.
-Будет проверяться чтобы каждое значение в коллекции соответствовало указанному типу (классу).
+Будет проверять чтобы каждое значение в коллекции соответствовало указанному типу (классу).
 Используется метод `is_a?`.
 
-Явное применение опции необязательно.
+Явное применение этой опции необязательно.
 По умолчанию установлено значение `String`.
 
 ```ruby
@@ -191,22 +188,9 @@ input :ids,
       consists_of: String
 ```
 
-```ruby
-input :ids,
-      type: Array,
-      # Тип элемента массива по умолчанию — String
-      consists_of: { message: "ID can only be of String type" }
-```
-
-```ruby
-input :ids,
-      type: Array,
-      consists_of: { type: String, message: "ID can only be of String type" }
-```
-
 ### Режим хеша
 
-Для того чтобы включить режим хеша, необходимо в качестве типа входящего атрибута указать одноименный класс `Hash`.
+Для того чтобы включить режим хеша, необходимо в качестве типа входящего атрибута указать `Hash`.
 Вы также можете указать собственный тип под задачи проекта через использование конфигурации `hash_mode_class_names`.
 
 #### Опции
@@ -217,7 +201,8 @@ input :ids,
 Требует значение в виде хеша, которое должно описывать структуру значения входящего атрибута.
 
 Явное применение опции необязательно.
-В таком случае проверка будет пропущена.
+Если значение схемы не указано, то валиация будет пропущена.
+По умолчанию значение не указано.
 
 ```ruby
 input :payload,
@@ -256,11 +241,11 @@ input :payload,
 
 Servactory имеет набор готовых хелперов, а также позволяет добавлять пользовательские хелперы под цели проекта.
 
-Под хелпером подразумевается некоторое сокращенное написание, которое при использовании раскрывается в конкретную опцию.
+Под "хелпером" подразумевается некоторое сокращенное написание, которое при использовании раскрывается в конкретную опцию.
 
 ### Хелпер `optional`
 
-Этот хелпер эквивалентен `required: false`.
+Этот хелпер эквивалентен опции `required: false`.
 
 ```ruby{6}
 class UsersService::Create < ApplicationService::Base
@@ -282,14 +267,14 @@ end
 
 Пользовательские хелперы можно добавить используя метод `input_option_helpers` в `configuration`.
 
-Такие хелперы могут быть основаны на опциях `must` и `prepare`.
+Такие хелперы могут быть основаны на существующих опциях.
 
 [Пример конфигурации](../configuration#хелперы-для-input)
 
 #### Пример с `must`
 
 ```ruby{3}
-class PymentsService::Send < ApplicationService::Base
+class PaymentsService::Create < ApplicationService::Base
   input :invoice_numbers,
         :must_be_6_characters,
         type: Array,
@@ -302,7 +287,7 @@ end
 #### Пример с `prepare`
 
 ```ruby{3}
-class PymentsService::Send < ApplicationService::Base
+class PaymentsService::Create < ApplicationService::Base
   input :amount_cents,
         :to_money,
         as: :amount,
@@ -404,5 +389,27 @@ input :invoice_numbers,
             "Wrong IDs in `#{input.name}`"
           end
         }
+      }
+```
+
+### Опция `consists_of`
+
+Опция от [режима коллекции](../attributes/input#режим-коллекции).
+
+```ruby
+input :ids,
+      type: Array,
+      consists_of: {
+        type: String,
+        message: "ID can only be of String type"
+      }
+```
+
+```ruby
+input :ids,
+      type: Array,
+      # Тип элемента массива по умолчанию — String
+      consists_of: {
+        message: "ID can only be of String type"
       }
 ```

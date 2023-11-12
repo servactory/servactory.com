@@ -5,7 +5,7 @@ prev: Входящие атрибуты сервиса
 next: Выходящие атрибуты сервиса
 ---
 
-# Внутренние атрибуты сервиса
+# Внутренние атрибуты
 
 Внутренние приватные атрибуты можно добавить через метод `internal`.
 
@@ -28,7 +28,11 @@ class UsersService::Create < ApplicationService::Base
       inputs.first_name,
       inputs.middle_name,
       inputs.last_name
-    ].compact.join(" ")
+    ].join(" ")
+  end
+
+  def create!
+    outputs.user = User.create!(full_name: internals.full_name)
   end
 end
 ```
@@ -38,11 +42,11 @@ end
 ### Опция `type`
 
 Эта опция является валидацией.
-Будет проверяться чтобы переданное как internal значение соответствовало указанному типу (классу).
+Будет проверять чтобы переданное значение соответствовало указанному типу (классу).
 Используется метод `is_a?`.
 
 ```ruby{4,14}
-class NotificationService::Create < ApplicationService::Base
+class NotificationsService::Create < ApplicationService::Base
   input :user, type: User
 
   internal :inviter, type: User

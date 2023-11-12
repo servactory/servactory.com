@@ -38,11 +38,11 @@ end
 ### Option `type`
 
 This option is validation.
-It will check that the value set to `output` corresponds to the specified type (class).
+It will check that the passed value corresponds to the specified type (class).
 In this case `is_a?` method is used.
 
 ```ruby{4,11}
-class NotificationService::Create < ApplicationService::Base
+class NotificationsService::Create < ApplicationService::Base
   input :user, type: User
 
   output :notification, type: Notification

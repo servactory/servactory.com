@@ -5,7 +5,7 @@ prev: Service input attributes
 next: Service output attributes
 ---
 
-# Service internal attributes
+# Internal attributes
 
 Internal private attributes can be added via the `internal` method.
 
@@ -28,7 +28,11 @@ class UsersService::Create < ApplicationService::Base
       inputs.first_name,
       inputs.middle_name,
       inputs.last_name
-    ].compact.join(" ")
+    ].join(" ")
+  end
+
+  def create!
+    outputs.user = User.create!(full_name: internals.full_name)
   end
 end
 ```
@@ -38,11 +42,11 @@ end
 ### Option `type`
 
 This option is validation.
-It will check that the value set to `internal` corresponds to the specified type (class).
+It will check that the passed value corresponds to the specified type (class).
 In this case `is_a?` method is used.
 
 ```ruby{4,14}
-class NotificationService::Create < ApplicationService::Base
+class NotificationsService::Create < ApplicationService::Base
   input :user, type: User
 
   internal :inviter, type: User

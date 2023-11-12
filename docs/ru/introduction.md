@@ -29,7 +29,7 @@ MinimalService.call! # или MinimalService.call
 Или создать что-то более сложное:
 
 ```ruby
-class NotificationService::Send < ApplicationService::Base
+class NotificationsService::Send < ApplicationService::Base
   input :comment, type: Comment
   input :provider, type: NotificationProvider
 
@@ -86,9 +86,9 @@ end
 # comment = Comment.first
 # provider = NotificationProvider.first
 
-NotificationService::Send.call!(comment:, provider:)
+NotificationsService::Send.call!(comment:, provider:)
 # Или 
-# NotificationService::Send.call(comment:, provider:)
+# NotificationsService::Send.call(comment:, provider:)
 ```
 
 ## Зачем использовать?

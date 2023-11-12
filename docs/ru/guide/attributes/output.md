@@ -39,11 +39,11 @@ end
 ### Опция `type`
 
 Эта опция является валидацией.
-Будет проверяться чтобы переданное как output значение соответствовало указанному типу (классу).
+Будет проверять чтобы переданное значение соответствовало указанному типу (классу).
 Используется метод `is_a?`.
 
 ```ruby{4,11}
-class NotificationService::Create < ApplicationService::Base
+class NotificationsService::Create < ApplicationService::Base
   input :user, type: User
 
   output :notification, type: Notification

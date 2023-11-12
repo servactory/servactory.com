@@ -29,7 +29,7 @@ MinimalService.call! # or MinimalService.call
 Or create something more complex:
 
 ```ruby
-class NotificationService::Send < ApplicationService::Base
+class NotificationsService::Send < ApplicationService::Base
   input :comment, type: Comment
   input :provider, type: NotificationProvider
 
@@ -86,9 +86,9 @@ With a call like this:
 # comment = Comment.first
 # provider = NotificationProvider.first
 
-NotificationService::Send.call!(comment:, provider:)
+NotificationsService::Send.call!(comment:, provider:)
 # Or
-# NotificationService::Send.call(comment:, provider:)
+# NotificationsService::Send.call(comment:, provider:)
 ```
 
 ## Reasons to use Servactory
