@@ -28,6 +28,13 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
               { text: 'Output', link: '/guide/attributes/output' }
             ]
           },
+          {
+            text: 'Options',
+            items: [
+              { text: 'Usage', link: '/guide/options/usage' },
+              { text: 'Modes', link: '/guide/options/modes' }
+            ]
+          },
           { text: 'Actions', link: '/guide/actions' },
           { text: 'Call and Result', link: '/guide/call-and-result' },
           { text: 'Configuration', link: '/guide/configuration' },
