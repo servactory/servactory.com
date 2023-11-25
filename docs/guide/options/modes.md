@@ -1,11 +1,11 @@
 ---
-title: Режимы работы для опций атрибутов
-description: Описание и примеры использования режимов работы опций для всех атрибутов сервиса
+title: Operating modes for attribute options
+description: Description and examples of using operating modes of options for all service attributes
 prev: false
 next: false
 ---
 
-# Режимы работы опций
+# Option operating modes
 
 ## Collection mode
 
