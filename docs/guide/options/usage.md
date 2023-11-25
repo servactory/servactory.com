@@ -161,11 +161,11 @@ end
 
 ## Option `consists_of` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
 
-You can find out more about this option in the section on advanced operation of [collection mode](../options/modes#опция-consists-of).
+You can find out more about this option in the section on advanced operation of [collection mode](../options/modes#option-consists-of).
 
 ## Option `schema` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
 
-You can find out more about this option in the section on advanced operation of [hash mode](../options/modes#опция-schema).
+You can find out more about this option in the section on advanced operation of [hash mode](../options/modes#option-schema).
 
 ## Option `must` <Badge type="tip" text="input" />
 

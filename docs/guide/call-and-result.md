@@ -42,7 +42,7 @@ Will return this:
 #<Servactory::Result @user=...>
 ```
 
-And then work with thе result in this way:
+And then work with the result in this way:
 
 ```ruby
 Notification::SendJob.perform_later(service_result.user.id)
