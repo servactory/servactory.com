@@ -28,6 +28,13 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
               { text: 'Выходящие', link: '/ru/guide/attributes/output' }
             ]
           },
+          {
+            text: 'Опции',
+            items: [
+              { text: 'Использование', link: '/ru/guide/options/usage' },
+              { text: 'Режимы', link: '/ru/guide/options/modes' }
+            ]
+          },
           { text: 'Действия', link: '/ru/guide/actions' },
           { text: 'Вызов и результат', link: '/ru/guide/call-and-result' },
           { text: 'Конфигурация', link: '/ru/guide/configuration' },
