@@ -28,7 +28,7 @@ features:
       light: /img/icons/code-square-light.svg
       dark: /img/icons/code-square-dark.svg
     details: Применяйте методы или группы методов для поочередного выполнения действий
-    link: /ru/guide/actions
+    link: /ru/guide/actions/usage
   - title: Конфигурация
     icon:
       light: /img/icons/tools-light.svg

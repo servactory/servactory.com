@@ -28,7 +28,7 @@ features:
       light: /img/icons/code-square-light.svg
       dark: /img/icons/code-square-dark.svg
     details: Use methods or groups of methods to perform actions one by one
-    link: /guide/actions
+    link: /guide/actions/usage
   - title: Configuration
     icon:
       light: /img/icons/tools-light.svg

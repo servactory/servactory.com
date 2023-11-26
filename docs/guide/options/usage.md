@@ -1,11 +1,11 @@
 ---
-title: Using attribute options
+title: Using options in attributes
 description: Description and examples of using options for all service attributes
 prev: false
 next: false
 ---
 
-# Using options
+# Using options in attributes
 
 ## Option `type` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 

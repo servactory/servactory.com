@@ -1,11 +1,11 @@
 ---
-title: Использование опций атрибутов
+title: Использование опций в атрибутах
 description: Описание и примеры использования опций для всех атрибутов сервиса
 prev: false
 next: false
 ---
 
-# Использование опций
+# Использование опций в атрибутах
 
 ## Опция `type` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
