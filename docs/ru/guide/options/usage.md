@@ -7,7 +7,7 @@ next: false
 
 # Использование опций
 
-## Опция `type` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+## Опция `type` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 Эта опция является валидацией.
 Будет проверять чтобы переданное значение соответствовало указанному типу (классу).
@@ -17,63 +17,38 @@ next: false
 
 ::: code-group
 
-```ruby{2,8} [input]
-class UsersService::Accept < ApplicationService::Base
+```ruby{2,3} [input]
+class NotificationsService::Create < ApplicationService::Base
   input :user, type: User
-
-  # ...
-end
-
-class FeaturesService::Enable < ApplicationService::Base
-  input :flag, type: [TrueClass, FalseClass]
+  input :need_to_notify, type: [TrueClass, FalseClass]
 
   # ...
 end
 ```
 
-```ruby{4,14,19} [internal]
+```ruby{4} [internal]
 class NotificationsService::Create < ApplicationService::Base
-  input :user, type: User
+  # ...
 
   internal :inviter, type: User
 
-  output :notification, type: Notification
-
-  make :assign_inviter
-  make :create_notification!
-
-  private
-
-  def assign_inviter
-    internals.inviter = inputs.user.inviter
-  end
-
-  def create_notification!
-    outputs.notification =
-      Notification.create!(user: inputs.user, inviter: internals.inviter)
-  end
+  # ...
 end
 ```
 
-```ruby{4,11} [output]
+```ruby{4} [output]
 class NotificationsService::Create < ApplicationService::Base
-  input :user, type: User
+  # ...
 
   output :notification, type: Notification
 
-  make :create_notification!
-
-  private
-
-  def create_notification!
-    outputs.notification = Notification.create!(user: inputs.user)
-  end
+  # ...
 end
 ```
 
 :::
 
-## Опция `required` <Badge type="tip" text="input" />
+## Опция `required` <Badge type="info" text="input" />
 
 Эта опция является валидацией.
 Будет проверять чтобы переданное значение не было пустым.
@@ -87,11 +62,11 @@ end
 class UsersService::Create < ApplicationService::Base
   input :first_name,
         type: String
-  
+
   input :middle_name,
         type: String,
         required: false
-  
+
   input :last_name,
         type: String
 
@@ -101,20 +76,29 @@ end
 
 :::
 
-## Опция `default` <Badge type="tip" text="input" />
+## Опция `default` <Badge type="info" text="input" />
 
 Эта опция не является валидацией.
 Будет назначать значение для атрибута, если оно не было передано в сервис.
 
 ::: code-group
 
-```ruby [input]
-# soon
+```ruby{7} [input]
+class UsersService::Create < ApplicationService::Base
+  # ...
+
+  input :middle_name,
+        type: String,
+        required: false,
+        default: "<unknown>"
+
+  # ...
+end
 ```
 
 :::
 
-## Опция `as` <Badge type="tip" text="input" />
+## Опция `as` <Badge type="info" text="input" />
 
 Эта опция не является валидацией.
 Будет указывать новое имя атрибута для работы внутри сервиса.
@@ -139,7 +123,7 @@ end
 
 :::
 
-## Опция `inclusion` <Badge type="tip" text="input" />
+## Опция `inclusion` <Badge type="info" text="input" />
 
 Эта опция является валидацией.
 Будет проверять чтобы переданное значение находилось в указанном массиве.
@@ -159,15 +143,15 @@ end
 
 :::
 
-## Опция `consists_of` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+## Опция `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 Подробнее про эту опцию вы можете узнать в разделе расширенной работы [режима коллекции](../options/modes#опция-consists-of).
 
-## Опция `schema` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+## Опция `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 Подробнее про эту опцию вы можете узнать в разделе расширенной работы [режима hash](../options/modes#опция-schema).
 
-## Опция `must` <Badge type="tip" text="input" />
+## Опция `must` <Badge type="info" text="input" />
 
 Эта опция является валидацией.
 Позволяет создавать собственные валидации.
@@ -191,7 +175,7 @@ end
 
 :::
 
-## Опция `prepare` <Badge type="tip" text="input" />
+## Опция `prepare` <Badge type="info" text="input" />
 
 Эта опция не является валидацией.
 Она используется для подготовки переданное значения.
@@ -204,7 +188,7 @@ end
 
 ::: code-group
 
-```ruby{5,11} [input]
+```ruby{5,10} [input]
 class PaymentsService::Create < ApplicationService::Base
   input :amount_cents,
         as: :amount,

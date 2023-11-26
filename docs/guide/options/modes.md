@@ -12,7 +12,7 @@ next: false
 To enable collection mode, you must specify `Array` or `Set` as the type of the output attribute.
 You can also specify your own type for project purposes through the use of the `collection_mode_class_names` configuration.
 
-### Option `consists_of` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+### Option `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 This option is validation.
 It will check that each value in the collection matches the specified type (class).
@@ -48,7 +48,7 @@ output :ids,
 To enable hash mode, you must specify `Hash` as the type of the output attribute.
 You can also specify your own type for project purposes through the use of the `hash_mode_class_names` configuration.
 
-### Option `schema` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+### Option `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 This option is validation.
 Requires a hash value that must describe the value structure of the output attribute.
@@ -140,7 +140,7 @@ If the `type` value is `Hash`, then nesting can be described in the same format.
 
 Advanced mode involves more detailed work with the attribute option.
 
-### Option `required` <Badge type="tip" text="input" />
+### Option `required` <Badge type="info" text="input" />
 
 ::: code-group
 
@@ -169,7 +169,7 @@ input :first_name,
 
 :::
 
-### Option `inclusion` <Badge type="tip" text="input" />
+### Option `inclusion` <Badge type="info" text="input" />
 
 ::: code-group
 
@@ -198,7 +198,7 @@ input :event_name,
 
 :::
 
-### Option `must` <Badge type="tip" text="input" />
+### Option `must` <Badge type="info" text="input" />
 
 ::: info
 
@@ -239,7 +239,7 @@ input :invoice_numbers,
 
 :::
 
-### Option `consists_of` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+### Option `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 Option from [collection mode](./modes#collection-mode).
 

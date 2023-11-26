@@ -14,14 +14,29 @@ If the service receives attributes that were not added via the `input` method, i
 
 The use of the attributes included in the service is done through the `inputs` method.
 
-```ruby
+```ruby{2-4,15-17}
 class UsersService::Create < ApplicationService::Base
-  input :nickname, type: String
+  input :first_name, type: String # [!code focus]
+  input :middle_name, type: String # [!code focus]
+  input :last_name, type: String # [!code focus]
 
-  # ...
+  internal :full_name, type: String
+
+  output :user, type: User
+
+  make :assign_full_name
+  make :create!
+
+  def assign_full_name
+    internals.full_name = [
+      inputs.first_name,
+      inputs.middle_name,
+      inputs.last_name
+    ].join(" ")
+  end
 
   def create!
-    outputs.user = User.create!(nickname: inputs.nickname)
+    outputs.user = User.create!(full_name: internals.full_name)
   end
 end
 ```

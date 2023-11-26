@@ -14,22 +14,29 @@ next: Действия в сервисе
 
 Назначение и использование выходящих атрибутов сервиса осуществляется через методы `outputs=`/`outputs`.
 
-```ruby
+```ruby{8,22}
 class UsersService::Create < ApplicationService::Base
   input :first_name, type: String
   input :middle_name, type: String
   input :last_name, type: String
 
-  output :full_name, type: String
+  internal :full_name, type: String
 
-  # ...
+  output :user, type: User # [!code focus]
+
+  make :assign_full_name
+  make :create!
 
   def assign_full_name
-    outputs.full_name = [
+    internals.full_name = [
       inputs.first_name,
       inputs.middle_name,
       inputs.last_name
     ].join(" ")
+  end
+
+  def create!
+    outputs.user = User.create!(full_name: internals.full_name)
   end
 end
 ```

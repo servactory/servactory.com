@@ -7,7 +7,7 @@ next: false
 
 # Using options
 
-## Option `type` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+## Option `type` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 This option is validation.
 It will check that the passed value corresponds to the specified type (class).
@@ -17,105 +17,38 @@ Always required to specify. May contain one or more classes.
 
 ::: code-group
 
-```ruby{2,3,11,16,21} [input]
+```ruby{2,3} [input]
 class NotificationsService::Create < ApplicationService::Base
   input :user, type: User
   input :need_to_notify, type: [TrueClass, FalseClass]
 
-  internal :inviter, type: User
-
-  output :notification, type: Notification
-
-  make :assign_inviter
-  make :create_notification!
-  make :notify_by_email, if: ->(context:) { context.inputs.need_to_notify }
-
-  private
-
-  def assign_inviter
-    internals.inviter = inputs.user.inviter
-  end
-
-  def create_notification!
-    outputs.notification = Notification.create!(
-      user: inputs.user, 
-      inviter: internals.inviter
-    )
-  end
-
-  def notify_by_email
-    NotificationsMailer.notify_about_new(outputs.notification).deliver_now
-  end
+  # ...
 end
 ```
 
-```ruby{5,16,22} [internal]
+```ruby{4} [internal]
 class NotificationsService::Create < ApplicationService::Base
-  input :user, type: User
-  input :need_to_notify, type: [TrueClass, FalseClass]
+  # ...
 
   internal :inviter, type: User
 
-  output :notification, type: Notification
-
-  make :assign_inviter
-  make :create_notification!
-  make :notify_by_email, if: ->(context:) { context.inputs.need_to_notify }
-
-  private
-
-  def assign_inviter
-    internals.inviter = inputs.user.inviter
-  end
-
-  def create_notification!
-    outputs.notification = Notification.create!(
-      user: inputs.user, 
-      inviter: internals.inviter
-    )
-  end
-
-  def notify_by_email
-    NotificationsMailer.notify_about_new(outputs.notification).deliver_now
-  end
+  # ...
 end
 ```
 
-```ruby{7,20,27} [output]
+```ruby{4} [output]
 class NotificationsService::Create < ApplicationService::Base
-  input :user, type: User
-  input :need_to_notify, type: [TrueClass, FalseClass]
-
-  internal :inviter, type: User
+  # ...
 
   output :notification, type: Notification
 
-  make :assign_inviter
-  make :create_notification!
-  make :notify_by_email, if: ->(context:) { context.inputs.need_to_notify }
-
-  private
-
-  def assign_inviter
-    internals.inviter = inputs.user.inviter
-  end
-
-  def create_notification!
-    outputs.notification = Notification.create!(
-      user: inputs.user, 
-      inviter: internals.inviter
-    )
-  end
-
-  def notify_by_email
-    NotificationsMailer.notify_about_new(outputs.notification).deliver_now
-  end
+  # ...
 end
 ```
 
 :::
 
-## Option `required` <Badge type="tip" text="input" />
+## Option `required` <Badge type="info" text="input" />
 
 This option is validation.
 It will check that the passed value is not empty.
@@ -129,11 +62,11 @@ By default, `required` is set to `true`.
 class UsersService::Create < ApplicationService::Base
   input :first_name,
         type: String
-  
+
   input :middle_name,
         type: String,
         required: false
-  
+
   input :last_name,
         type: String
 
@@ -143,20 +76,29 @@ end
 
 :::
 
-## Option `default` <Badge type="tip" text="input" />
+## Option `default` <Badge type="info" text="input" />
 
 This option is not validation.
 It will assign a value to the attribute if one was not passed to the service.
 
 ::: code-group
 
-```ruby [input]
-# soon
+```ruby{7} [input]
+class UsersService::Create < ApplicationService::Base
+  # ...
+
+  input :middle_name,
+        type: String,
+        required: false,
+        default: "<unknown>"
+
+  # ...
+end
 ```
 
 :::
 
-## Option `as` <Badge type="tip" text="input" />
+## Option `as` <Badge type="info" text="input" />
 
 This option is not validation.
 It will indicate the new name of the attribute to work within the service.
@@ -181,7 +123,7 @@ end
 
 :::
 
-## Option `inclusion` <Badge type="tip" text="input" />
+## Option `inclusion` <Badge type="info" text="input" />
 
 This option is validation.
 It will check that the passed value is in the specified array.
@@ -201,15 +143,15 @@ end
 
 :::
 
-## Option `consists_of` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+## Option `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 You can find out more about this option in the section on advanced operation of [collection mode](../options/modes#option-consists-of).
 
-## Option `schema` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+## Option `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 You can find out more about this option in the section on advanced operation of [hash mode](../options/modes#option-schema).
 
-## Option `must` <Badge type="tip" text="input" />
+## Option `must` <Badge type="info" text="input" />
 
 This option is validation.
 Allows you to create your own validations.
@@ -233,7 +175,7 @@ end
 
 :::
 
-## Option `prepare` <Badge type="tip" text="input" />
+## Option `prepare` <Badge type="info" text="input" />
 
 This option is not validation.
 It is used to prepare the passed value.
@@ -246,7 +188,7 @@ Use the `prepare` option carefully and only for simple preparatory actions.
 
 ::: code-group
 
-```ruby{5,11} [input]
+```ruby{5,10} [input]
 class PaymentsService::Create < ApplicationService::Base
   input :amount_cents,
         as: :amount,

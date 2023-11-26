@@ -12,7 +12,7 @@ next: false
 Для того чтобы включить режим коллекции, необходимо в качестве типа входящего атрибута указать `Array` или `Set`.
 Вы также можете указать собственный тип под задачи проекта через использование конфигурации `collection_mode_class_names`.
 
-### Опция `consists_of` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+### Опция `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 Эта опция является валидацией.
 Будет проверять чтобы каждое значение в коллекции соответствовало указанному типу (классу).
@@ -49,7 +49,7 @@ output :ids,
 Вы также можете указать собственный тип под задачи проекта через использование конфигурации `hash_mode_class_names`.
 
 
-### Опция `schema` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+### Опция `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 Эта опция является валидацией.
 Требует значение в виде хеша, которое должно описывать структуру значения входящего атрибута.
@@ -141,7 +141,7 @@ output :payload,
 
 Расширенный режим подразумевает более детальную работу с опцией атрибута.
 
-### Опция `required` <Badge type="tip" text="input" />
+### Опция `required` <Badge type="info" text="input" />
 
 ::: code-group
 
@@ -170,7 +170,7 @@ input :first_name,
 
 :::
 
-### Опция `inclusion` <Badge type="tip" text="input" />
+### Опция `inclusion` <Badge type="info" text="input" />
 
 ::: code-group
 
@@ -199,7 +199,7 @@ input :event_name,
 
 :::
 
-### Опция `must` <Badge type="tip" text="input" />
+### Опция `must` <Badge type="info" text="input" />
 
 ::: info
 
@@ -240,7 +240,7 @@ input :invoice_numbers,
 
 :::
 
-### Опция `consists_of` <Badge type="tip" text="input" /> <Badge type="tip" text="internal" /> <Badge type="tip" text="output" />
+### Опция `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 Опция от [режима коллекции](./modes#опция-consists-of).
 
