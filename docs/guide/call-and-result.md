@@ -1,8 +1,8 @@
 ---
 title: Service call and result of work
 description: Description and examples of how to use service call
-prev: Service actions
-next: Configuration
+prev: Getting started
+next: Service input attributes
 ---
 
 # Service call and result of work
@@ -42,7 +42,7 @@ Will return this:
 #<Servactory::Result @user=...>
 ```
 
-And then work with thе result in this way:
+And then work with the result in this way:
 
 ```ruby
 Notification::SendJob.perform_later(service_result.user.id)

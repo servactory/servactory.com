@@ -20,6 +20,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       {
         text: 'Guide',
         items: [
+          { text: 'Call and Result', link: '/guide/call-and-result' },
           {
             text: 'Attributes',
             items: [
@@ -28,8 +29,21 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
               { text: 'Output', link: '/guide/attributes/output' }
             ]
           },
-          { text: 'Actions', link: '/guide/actions' },
-          { text: 'Call and Result', link: '/guide/call-and-result' },
+          {
+            text: 'Options',
+            items: [
+              { text: 'Usage', link: '/guide/options/usage' },
+              { text: 'Modes', link: '/guide/options/modes' }
+            ]
+          },
+          {
+            text: 'Actions',
+            items: [
+              { text: 'Usage', link: '/guide/actions/usage' },
+              { text: 'Options', link: '/guide/actions/options' },
+              { text: 'Grouping', link: '/guide/actions/grouping' }
+            ]
+          },
           { text: 'Configuration', link: '/guide/configuration' },
           { text: 'Failures', link: '/guide/failures' },
           { text: 'Extensions', link: '/guide/extensions' },

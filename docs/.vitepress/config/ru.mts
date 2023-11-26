@@ -20,6 +20,7 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       {
         text: 'Руководство',
         items: [
+          { text: 'Вызов и результат', link: '/ru/guide/call-and-result' },
           {
             text: 'Атрибуты',
             items: [
@@ -28,8 +29,21 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
               { text: 'Выходящие', link: '/ru/guide/attributes/output' }
             ]
           },
-          { text: 'Действия', link: '/ru/guide/actions' },
-          { text: 'Вызов и результат', link: '/ru/guide/call-and-result' },
+          {
+            text: 'Опции',
+            items: [
+              { text: 'Использование', link: '/ru/guide/options/usage' },
+              { text: 'Режимы', link: '/ru/guide/options/modes' }
+            ]
+          },
+          {
+            text: 'Действия',
+            items: [
+              { text: 'Использование', link: '/ru/guide/actions/usage' },
+              { text: 'Опции', link: '/ru/guide/actions/options' },
+              { text: 'Группирование', link: '/ru/guide/actions/grouping' }
+            ]
+          },
           { text: 'Конфигурация', link: '/ru/guide/configuration' },
           { text: 'Неудачи', link: '/ru/guide/failures' },
           { text: 'Расширения', link: '/ru/guide/extensions' },
