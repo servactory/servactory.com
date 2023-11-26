@@ -16,9 +16,9 @@ next: Внутренние атрибуты сервиса
 
 ```ruby{2-4,15-17}
 class UsersService::Create < ApplicationService::Base
-  input :first_name, type: String # [!code focus]
-  input :middle_name, type: String # [!code focus]
-  input :last_name, type: String # [!code focus]
+  input :first_name, type: String
+  input :middle_name, type: String
+  input :last_name, type: String
 
   internal :full_name, type: String
 

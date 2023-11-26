@@ -21,7 +21,7 @@ class UsersService::Create < ApplicationService::Base
 
   internal :full_name, type: String
 
-  output :user, type: User # [!code focus]
+  output :user, type: User
 
   make :assign_full_name
   make :create!

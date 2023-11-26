@@ -19,7 +19,7 @@ class UsersService::Create < ApplicationService::Base
   input :middle_name, type: String
   input :last_name, type: String
 
-  internal :full_name, type: String # [!code focus]
+  internal :full_name, type: String
 
   output :user, type: User
 
