@@ -1,8 +1,8 @@
 ---
 title: Getting started
 description: Описание и примеры использования
-prev:  Why Servactory
-next: Service input attributes
+prev: Why Servactory
+next: Service call and result of work
 ---
 
 # Getting started

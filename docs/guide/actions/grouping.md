@@ -1,8 +1,8 @@
 ---
 title: Grouping actions in service
 description: Description and examples of grouping actions (methods) in service
-prev: false
-next: false
+prev: Options for actions in service
+next: Configuration
 ---
 
 # Grouping actions

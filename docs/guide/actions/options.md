@@ -1,8 +1,8 @@
 ---
 title: Options for actions in service
 description: Description and examples of using options for actions (methods) in service
-prev: false
-next: false
+prev: Using actions in service
+next: Grouping actions in service
 ---
 
 # Options for actions

@@ -2,7 +2,7 @@
 title: Service output attributes
 description: Description and examples of using output attributes of service
 prev: Service internal attributes
-next:  Service actions
+next: Options for service attributes
 ---
 
 # Output attributes

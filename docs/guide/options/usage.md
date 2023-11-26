@@ -1,8 +1,8 @@
 ---
 title: Using options in attributes
 description: Description and examples of using options for all service attributes
-prev: false
-next: false
+prev: Service output attributes
+next: Option operating modes
 ---
 
 # Using options in attributes

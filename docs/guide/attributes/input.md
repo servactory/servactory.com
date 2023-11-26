@@ -1,7 +1,7 @@
 ---
 title: Service input attributes
 description: Description and examples of using input attributes of service
-prev: Getting started
+prev: Service call and result of work
 next: Service internal attributes
 ---
 

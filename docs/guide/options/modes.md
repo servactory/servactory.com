@@ -1,8 +1,8 @@
 ---
 title: Operating modes for attribute options
 description: Description and examples of using operating modes of options for all service attributes
-prev: false
-next: false
+prev: Options for service attributes
+next: Using actions in service
 ---
 
 # Option operating modes
