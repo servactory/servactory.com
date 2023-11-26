@@ -17,23 +17,10 @@ Always required to specify. May contain one or more classes.
 
 ::: code-group
 
-```ruby{2,8} [input]
-class UsersService::Accept < ApplicationService::Base
-  input :user, type: User
-
-  # ...
-end
-
-class FeaturesService::Enable < ApplicationService::Base
-  input :flag, type: [TrueClass, FalseClass]
-
-  # ...
-end
-```
-
-```ruby{4,14,19} [internal]
+```ruby{2,3,11,16,21} [input]
 class NotificationsService::Create < ApplicationService::Base
   input :user, type: User
+  input :need_to_notify, type: [TrueClass, FalseClass]
 
   internal :inviter, type: User
 
@@ -41,6 +28,7 @@ class NotificationsService::Create < ApplicationService::Base
 
   make :assign_inviter
   make :create_notification!
+  make :notify_by_email, if: ->(context:) { context.inputs.need_to_notify }
 
   private
 
@@ -49,24 +37,78 @@ class NotificationsService::Create < ApplicationService::Base
   end
 
   def create_notification!
-    outputs.notification =
-      Notification.create!(user: inputs.user, inviter: internals.inviter)
+    outputs.notification = Notification.create!(
+      user: inputs.user, 
+      inviter: internals.inviter
+    )
+  end
+
+  def notify_by_email
+    NotificationsMailer.notify_about_new(outputs.notification).deliver_now
   end
 end
 ```
 
-```ruby{4,11} [output]
+```ruby{5,16,22} [internal]
 class NotificationsService::Create < ApplicationService::Base
   input :user, type: User
+  input :need_to_notify, type: [TrueClass, FalseClass]
+
+  internal :inviter, type: User
 
   output :notification, type: Notification
 
+  make :assign_inviter
   make :create_notification!
+  make :notify_by_email, if: ->(context:) { context.inputs.need_to_notify }
 
   private
 
+  def assign_inviter
+    internals.inviter = inputs.user.inviter
+  end
+
   def create_notification!
-    outputs.notification = Notification.create!(user: inputs.user)
+    outputs.notification = Notification.create!(
+      user: inputs.user, 
+      inviter: internals.inviter
+    )
+  end
+
+  def notify_by_email
+    NotificationsMailer.notify_about_new(outputs.notification).deliver_now
+  end
+end
+```
+
+```ruby{7,20,27} [output]
+class NotificationsService::Create < ApplicationService::Base
+  input :user, type: User
+  input :need_to_notify, type: [TrueClass, FalseClass]
+
+  internal :inviter, type: User
+
+  output :notification, type: Notification
+
+  make :assign_inviter
+  make :create_notification!
+  make :notify_by_email, if: ->(context:) { context.inputs.need_to_notify }
+
+  private
+
+  def assign_inviter
+    internals.inviter = inputs.user.inviter
+  end
+
+  def create_notification!
+    outputs.notification = Notification.create!(
+      user: inputs.user, 
+      inviter: internals.inviter
+    )
+  end
+
+  def notify_by_email
+    NotificationsMailer.notify_about_new(outputs.notification).deliver_now
   end
 end
 ```
