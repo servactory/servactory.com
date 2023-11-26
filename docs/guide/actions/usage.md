@@ -48,11 +48,11 @@ end
 
 ## Options
 
-Soon
+You can find out more about options in the [options](../actions/options) section.
 
-## Group of multiple methods
+## Group of multiple actions
 
-Soon
+You can find out more about a group of multiple actions (methods) in the [grouping](../actions/grouping) section.
 
 ## Aliases for `make`
 
