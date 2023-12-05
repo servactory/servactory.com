@@ -1,7 +1,7 @@
 ---
 title: Using actions in service
 description: Description and examples of using actions (methods) in the service
-prev: Option operating modes
+prev: Advanced mode
 next: Options for actions in service
 ---
 
