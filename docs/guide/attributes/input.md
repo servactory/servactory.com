@@ -45,10 +45,6 @@ end
 
 You can find out more about options in the [using options](../options/usage) section.
 
-## Operating modes
-
-You can find out more about operating modes in the [option modes](../options/modes) section.
-
 ## Helpers
 
 Servactory has a set of ready-made helpers, and also allows you to add custom helpers for project purposes.

@@ -33,7 +33,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             text: 'Options',
             items: [
               { text: 'Usage', link: '/guide/options/usage' },
-              { text: 'Modes', link: '/guide/options/modes' }
+              { text: 'Advanced', link: '/guide/options/advanced' }
             ]
           },
           {

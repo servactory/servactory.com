@@ -33,7 +33,7 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
             text: 'Опции',
             items: [
               { text: 'Использование', link: '/ru/guide/options/usage' },
-              { text: 'Режимы', link: '/ru/guide/options/modes' }
+              { text: 'Расширенные', link: '/ru/guide/options/advanced' }
             ]
           },
           {

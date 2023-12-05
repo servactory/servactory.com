@@ -2,7 +2,7 @@
 title: Использование опций в атрибутах
 description: Описание и примеры использования опций для всех атрибутов сервиса
 prev: Выходящие атрибуты сервиса
-next: Режимы работы опций
+next: Расширенный режим
 ---
 
 # Использование опций в атрибутах
@@ -145,11 +145,128 @@ end
 
 ## Опция `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
-Подробнее про эту опцию вы можете узнать в разделе расширенной работы [режима коллекции](../options/modes#опция-consists-of).
+Эта опция является валидацией.
+Будет проверять чтобы каждое значение в коллекции соответствовало указанному типу (классу).
+Используется метод `is_a?`.
+
+Работает только с типами `Array` и `Set`.
+Вы можете добавить собственный тип через конфигурацию [`collection_mode_class_names`](../configuration#режим-коллекции).
+
+Явное применение этой опции необязательно.
+По умолчанию установлено значение `String`.
+
+::: code-group
+
+```ruby [input]
+input :ids,
+      type: Array,
+      consists_of: String
+```
+
+```ruby [internal]
+internal :ids,
+         type: Array,
+         consists_of: String
+```
+
+```ruby [output]
+output :ids,
+       type: Array,
+       consists_of: String
+```
+
+:::
 
 ## Опция `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
-Подробнее про эту опцию вы можете узнать в разделе расширенной работы [режима hash](../options/modes#опция-schema).
+Эта опция является валидацией.
+Требует значение в виде хеша, которое должно описывать структуру значения атрибута.
+
+Работает только с типом `Hash`.
+Вы можете добавить собственный тип через конфигурацию [`hash_mode_class_names`](../configuration#режим-хеша).
+
+Явное применение опции необязательно.
+Если значение схемы не указано, то валидация будет пропущена.
+По умолчанию значение не указано.
+
+::: code-group
+
+```ruby [input]
+input :payload,
+      type: Hash,
+      schema: {
+        request_id: { type: String, required: true },
+        user: {
+          type: Hash,
+          required: true,
+          first_name: { type: String, required: true },
+          middle_name: { type: String, required: false, default: "<unknown>" },
+          last_name: { type: String, required: true },
+          pass: {
+            type: Hash,
+            required: true,
+            series: { type: String, required: true },
+            number: { type: String, required: true }
+          }
+        }
+      }
+```
+
+```ruby [internal]
+internal :payload,
+         type: Hash,
+         schema: {
+           request_id: { type: String, required: true },
+           user: {
+             type: Hash,
+             required: true,
+             first_name: { type: String, required: true },
+             middle_name: { type: String, required: false, default: "<unknown>" },
+             last_name: { type: String, required: true },
+             pass: {
+               type: Hash,
+               required: true,
+               series: { type: String, required: true },
+               number: { type: String, required: true }
+             }
+           }
+         }
+```
+
+```ruby [output]
+output :payload,
+       type: Hash,
+       schema: {
+         request_id: { type: String, required: true },
+         user: {
+           type: Hash,
+           required: true,
+           first_name: { type: String, required: true },
+           middle_name: { type: String, required: false, default: "<unknown>" },
+           last_name: { type: String, required: true },
+           pass: {
+             type: Hash,
+             required: true,
+             series: { type: String, required: true },
+             number: { type: String, required: true }
+           }
+         }
+       }
+```
+
+:::
+
+Каждый ожидаемый ключ хеша должен быть описан в таком формате:
+
+```ruby
+{
+  request_id: { type: String, required: true }
+}
+```
+
+Допускаются следующие опции: `type`, `required` и опциональная `default`.
+
+Если в `type` указывается значение `Hash`, то можно описать вложенность в таком же формате.
 
 ## Опция `must` <Badge type="info" text="input" />
 
