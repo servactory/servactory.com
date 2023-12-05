@@ -44,10 +44,6 @@ end
 
 You can find out more about options in the [using options](../options/usage) section.
 
-## Operating modes
-
-You can find out more about operating modes in the [option modes](../options/modes) section.
-
 ## Predicate methods
 
 Any output attribute can be accessed as a predicate method.
