@@ -145,11 +145,128 @@ end
 
 ## Option `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
-You can find out more about this option in the section on advanced operation of [collection mode](../options/modes#option-consists-of).
+This option is validation.
+It will check that each value in the collection matches the specified type (class).
+The `is_a?` method is used.
+
+Works only with `Array` and `Set` types.
+You can add a custom type through the [`collection_mode_class_names`](../configuration#collection-mode) configuration.
+
+Explicit use of this option is optional.
+The default value is `String`.
+
+::: code-group
+
+```ruby [input]
+input :ids,
+      type: Array,
+      consists_of: String
+```
+
+```ruby [internal]
+internal :ids,
+         type: Array,
+         consists_of: String
+```
+
+```ruby [output]
+output :ids,
+       type: Array,
+       consists_of: String
+```
+
+:::
 
 ## Option `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
-You can find out more about this option in the section on advanced operation of [hash mode](../options/modes#option-schema).
+This option is validation.
+Requires a hash value that must describe the value structure of the output attribute.
+
+Only works with the `Hash` type.
+You can add a custom type through the [`hash_mode_class_names`](../configuration#hash-mode) configuration.
+
+Explicit use of this option is optional.
+If the schema value is not specified, the validation will be skipped.
+By default, no value is specified.
+
+::: code-group
+
+```ruby [input]
+input :payload,
+      type: Hash,
+      schema: {
+        request_id: { type: String, required: true },
+        user: {
+          type: Hash,
+          required: true,
+          first_name: { type: String, required: true },
+          middle_name: { type: String, required: false, default: "<unknown>" },
+          last_name: { type: String, required: true },
+          pass: {
+            type: Hash,
+            required: true,
+            series: { type: String, required: true },
+            number: { type: String, required: true }
+          }
+        }
+      }
+```
+
+```ruby [internal]
+internal :payload,
+         type: Hash,
+         schema: {
+           request_id: { type: String, required: true },
+           user: {
+             type: Hash,
+             required: true,
+             first_name: { type: String, required: true },
+             middle_name: { type: String, required: false, default: "<unknown>" },
+             last_name: { type: String, required: true },
+             pass: {
+               type: Hash,
+               required: true,
+               series: { type: String, required: true },
+               number: { type: String, required: true }
+             }
+           }
+         }
+```
+
+```ruby [output]
+output :payload,
+       type: Hash,
+       schema: {
+         request_id: { type: String, required: true },
+         user: {
+           type: Hash,
+           required: true,
+           first_name: { type: String, required: true },
+           middle_name: { type: String, required: false, default: "<unknown>" },
+           last_name: { type: String, required: true },
+           pass: {
+             type: Hash,
+             required: true,
+             series: { type: String, required: true },
+             number: { type: String, required: true }
+           }
+         }
+       }
+```
+
+:::
+
+Each expected hash key must be described in the following format:
+
+```ruby
+{
+  request_id: { type: String, required: true }
+}
+```
+
+The following options are allowed: `type`, `required` and the optional `default`.
+
+If the `type` value is `Hash`, then nesting can be described in the same format.
 
 ## Option `must` <Badge type="info" text="input" />
 
