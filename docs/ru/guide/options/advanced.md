@@ -131,6 +131,97 @@ output :ids,
 
 :::
 
+## Опция `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+
+::: code-group
+
+```ruby [input]
+input :payload,
+      type: Hash,
+      schema: {
+        is: {
+          request_id: { type: String, required: true },
+          # ...
+        },
+        message: "Problem with the value in the schema"
+      }
+```
+
+```ruby [internal]
+internal :payload,
+         type: Hash,
+         schema: {
+           is: {
+             request_id: { type: String, required: true },
+             # ...
+           },
+           message: "Problem with the value in the schema"
+         }
+```
+
+```ruby [output]
+output :payload,
+       type: Hash,
+       schema: {
+         is: {
+           request_id: { type: String, required: true },
+           # ...
+         },
+         message: "Problem with the value in the schema"
+       }
+```
+
+:::
+
+::: code-group
+
+```ruby [input]
+input :payload,
+      type: Hash,
+      schema: {
+        is: {
+          request_id: { type: String, required: true },
+          # ...
+        },
+        message: lambda do |input_name:, key_name:, expected_type:, given_type:|
+          "Problem with the value in the `#{input_name}` schema: " \
+            "`#{key_name}` has `#{given_type}` instead of `#{expected_type}`"
+        end
+      }
+```
+
+```ruby [internal]
+internal :payload,
+         type: Hash,
+         schema: {
+           is: {
+             request_id: { type: String, required: true },
+             # ...
+           },
+           message: lambda do |input_name:, key_name:, expected_type:, given_type:|
+             "Problem with the value in the `#{input_name}` schema: " \
+               "`#{key_name}` has `#{given_type}` instead of `#{expected_type}`"
+           end
+         }
+```
+
+```ruby [output]
+output :payload,
+       type: Hash,
+       schema: {
+         is: {
+           request_id: { type: String, required: true },
+           # ...
+         },
+         message: lambda do |input_name:, key_name:, expected_type:, given_type:|
+           "Problem with the value in the `#{input_name}` schema: " \
+             "`#{key_name}` has `#{given_type}` instead of `#{expected_type}`"
+         end
+       }
+```
+
+:::
+
 ## Опция `must` <Badge type="info" text="input" />
 
 ::: info
