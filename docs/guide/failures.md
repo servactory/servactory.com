@@ -92,3 +92,22 @@ def check!
   fail_output!(:invoice_number, message: "Invalid invoice number")
 end
 ```
+
+## Method `fail_result!`
+
+It acts as the `fail!` method, but expects a `Result` argument from the service.
+
+Necessary for simplified writing of processing the work of another service that was called inside the current one.
+Works only with service calls via `.call`.
+
+```ruby
+service_result = PaymentsService::API::Create.call(...)
+
+fail_result!(service_result) if service_result.failure?
+```
+
+Equivalent to this:
+
+```ruby
+fail!(message: service_result.error.message, meta: service_result.error.meta) if service_result.failure?
+```
