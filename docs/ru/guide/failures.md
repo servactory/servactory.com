@@ -13,7 +13,7 @@ next: Расширения
 Но помимо этого можно также описать ожидаемые ошибки в работе сервиса.
 Для этого предусмотрены методы, представленные ниже.
 
-### Метод `fail!`
+## Метод `fail!`
 
 Базовый метод `fail!` позволяет передать текст ошибки, а также дополнительную информацию через атрибут `meta`.
 
@@ -45,7 +45,7 @@ exception.type              # => :fail
 exception.meta              # => {:invoice_number=>"BB-7650AE"}
 ```
 
-### Метод `fail_input!`
+## Метод `fail_input!`
 
 Отличается от `fail!` обязательным указыванием имени атрибута input, от лица которого будет создана ошибка.
 
@@ -58,5 +58,37 @@ def check!
   return if inputs.invoice_number.start_with?("AA")
 
   fail_input!(:invoice_number, message: "Invalid invoice number")
+end
+```
+
+## Метод `fail_internal!`
+
+Отличается от `fail!` обязательным указыванием имени атрибута internal, от лица которого будет создана ошибка.
+
+При вызове сервиса через метод `.call!` будет вызываться исключение с классом `Servactory::Errors::InternalError`.
+
+```ruby{6}
+make :check!
+
+def check!
+  return if internals.invoice_number.start_with?("AA")
+
+  fail_internal!(:invoice_number, message: "Invalid invoice number")
+end
+```
+
+## Метод `fail_output!`
+
+Отличается от `fail!` обязательным указыванием имени атрибута output, от лица которого будет создана ошибка.
+
+При вызове сервиса через метод `.call!` будет вызываться исключение с классом `Servactory::Errors::OutputError`.
+
+```ruby{6}
+make :check!
+
+def check!
+  return if outputs.invoice_number.start_with?("AA")
+
+  fail_output!(:invoice_number, message: "Invalid invoice number")
 end
 ```

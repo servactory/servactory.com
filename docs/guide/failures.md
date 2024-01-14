@@ -60,3 +60,34 @@ def check!
   fail_input!(:invoice_number, message: "Invalid invoice number")
 end
 ```
+
+## Method `fail_internal!`
+
+It differs from `fail!` by the mandatory indication of the name of the internal attribute on behalf of which the error will be created.
+
+When calling a service through the `.call!` method, an exception with the class `Servactory::Errors::InternalError` will be thrown.
+
+```ruby{6}
+make :check!
+
+def check!
+  return if internals.invoice_number.start_with?("AA")
+
+  fail_internal!(:invoice_number, message: "Invalid invoice number")
+end
+
+## Method `fail_output!`
+
+It differs from `fail!` by the mandatory indication of the name of the output attribute on behalf of which the error will be created.
+
+When calling a service through the `.call!` method, an exception with the class `Servactory::Errors::OutputError` will be thrown.
+
+```ruby{6}
+make :check!
+
+def check!
+  return if outputs.invoice_number.start_with?("AA")
+
+  fail_output!(:invoice_number, message: "Invalid invoice number")
+end
+```

@@ -123,7 +123,7 @@ end
 
 :::
 
-## Option `inclusion` <Badge type="info" text="input" />
+## Option `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 This option is validation.
 It will check that the passed value is in the specified array.
@@ -136,6 +136,30 @@ class EventsService::Send < ApplicationService::Base
   input :event_name,
         type: String,
         inclusion: %w[created rejected approved]
+
+  # ...
+end
+```
+
+```ruby{6} [internal]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  internal :event_name,
+           type: String,
+           inclusion: %w[created rejected approved]
+
+  # ...
+end
+```
+
+```ruby{6} [output]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  output :event_name,
+         type: String,
+         inclusion: %w[created rejected approved]
 
   # ...
 end
@@ -268,7 +292,7 @@ The following options are allowed: `type`, `required` and the optional `default`
 
 If the `type` value is `Hash`, then nesting can be described in the same format.
 
-## Option `must` <Badge type="info" text="input" />
+## Option `must` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 This option is validation.
 Allows you to create your own validations.
@@ -290,6 +314,40 @@ class PaymentsService::Create < ApplicationService::Base
 end
 ```
 
+```ruby{7-11} [internal]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  internal :invoice_numbers,
+           type: Array,
+           consists_of: String,
+           must: {
+             be_6_characters: {
+               is: ->(value:) { value.all? { |id| id.size == 6 } }
+             }
+           }
+
+  # ...
+end
+```
+
+```ruby{7-11} [output]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  output :invoice_numbers,
+         type: Array,
+         consists_of: String,
+         must: {
+           be_6_characters: {
+             is: ->(value:) { value.all? { |id| id.size == 6 } }
+           }
+         }
+
+  # ...
+end
+```
+
 :::
 
 ## Option `prepare` <Badge type="info" text="input" />
@@ -300,6 +358,8 @@ It is used to prepare the passed value.
 ::: warning
 
 Use the `prepare` option carefully and only for simple preparatory actions.
+For example, as shown below.
+Any logic that is more complex than that in the example below is better applied through the [`make`](../actions/usage) action.
 
 :::
 
