@@ -75,6 +75,7 @@ def check!
 
   fail_internal!(:invoice_number, message: "Invalid invoice number")
 end
+```
 
 ## Method `fail_output!`
 
