@@ -20,7 +20,14 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       {
         text: 'Руководство',
         items: [
-          { text: 'Вызов и результат', link: '/ru/guide/call-and-result' },
+          {
+            text: 'Использование',
+            items: [
+              { text: 'Вызов', link: '/ru/guide/usage/call' },
+              { text: 'Результат', link: '/ru/guide/usage/result' },
+              { text: 'Информация', link: '/ru/guide/usage/info' }
+            ]
+          },
           {
             text: 'Атрибуты',
             items: [

@@ -260,7 +260,7 @@ output :payload,
 
 :::
 
-## Опция `must` <Badge type="info" text="input" />
+## Опция `must` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 ::: info
 

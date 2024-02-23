@@ -20,7 +20,14 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       {
         text: 'Guide',
         items: [
-          { text: 'Call and Result', link: '/guide/call-and-result' },
+          {
+            text: 'Usage',
+            items: [
+              { text: 'Call', link: '/guide/usage/call' },
+              { text: 'Result', link: '/guide/usage/result' },
+              { text: 'Info', link: '/guide/usage/info' }
+            ]
+          },
           {
             text: 'Attributes',
             items: [

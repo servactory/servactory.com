@@ -244,7 +244,7 @@ output :payload,
 
 :::
 
-## Option `must` <Badge type="info" text="input" />
+## Option `must` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 ::: info
 
