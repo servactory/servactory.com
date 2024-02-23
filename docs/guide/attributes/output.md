@@ -44,6 +44,35 @@ end
 
 You can find out more about options in the [using options](../options/usage) section.
 
+## Helpers
+
+Servactory allows you to add custom helpers for project purposes.
+
+By "helper" we mean some shorthand spelling that, when used, expands into a specific option.
+
+### Custom
+
+Custom helpers can be added using the `output_option_helpers` method in `configuration`.
+
+Such helpers can be based on existing options.
+
+[Configuration example](../configuration#helpers-for-output)
+
+#### Example with `must`
+
+```ruby{5}
+class PaymentsService::Create < ApplicationService::Base
+  # ...
+
+  output :invoice_numbers,
+         :must_be_6_characters,
+         type: Array,
+         consists_of: String
+
+  # ...
+end
+```
+
 ## Predicate methods
 
 Any output attribute can be accessed as a predicate method.

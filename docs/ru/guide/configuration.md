@@ -77,7 +77,7 @@ end
 
 ### Хелперы для `input`
 
-Пользовательские хелперы для `input` основываются на опциях `must` и `prepare`.
+Пользовательские хелперы для `input` могут быть основаны на опциях `must` и `prepare`.
 
 #### Пример с `must`
 
@@ -89,7 +89,7 @@ module ApplicationService
     configuration do
       input_option_helpers(
         [
-          Servactory::Inputs::OptionHelper.new(
+          Servactory::Maintenance::Attributes::OptionHelper.new(
             name: :must_be_6_characters,
             equivalent: {
               must: {
@@ -121,10 +121,82 @@ module ApplicationService
     configuration do
       input_option_helpers(
         [
-          Servactory::Inputs::OptionHelper.new(
+          Servactory::Maintenance::Attributes::OptionHelper.new(
             name: :to_money,
             equivalent: {
               prepare: ->(value:) { Money.from_cents(value, :USD) }
+            }
+          )
+        ]
+      )
+    end
+  end
+end
+```
+
+:::
+
+### Хелперы для `internal`
+
+Пользовательские хелперы для `internal` могут быть основаны на опции `must`.
+
+#### Пример с `must`
+
+::: code-group
+
+```ruby {4-20} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      internal_option_helpers(
+        [
+          Servactory::Maintenance::Attributes::OptionHelper.new(
+            name: :must_be_6_characters,
+            equivalent: {
+              must: {
+                be_6_characters: {
+                  is: ->(value:) { value.all? { |id| id.size == 6 } },
+                  message: lambda do |internal:, **|
+                    "Wrong IDs in `#{internal.name}`"
+                  end
+                }
+              }
+            }
+          )
+        ]
+      )
+    end
+  end
+end
+```
+
+:::
+
+### Хелперы для `output`
+
+Пользовательские хелперы для `output` могут быть основаны на опции `must`.
+
+#### Пример с `must`
+
+::: code-group
+
+```ruby {4-20} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      output_option_helpers(
+        [
+          Servactory::Maintenance::Attributes::OptionHelper.new(
+            name: :must_be_6_characters,
+            equivalent: {
+              must: {
+                be_6_characters: {
+                  is: ->(value:) { value.all? { |id| id.size == 6 } },
+                  message: lambda do |output:, **|
+                    "Wrong IDs in `#{output.name}`"
+                  end
+                }
+              }
             }
           )
         ]
