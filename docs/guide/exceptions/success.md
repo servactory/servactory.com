@@ -7,7 +7,7 @@ next: Service failures and error handling
 
 # Early successful termination
 
-The service can be terminated prematurely by calling the `success!` method.
+The service can be terminated prematurely and successfully by calling the `success!` method.
 
 For Servactory this is also an exception, but a successful one.
 

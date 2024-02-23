@@ -171,6 +171,7 @@ end
 
 This option is validation.
 It will check that each value in the collection matches the specified type (class).
+Checks nested values.
 The `is_a?` method is used.
 
 Works only with `Array` and `Set` types.

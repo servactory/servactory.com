@@ -5,7 +5,7 @@ prev: Early successful termination
 next: Configuration
 ---
 
-# Failures
+# Failure and error handling
 
 In a simple use case, all service failures (or exceptions) will come from input, internal, or output.
 That would be considered as unexpected behavior in service operation.
