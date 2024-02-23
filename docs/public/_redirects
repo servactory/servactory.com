@@ -6,6 +6,7 @@
 /getting-started                    /getting-started
 /category/usage                     /getting-started
 /usage/configuration                /guide/configuration
+/usage/call                         /guide/call-and-result
 /usage/call-and-result              /guide/call-and-result
 /category/attributes                /guide/attributes/input
 /usage/attributes/input             /guide/attributes/input
@@ -25,6 +26,7 @@
 /1.6/category/usage                 /getting-started
 /1.6/usage/configuration            /guide/configuration
 /1.6/usage/call-and-result          /guide/call-and-result
+/1.6/usage/call                     /guide/call-and-result
 /1.6/category/attributes            /guide/attributes/input
 /1.6/usage/attributes/input         /guide/attributes/input
 /1.6/usage/attributes/output        /guide/attributes/output
@@ -34,7 +36,9 @@
 /1.6/usage/i18n                     /guide/i18n
 /1.6/usage/testing                  /guide/testing
 /1.6/changelog                      /CHANGELOG
+/1.6/CHANGELOG                      /CHANGELOG
 /1.6/code-of-conduct                /CODE_OF_CONDUCT
+/1.6/CODE_OF_CONDUCT                /CODE_OF_CONDUCT
 /1.6/contributing                   /CONTRIBUTING
 /1.6/CONTRIBUTING                   /CONTRIBUTING
 
@@ -42,6 +46,7 @@
 /1.7/getting-started                /getting-started
 /1.7/category/usage                 /getting-started
 /1.7/usage/configuration            /guide/configuration
+/1.7/usage/call                     /guide/call-and-result
 /1.7/usage/call-and-result          /guide/call-and-result
 /1.7/category/attributes            /guide/attributes/input
 /1.7/usage/attributes/input         /guide/attributes/input
@@ -52,7 +57,9 @@
 /1.7/usage/i18n                     /guide/i18n
 /1.7/usage/testing                  /guide/testing
 /1.7/changelog                      /CHANGELOG
+/1.7/CHANGELOG                      /CHANGELOG
 /1.7/code-of-conduct                /CODE_OF_CONDUCT
+/1.7/CODE_OF_CONDUCT                /CODE_OF_CONDUCT
 /1.7/contributing                   /CONTRIBUTING
 /1.7/CONTRIBUTING                   /CONTRIBUTING
 
@@ -60,6 +67,7 @@
 /1.8/getting-started                /getting-started
 /1.8/category/usage                 /getting-started
 /1.8/usage/configuration            /guide/configuration
+/1.8/usage/call                     /guide/call-and-result
 /1.8/usage/call-and-result          /guide/call-and-result
 /1.8/category/attributes            /guide/attributes/input
 /1.8/usage/attributes/input         /guide/attributes/input
@@ -70,7 +78,9 @@
 /1.8/usage/i18n                     /guide/i18n
 /1.8/usage/testing                  /guide/testing
 /1.8/changelog                      /CHANGELOG
+/1.8/CHANGELOG                      /CHANGELOG
 /1.8/code-of-conduct                /CODE_OF_CONDUCT
+/1.8/CODE_OF_CONDUCT                /CODE_OF_CONDUCT
 /1.8/contributing                   /CONTRIBUTING
 /1.8/CONTRIBUTING                   /CONTRIBUTING
 
@@ -78,6 +88,7 @@
 /1.9/getting-started                /getting-started
 /1.9/category/usage                 /getting-started
 /1.9/usage/configuration            /guide/configuration
+/1.9/usage/call                     /guide/call-and-result
 /1.9/usage/call-and-result          /guide/call-and-result
 /1.9/category/attributes            /guide/attributes/input
 /1.9/usage/attributes/input         /guide/attributes/input
@@ -88,13 +99,16 @@
 /1.9/usage/i18n                     /guide/i18n
 /1.9/usage/testing                  /guide/testing
 /1.9/changelog                      /CHANGELOG
+/1.9/CHANGELOG                      /CHANGELOG
 /1.9/code-of-conduct                /CODE_OF_CONDUCT
+/1.9/CODE_OF_CONDUCT                /CODE_OF_CONDUCT
 /1.9/contributing                   /CONTRIBUTING
 /1.9/CONTRIBUTING                   /CONTRIBUTING
 
 /ru/getting-started                 /ru/getting-started
 /ru/category/usage                  /ru/getting-started
 /ru/usage/configuration             /ru/guide/configuration
+/ru/usage/call                      /ru/guide/call-and-result
 /ru/usage/call-and-result           /ru/guide/call-and-result
 /ru/category/attributes             /ru/guide/attributes/input
 /ru/usage/attributes/input          /ru/guide/attributes/input
@@ -105,7 +119,9 @@
 /ru/usage/i18n                      /ru/guide/i18n
 /ru/usage/testing                   /ru/guide/testing
 /ru/changelog                       /CHANGELOG
+/ru/CHANGELOG                       /CHANGELOG
 /ru/code-of-conduct                 /CODE_OF_CONDUCT
+/ru/CODE_OF_CONDUCT                 /CODE_OF_CONDUCT
 /ru/contributing                    /CONTRIBUTING
 /ru/CONTRIBUTING                    /CONTRIBUTING
 
@@ -113,6 +129,7 @@
 /ru/1.6/getting-started             /ru/getting-started
 /ru/1.6/category/usage              /ru/getting-started
 /ru/1.6/usage/configuration         /ru/guide/configuration
+/ru/1.6/usage/call                  /ru/guide/call-and-result
 /ru/1.6/usage/call-and-result       /ru/guide/call-and-result
 /ru/1.6/category/attributes         /ru/guide/attributes/input
 /ru/1.6/usage/attributes/input      /ru/guide/attributes/input
@@ -123,7 +140,9 @@
 /ru/1.6/usage/i18n                  /ru/guide/i18n
 /ru/1.6/usage/testing               /ru/guide/testing
 /ru/1.6/changelog                   /CHANGELOG
+/ru/1.6/CHANGELOG                   /CHANGELOG
 /ru/1.6/code-of-conduct             /CODE_OF_CONDUCT
+/ru/1.6/CODE_OF_CONDUCT             /CODE_OF_CONDUCT
 /ru/1.6/contributing                /CONTRIBUTING
 /ru/1.6/CONTRIBUTING                /CONTRIBUTING
 
@@ -131,6 +150,7 @@
 /ru/1.7/getting-started             /ru/getting-started
 /ru/1.7/category/usage              /ru/getting-started
 /ru/1.7/usage/configuration         /ru/guide/configuration
+/ru/1.7/usage/call                  /ru/guide/call-and-result
 /ru/1.7/usage/call-and-result       /ru/guide/call-and-result
 /ru/1.7/category/attributes         /ru/guide/attributes/input
 /ru/1.7/usage/attributes/input      /ru/guide/attributes/input
@@ -141,7 +161,9 @@
 /ru/1.7/usage/i18n                  /ru/guide/i18n
 /ru/1.7/usage/testing               /ru/guide/testing
 /ru/1.7/changelog                   /CHANGELOG
+/ru/1.7/CHANGELOG                   /CHANGELOG
 /ru/1.7/code-of-conduct             /CODE_OF_CONDUCT
+/ru/1.7/CODE_OF_CONDUCT             /CODE_OF_CONDUCT
 /ru/1.7/contributing                /CONTRIBUTING
 /ru/1.7/CONTRIBUTING                /CONTRIBUTING
 
@@ -149,6 +171,7 @@
 /ru/1.8/getting-started             /ru/getting-started
 /ru/1.8/category/usage              /ru/getting-started
 /ru/1.8/usage/configuration         /ru/guide/configuration
+/ru/1.8/usage/call                  /ru/guide/call-and-result
 /ru/1.8/usage/call-and-result       /ru/guide/call-and-result
 /ru/1.8/category/attributes         /ru/guide/attributes/input
 /ru/1.8/usage/attributes/input      /ru/guide/attributes/input
@@ -159,7 +182,9 @@
 /ru/1.8/usage/i18n                  /ru/guide/i18n
 /ru/1.8/usage/testing               /ru/guide/testing
 /ru/1.8/changelog                   /CHANGELOG
+/ru/1.8/CHANGELOG                   /CHANGELOG
 /ru/1.8/code-of-conduct             /CODE_OF_CONDUCT
+/ru/1.8/CODE_OF_CONDUCT             /CODE_OF_CONDUCT
 /ru/1.8/contributing                /CONTRIBUTING
 /ru/1.8/CONTRIBUTING                /CONTRIBUTING
 
@@ -167,6 +192,7 @@
 /ru/1.9/getting-started             /ru/getting-started
 /ru/1.9/category/usage              /ru/getting-started
 /ru/1.9/usage/configuration         /ru/guide/configuration
+/ru/1.9/usage/call                  /ru/guide/call-and-result
 /ru/1.9/usage/call-and-result       /ru/guide/call-and-result
 /ru/1.9/category/attributes         /ru/guide/attributes/input
 /ru/1.9/usage/attributes/input      /ru/guide/attributes/input
@@ -177,6 +203,8 @@
 /ru/1.9/usage/i18n                  /ru/guide/i18n
 /ru/1.9/usage/testing               /ru/guide/testing
 /ru/1.9/changelog                   /CHANGELOG
+/ru/1.9/CHANGELOG                   /CHANGELOG
 /ru/1.9/code-of-conduct             /CODE_OF_CONDUCT
+/ru/1.9/CODE_OF_CONDUCT             /CODE_OF_CONDUCT
 /ru/1.9/contributing                /CONTRIBUTING
 /ru/1.9/CONTRIBUTING                /CONTRIBUTING
