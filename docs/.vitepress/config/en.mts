@@ -51,8 +51,14 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
               { text: 'Grouping', link: '/guide/actions/grouping' }
             ]
           },
+          {
+            text: 'Exceptions',
+            items: [
+              { text: 'Success', link: '/guide/exceptions/success' },
+              { text: 'Failure', link: '/guide/exceptions/failure' }
+            ]
+          },
           { text: 'Configuration', link: '/guide/configuration' },
-          { text: 'Failures', link: '/guide/failures' },
           { text: 'Extensions', link: '/guide/extensions' },
           { text: 'I18n', link: '/guide/i18n' },
           { text: 'Testing', link: '/guide/testing' },

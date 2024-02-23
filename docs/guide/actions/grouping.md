@@ -2,7 +2,7 @@
 title: Grouping actions in service
 description: Description and examples of grouping actions (methods) in service
 prev: Options for actions in service
-next: Configuration
+next: Early successful termination
 ---
 
 # Grouping actions

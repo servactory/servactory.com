@@ -51,8 +51,14 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
               { text: 'Группирование', link: '/ru/guide/actions/grouping' }
             ]
           },
+          {
+            text: 'Исключения',
+            items: [
+              { text: 'Успех', link: '/ru/guide/exceptions/success' },
+              { text: 'Неудача', link: '/ru/guide/exceptions/failure' }
+            ]
+          },
           { text: 'Конфигурация', link: '/ru/guide/configuration' },
-          { text: 'Неудачи', link: '/ru/guide/failures' },
           { text: 'Расширения', link: '/ru/guide/extensions' },
           { text: 'I18n', link: '/ru/guide/i18n' },
           { text: 'Тестирование', link: '/ru/guide/testing' },

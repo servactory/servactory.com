@@ -1,8 +1,8 @@
 ---
 title: Service failures and error handling
 description: Description and examples of use of service failures
-prev: Configuration
-next: Extensions
+prev: Early successful termination
+next: Configuration
 ---
 
 # Failures

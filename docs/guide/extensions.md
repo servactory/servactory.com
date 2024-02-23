@@ -1,7 +1,7 @@
 ---
 title: Extensions
 description: Description and examples of implementation of custom extensions
-prev: Service failures and error handling
+prev: Configuration
 next: Internationalization (I18n)
 ---
 

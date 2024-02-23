@@ -1,9 +1,11 @@
 /guide/call-and-result              /guide/usage/call
 /guide/actions                      /guide/actions/usage
 /guide/options/modes                /guide/options/advanced
+/guide/failures                     /guide/exceptions/failure
 /ru/guide/call-and-result           /ru/guide/usage/call
 /ru/guide/actions                   /ru/guide/actions/usage
 /ru/guide/options/modes             /ru/guide/options/advanced
+/ru/guide/failures                  /ru/guide/exceptions/failure
 
 /getting-started                    /getting-started
 /category/usage                     /getting-started
@@ -15,7 +17,7 @@
 /usage/attributes/output            /guide/attributes/output
 /usage/attributes/internal          /guide/attributes/internal
 /usage/methods                      /guide/actions
-/usage/failures                     /guide/failures
+/usage/failures                     /guide/exceptions/failure
 /usage/i18n                         /guide/i18n
 /usage/testing                      /guide/testing
 /changelog                          /CHANGELOG
@@ -34,7 +36,7 @@
 /1.6/usage/attributes/output        /guide/attributes/output
 /1.6/usage/attributes/internal      /guide/attributes/internal
 /1.6/usage/methods                  /guide/actions
-/1.6/usage/failures                 /guide/failures
+/1.6/usage/failures                 /guide/exceptions/failure
 /1.6/usage/i18n                     /guide/i18n
 /1.6/usage/testing                  /guide/testing
 /1.6/changelog                      /CHANGELOG
@@ -55,7 +57,7 @@
 /1.7/usage/attributes/output        /guide/attributes/output
 /1.7/usage/attributes/internal      /guide/attributes/internal
 /1.7/usage/methods                  /guide/actions
-/1.7/usage/failures                 /guide/failures
+/1.7/usage/failures                 /guide/exceptions/failure
 /1.7/usage/i18n                     /guide/i18n
 /1.7/usage/testing                  /guide/testing
 /1.7/changelog                      /CHANGELOG
@@ -76,7 +78,7 @@
 /1.8/usage/attributes/output        /guide/attributes/output
 /1.8/usage/attributes/internal      /guide/attributes/internal
 /1.8/usage/methods                  /guide/actions
-/1.8/usage/failures                 /guide/failures
+/1.8/usage/failures                 /guide/exceptions/failure
 /1.8/usage/i18n                     /guide/i18n
 /1.8/usage/testing                  /guide/testing
 /1.8/changelog                      /CHANGELOG
@@ -97,7 +99,7 @@
 /1.9/usage/attributes/output        /guide/attributes/output
 /1.9/usage/attributes/internal      /guide/attributes/internal
 /1.9/usage/methods                  /guide/actions
-/1.9/usage/failures                 /guide/failures
+/1.9/usage/failures                 /guide/exceptions/failure
 /1.9/usage/i18n                     /guide/i18n
 /1.9/usage/testing                  /guide/testing
 /1.9/changelog                      /CHANGELOG
@@ -117,7 +119,7 @@
 /ru/usage/attributes/output         /ru/guide/attributes/output
 /ru/usage/attributes/internal       /ru/guide/attributes/internal
 /ru/usage/methods                   /ru/guide/actions
-/ru/usage/failures                  /ru/guide/failures
+/ru/usage/failures                  /ru/guide/exceptions/failure
 /ru/usage/i18n                      /ru/guide/i18n
 /ru/usage/testing                   /ru/guide/testing
 /ru/changelog                       /CHANGELOG
@@ -138,7 +140,7 @@
 /ru/1.6/usage/attributes/output     /ru/guide/attributes/output
 /ru/1.6/usage/attributes/internal   /ru/guide/attributes/internal
 /ru/1.6/usage/methods               /ru/guide/actions
-/ru/1.6/usage/failures              /ru/guide/failures
+/ru/1.6/usage/failures              /ru/guide/exceptions/failure
 /ru/1.6/usage/i18n                  /ru/guide/i18n
 /ru/1.6/usage/testing               /ru/guide/testing
 /ru/1.6/changelog                   /CHANGELOG
@@ -159,7 +161,7 @@
 /ru/1.7/usage/attributes/output     /ru/guide/attributes/output
 /ru/1.7/usage/attributes/internal   /ru/guide/attributes/internal
 /ru/1.7/usage/methods               /ru/guide/actions
-/ru/1.7/usage/failures              /ru/guide/failures
+/ru/1.7/usage/failures              /ru/guide/exceptions/failure
 /ru/1.7/usage/i18n                  /ru/guide/i18n
 /ru/1.7/usage/testing               /ru/guide/testing
 /ru/1.7/changelog                   /CHANGELOG
@@ -180,7 +182,7 @@
 /ru/1.8/usage/attributes/output     /ru/guide/attributes/output
 /ru/1.8/usage/attributes/internal   /ru/guide/attributes/internal
 /ru/1.8/usage/methods               /ru/guide/actions
-/ru/1.8/usage/failures              /ru/guide/failures
+/ru/1.8/usage/failures              /ru/guide/exceptions/failure
 /ru/1.8/usage/i18n                  /ru/guide/i18n
 /ru/1.8/usage/testing               /ru/guide/testing
 /ru/1.8/changelog                   /CHANGELOG
@@ -201,7 +203,7 @@
 /ru/1.9/usage/attributes/output     /ru/guide/attributes/output
 /ru/1.9/usage/attributes/internal   /ru/guide/attributes/internal
 /ru/1.9/usage/methods               /ru/guide/actions
-/ru/1.9/usage/failures              /ru/guide/failures
+/ru/1.9/usage/failures              /ru/guide/exceptions/failure
 /ru/1.9/usage/i18n                  /ru/guide/i18n
 /ru/1.9/usage/testing               /ru/guide/testing
 /ru/1.9/changelog                   /CHANGELOG
