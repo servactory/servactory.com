@@ -67,4 +67,4 @@ service_result.error
 # => #<ApplicationService::Errors::Failure: There is some problem with the user>
 ```
 
-Про неудачную работу сервиса вы можете более подробно узнать [здесь](../failures).
+Про неудачную работу сервиса вы можете более подробно узнать [здесь](../exceptions/failure).
