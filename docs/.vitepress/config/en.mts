@@ -64,9 +64,9 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
           { text: 'Testing', link: '/guide/testing' },
         ]
       },
-      { text: 'Changelog', link: '/changelog' },
-      { text: 'Code of Conduct', link: '/code_of_conduct' },
-      { text: 'Contributing', link: '/contributing' }
+      { text: 'Changelog', link: '/CHANGELOG' },
+      { text: 'Code of Conduct', link: '/CODE_OF_CONDUCT' },
+      { text: 'Contributing', link: '/CONTRIBUTING' }
     ],
 
     outline: {
