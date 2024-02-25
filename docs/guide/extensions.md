@@ -5,7 +5,7 @@ prev: Configuration
 next: Internationalization (I18n)
 ---
 
-# Extensions
+# Extensions <Badge type="tip" text="Since 2.0.0" />
 
 You can expand the basic functionality by adding your own extensions.
 

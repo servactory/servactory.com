@@ -123,7 +123,7 @@ end
 
 :::
 
-## Опция `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Опция `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 Эта опция является валидацией.
 Будет проверять чтобы переданное значение находилось в указанном массиве.
@@ -167,7 +167,7 @@ end
 
 :::
 
-## Опция `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Опция `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 Эта опция является валидацией.
 Будет проверять чтобы каждое значение в коллекции соответствовало указанному типу (классу).
@@ -202,7 +202,7 @@ output :ids,
 
 :::
 
-## Опция `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Опция `schema` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 Эта опция является валидацией.
 Требует значение в виде хеша, которое должно описывать структуру значения атрибута.
@@ -293,7 +293,7 @@ output :payload,
 
 Если в `type` указывается значение `Hash`, то можно описать вложенность в таком же формате.
 
-## Опция `must` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Опция `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 Эта опция является валидацией.
 Позволяет создавать собственные валидации.

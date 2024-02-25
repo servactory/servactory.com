@@ -38,7 +38,7 @@ input :first_name,
 
 :::
 
-## Опция `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Опция `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 ::: code-group
 
@@ -105,7 +105,7 @@ output :event_name,
 
 :::
 
-## Опция `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Опция `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 ::: code-group
 
@@ -169,7 +169,7 @@ output :ids,
 
 :::
 
-## Опция `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Опция `schema` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 ::: code-group
 
@@ -260,7 +260,7 @@ output :payload,
 
 :::
 
-## Опция `must` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Опция `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 ::: info
 

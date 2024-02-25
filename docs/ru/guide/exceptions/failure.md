@@ -130,7 +130,7 @@ exception.type              # => :base
 exception.meta              # => {:invoice_number=>"BB-7650AE"}
 ```
 
-### Метод `fail_result!`
+### Метод `fail_result!` <Badge type="tip" text="Начиная с 2.1.0" />
 
 Требует `Result` и внутри себя вызывает метод `fail!`.
 

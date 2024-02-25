@@ -58,7 +58,7 @@ For example, it could be `ActiveRecord::Base.transaction` from Rails.
 
 ```ruby {2}
 stage do
-  wrap_in ->(methods:) { ActiveRecord::Base.transaction { methods.call } }
+  wrap_in ->(methods:, context:) { ActiveRecord::Base.transaction { methods.call } }
   
   make :create_user!
   make :create_blog_for_user!
@@ -72,7 +72,7 @@ If an exception occurs in one of the methods in the group or in `wrap_in`, this 
 
 ```ruby {3,12}
 stage do
-  wrap_in ->(methods:) { ActiveRecord::Base.transaction { methods.call } }
+  wrap_in ->(methods:, context:) { ActiveRecord::Base.transaction { methods.call } }
   rollback :clear_data_and_fail!
   
   make :create_user!

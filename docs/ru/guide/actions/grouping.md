@@ -53,12 +53,12 @@ end
 
 ### Опция `wrap_in`
 
-Группу методов, находящийхся в `stage` можно обернуть во что-то.
+Группу методов, находящийся в `stage` можно обернуть во что-то.
 Например, это может быть `ActiveRecord::Base.transaction` от Rails.
 
 ```ruby {2}
 stage do
-  wrap_in ->(methods:) { ActiveRecord::Base.transaction { methods.call } }
+  wrap_in ->(methods:, context:) { ActiveRecord::Base.transaction { methods.call } }
   
   make :create_user!
   make :create_blog_for_user!
@@ -72,7 +72,7 @@ end
 
 ```ruby {3,12}
 stage do
-  wrap_in ->(methods:) { ActiveRecord::Base.transaction { methods.call } }
+  wrap_in ->(methods:, context:) { ActiveRecord::Base.transaction { methods.call } }
   rollback :clear_data_and_fail!
   
   make :create_user!

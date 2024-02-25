@@ -5,7 +5,7 @@ prev: Grouping actions in service
 next: Service failures and error handling
 ---
 
-# Early successful termination
+# Early successful termination <Badge type="tip" text="Since 2.2.0" />
 
 The service can be terminated prematurely and successfully by calling the `success!` method.
 
