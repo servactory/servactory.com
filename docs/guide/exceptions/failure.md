@@ -7,7 +7,7 @@ next: Configuration
 
 # Failure and error handling
 
-## Описание методов и исключений
+## Description of methods and exceptions
 
 The service can be terminated prematurely by calling one of these methods:
 

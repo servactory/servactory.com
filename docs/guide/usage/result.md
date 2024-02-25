@@ -103,7 +103,7 @@ fail!(
 )
 ```
 
-### Хуки
+### Hooks
 
 This is an alternative way to process the result.
 
