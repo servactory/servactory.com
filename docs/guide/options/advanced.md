@@ -38,7 +38,7 @@ input :first_name,
 
 :::
 
-## Option `inclusion` <Badge type="info" text="input" />
+## Option `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 ::: code-group
 
@@ -60,14 +60,36 @@ input :event_name,
       inclusion: {
         in: %w[created rejected approved],
         message: lambda do |service_class_name:, input:, value:|
-          value.present? ? "Incorrect `event_name` specified: `#{value}`" : "Event name not specified"
+          value.present? ? "Incorrect `#{input.name}` specified: `#{value}`" : "Event name not specified"
         end
       }
 ```
 
+```ruby [internal]
+internal :event_name,
+         type: String,
+         inclusion: {
+           in: %w[created rejected approved],
+           message: lambda do |service_class_name:, internal:, value:|
+             value.present? ? "Incorrect `#{internal.name}` specified: `#{value}`" : "Event name not specified"
+           end
+         }
+```
+
+```ruby [output]
+output :event_name,
+       type: String,
+       inclusion: {
+         in: %w[created rejected approved],
+         message: lambda do |service_class_name:, output:, value:|
+           value.present? ? "Incorrect `#{output.name}` specified: `#{value}`" : "Event name not specified"
+         end
+       }
+```
+
 :::
 
-## Option `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Option `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 ::: code-group
 
@@ -131,7 +153,7 @@ output :ids,
 
 :::
 
-## Option `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Option `schema` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 ::: code-group
 
@@ -222,7 +244,7 @@ output :payload,
 
 :::
 
-## Option `must` <Badge type="info" text="input" />
+## Option `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 ::: info
 
@@ -243,6 +265,28 @@ input :invoice_numbers,
       }
 ```
 
+```ruby [internal]
+internal :invoice_numbers,
+         type: Array,
+         consists_of: String,
+         must: {
+           be_6_characters: {
+             is: ->(value:) { value.all? { |id| id.size == 6 } }
+           }
+         }
+```
+
+```ruby [output]
+output :invoice_numbers,
+       type: Array,
+       consists_of: String,
+       must: {
+         be_6_characters: {
+           is: ->(value:) { value.all? { |id| id.size == 6 } }
+         }
+       }
+```
+
 :::
 
 ::: code-group
@@ -259,6 +303,34 @@ input :invoice_numbers,
           end
         }
       }
+```
+
+```ruby [internal]
+internal :invoice_numbers,
+         type: Array,
+         consists_of: String,
+         must: {
+           be_6_characters: {
+             is: ->(value:) { value.all? { |id| id.size == 6 } },
+             message: lambda do |service_class_name:, internal:, value:, code:|
+               "Wrong IDs in `#{internal.name}`"
+             end
+           }
+         }
+```
+
+```ruby [output]
+output :invoice_numbers,
+       type: Array,
+       consists_of: String,
+       must: {
+         be_6_characters: {
+           is: ->(value:) { value.all? { |id| id.size == 6 } },
+           message: lambda do |service_class_name:, output:, value:, code:|
+             "Wrong IDs in `#{output.name}`"
+           end
+         }
+       }
 ```
 
 :::

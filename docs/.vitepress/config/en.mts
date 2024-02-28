@@ -20,7 +20,14 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       {
         text: 'Guide',
         items: [
-          { text: 'Call and Result', link: '/guide/call-and-result' },
+          {
+            text: 'Usage',
+            items: [
+              { text: 'Call', link: '/guide/usage/call' },
+              { text: 'Result', link: '/guide/usage/result' },
+              { text: 'Info', link: '/guide/usage/info' }
+            ]
+          },
           {
             text: 'Attributes',
             items: [
@@ -44,16 +51,22 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
               { text: 'Grouping', link: '/guide/actions/grouping' }
             ]
           },
+          {
+            text: 'Exceptions',
+            items: [
+              { text: 'Success', link: '/guide/exceptions/success' },
+              { text: 'Failure', link: '/guide/exceptions/failure' }
+            ]
+          },
           { text: 'Configuration', link: '/guide/configuration' },
-          { text: 'Failures', link: '/guide/failures' },
           { text: 'Extensions', link: '/guide/extensions' },
           { text: 'I18n', link: '/guide/i18n' },
           { text: 'Testing', link: '/guide/testing' },
         ]
       },
-      { text: 'Changelog', link: '/changelog' },
-      { text: 'Code of Conduct', link: '/code_of_conduct' },
-      { text: 'Contributing', link: '/contributing' }
+      { text: 'Changelog', link: '/CHANGELOG' },
+      { text: 'Code of Conduct', link: '/CODE_OF_CONDUCT' },
+      { text: 'Contributing', link: '/CONTRIBUTING' }
     ],
 
     outline: {

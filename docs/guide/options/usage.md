@@ -123,7 +123,7 @@ end
 
 :::
 
-## Option `inclusion` <Badge type="info" text="input" />
+## Option `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 This option is validation.
 It will check that the passed value is in the specified array.
@@ -141,12 +141,37 @@ class EventsService::Send < ApplicationService::Base
 end
 ```
 
+```ruby{6} [internal]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  internal :event_name,
+           type: String,
+           inclusion: %w[created rejected approved]
+
+  # ...
+end
+```
+
+```ruby{6} [output]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  output :event_name,
+         type: String,
+         inclusion: %w[created rejected approved]
+
+  # ...
+end
+```
+
 :::
 
-## Option `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Option `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 This option is validation.
 It will check that each value in the collection matches the specified type (class).
+Checks nested values.
 The `is_a?` method is used.
 
 Works only with `Array` and `Set` types.
@@ -177,7 +202,7 @@ output :ids,
 
 :::
 
-## Option `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Option `schema` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 This option is validation.
 Requires a hash value that must describe the value structure of the output attribute.
@@ -268,7 +293,7 @@ The following options are allowed: `type`, `required` and the optional `default`
 
 If the `type` value is `Hash`, then nesting can be described in the same format.
 
-## Option `must` <Badge type="info" text="input" />
+## Option `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 This option is validation.
 Allows you to create your own validations.
@@ -290,6 +315,40 @@ class PaymentsService::Create < ApplicationService::Base
 end
 ```
 
+```ruby{7-11} [internal]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  internal :invoice_numbers,
+           type: Array,
+           consists_of: String,
+           must: {
+             be_6_characters: {
+               is: ->(value:) { value.all? { |id| id.size == 6 } }
+             }
+           }
+
+  # ...
+end
+```
+
+```ruby{7-11} [output]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  output :invoice_numbers,
+         type: Array,
+         consists_of: String,
+         must: {
+           be_6_characters: {
+             is: ->(value:) { value.all? { |id| id.size == 6 } }
+           }
+         }
+
+  # ...
+end
+```
+
 :::
 
 ## Option `prepare` <Badge type="info" text="input" />
@@ -300,6 +359,8 @@ It is used to prepare the passed value.
 ::: warning
 
 Use the `prepare` option carefully and only for simple preparatory actions.
+For example, as shown below.
+Any logic that is more complex than that in the example below is better applied through the [`make`](../actions/usage) action.
 
 :::
 

@@ -1,0 +1,152 @@
+---
+title: Неудача и обработка ошибок
+description: Описание и примеры использования неудач и падений сервиса
+prev: Раннее успешное завершение
+next: Конфигурация
+---
+
+# Неудача и обработка ошибок
+
+## Описание методов и исключений
+
+Работа сервиса может быть завершена преждевременно при помощи вызова одного из этих методов:
+
+- `fail_input!`;
+- `fail_internal!`;
+- `fail_output!`;
+- `fail!`;
+- `fail_result!`.
+
+Эти методы в свою очередь вызовут исключение.
+
+Из списка выше только следующие методы можно будет обработать после вызова через `call`:
+
+- `fail!`;
+- `fail_result!`.
+
+Остальные методы будут всегда вызывать исключение.
+
+Помимо этого присутствуют автоматические проверки input, internal и output атрибутов.
+В случае, например, валидационных проблем с этими атрибутами будет также вызвано соответствующее исключение.
+Это поведение будет идентично тому что происходит при вызове этих методов:
+
+- `fail_input!`;
+- `fail_internal!`;
+- `fail_output!`.
+
+## Методы
+
+### Метод `fail_input!`
+
+Предназначен для вызова исключения от лица input атрибута.
+
+Метод `fail_input!` позволяет передать текст ошибки, а также требует указать имя input атрибута.
+
+При любом вызове сервиса будет вызвано исключение с классом `Servactory::Errors::InputError`.
+
+```ruby{6}
+make :check!
+
+def check!
+  return if inputs.invoice_number.start_with?("AA")
+
+  fail_input!(:invoice_number, message: "Invalid invoice number")
+end
+```
+
+### Метод `fail_internal!`
+
+Предназначен для вызова исключения от лица internal атрибута.
+
+Метод `fail_internal!` позволяет передать текст ошибки, а также требует указать имя internal атрибута.
+
+При любом вызове сервиса будет вызвано исключение с классом `Servactory::Errors::InternalError`.
+
+```ruby{6}
+make :check!
+
+def check!
+  return if internals.invoice_number.start_with?("AA")
+
+  fail_internal!(:invoice_number, message: "Invalid invoice number")
+end
+```
+
+### Метод `fail_output!`
+
+Предназначен для вызова исключения от лица output атрибута.
+
+Метод `fail_output!` позволяет передать текст ошибки, а также требует указать имя output атрибута.
+
+При любом вызове сервиса будет вызвано исключение с классом `Servactory::Errors::OutputError`.
+
+```ruby{6}
+make :check!
+
+def check!
+  return if outputs.invoice_number.start_with?("AA")
+
+  fail_output!(:invoice_number, message: "Invalid invoice number")
+end
+```
+
+### Метод `fail!`
+
+Предназначен для описания пользовательских ошибок.
+
+Метод `fail!` позволяет передать текст ошибки, дополнительную информацию через атрибут `meta`, а также позволяет указывать `type`.
+
+По умолчанию `type` имеет значение `base`, но вы можете передавать любое значение для дальнейшей обработки.
+
+При вызове сервиса через метод `call!` будет вызвано исключение с классом `Servactory::Errors::Failure`.
+При вызове метода через метод `call` ошибка будет зафиксирована и доступна в `Result`.
+
+```ruby{6}
+make :check!
+
+def check!
+  return if inputs.invoice_number.start_with?("AA")
+
+  fail!(message: "Invalid invoice number")
+end
+```
+
+```ruby{2,4-6}
+fail!(
+  :base,
+  message: "Invalid invoice number",
+  meta: {
+    invoice_number: inputs.invoice_number
+  }
+)
+```
+
+Пример информации, которая будет предоставлена:
+
+```ruby
+exception.detailed_message  # => Invalid invoice number (ApplicationService::Errors::Failure)
+exception.message           # => Invalid invoice number
+exception.type              # => :base
+exception.meta              # => {:invoice_number=>"BB-7650AE"}
+```
+
+### Метод `fail_result!` <Badge type="tip" text="Начиная с 2.1.0" />
+
+Требует `Result` и внутри себя вызывает метод `fail!`.
+
+Предназначен для сокращенного написания кода для передачи ошибки из одного сервиса в текущий.
+Например, из API сервиса в сервис приложения.
+
+```ruby
+fail_result!(service_result)
+```
+
+Код выше эквивалентен этому:
+
+```ruby
+fail!(
+  service_result.error.type,
+  message: service_result.error.message,
+  meta: service_result.error.meta
+)
+```

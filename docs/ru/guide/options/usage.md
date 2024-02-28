@@ -123,7 +123,7 @@ end
 
 :::
 
-## Опция `inclusion` <Badge type="info" text="input" />
+## Опция `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 Эта опция является валидацией.
 Будет проверять чтобы переданное значение находилось в указанном массиве.
@@ -141,12 +141,37 @@ class EventsService::Send < ApplicationService::Base
 end
 ```
 
+```ruby{6} [internal]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  internal :event_name,
+           type: String,
+           inclusion: %w[created rejected approved]
+
+  # ...
+end
+```
+
+```ruby{6} [output]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  output :event_name,
+         type: String,
+         inclusion: %w[created rejected approved]
+
+  # ...
+end
+```
+
 :::
 
-## Опция `consists_of` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Опция `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 Эта опция является валидацией.
 Будет проверять чтобы каждое значение в коллекции соответствовало указанному типу (классу).
+Проверяет вложенные значения.
 Используется метод `is_a?`.
 
 Работает только с типами `Array` и `Set`.
@@ -177,7 +202,7 @@ output :ids,
 
 :::
 
-## Опция `schema` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Опция `schema` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 Эта опция является валидацией.
 Требует значение в виде хеша, которое должно описывать структуру значения атрибута.
@@ -268,7 +293,7 @@ output :payload,
 
 Если в `type` указывается значение `Hash`, то можно описать вложенность в таком же формате.
 
-## Опция `must` <Badge type="info" text="input" />
+## Опция `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 Эта опция является валидацией.
 Позволяет создавать собственные валидации.
@@ -290,16 +315,52 @@ class PaymentsService::Create < ApplicationService::Base
 end
 ```
 
+```ruby{7-11} [internal]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  internal :invoice_numbers,
+           type: Array,
+           consists_of: String,
+           must: {
+             be_6_characters: {
+               is: ->(value:) { value.all? { |id| id.size == 6 } }
+             }
+           }
+
+  # ...
+end
+```
+
+```ruby{7-11} [output]
+class EventsService::Send < ApplicationService::Base
+  # ...
+
+  output :invoice_numbers,
+         type: Array,
+         consists_of: String,
+         must: {
+           be_6_characters: {
+             is: ->(value:) { value.all? { |id| id.size == 6 } }
+           }
+         }
+
+  # ...
+end
+```
+
 :::
 
 ## Опция `prepare` <Badge type="info" text="input" />
 
 Эта опция не является валидацией.
-Она используется для подготовки переданное значения.
+Она используется для подготовки переданного значения.
 
 ::: warning
 
 Используйте опцию `prepare` осторожно и только для простых подготовительных действий.
+Например, как показано ниже.
+Любую логику, которая сложнее той что в примере ниже, лучше применять через действие [`make`](../actions/usage).
 
 :::
 

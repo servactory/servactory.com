@@ -20,7 +20,14 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       {
         text: 'Руководство',
         items: [
-          { text: 'Вызов и результат', link: '/ru/guide/call-and-result' },
+          {
+            text: 'Использование',
+            items: [
+              { text: 'Вызов', link: '/ru/guide/usage/call' },
+              { text: 'Результат', link: '/ru/guide/usage/result' },
+              { text: 'Информация', link: '/ru/guide/usage/info' }
+            ]
+          },
           {
             text: 'Атрибуты',
             items: [
@@ -44,16 +51,22 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
               { text: 'Группирование', link: '/ru/guide/actions/grouping' }
             ]
           },
+          {
+            text: 'Исключения',
+            items: [
+              { text: 'Успех', link: '/ru/guide/exceptions/success' },
+              { text: 'Неудача', link: '/ru/guide/exceptions/failure' }
+            ]
+          },
           { text: 'Конфигурация', link: '/ru/guide/configuration' },
-          { text: 'Неудачи', link: '/ru/guide/failures' },
           { text: 'Расширения', link: '/ru/guide/extensions' },
           { text: 'I18n', link: '/ru/guide/i18n' },
           { text: 'Тестирование', link: '/ru/guide/testing' },
         ]
       },
-      { text: 'Changelog', link: '/changelog' },
-      { text: 'Code of Conduct', link: '/code_of_conduct' },
-      { text: 'Contributing', link: '/contributing' }
+      { text: 'Changelog', link: '/CHANGELOG' },
+      { text: 'Code of Conduct', link: '/CODE_OF_CONDUCT' },
+      { text: 'Contributing', link: '/CONTRIBUTING' }
     ],
 
     outline: {
