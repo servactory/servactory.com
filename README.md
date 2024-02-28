@@ -1,4 +1,4 @@
-Servactory Documentation
+# Servactory Documentation
 
 Servactory uses [VitePress](https://vitepress.dev) for its documentation.
 
