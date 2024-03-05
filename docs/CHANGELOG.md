@@ -6,6 +6,23 @@ next: false
 
 # Changelog
 
+## [v2.2.3](https://github.com/servactory/servactory/tree/v2.2.3) (2024-03-05)
+
+[Full Changelog](https://github.com/servactory/servactory/compare/v2.2.2...v2.2.3)
+
+**Fixed:**
+
+- Fix inheritance of `internal_option_helpers` and `output_option_helpers` configurations [\#177](https://github.com/servactory/servactory/pull/177) ([afuno](https://github.com/afuno))
+
+## [v2.2.2](https://github.com/servactory/servactory/tree/v2.2.2) (2024-03-01)
+
+[Full Changelog](https://github.com/servactory/servactory/compare/v2.2.1...v2.2.2)
+
+**Fixed:**
+
+- Delete previously added exceptions for `NoMethodError` and `NameError` [\#172](https://github.com/servactory/servactory/pull/172) ([afuno](https://github.com/afuno))
+- Simplify error texts for `NoMethodError` and `NameError` exceptions [\#171](https://github.com/servactory/servactory/pull/171) ([afuno](https://github.com/afuno))
+
 ## [v2.2.1](https://github.com/servactory/servactory/tree/v2.2.1) (2024-02-28)
 
 [Full Changelog](https://github.com/servactory/servactory/compare/v2.2.0...v2.2.1)
