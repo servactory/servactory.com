@@ -19,9 +19,9 @@ Services are configured through the `configuration` method, which can be placed,
 module ApplicationService
   class Base < Servactory::Base
     configuration do
-      input_error_class ApplicationService::Exceptions::Input
-      internal_error_class ApplicationService::Exceptions::Internal
-      output_error_class ApplicationService::Exceptions::Output
+      input_exception_class ApplicationService::Exceptions::Input
+      internal_exception_class ApplicationService::Exceptions::Internal
+      output_exception_class ApplicationService::Exceptions::Output
 
       failure_class ApplicationService::Exceptions::Failure
     end
