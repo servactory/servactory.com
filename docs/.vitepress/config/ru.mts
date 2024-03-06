@@ -28,7 +28,7 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
 function nav(): DefaultTheme.NavItem[] {
   return [
     { text: 'Руководство', link: '/ru/getting-started', activeMatch: '/guide/' },
-    { text: 'Релизы', link: '/ru/releases/2.2' },
+    { text: 'Релизы', link: '/ru/releases/2.3' },
     { text: 'v1', link: 'https://v1.servactory.com/ru' }
   ]
 }
@@ -115,7 +115,8 @@ function sidebarReleases(): DefaultTheme.SidebarItem[] {
     {
       text: 'Релизы',
       items: [
-        { text: 'Релиз 2.2', link: '/ru/releases/2.2' }
+        { text: 'Релиз 2.3', link: '/ru/releases/2.3' },
+        { text: 'Релиз 2.2', link: '/ru/releases/2.2' },
       ]
     }
   ]
