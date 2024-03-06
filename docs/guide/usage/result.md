@@ -64,7 +64,7 @@ service_result.success? # => false
 service_result.failure? # => true
 
 service_result.error
-# => #<ApplicationService::Errors::Failure: There is some problem with the user>
+# => #<ApplicationService::Exceptions::Failure: There is some problem with the user>
 ```
 
 You can learn more about the unsuccessful operation of the service [here](../exceptions/failure).

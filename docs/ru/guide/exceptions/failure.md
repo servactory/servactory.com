@@ -42,7 +42,7 @@ next: Конфигурация
 
 Метод `fail_input!` позволяет передать текст ошибки, а также требует указать имя input атрибута.
 
-При любом вызове сервиса будет вызвано исключение с классом `Servactory::Errors::InputError`.
+При любом вызове сервиса будет вызвано исключение с классом `ApplicationService::Exceptions::Input`.
 
 ```ruby{6}
 make :check!
@@ -60,7 +60,7 @@ end
 
 Метод `fail_internal!` позволяет передать текст ошибки, а также требует указать имя internal атрибута.
 
-При любом вызове сервиса будет вызвано исключение с классом `Servactory::Errors::InternalError`.
+При любом вызове сервиса будет вызвано исключение с классом `ApplicationService::Exceptions::Internal`.
 
 ```ruby{6}
 make :check!
@@ -78,7 +78,7 @@ end
 
 Метод `fail_output!` позволяет передать текст ошибки, а также требует указать имя output атрибута.
 
-При любом вызове сервиса будет вызвано исключение с классом `Servactory::Errors::OutputError`.
+При любом вызове сервиса будет вызвано исключение с классом `ApplicationService::Exceptions::Output`.
 
 ```ruby{6}
 make :check!
@@ -98,7 +98,7 @@ end
 
 По умолчанию `type` имеет значение `base`, но вы можете передавать любое значение для дальнейшей обработки.
 
-При вызове сервиса через метод `call!` будет вызвано исключение с классом `Servactory::Errors::Failure`.
+При вызове сервиса через метод `call!` будет вызвано исключение с классом `Servactory::Exceptions::Failure`.
 При вызове метода через метод `call` ошибка будет зафиксирована и доступна в `Result`.
 
 ```ruby{6}
@@ -124,7 +124,7 @@ fail!(
 Пример информации, которая будет предоставлена:
 
 ```ruby
-exception.detailed_message  # => Invalid invoice number (ApplicationService::Errors::Failure)
+exception.detailed_message  # => Invalid invoice number (ApplicationService::Exceptions::Failure)
 exception.message           # => Invalid invoice number
 exception.type              # => :base
 exception.meta              # => {:invoice_number=>"BB-7650AE"}

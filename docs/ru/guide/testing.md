@@ -32,7 +32,7 @@ before do
   allow(UsersService::Create).to(
     receive(:call).and_return(
       Servactory::TestKit::Result.as_failure(
-        exception: Servactory::Errors::Failure.new(
+        exception: Servactory::Exceptions::Failure.new(
           message: "Some error"
         )
       )
@@ -118,7 +118,7 @@ module InputAttributeHelper
     given_type: nil
   ) # do
     raise_error(
-      ApplicationService::Errors::InputError,
+      ApplicationService::Exceptions::Input,
       prepare_input_text_for(
         check_name: check_name,
         name: name,

@@ -42,7 +42,7 @@ Designed to throw an exception on behalf of the input attribute.
 
 The `fail_input!` method allows you to pass the error text and also requires you to specify the name of the input attribute.
 
-Any call to the service will throw an exception with the class `Servactory::Errors::InputError`.
+Any call to the service will throw an exception with the class `ApplicationService::Exceptions::Input`.
 
 ```ruby{6}
 make :check!
@@ -60,7 +60,7 @@ Designed to throw an exception on behalf of the internal attribute.
 
 The `fail_internal!` method allows you to pass the error text and also requires you to specify the name of the internal attribute.
 
-Any call to the service will throw an exception with the class `Servactory::Errors::InternalError`.
+Any call to the service will throw an exception with the class `ApplicationService::Exceptions::Internal`.
 
 ```ruby{6}
 make :check!
@@ -78,7 +78,7 @@ Designed to throw an exception on behalf of the output attribute.
 
 The `fail_output!` method allows you to pass the error text and also requires you to specify the name of the output attribute.
 
-Any call to the service will throw an exception with the class `Servactory::Errors::OutputError`.
+Any call to the service will throw an exception with the class `ApplicationService::Exceptions::Output`.
 
 ```ruby{6}
 make :check!
@@ -98,7 +98,7 @@ The `fail!` method allows you to pass the error text, additional information thr
 
 By default, `type` is `base`, but you can pass any value for further processing.
 
-When calling a service through the `call!` method, an exception with the class `Servactory::Errors::Failure` will be thrown.
+When calling a service through the `call!` method, an exception with the class `Servactory::Exceptions::Failure` will be thrown.
 When calling a method via the `call` method, the error will be logged and available in the `Result`.
 
 ```ruby{6}
@@ -124,7 +124,7 @@ fail!(
 Example of information that will be provided:
 
 ```ruby
-exception.detailed_message  # => Invalid invoice number (ApplicationService::Errors::Failure)
+exception.detailed_message  # => Invalid invoice number (ApplicationService::Exceptions::Failure)
 exception.message           # => Invalid invoice number
 exception.type              # => :base
 exception.meta              # => {:invoice_number=>"BB-7650AE"}
