@@ -19,24 +19,24 @@ next: Расширения
 module ApplicationService
   class Base < Servactory::Base
     configuration do
-      input_error_class ApplicationService::Errors::InputError
-      output_error_class ApplicationService::Errors::OutputError
-      internal_error_class ApplicationService::Errors::InternalError
+      input_error_class ApplicationService::Exceptions::Input
+      internal_error_class ApplicationService::Exceptions::Internal
+      output_error_class ApplicationService::Exceptions::Output
 
-      failure_class ApplicationService::Errors::Failure
+      failure_class ApplicationService::Exceptions::Failure
     end
   end
 end
 ```
 
-```ruby {3-5,7} [app/services/application_service/errors.rb]
+```ruby {3-5,7} [app/services/application_service/exceptions.rb]
 module ApplicationService
-  module Errors
-    class InputError < Servactory::Errors::InputError; end
-    class OutputError < Servactory::Errors::OutputError; end
-    class InternalError < Servactory::Errors::InternalError; end
+  module Exceptions
+    class Input < Servactory::Exceptions::Input; end
+    class Output < Servactory::Exceptions::Output; end
+    class Internal < Servactory::Exceptions::Internal; end
 
-    class Failure < Servactory::Errors::Failure; end
+    class Failure < Servactory::Exceptions::Failure; end
   end
 end
 ```
