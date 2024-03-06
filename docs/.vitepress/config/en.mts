@@ -28,7 +28,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
 function nav(): DefaultTheme.NavItem[] {
   return [
     { text: 'Guide', link: '/getting-started' },
-    // { text: 'Releases', link: '/releases/latest' },
+    // { text: 'Releases', link: '/releases/2.2' },
     { text: 'v1', link: 'https://v1.servactory.com' }
   ]
 }
@@ -115,7 +115,7 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 //     {
 //       text: 'Releases',
 //       items: [
-//         { text: 'Release 2.2', link: '/releases/latest' }
+//         { text: 'Release 2.2', link: '/releases/2.2' }
 //       ]
 //     }
 //   ]
