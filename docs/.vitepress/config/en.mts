@@ -4,70 +4,9 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
   description: "A set of tools for building reliable Ruby services (Service Object) of any complexity",
 
   themeConfig: {
-    nav: [
-      { text: 'Guide', link: '/getting-started' },
-      { text: 'v1', link: 'https://v1.servactory.com' }
-    ],
+    nav: nav(),
 
-    sidebar: [
-      {
-        text: 'Introduction',
-        items: [
-          { text: 'Why Servactory', link: '/introduction' },
-          { text: 'Getting Started', link: '/getting-started' }
-        ]
-      },
-      {
-        text: 'Guide',
-        items: [
-          {
-            text: 'Usage',
-            items: [
-              { text: 'Call', link: '/guide/usage/call' },
-              { text: 'Result', link: '/guide/usage/result' },
-              { text: 'Info', link: '/guide/usage/info' }
-            ]
-          },
-          {
-            text: 'Attributes',
-            items: [
-              { text: 'Input', link: '/guide/attributes/input' },
-              { text: 'Internal', link: '/guide/attributes/internal' },
-              { text: 'Output', link: '/guide/attributes/output' }
-            ]
-          },
-          {
-            text: 'Options',
-            items: [
-              { text: 'Usage', link: '/guide/options/usage' },
-              { text: 'Advanced', link: '/guide/options/advanced' }
-            ]
-          },
-          {
-            text: 'Actions',
-            items: [
-              { text: 'Usage', link: '/guide/actions/usage' },
-              { text: 'Options', link: '/guide/actions/options' },
-              { text: 'Grouping', link: '/guide/actions/grouping' }
-            ]
-          },
-          {
-            text: 'Exceptions',
-            items: [
-              { text: 'Success', link: '/guide/exceptions/success' },
-              { text: 'Failure', link: '/guide/exceptions/failure' }
-            ]
-          },
-          { text: 'Configuration', link: '/guide/configuration' },
-          { text: 'Extensions', link: '/guide/extensions' },
-          { text: 'I18n', link: '/guide/i18n' },
-          { text: 'Testing', link: '/guide/testing' },
-        ]
-      },
-      { text: 'Changelog', link: '/CHANGELOG' },
-      { text: 'Code of Conduct', link: '/CODE_OF_CONDUCT' },
-      { text: 'Contributing', link: '/CONTRIBUTING' }
-    ],
+    sidebar: sidebar(),
 
     outline: {
       // label: 'On this page',
@@ -85,3 +24,99 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
     // }
   },
 }
+
+function nav(): DefaultTheme.NavItem[] {
+  return [
+    { text: 'Guide', link: '/getting-started' },
+    // { text: 'Releases', link: '/releases/latest' },
+    { text: 'v1', link: 'https://v1.servactory.com' }
+  ]
+}
+
+function sidebar(): DefaultTheme.Sidebar {
+  return {
+    '/introduction': { base: '', items: sidebarGuide() },
+    '/getting-started': { base: '', items: sidebarGuide() },
+    '/guide/': { base: '', items: sidebarGuide() },
+    // '/releases/': { base: '', items: sidebarReleases() },
+  }
+}
+
+function sidebarGuide(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Introduction',
+      items: [
+        { text: 'Why Servactory', link: '/introduction' },
+        { text: 'Getting Started', link: '/getting-started' }
+      ]
+    },
+    {
+      text: 'Guide',
+      items: [
+        {
+          text: 'Usage',
+          items: [
+            { text: 'Call', link: '/guide/usage/call' },
+            { text: 'Result', link: '/guide/usage/result' },
+            { text: 'Info', link: '/guide/usage/info' }
+          ]
+        },
+        {
+          text: 'Attributes',
+          items: [
+            { text: 'Input', link: '/guide/attributes/input' },
+            { text: 'Internal', link: '/guide/attributes/internal' },
+            { text: 'Output', link: '/guide/attributes/output' }
+          ]
+        },
+        {
+          text: 'Options',
+          items: [
+            { text: 'Usage', link: '/guide/options/usage' },
+            { text: 'Advanced', link: '/guide/options/advanced' }
+          ]
+        },
+        {
+          text: 'Actions',
+          items: [
+            { text: 'Usage', link: '/guide/actions/usage' },
+            { text: 'Options', link: '/guide/actions/options' },
+            { text: 'Grouping', link: '/guide/actions/grouping' }
+          ]
+        },
+        {
+          text: 'Exceptions',
+          items: [
+            { text: 'Success', link: '/guide/exceptions/success' },
+            { text: 'Failure', link: '/guide/exceptions/failure' }
+          ]
+        },
+        { text: 'Configuration', link: '/guide/configuration' },
+        { text: 'Extensions', link: '/guide/extensions' },
+        { text: 'I18n', link: '/guide/i18n' },
+        { text: 'Testing', link: '/guide/testing' },
+      ]
+    },
+    { text: 'Changelog', link: '/CHANGELOG' },
+    { text: 'Code of Conduct', link: '/CODE_OF_CONDUCT' },
+    { text: 'Contributing', link: '/CONTRIBUTING' }
+  ]
+}
+
+// function sidebarReleases(): DefaultTheme.SidebarItem[] {
+//   return [
+//     {
+//       text: 'Guide',
+//       items: [
+//         { text: 'Return to guide', link: '/guide/usage/call' }
+//       ]
+//     },
+//     {
+//       text: 'Releases',
+//       items: [
+//         { text: 'Release 2.2', link: '/releases/latest' }
+//       ]
+//     }
+//   ]
+// }

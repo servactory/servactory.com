@@ -1,0 +1,107 @@
+---
+title: Релиз 2.2
+prev: false
+next: false
+---
+
+# Релиз 2.2
+
+Были подготовлены и реализованы следующие изменения.
+
+## Атрибуты
+
+### Internal атрибут
+
+1. Добавлена поддержка опции `inclusion`;
+2. Добавлена поддержка опции `must`;
+3. Добавлена поддержка хелперов.
+
+### Output атрибут
+
+1. Добавлена поддержка опции `inclusion`;
+2. Добавлена поддержка опции `must`;
+3. Добавлена поддержка хелперов.
+
+### Опции
+
+1. Для опции `consists_of` добавлена проверка вложенных значений.
+
+## Методы
+
+### Метод `success!`
+
+Добавлен метод `success!` для ручного раннего завершения сервиса успехом.
+
+```ruby
+class UsersService::Confirmation::Send < ApplicationService::Base
+  input :user, type: User
+
+  make :skip_if_already_sent!
+
+  # ...
+
+  def skip_if_already_sent!
+    return if user.need_confirmation?
+    
+    success! # [!code focus]
+  end
+
+  # ...
+end
+```
+
+### Метод `fail!`
+
+Для метода `fail!` был добавлен атрибут `type`.
+По умолчанию атрибут имеет значение `:base`.
+Вы можете указывать любое наименование, а затем использовать его при обработке `Failure`.
+
+```ruby
+class UsersService::Confirmation::Send < ApplicationService::Base
+  input :user, type: User
+
+  make :skip_if_already_sent!
+
+  # ...
+
+  def skip_if_already_sent!
+    return if user.need_confirmation?
+
+    fail!(:soft, message: "The confirmation has already been sent") # [!code focus]
+  end
+
+  # ...
+end
+```
+
+## Хуки
+
+Это релиз добавляет еще один подход к обработке результата работы сервиса.
+Для `Result` была добавлена поддержка двух хуков.
+
+[Подробнее](../guide/usage/result#хуки).
+
+### Хук `on_success`
+
+```ruby
+UsersService::Confirmation::Send
+  .call(user:)
+  .on_success do |outputs:| # [!code focus]
+    redirect_to outputs.notification
+  end
+```
+
+### Хук `on_failure`
+
+```ruby
+UsersService::Confirmation::Send
+  .call(user:)
+  .on_failure(:all) do |exception:| # [!code focus]
+    flash.now[:message] = exception.message
+    render :new
+  end
+```
+
+## Прочее
+
+Релиз также содержит прочие исправления и улучшения.
