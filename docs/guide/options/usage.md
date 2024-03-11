@@ -2,7 +2,7 @@
 title: Using options in attributes
 description: Description and examples of using options for all service attributes
 prev: Service output attributes
-next: Advanced mode
+next: Advanced options mode
 ---
 
 # Using options in attributes

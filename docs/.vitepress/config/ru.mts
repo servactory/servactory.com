@@ -74,7 +74,8 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
           text: 'Опции',
           items: [
             { text: 'Использование', link: '/ru/guide/options/usage' },
-            { text: 'Расширенные', link: '/ru/guide/options/advanced' }
+            { text: 'Расширенные', link: '/ru/guide/options/advanced' },
+            { text: 'Динамические', link: '/ru/guide/options/dynamic' }
           ]
         },
         {
