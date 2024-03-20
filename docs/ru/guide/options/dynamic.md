@@ -28,6 +28,7 @@ Servactory из коробки предоставляет следующий н�
 
 - Набор: `Servactory::ToolKit::DynamicOptions::Format`
 - Основан на: `must`
+- [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/format.rb)
 
 #### Поддерживаемые форматы
 
@@ -97,6 +98,7 @@ output :data,
 
 - Набор: `Servactory::ToolKit::DynamicOptions::Min`
 - Основан на: `must`
+- [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/min.rb)
 
 #### Установка и использование
 
@@ -142,6 +144,7 @@ output :data,
 
 - Набор: `Servactory::ToolKit::DynamicOptions::Max`
 - Основан на: `must`
+- [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/max.rb)
 
 #### Установка и использование
 
@@ -183,7 +186,7 @@ output :data,
 
 :::
 
-## Пользовательские
+## Пользовательские опции
 
 Вы можете создавать собственные динамические опции.
 
