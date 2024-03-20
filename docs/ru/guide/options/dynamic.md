@@ -14,6 +14,7 @@ next: Использование действий в сервисе
 
 Servactory из коробки предоставляет следующий набор динамических опций:
 
+- `format`;
 - `min`;
 - `max`.
 
@@ -23,24 +24,95 @@ Servactory из коробки предоставляет следующий н�
 
 ## Готовые опции
 
-### Опция `min`
+### Опция `format`
 
-- Набор: `Servactory::ToolKit::DynamicOptions::Min`
+- Набор: `Servactory::ToolKit::DynamicOptions::Format`
 - Основан на: `must`
+
+#### Поддерживаемые форматы
+
+- `email`;
+- `password`;
+- `date`;
+- `time`;
+- `datetime`;
+- `boolean`.
+
+#### Кастомизация
+
+Вы можете перезаписывать существующие форматы и добавлять собственные.
+Для этого воспользуйтесь атрибутом `formats` в методе `use`:
+
+```ruby
+Servactory::ToolKit::DynamicOptions::Format.use(
+  formats: {
+    email: {
+      pattern: /@/,
+      validator: ->(value:) { value.present? }
+    }
+  }
+)
+```
+
+#### Установка и использование
 
 ::: code-group
 
 ```ruby [Установка]
 input_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Min.setup
+  Servactory::ToolKit::DynamicOptions::Min.use
 ])
 
 internal_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Min.setup(:minimum)
+  Servactory::ToolKit::DynamicOptions::Min.use(:minimum)
 ])
 
 output_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Min.setup
+  Servactory::ToolKit::DynamicOptions::Min.use
+])
+```
+
+```ruby [Использование]
+input :email,
+      type: String,
+      format: :email
+
+internal :email,
+         type: String,
+         format: { is: :email }
+
+output :data,
+       type: String,
+       format: {
+         is: :email,
+         message: lambda do |output:, value:, option_value:, **|
+           "Incorrect `email` format in `#{output.name}`"
+         end
+       }
+```
+
+:::
+
+### Опция `min`
+
+- Набор: `Servactory::ToolKit::DynamicOptions::Min`
+- Основан на: `must`
+
+#### Установка и использование
+
+::: code-group
+
+```ruby [Установка]
+input_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Min.use
+])
+
+internal_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Min.use(:minimum)
+])
+
+output_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Min.use
 ])
 ```
 
@@ -71,19 +143,21 @@ output :data,
 - Набор: `Servactory::ToolKit::DynamicOptions::Max`
 - Основан на: `must`
 
+#### Установка и использование
+
 ::: code-group
 
 ```ruby [Установка]
 input_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Max.setup
+  Servactory::ToolKit::DynamicOptions::Max.use
 ])
 
 internal_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Max.setup(:maximum)
+  Servactory::ToolKit::DynamicOptions::Max.use(:maximum)
 ])
 
 output_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Max.setup
+  Servactory::ToolKit::DynamicOptions::Max.use
 ])
 ```
 
@@ -127,19 +201,19 @@ output :data,
 module ApplicationService
   module DynamicOptions
     class MyOption < Servactory::ToolKit::DynamicOptions::Must
-      def self.setup(option_name = :my_option)
+      def self.use(option_name = :my_option, **options)
         new(option_name).must(:be_the_best)
       end
 
-      def condition_for_input_with(input:, value:, option_value:)
+      def condition_for_input_with(input:, value:, option:)
         # Здесь должны быть условия, предназначенные для атрибута input
       end
 
-      def condition_for_internal_with(internal:, value:, option_value:)
+      def condition_for_internal_with(internal:, value:, option:)
         # Здесь должны быть условия, предназначенные для атрибута internal
       end
 
-      def condition_for_output_with(output:, value:, option_value:)
+      def condition_for_output_with(output:, value:, option:)
         # Здесь должны быть условия, предназначенные для атрибута output
       end
 
@@ -165,14 +239,14 @@ end
 
 ```ruby
 input_option_helpers([
-   ApplicationService::DynamicOptions::MyOption.setup
+   ApplicationService::DynamicOptions::MyOption.use
 ])
 
 internal_option_helpers([
-  ApplicationService::DynamicOptions::MyOption.setup(:my_best_option)
+  ApplicationService::DynamicOptions::MyOption.use(:my_best_option)
 ])
 
 output_option_helpers([
-  ApplicationService::DynamicOptions::MyOption.setup
+  ApplicationService::DynamicOptions::MyOption.use(some: :data)
 ])
 ```
