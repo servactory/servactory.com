@@ -40,7 +40,9 @@ This behavior will be identical to what happens when these methods are called:
 
 Designed to throw an exception on behalf of the input attribute.
 
-The `fail_input!` method allows you to pass the error text and also requires you to specify the name of the input attribute.
+The `fail_input!` method allows you to pass the error text,
+additional information through the `meta` attribute,
+and also requires you to specify the name of the input attribute.
 
 Any call to the service will throw an exception with the class `ApplicationService::Exceptions::Input`.
 
@@ -58,7 +60,9 @@ end
 
 Designed to throw an exception on behalf of the internal attribute.
 
-The `fail_internal!` method allows you to pass the error text and also requires you to specify the name of the internal attribute.
+The `fail_internal!` method allows you to pass the error text,
+additional information through the `meta` attribute,
+and also requires you to specify the name of the internal attribute.
 
 Any call to the service will throw an exception with the class `ApplicationService::Exceptions::Internal`.
 
@@ -76,7 +80,9 @@ end
 
 Designed to throw an exception on behalf of the output attribute.
 
-The `fail_output!` method allows you to pass the error text and also requires you to specify the name of the output attribute.
+The `fail_output!` method allows you to pass the error text,
+additional information through the `meta` attribute,
+and also requires you to specify the name of the output attribute.
 
 Any call to the service will throw an exception with the class `ApplicationService::Exceptions::Output`.
 
@@ -94,7 +100,9 @@ end
 
 Designed to describe user errors.
 
-The `fail!` method allows you to pass the error text, additional information through the `meta` attribute, and also allows you to specify `type`.
+The `fail!` method allows you to pass the error text,
+additional information through the `meta` attribute,
+and also allows you to specify `type`.
 
 By default, `type` is `base`, but you can pass any value for further processing.
 

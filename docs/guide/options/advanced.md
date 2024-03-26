@@ -2,7 +2,7 @@
 title: Advanced operating mode for attribute options
 description: Description and examples of using advanced operating modes of options for all service attributes
 prev: Options for service attributes
-next: Using actions in service
+next: Dynamic options
 ---
 
 # Advanced mode
