@@ -48,6 +48,8 @@
   --servactory-brand-button-text: var(--vp-c-white);
   --servactory-brand-button-text-hover: var(--vp-c-black);
   --servactory-brand-alt: rgba(241, 213, 167);
+  --servactory-home-hero-image-background: var(--servactory-brand);
+  --servactory-home-hero-image-background-alt: var(--servactory-home-hero-image-background);
 }
 
 .dark {
@@ -55,6 +57,8 @@
   --servactory-brand-button-text: var(--vp-c-black);
   --servactory-brand-button-text-hover: var(--vp-c-white);
   --servactory-brand-alt: rgba(233, 29, 37);
+  --servactory-home-hero-image-background: var(--servactory-brand-alt);
+  --servactory-home-hero-image-background-alt: var(--servactory-home-hero-image-background);
 }
 
  :root {
@@ -115,8 +119,8 @@
 
   --vp-home-hero-image-background-image: linear-gradient(
     -45deg,
-    var(--servactory-brand) 50%,
-    var(--servactory-brand-alt) 50%
+    var(--servactory-home-hero-image-background) 50%,
+    var(--servactory-home-hero-image-background-alt) 50%
   );
   --vp-home-hero-image-filter: blur(40px);
 }

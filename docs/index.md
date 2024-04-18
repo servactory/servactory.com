@@ -8,6 +8,9 @@ hero:
   name: Servactory
   text: New look at Service Object
   tagline: A set of tools for building reliable services of any complexity
+  image:
+    light: /img/hero-dark-2-3.png
+    dark: /img/hero-dark-2-3.png
   actions:
     - theme: brand
       text: Get Started
