@@ -48,7 +48,7 @@
   --servactory-brand-button-text: var(--vp-c-white);
   --servactory-brand-button-text-hover: var(--vp-c-black);
   --servactory-brand-alt: rgba(241, 213, 167);
-  --servactory-home-hero-image-background: var(--servactory-brand);
+  --servactory-home-hero-image-background: null;
   --servactory-home-hero-image-background-alt: var(--servactory-home-hero-image-background);
 }
 
