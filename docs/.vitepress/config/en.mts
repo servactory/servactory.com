@@ -75,7 +75,7 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
           items: [
             { text: 'Usage', link: '/guide/options/usage' },
             { text: 'Advanced', link: '/guide/options/advanced' },
-            { text: 'Dynamic', link: '/ru/guide/options/dynamic' }
+            { text: 'Dynamic', link: '/guide/options/dynamic' }
           ]
         },
         {
