@@ -2,7 +2,7 @@
 title: Configuration
 description: Description and examples of service configuration
 prev: Service failures and error handling
-next: Extensions
+next: RSpec
 ---
 
 # Configuration
