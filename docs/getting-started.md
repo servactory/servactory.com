@@ -40,7 +40,19 @@ bundle install
 
 As a first step, it is recommended to prepare the base class for further inheritance.
 
-### ApplicationService::Exceptions
+### Automatically
+
+To quickly prepare your environment for work, you can use the rake task:
+
+```shell
+bundle exec rails g servactory:install
+```
+
+This will create all the necessary files.
+
+### Manually
+
+#### ApplicationService::Exceptions
 
 ::: code-group
 
@@ -58,7 +70,19 @@ end
 
 :::
 
-### ApplicationService::Base
+#### ApplicationService::Result
+
+::: code-group
+
+```ruby [app/services/application_service/result.rb]
+module ApplicationService
+  class Result < Servactory::Result; end
+end
+```
+
+:::
+
+#### ApplicationService::Base
 
 ::: code-group
 
@@ -77,3 +101,18 @@ end
 ```
 
 :::
+
+## First service
+
+Now you can create your first service.
+To do this, you can use the rake task:
+
+```shell
+bundle exec rails g servactory:service users_service/create first_name middle_name last_name
+```
+
+You can also immediately prepare a spec file for testing the service:
+
+```shell
+bundle exec rails g servactory:rspec users_service/create first_name middle_name last_name
+```

@@ -40,7 +40,19 @@ bundle install
 
 Для начала рекомендуется подготовить базовый класс для дальнейшего наследования.
 
-### ApplicationService::Exceptions
+### Автоматически
+
+Для быстрой подготовки среды для работы вы можете воспользоваться rake-задачей:
+
+```shell
+bundle exec rails g servactory:install
+```
+
+Это создаст все необходимые файлы.
+
+### Вручную
+
+#### ApplicationService::Exceptions
 
 ::: code-group
 
@@ -58,7 +70,19 @@ end
 
 :::
 
-### ApplicationService::Base
+#### ApplicationService::Result
+
+::: code-group
+
+```ruby [app/services/application_service/result.rb]
+module ApplicationService
+  class Result < Servactory::Result; end
+end
+```
+
+:::
+
+#### ApplicationService::Base
 
 ::: code-group
 
@@ -71,9 +95,26 @@ module ApplicationService
       output_exception_class ApplicationService::Exceptions::Output
 
       failure_class ApplicationService::Exceptions::Failure
+
+      result_class ApplicationService::Result
     end
   end
 end
 ```
 
 :::
+
+## Первый сервис
+
+Теперь вы можете создать свой первый сервис.
+Для этого можно воспользоваться rake-задачей:
+
+```shell
+bundle exec rails g servactory:service users_service/create first_name middle_name last_name
+```
+
+Также вы можете сразу подготовить спек файл для тестирования сервиса:
+
+```shell
+bundle exec rails g servactory:rspec users_service/create first_name middle_name last_name
+```
