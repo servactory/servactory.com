@@ -34,6 +34,10 @@ This behavior will be identical to what happens when these methods are called:
 - `fail_internal!`;
 - `fail_output!`.
 
+There may be logic inside the service that will throw its own exceptions.
+For example, this could be `ActiveRecord::RecordInvalid`.
+For such cases, the `fail_on!` method was developed at the class level.
+
 ## Methods
 
 ### Method `fail_input!`
@@ -157,4 +161,40 @@ fail!(
   message: service_result.error.message,
   meta: service_result.error.meta
 )
+```
+
+### Method `fail_on!` <Badge type="tip" text="Since 2.5.0" />
+
+Intended to catch specified exceptions.
+
+The `fail_on!` method allows you to pass the class of the exception or exceptions,
+and also allows you to customize the text of the message.
+
+Instead of the specified exceptions, the `fail!` method call will be used.
+Information about the original exception will be passed to the `fail!` method via `meta`.
+
+#### Usage
+
+```ruby
+module ApplicationService
+  class Base < Servactory::Base
+    fail_on! ActiveRecord::RecordNotFound,
+             ActiveRecord::RecordInvalid
+    
+    # ...
+  end
+end
+```
+
+If you need to customize the text of the message, you can do it as follows:
+
+```ruby
+fail_on! ActiveRecord::RecordNotFound,
+         with: ->(exception:) { exception.message }
+```
+
+Alternative option:
+
+```ruby
+fail_on!(ActiveRecord::RecordNotFound) { |exception:| exception.message }
 ```
