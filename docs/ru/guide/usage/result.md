@@ -23,7 +23,7 @@ service_result = UsersService::Accept.call(user: User.first)
 Будет возвращать это:
 
 ```ruby
-# => <Servactory::Result @failure?=false, @success?=true, @user=..., @user?=true>
+# => <ApplicationService::Result @failure?=false, @success?=true, @user=..., @user?=true>
 ```
 
 ## Провальный результат
@@ -37,7 +37,7 @@ service_result = UsersService::Accept.call(user: User.first)
 Пример результата при возникшей проблеме:
 
 ```ruby
-# => <Servactory::Result @error=There is some problem with the user, @failure?=true, @success?=false>
+# => <ApplicationService::Result @error=There is some problem with the user, @failure?=true, @success?=false>
 ```
 
 ## Содержимое результата

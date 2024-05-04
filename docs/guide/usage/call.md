@@ -20,7 +20,7 @@ UsersService::Accept.call!(user: User.first)
 ```
 
 ```ruby [Success]
-# => #<Servactory::Result @failure?=false, @success?=true, @user=..., @user?=true>
+# => #<ApplicationService::Result @failure?=false, @success?=true, @user=..., @user?=true>
 ```
 
 ```ruby [Failure]
@@ -43,13 +43,13 @@ UsersService::Accept.call!(user: User.first)
 ```
 
 ```ruby [Success]
-# => #<Servactory::Result @failure?=false, @success?=true, @user=..., @user?=true>
+# => #<ApplicationService::Result @failure?=false, @success?=true, @user=..., @user?=true>
 ```
 
 ```ruby [Failure]
 # => ApplicationService::Exceptions::Input: [UsersService::Accept] Required input `user` is missing
 
-# => #<Servactory::Result @error=There is some problem with the user, @failure?=true, @success?=false>
+# => #<ApplicationService::Result @error=There is some problem with the user, @failure?=true, @success?=false>
 ```
 
 :::

@@ -12,6 +12,16 @@ next: Service call and result of work
 - All services are subclasses of `Servactory::Base` and are located in the `app/services` directory. It is common practice to create and inherit from `ApplicationService::Base`, which is a subclass of `Servactory::Base`.
 - Name services by what they do, not by what they accept. Use verbs in names. For example, `UsersService::Create` instead of `UsersService::Creation`.
 
+## Version support
+
+| Ruby/Rails | 7.1 | 7.0 | 6.1 | 6.0 | 5.2 | 5.1 | 5.0 |
+|------------|---|---|---|---|---|---|---|
+| 3.3        | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 3.2        | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 3.1        | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 3.0        | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 2.7        | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+
 ## Installation
 
 Add this to `Gemfile`:
@@ -30,7 +40,19 @@ bundle install
 
 As a first step, it is recommended to prepare the base class for further inheritance.
 
-### ApplicationService::Exceptions
+### Automatically <Badge type="tip" text="Since 2.5.0" />
+
+To quickly prepare your environment for work, you can use the rake task:
+
+```shell
+bundle exec rails g servactory:install
+```
+
+This will create all the necessary files.
+
+### Manually
+
+#### ApplicationService::Exceptions
 
 ::: code-group
 
@@ -48,7 +70,19 @@ end
 
 :::
 
-### ApplicationService::Base
+#### ApplicationService::Result <Badge type="tip" text="Since 2.5.0" />
+
+::: code-group
+
+```ruby [app/services/application_service/result.rb]
+module ApplicationService
+  class Result < Servactory::Result; end
+end
+```
+
+:::
+
+#### ApplicationService::Base
 
 ::: code-group
 
@@ -61,9 +95,26 @@ module ApplicationService
       output_exception_class ApplicationService::Exceptions::Output
 
       failure_class ApplicationService::Exceptions::Failure
+
+      result_class ApplicationService::Result
     end
   end
 end
 ```
 
 :::
+
+## First service
+
+Now you can create your first service.
+To do this, you can use the rake task:
+
+```shell
+bundle exec rails g servactory:service users_service/create first_name middle_name last_name
+```
+
+You can also immediately prepare a spec file for testing the service:
+
+```shell
+bundle exec rails g servactory:rspec users_service/create first_name middle_name last_name
+```

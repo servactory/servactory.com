@@ -2,7 +2,7 @@
 title: Конфигурация
 description: Описание и примеры конфигурирования сервисов
 prev: Неудачи и обработка ошибок
-next: Расширения
+next: RSpec
 ---
 
 # Конфигурация
@@ -38,6 +38,30 @@ module ApplicationService
 
     class Failure < Servactory::Exceptions::Failure; end
   end
+end
+```
+
+:::
+
+### Для результата <Badge type="tip" text="Начиная с 2.5.0" />
+
+::: code-group
+
+```ruby {6} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      # ...
+
+      result_class ApplicationService::Result
+    end
+  end
+end
+```
+
+```ruby {2} [app/services/application_service/result.rb]
+module ApplicationService
+  class Result < Servactory::Result; end
 end
 ```
 
@@ -229,6 +253,25 @@ module ApplicationService
   class Base < Servactory::Base
     configuration do
       action_shortcuts %i[assign perform]
+    end
+  end
+end
+```
+
+:::
+
+### Методы предикаты <Badge type="tip" text="Начиная с 2.5.0" />
+
+По умолчанию методы предикаты для всех атрибутов включены.
+Вы можете по необходимости их выключить.
+
+::: code-group
+
+```ruby {4} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      predicate_methods_enabled false
     end
   end
 end

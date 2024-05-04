@@ -94,9 +94,14 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
           ]
         },
         { text: 'Configuration', link: '/guide/configuration' },
+        {
+          text: 'Testing',
+          items: [
+            { text: 'RSpec', link: '/guide/testing/rspec' },
+          ]
+        },
         { text: 'Extensions', link: '/guide/extensions' },
         { text: 'I18n', link: '/guide/i18n' },
-        { text: 'Testing', link: '/guide/testing' },
       ]
     },
     { text: 'Changelog', link: '/CHANGELOG' },

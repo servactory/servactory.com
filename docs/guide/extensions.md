@@ -1,7 +1,7 @@
 ---
 title: Extensions
 description: Description and examples of implementation of custom extensions
-prev: Configuration
+prev: RSpec
 next: Internationalization (I18n)
 ---
 

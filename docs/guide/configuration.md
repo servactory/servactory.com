@@ -2,7 +2,7 @@
 title: Configuration
 description: Description and examples of service configuration
 prev: Service failures and error handling
-next: Extensions
+next: RSpec
 ---
 
 # Configuration
@@ -38,6 +38,30 @@ module ApplicationService
 
     class Failure < Servactory::Exceptions::Failure; end
   end
+end
+```
+
+:::
+
+### For result <Badge type="tip" text="Since 2.5.0" />
+
+::: code-group
+
+```ruby {6} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      # ...
+
+      result_class ApplicationService::Result
+    end
+  end
+end
+```
+
+```ruby {2} [app/services/application_service/result.rb]
+module ApplicationService
+  class Result < Servactory::Result; end
 end
 ```
 
@@ -229,6 +253,25 @@ module ApplicationService
   class Base < Servactory::Base
     configuration do
       action_shortcuts %i[assign perform]
+    end
+  end
+end
+```
+
+:::
+
+### Predicate methods <Badge type="tip" text="Since 2.5.0" />
+
+By default, predicate methods for all attributes are enabled.
+You can turn them off if necessary.
+
+::: code-group
+
+```ruby {4} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      predicate_methods_enabled false
     end
   end
 end

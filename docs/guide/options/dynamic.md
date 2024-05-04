@@ -31,8 +31,10 @@ of option helpers for each of the existing attributes.
 
 #### Supported formats
 
+- `uuid`;
 - `email`;
 - `password`;
+- `duration`;
 - `date`;
 - `time`;
 - `datetime`;
