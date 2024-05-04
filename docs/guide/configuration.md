@@ -43,6 +43,30 @@ end
 
 :::
 
+### For result
+
+::: code-group
+
+```ruby {6} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      # ...
+
+      result_class ApplicationService::Result
+    end
+  end
+end
+```
+
+```ruby {2} [app/services/application_service/result.rb]
+module ApplicationService
+  class Result < Servactory::Result; end
+end
+```
+
+:::
+
 ### Collection mode
 
 ::: code-group

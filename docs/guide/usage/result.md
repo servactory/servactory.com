@@ -23,7 +23,7 @@ service_result = UsersService::Accept.call(user: User.first)
 Will return this:
 
 ```ruby
-# => <Servactory::Result @failure?=false, @success?=true, @user=..., @user?=true>
+# => <ApplicationService::Result @failure?=false, @success?=true, @user=..., @user?=true>
 ```
 
 ## Failed result
@@ -37,7 +37,7 @@ This is necessary, for example, to be able to process the result of a response f
 An example of the result when a problem occurs:
 
 ```ruby
-# => <Servactory::Result @error=There is some problem with the user, @failure?=true, @success?=false>
+# => <ApplicationService::Result @error=There is some problem with the user, @failure?=true, @success?=false>
 ```
 
 ## Result content
