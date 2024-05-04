@@ -259,3 +259,22 @@ end
 ```
 
 :::
+
+### Predicate methods
+
+By default, predicate methods for all attributes are enabled.
+You can turn them off if necessary.
+
+::: code-group
+
+```ruby {4} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      predicate_methods_enabled false
+    end
+  end
+end
+```
+
+:::

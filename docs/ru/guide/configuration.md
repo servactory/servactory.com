@@ -259,3 +259,22 @@ end
 ```
 
 :::
+
+### Методы предикаты
+
+По умолчанию методы предикаты для всех атрибутов включены.
+Вы можете по необходимости их выключить.
+
+::: code-group
+
+```ruby {4} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      predicate_methods_enabled false
+    end
+  end
+end
+```
+
+:::
