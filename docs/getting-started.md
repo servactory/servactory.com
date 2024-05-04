@@ -12,6 +12,16 @@ next: Service call and result of work
 - All services are subclasses of `Servactory::Base` and are located in the `app/services` directory. It is common practice to create and inherit from `ApplicationService::Base`, which is a subclass of `Servactory::Base`.
 - Name services by what they do, not by what they accept. Use verbs in names. For example, `UsersService::Create` instead of `UsersService::Creation`.
 
+## Version support
+
+| Ruby/Rails | 7.1 | 7.0 | 6.1 | 6.0 | 5.2 | 5.1 | 5.0 |
+|------------|---|---|---|---|---|---|---|
+| 3.3        | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 3.2        | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 3.1        | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 3.0        | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| 2.7        | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+
 ## Installation
 
 Add this to `Gemfile`:
