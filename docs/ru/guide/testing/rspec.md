@@ -305,73 +305,42 @@ end
 
 Алиас: `have_output`
 
-#### `type`
+#### `instance_of`
 
-Проверяет тип выходящего атрибута. Предназначен для одного значения.
+Проверяет тип выходящего атрибута.
 
 ```ruby
 it do
-  expect { perform }.to(
-    have_output(:id)
-      .type(Integer)
+  expect(perform).to(
+    have_output(:event)
+      .instance_of(Event)
   )
 end
 ```
 
-#### `types`
+#### `nested`
 
-Проверяет типы выходящего атрибута. Предназначен для нескольких значений.
+Указывает на вложенное значение выходящего атрибута.
 
 ```ruby
 it do
-  expect { perform }.to(
-    have_output(:ids)
-      .types(Integer, String)
+  expect(perform).to(
+    have_output(:event)
+      .nested(:id)
+      .with("14fe213e-1b0a-4a68-bca9-ce082db0f2c6")
   )
 end
 ```
 
-#### `consists_of`
+#### `with`
 
-Проверяет вложенные типы коллекции выходящего атрибута.
-Можно указать несколько значений.
-
-```ruby
-it do
-  expect { perform }.to(
-    have_output(:ids)
-      .type(Array)
-      .consists_of(String) { "Input `ids` must be an array of `String`" }
-  )
-end
-```
-
-#### `inclusion`
-
-Проверяет значения опции `inclusion` выходящего атрибута.
+Проверяет значение выходящего атрибута.
 
 ```ruby
 it do
-  expect { perform }.to(
-    have_output(:event_name)
-      .type(String)
-      .inclusion(%w[created rejected approved])
-  )
-end
-```
-
-#### `must`
-
-Проверяет наличие ожидаемого ключа в `must` выходящего атрибута.
-Можно указать несколько значений.
-
-```ruby
-it do
-  expect { perform }.to(
-    have_output(:invoice_numbers)
-      .type(Array)
-      .consists_of(String)
-      .must(:be_6_characters)
+  expect(perform).to(
+    have_output(:full_name)
+      .with("John Fitzgerald Kennedy")
   )
 end
 ```
