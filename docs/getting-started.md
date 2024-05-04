@@ -95,6 +95,8 @@ module ApplicationService
       output_exception_class ApplicationService::Exceptions::Output
 
       failure_class ApplicationService::Exceptions::Failure
+
+      result_class ApplicationService::Result
     end
   end
 end
