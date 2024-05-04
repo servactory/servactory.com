@@ -7,7 +7,7 @@ prev: Конфигурация
 next: Расширения
 ---
 
-# RSpec
+# RSpec <Badge type="tip" text="Начиная с 2.5.0" />
 
 ## Хелперы
 

@@ -34,6 +34,10 @@ next: Конфигурация
 - `fail_internal!`;
 - `fail_output!`.
 
+Внутри сервиса может присутствовать логика, которая будет вызывать свои исключения.
+Например, это может быть `ActiveRecord::RecordInvalid`.
+Для таких случаев был разработан метод `fail_on!` на уровне класса.
+
 ## Методы
 
 ### Метод `fail_input!`
@@ -157,4 +161,40 @@ fail!(
   message: service_result.error.message,
   meta: service_result.error.meta
 )
+```
+
+### Метод `fail_on!`
+
+Предназначен для перехвата указанных исключений.
+
+Метод `fail_on!` позволяет передать класс исключения или исключений,
+а также позволяет кастомизировать текст сообщения.
+
+Вместо указанных исключений будет использован вызов метода `fail!`.
+Информация об оригинальном исключении будет передана в метод `fail!` через `meta`.
+
+#### Использование
+
+```ruby
+module ApplicationService
+  class Base < Servactory::Base
+    fail_on! ActiveRecord::RecordNotFound,
+             ActiveRecord::RecordInvalid
+    
+    # ...
+  end
+end
+```
+
+Если вам нужно кастомизировать текст сообщения, то это можно сделать следующим образом:
+
+```ruby
+fail_on! ActiveRecord::RecordNotFound,
+         with: ->(exception:) { exception.message }
+```
+
+Альтернативный вариант:
+
+```ruby
+fail_on!(ActiveRecord::RecordNotFound) { |exception:| exception.message }
 ```
