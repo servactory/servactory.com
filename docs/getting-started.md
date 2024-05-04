@@ -40,7 +40,7 @@ bundle install
 
 As a first step, it is recommended to prepare the base class for further inheritance.
 
-### Automatically
+### Automatically <Badge type="tip" text="Since 2.5.0" />
 
 To quickly prepare your environment for work, you can use the rake task:
 
@@ -70,7 +70,7 @@ end
 
 :::
 
-#### ApplicationService::Result
+#### ApplicationService::Result <Badge type="tip" text="Since 2.5.0" />
 
 ::: code-group
 

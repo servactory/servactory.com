@@ -43,7 +43,7 @@ end
 
 :::
 
-### For result
+### For result <Badge type="tip" text="Since 2.5.0" />
 
 ::: code-group
 
@@ -260,7 +260,7 @@ end
 
 :::
 
-### Predicate methods
+### Predicate methods <Badge type="tip" text="Since 2.5.0" />
 
 By default, predicate methods for all attributes are enabled.
 You can turn them off if necessary.
