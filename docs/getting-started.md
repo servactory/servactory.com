@@ -1,6 +1,6 @@
 ---
 title: Getting started
-description: Описание и примеры использования
+description: Description and examples of use
 prev: Why Servactory
 next: Service call and result of work
 ---
