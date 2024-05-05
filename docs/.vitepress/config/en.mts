@@ -29,6 +29,7 @@ function nav(): DefaultTheme.NavItem[] {
   return [
     { text: 'Guide', link: '/getting-started' },
     // { text: 'Releases', link: '/releases/2.4' },
+    { text: 'Datory', link: '/datory/getting-started', activeMatch: '/datory/' },
     // { text: 'v1', link: 'https://v1.servactory.com' },
   ]
 }
@@ -38,6 +39,7 @@ function sidebar(): DefaultTheme.Sidebar {
     '/introduction': { base: '', items: sidebarGuide() },
     '/getting-started': { base: '', items: sidebarGuide() },
     '/guide/': { base: '', items: sidebarGuide() },
+    '/datory/': { base: '', items: sidebarDatory() },
     // '/releases/': { base: '', items: sidebarReleases() },
   }
 }
@@ -106,7 +108,49 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
     },
     { text: 'Changelog', link: '/CHANGELOG' },
     { text: 'Code of Conduct', link: '/CODE_OF_CONDUCT' },
-    { text: 'Contributing', link: '/CONTRIBUTING' }
+    { text: 'Contributing', link: '/CONTRIBUTING' },
+    { text: 'GitHub', link: 'https://github.com/servactory/servactory' },
+  ]
+}
+
+function sidebarDatory(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Servactory',
+      items: [
+        { text: 'Back to Servactory', link: '/getting-started' }
+      ]
+    },
+    {
+      text: 'Introduction',
+      items: [
+        { text: 'Getting Started', link: '/datory/getting-started' },
+      ]
+    },
+    {
+      text: 'Guide',
+      items: [
+        {
+          text: 'Data',
+          items: [
+            { text: 'Attributes', link: '/datory/guide/data/attributes' },
+            { text: 'Nested', link: '/datory/guide/data/nesting' },
+          ]
+        },
+        {
+          text: 'Usage',
+          items: [
+            { text: 'Serialization', link: '/datory/guide/usage/serialization' },
+            { text: 'Deserialization', link: '/datory/guide/usage/deserialization' },
+          ]
+        },
+        { text: 'Info', link: '/datory/guide/info' },
+      ],
+    },
+    { text: 'Changelog', link: 'https://github.com/servactory/datory/blob/main/CHANGELOG.md' },
+    { text: 'Code of Conduct', link: 'https://github.com/servactory/datory/blob/main/CODE_OF_CONDUCT.md' },
+    { text: 'Contributing', link: 'https://github.com/servactory/datory/blob/main/CONTRIBUTING.md' },
+    { text: 'GitHub', link: 'https://github.com/servactory/datory' },
   ]
 }
 

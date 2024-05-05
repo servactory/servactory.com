@@ -29,6 +29,7 @@ function nav(): DefaultTheme.NavItem[] {
   return [
     { text: 'Руководство', link: '/ru/getting-started', activeMatch: '/guide/' },
     { text: 'Релизы', link: '/ru/releases/2.4', activeMatch: '/releases/' },
+    { text: 'Datory', link: '/ru/datory/getting-started', activeMatch: '/datory/' },
     // { text: 'v1', link: 'https://v1.servactory.com/ru' },
   ]
 }
@@ -38,6 +39,7 @@ function sidebar(): DefaultTheme.Sidebar {
     '/ru/introduction': { base: '', items: sidebarGuide() },
     '/ru/getting-started': { base: '', items: sidebarGuide() },
     '/ru/guide/': { base: '', items: sidebarGuide() },
+    '/ru/datory/': { base: '', items: sidebarDatory() },
     '/ru/releases/': { base: '', items: sidebarReleases() },
   }
 }
@@ -106,7 +108,49 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
     },
     { text: 'Changelog', link: '/CHANGELOG' },
     { text: 'Code of Conduct', link: '/CODE_OF_CONDUCT' },
-    { text: 'Contributing', link: '/CONTRIBUTING' }
+    { text: 'Contributing', link: '/CONTRIBUTING' },
+    { text: 'GitHub', link: 'https://github.com/servactory/servactory' },
+  ]
+}
+
+function sidebarDatory(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Servactory',
+      items: [
+        { text: 'Назад к Servactory', link: '/ru/getting-started' }
+      ]
+    },
+    {
+      text: 'Введение',
+      items: [
+        { text: 'Начало работы', link: '/ru/datory/getting-started' },
+      ]
+    },
+    {
+      text: 'Руководство',
+      items: [
+        {
+          text: 'Данные',
+          items: [
+            { text: 'Атрибуты', link: '/ru/datory/guide/data/attributes' },
+            { text: 'Вложенные', link: '/ru/datory/guide/data/nesting' },
+          ]
+        },
+        {
+          text: 'Использование',
+          items: [
+            { text: 'Сериализация', link: '/ru/datory/guide/usage/serialization' },
+            { text: 'Десериализация', link: '/ru/datory/guide/usage/deserialization' },
+          ]
+        },
+        { text: 'Информация', link: '/ru/datory/guide/info' },
+      ],
+    },
+    { text: 'Changelog', link: 'https://github.com/servactory/datory/blob/main/CHANGELOG.md' },
+    { text: 'Code of Conduct', link: 'https://github.com/servactory/datory/blob/main/CODE_OF_CONDUCT.md' },
+    { text: 'Contributing', link: 'https://github.com/servactory/datory/blob/main/CONTRIBUTING.md' },
+    { text: 'GitHub', link: 'https://github.com/servactory/datory' },
   ]
 }
 
@@ -125,6 +169,7 @@ function sidebarReleases(): DefaultTheme.SidebarItem[] {
         { text: 'Релиз 2.3', link: '/ru/releases/2.3' },
         { text: 'Релиз 2.2', link: '/ru/releases/2.2' },
       ]
-    }
+    },
+    { text: 'GitHub', link: 'https://github.com/servactory/servactory/releases' },
   ]
 }

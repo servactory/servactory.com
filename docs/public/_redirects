@@ -3,11 +3,13 @@
 /guide/options/modes                /guide/options/advanced
 /guide/failures                     /guide/exceptions/failure
 /guide/testing                      /guide/testing/rspec
+/datory                             /datory/getting-started
 /ru/guide/call-and-result           /ru/guide/usage/call
 /ru/guide/actions                   /ru/guide/actions/usage
 /ru/guide/options/modes             /ru/guide/options/advanced
 /ru/guide/failures                  /ru/guide/exceptions/failure
 /ru/guide/testing                   /ru/guide/testing/rspec
+/ru/datory                          /ru/datory/getting-started
 
 /getting-started                    /getting-started
 /category/usage                     /getting-started
