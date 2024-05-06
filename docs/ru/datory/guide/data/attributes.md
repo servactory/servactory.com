@@ -33,6 +33,12 @@ integer :rating, min: 1, max: 10
 float :rating
 ```
 
+### boolean
+
+```ruby
+boolean :published
+```
+
 ## Опции
 
 Для метода `attribute` доступны следующие опции:
