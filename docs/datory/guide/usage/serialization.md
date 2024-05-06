@@ -19,6 +19,7 @@ class SerialDto < Datory::Base
   string :title
 
   one :poster, include: ImageDto
+  one :ratings, include: RatingsDto
 
   many :countries, include: CountryDto
   many :genres, include: GenreDto
@@ -29,20 +30,21 @@ end
 ```
 
 ```text [Table]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-|                                 SerialDto                                  |
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| Attribute    | From   | To           | As                     | Include    |
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-| id           | String | id           | String                 |            |
-| status       | String | status       | String                 |            |
-| title        | String | title        | String                 |            |
-| poster       | Hash   | poster       | [Datory::Result, Hash] | ImageDto   |
-| countries    | Array  | countries    | Array                  | CountryDto |
-| genres       | Array  | genres       | Array                  | GenreDto   |
-| seasons      | Array  | seasons      | Array                  | SeasonDto  |
-| premiered_on | String | premiered_on | Date                   |            |
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+|                                        SerialDto                                        |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| Attribute   | From   | To           | As                     | Include                  |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| id          | String | id           | String                 |                          |
+| status      | String | status       | String                 |                          |
+| title       | String | title        | String                 |                          |
+| poster      | Hash   | poster       | [Datory::Result, Hash] | Usual::Example1::Image   |
+| ratings     | Hash   | ratings      | [Datory::Result, Hash] | Usual::Example1::Ratings |
+| countries   | Array  | countries    | Array                  | Usual::Example1::Country |
+| genres      | Array  | genres       | Array                  | Usual::Example1::Genre   |
+| seasons     | Array  | seasons      | Array                  | Usual::Example1::Season  |
+| premieredOn | String | premiered_on | Date                   |                          |
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ```
 
 ```text [Info]
@@ -60,6 +62,9 @@ end
    :poster=>
     {:from=>{:name=>:poster, :type=>Hash, :min=>nil, :max=>nil, :consists_of=>false, :format=>nil},
      :to=>{:name=>:poster, :type=>[Datory::Result, Hash], :min=>nil, :max=>nil, :consists_of=>false, :format=>nil, :required=>true, :include=>ImageDto}},
+   :ratings=>
+    {:from=>{:name=>:ratings, :type=>Hash, :min=>nil, :max=>nil, :consists_of=>false, :format=>nil}, 
+     :to=>{:name=>:ratings, :type=>[Datory::Result, Hash], :min=>nil, :max=>nil, :consists_of=>false, :format=>nil, :required=>true, :include=>Usual::Example1::Ratings}}, 
    :countries=>
     {:from=>{:name=>:countries, :type=>Array, :min=>nil, :max=>nil, :consists_of=>[Datory::Result, Hash], :format=>nil},
      :to=>{:name=>:countries, :type=>Array, :min=>nil, :max=>nil, :consists_of=>[Datory::Result, Hash], :format=>nil, :required=>true, :include=>CountryDto}},
