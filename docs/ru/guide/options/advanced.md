@@ -24,13 +24,21 @@ input :first_name,
 
 :::
 
+::: info
+
+До версии `2.6.0` вместо `service:` использовалось `service_class_name:`.
+В релизе `2.6.0` этот атрибут был заменен на `service:`,
+который является объектом с подготовленными данными.
+
+:::
+
 ::: code-group
 
 ```ruby [input]
 input :first_name,
       type: String,
       required: {
-        message: lambda do |service_class_name:, input:, value:|
+        message: lambda do |service:, input:, value:|
           "Input `first_name` is required"
         end
       }
@@ -68,6 +76,14 @@ output :event_name,
 
 :::
 
+::: info
+
+До версии `2.6.0` вместо `service:` использовалось `service_class_name:`.
+В релизе `2.6.0` этот атрибут был заменен на `service:`,
+который является объектом с подготовленными данными.
+
+:::
+
 ::: code-group
 
 ```ruby [input]
@@ -75,7 +91,7 @@ input :event_name,
       type: String,
       inclusion: {
         in: %w[created rejected approved],
-        message: lambda do |service_class_name:, input:, value:|
+        message: lambda do |service:, input:, value:|
           value.present? ? "Incorrect `#{input.name}` specified: `#{value}`" : "Event name not specified"
         end
       }
@@ -86,7 +102,7 @@ internal :event_name,
          type: String,
          inclusion: {
            in: %w[created rejected approved],
-           message: lambda do |service_class_name:, internal:, value:|
+           message: lambda do |service:, internal:, value:|
              value.present? ? "Incorrect `#{internal.name}` specified: `#{value}`" : "Event name not specified"
            end
          }
@@ -97,7 +113,7 @@ output :event_name,
        type: String,
        inclusion: {
          in: %w[created rejected approved],
-         message: lambda do |service_class_name:, output:, value:|
+         message: lambda do |service:, output:, value:|
            value.present? ? "Incorrect `#{output.name}` specified: `#{value}`" : "Event name not specified"
          end
        }
@@ -106,6 +122,12 @@ output :event_name,
 :::
 
 ## Опция `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
+
+::: info
+
+Начиная с версии `2.6.0` эта опция является [динамической](../options/dynamic#опция-consists-of).
+
+:::
 
 ::: code-group
 
@@ -305,6 +327,14 @@ output :invoice_numbers,
 
 :::
 
+::: info
+
+До версии `2.6.0` вместо `service:` использовалось `service_class_name:`.
+В релизе `2.6.0` этот атрибут был заменен на `service:`,
+который является объектом с подготовленными данными.
+
+:::
+
 ::: code-group
 
 ```ruby [input]
@@ -314,7 +344,7 @@ input :invoice_numbers,
       must: {
         be_6_characters: {
           is: ->(value:) { value.all? { |id| id.size == 6 } },
-          message: lambda do |service_class_name:, input:, value:, code:|
+          message: lambda do |service:, input:, value:, code:|
             "Wrong IDs in `#{input.name}`"
           end
         }
@@ -328,7 +358,7 @@ internal :invoice_numbers,
          must: {
            be_6_characters: {
              is: ->(value:) { value.all? { |id| id.size == 6 } },
-             message: lambda do |service_class_name:, internal:, value:, code:|
+             message: lambda do |service:, internal:, value:, code:|
                "Wrong IDs in `#{internal.name}`"
              end
            }
@@ -342,7 +372,7 @@ output :invoice_numbers,
        must: {
          be_6_characters: {
            is: ->(value:) { value.all? { |id| id.size == 6 } },
-           message: lambda do |service_class_name:, output:, value:, code:|
+           message: lambda do |service:, output:, value:, code:|
              "Wrong IDs in `#{output.name}`"
            end
          }

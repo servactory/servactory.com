@@ -169,7 +169,14 @@ end
 
 ## Option `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
+::: info
+
+Since version `2.6.0` this option is [dynamic](../options/dynamic#option-consists-of).
+
+:::
+
 This option is validation.
+This option is dynamic.
 It will check that each value in the collection matches the specified type (class).
 Checks nested values.
 The `is_a?` method is used.
@@ -350,6 +357,27 @@ end
 ```
 
 :::
+
+## Option `format` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
+
+This option is validation.
+This option is dynamic and is not part of the main options.
+
+[More information](./dynamic#option-format)
+
+## Option `min` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
+
+This option is validation.
+This option is dynamic and is not part of the main options.
+
+[More information](./dynamic#option-min)
+
+## Option `max` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
+
+This option is validation.
+This option is dynamic and is not part of the main options.
+
+[More information](./dynamic#option-max)
 
 ## Option `prepare` <Badge type="info" text="input" />
 

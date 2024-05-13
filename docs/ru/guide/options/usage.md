@@ -169,7 +169,14 @@ end
 
 ## Опция `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
+::: info
+
+Начиная с версии `2.6.0` эта опция является [динамической](../options/dynamic#опция-consists-of).
+
+:::
+
 Эта опция является валидацией.
+Эта опция является динамической.
 Будет проверять чтобы каждое значение в коллекции соответствовало указанному типу (классу).
 Проверяет вложенные значения.
 Используется метод `is_a?`.
@@ -348,6 +355,27 @@ class EventsService::Send < ApplicationService::Base
   # ...
 end
 ```
+
+## Опция `format` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
+
+Эта опция является валидацией.
+Эта опция является динамической и не входит в набор основных опций.
+
+[Подробнее](./dynamic#опция-format)
+
+## Опция `min` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
+
+Эта опция является валидацией.
+Эта опция является динамической и не входит в набор основных опций.
+
+[Подробнее](./dynamic#опция-min)
+
+## Опция `max` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
+
+Эта опция является валидацией.
+Эта опция является динамической и не входит в набор основных опций.
+
+[Подробнее](./dynamic#опция-max)
 
 :::
 

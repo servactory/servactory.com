@@ -14,20 +14,29 @@ next: Использование действий в сервисе
 
 Servactory из коробки предоставляет следующий набор динамических опций:
 
+- `consists_of`;
 - `format`;
 - `min`;
 - `max`.
 
-По умолчанию эти опции не включены.
-Для их работы необходимо применить готовые наборы в конфигурации хелперов
+По умолчанию включена только опция `consists_of`.
+Для работы остальных необходимо применить готовые наборы в конфигурации хелперов
 опций для каждого из существующих атрибутов.
 
 ## Готовые опции
+
+### Опция `consists_of` <Badge type="tip" text="Начиная с 2.6.0" />
+
+- Набор: `Servactory::ToolKit::DynamicOptions::ConsistsOf`
+- Основан на: `must`
+- Включено по умолчанию: Да
+- [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/consists_of.rb)
 
 ### Опция `format`
 
 - Набор: `Servactory::ToolKit::DynamicOptions::Format`
 - Основан на: `must`
+- Включено по умолчанию: Нет
 - [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/format.rb)
 
 #### Поддерживаемые форматы
@@ -104,6 +113,7 @@ output :data,
 
 - Набор: `Servactory::ToolKit::DynamicOptions::Min`
 - Основан на: `must`
+- Включено по умолчанию: Нет
 - [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/min.rb)
 
 #### Установка и использование
@@ -150,6 +160,7 @@ output :data,
 
 - Набор: `Servactory::ToolKit::DynamicOptions::Max`
 - Основан на: `must`
+- Включено по умолчанию: Нет
 - [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/max.rb)
 
 #### Установка и использование
@@ -226,15 +237,15 @@ module ApplicationService
         # Здесь должны быть условия, предназначенные для атрибута output
       end
 
-      def message_for_input_with(service_class_name:, input:, value:, option_value:, **)
+      def message_for_input_with(service:, input:, value:, option_value:, **)
         # Здесь должен быть текст сообщения на случай, если условие не будет соблюдено
       end
 
-      def message_for_internal_with(service_class_name:, internal:, value:, option_value:, **)
+      def message_for_internal_with(service:, internal:, value:, option_value:, **)
         # Здесь должен быть текст сообщения на случай, если условие не будет соблюдено
       end
 
-      def message_for_output_with(service_class_name:, output:, value:, option_value:, **)
+      def message_for_output_with(service:, output:, value:, option_value:, **)
         # Здесь должен быть текст сообщения на случай, если условие не будет соблюдено
       end
     end
