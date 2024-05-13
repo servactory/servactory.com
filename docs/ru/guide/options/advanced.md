@@ -107,6 +107,12 @@ output :event_name,
 
 ## Опция `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
+::: info
+
+Начиная с версии `2.6.0` эта опция является [динамической](../options/dynamic#опция-consists-of).
+
+:::
+
 ::: code-group
 
 ```ruby [input]

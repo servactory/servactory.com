@@ -169,6 +169,12 @@ end
 
 ## Option `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
+::: info
+
+Since version `2.6.0` this option is [dynamic](../options/dynamic#option-consists-of).
+
+:::
+
 This option is validation.
 It will check that each value in the collection matches the specified type (class).
 Checks nested values.

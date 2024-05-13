@@ -13,20 +13,29 @@ but what sets them apart is their ability to work with arguments.
 
 Servactory out of the box provides the following set of dynamic options:
 
+- `consists_of`;
 - `format`;
 - `min`;
 - `max`.
 
-By default, these options are not enabled.
-For them to work, it is necessary to apply ready-made sets in the configuration
+By default, only the `consists_of` option is enabled.
+For the rest to work, you need to use ready-made sets in the configuration
 of option helpers for each of the existing attributes.
 
 ## Ready-made options
+
+### Option `consists_of` <Badge type="tip" text="Since 2.6.0" />
+
+- Kit: `Servactory::ToolKit::DynamicOptions::ConsistsOf`
+- Based on: `must`
+- Enabled by default: Yes
+- [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/consists_of.rb)
 
 ### Option `format`
 
 - Kit: `Servactory::ToolKit::DynamicOptions::Format`
 - Based on: `must`
+- Enabled by default: No
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/format.rb)
 
 #### Supported formats
@@ -99,6 +108,7 @@ output :data,
 
 - Kit: `Servactory::ToolKit::DynamicOptions::Min`
 - Based on: `must`
+- Enabled by default: No
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/min.rb)
 
 #### Installation and usage
@@ -145,6 +155,7 @@ output :data,
 
 - Kit: `Servactory::ToolKit::DynamicOptions::Max`
 - Based on: `must`
+- Enabled by default: No
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/max.rb)
 
 #### Installation and usage

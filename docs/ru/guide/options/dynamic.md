@@ -14,20 +14,29 @@ next: Использование действий в сервисе
 
 Servactory из коробки предоставляет следующий набор динамических опций:
 
+- `consists_of`;
 - `format`;
 - `min`;
 - `max`.
 
-По умолчанию эти опции не включены.
-Для их работы необходимо применить готовые наборы в конфигурации хелперов
+По умолчанию включена только опция `consists_of`.
+Для работы остальных необходимо применить готовые наборы в конфигурации хелперов
 опций для каждого из существующих атрибутов.
 
 ## Готовые опции
+
+### Опция `consists_of` <Badge type="tip" text="Начиная с 2.6.0" />
+
+- Набор: `Servactory::ToolKit::DynamicOptions::ConsistsOf`
+- Основан на: `must`
+- Включено по умолчанию: Да
+- [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/consists_of.rb)
 
 ### Опция `format`
 
 - Набор: `Servactory::ToolKit::DynamicOptions::Format`
 - Основан на: `must`
+- Включено по умолчанию: Нет
 - [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/format.rb)
 
 #### Поддерживаемые форматы
@@ -104,6 +113,7 @@ output :data,
 
 - Набор: `Servactory::ToolKit::DynamicOptions::Min`
 - Основан на: `must`
+- Включено по умолчанию: Нет
 - [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/min.rb)
 
 #### Установка и использование
@@ -150,6 +160,7 @@ output :data,
 
 - Набор: `Servactory::ToolKit::DynamicOptions::Max`
 - Основан на: `must`
+- Включено по умолчанию: Нет
 - [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/max.rb)
 
 #### Установка и использование
