@@ -237,15 +237,15 @@ module ApplicationService
         # Здесь должны быть условия, предназначенные для атрибута output
       end
 
-      def message_for_input_with(service_class_name:, input:, value:, option_value:, **)
+      def message_for_input_with(service:, input:, value:, option_value:, **)
         # Здесь должен быть текст сообщения на случай, если условие не будет соблюдено
       end
 
-      def message_for_internal_with(service_class_name:, internal:, value:, option_value:, **)
+      def message_for_internal_with(service:, internal:, value:, option_value:, **)
         # Здесь должен быть текст сообщения на случай, если условие не будет соблюдено
       end
 
-      def message_for_output_with(service_class_name:, output:, value:, option_value:, **)
+      def message_for_output_with(service:, output:, value:, option_value:, **)
         # Здесь должен быть текст сообщения на случай, если условие не будет соблюдено
       end
     end

@@ -231,15 +231,15 @@ module ApplicationService
         # There should be conditions here that are intended for the output attribute
       end
 
-      def message_for_input_with(service_class_name:, input:, value:, option_value:, **)
+      def message_for_input_with(service:, input:, value:, option_value:, **)
         # There should be a message text here in case the condition is not met
       end
 
-      def message_for_internal_with(service_class_name:, internal:, value:, option_value:, **)
+      def message_for_internal_with(service:, internal:, value:, option_value:, **)
         # There should be a message text here in case the condition is not met
       end
 
-      def message_for_output_with(service_class_name:, output:, value:, option_value:, **)
+      def message_for_output_with(service:, output:, value:, option_value:, **)
         # There should be a message text here in case the condition is not met
       end
     end
