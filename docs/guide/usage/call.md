@@ -39,7 +39,7 @@ All other errors will be logged and provided via the `Result` class.
 ::: code-group
 
 ```ruby [Call]
-UsersService::Accept.call!(user: User.first)
+UsersService::Accept.call(user: User.first)
 ```
 
 ```ruby [Success]

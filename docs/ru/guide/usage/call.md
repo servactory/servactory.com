@@ -39,7 +39,7 @@ UsersService::Accept.call!(user: User.first)
 ::: code-group
 
 ```ruby [Call]
-UsersService::Accept.call!(user: User.first)
+UsersService::Accept.call(user: User.first)
 ```
 
 ```ruby [Success]
