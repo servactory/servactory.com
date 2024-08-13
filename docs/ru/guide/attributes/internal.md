@@ -73,7 +73,35 @@ class PaymentsService::Create < ApplicationService::Base
 end
 ```
 
-## Методы предикаты
+## Методы
+
+### Метод `only`
+
+По необходимости можно отфильтровать `internals` при помощи метода `only`.
+Это будет возвращать Hash с указанными атрибутами.
+
+```ruby{2}
+outputs.full_name =
+  internals.only(:first_name, :middle_name, :last_name)
+    .values
+    .compact
+    .join(" ")
+```
+
+### Метод `except`
+
+По необходимости можно отфильтровать `internals` при помощи метода `except`.
+Это будет возвращать Hash без указанных атрибутов.
+
+```ruby{2}
+outputs.full_name =
+  internals.except(:gender)
+    .values
+    .compact
+    .join(" ")
+```
+
+### Методы предикаты
 
 К любому атрибуту internal можно обратиться как к методу предикату.
 
