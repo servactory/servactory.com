@@ -16,7 +16,8 @@ Servactory out of the box provides the following set of dynamic options:
 - `consists_of`;
 - `format`;
 - `min`;
-- `max`.
+- `max`;
+- `multiple_of`.
 
 By default, only the `consists_of` option is enabled.
 For the rest to work, you need to use ready-made sets in the configuration
@@ -192,6 +193,53 @@ output :data,
          message: lambda do |output:, value:, option_value:, **|
            "The size of the `#{output.name}` value must be less than or " \
              "equal to `#{option_value}` (got: `#{value}`)"
+         end
+       }
+```
+
+:::
+
+### Option `multiple_of`
+
+- Kit: `Servactory::ToolKit::DynamicOptions::MultipleOf`
+- Based on: `must`
+- Enabled by default: No
+- [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/multiple_of.rb)
+
+#### Installation and usage
+
+::: code-group
+
+```ruby [Installation]
+input_option_helpers([
+ Servactory::ToolKit::DynamicOptions::MultipleOf.use
+])
+
+internal_option_helpers([
+  Servactory::ToolKit::DynamicOptions::MultipleOf.use(:divisible_by)
+])
+
+output_option_helpers([
+  Servactory::ToolKit::DynamicOptions::MultipleOf.use
+])
+```
+
+```ruby [Usage]
+input :data,
+      type: Integer,
+      multiple_of: 2
+
+internal :data,
+         type: Integer,
+         divisible_by: { is: 2 }
+
+output :data,
+       type: Float,
+       multiple_of: {
+         is: 2,
+         message: lambda do |output:, value:, option_value:, **|
+           "Output `#{output.name}` has the value `#{value}`, " \
+             "which is not a multiple of `#{option_value}`"
          end
        }
 ```
