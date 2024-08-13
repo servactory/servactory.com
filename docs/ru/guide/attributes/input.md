@@ -105,7 +105,35 @@ class PaymentsService::Create < ApplicationService::Base
 end
 ```
 
-## Методы предикаты
+## Методы
+
+### Метод `only`
+
+По необходимости можно отфильтровать `inputs` при помощи метода `only`.
+Это будет возвращать Hash с указанными атрибутами.
+
+```ruby{2}
+outputs.full_name =
+  inputs.only(:first_name, :middle_name, :last_name)
+    .values
+    .compact
+    .join(" ")
+```
+
+### Метод `except`
+
+По необходимости можно отфильтровать `inputs` при помощи метода `except`.
+Это будет возвращать Hash без указанных атрибутов.
+
+```ruby{2}
+outputs.full_name =
+  inputs.except(:gender)
+    .values
+    .compact
+    .join(" ")
+```
+
+### Методы предикаты
 
 К любому атрибуту input можно обратиться как к методу предикату.
 

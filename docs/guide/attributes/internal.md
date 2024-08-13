@@ -73,7 +73,35 @@ class PaymentsService::Create < ApplicationService::Base
 end
 ```
 
-## Predicate methods
+## Methods
+
+### Method `only`
+
+If necessary, you can filter `internals` using the `only` method.
+This will return a Hash with the specified attributes.
+
+```ruby{2}
+outputs.full_name =
+  internals.only(:first_name, :middle_name, :last_name)
+    .values
+    .compact
+    .join(" ")
+```
+
+### Method `except`
+
+If necessary, you can filter `internals` using the `except` method.
+This will return a Hash without the specified attributes.
+
+```ruby{2}
+outputs.full_name =
+  internals.except(:gender)
+    .values
+    .compact
+    .join(" ")
+```
+
+### Predicate methods
 
 Any internal attribute can be accessed as a predicate method.
 
