@@ -9,12 +9,28 @@ next: false
 
 ## Single
 
-```ruby
-one :poster, include: ImageDto
+::: code-group
+
+```ruby [Required]
+one! :poster, include: ImageDto
 ```
+
+```ruby [Optional]
+one? :poster, include: ImageDto
+```
+
+:::
 
 ## Multiple
 
-```ruby
-many :seasons, include: SeasonDto
+::: code-group
+
+```ruby [Required]
+many! :seasons, include: SeasonDto
 ```
+
+```ruby [Optional]
+many? :seasons, include: SeasonDto
+```
+
+:::
