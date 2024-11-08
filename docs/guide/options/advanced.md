@@ -298,7 +298,7 @@ input :invoice_numbers,
       consists_of: String,
       must: {
         be_6_characters: {
-          is: ->(value:) { value.all? { |id| id.size == 6 } }
+          is: ->(value:, input:) { value.all? { |id| id.size == 6 } }
         }
       }
 ```
@@ -309,7 +309,7 @@ internal :invoice_numbers,
          consists_of: String,
          must: {
            be_6_characters: {
-             is: ->(value:) { value.all? { |id| id.size == 6 } }
+             is: ->(value:, internal:) { value.all? { |id| id.size == 6 } }
            }
          }
 ```
@@ -320,7 +320,7 @@ output :invoice_numbers,
        consists_of: String,
        must: {
          be_6_characters: {
-           is: ->(value:) { value.all? { |id| id.size == 6 } }
+           is: ->(value:, output:) { value.all? { |id| id.size == 6 } }
          }
        }
 ```
@@ -343,7 +343,7 @@ input :invoice_numbers,
       consists_of: String,
       must: {
         be_6_characters: {
-          is: ->(value:) { value.all? { |id| id.size == 6 } },
+          is: ->(value:, input:) { value.all? { |id| id.size == 6 } },
           message: lambda do |service:, input:, value:, code:|
             "Wrong IDs in `#{input.name}`"
           end
@@ -357,7 +357,7 @@ internal :invoice_numbers,
          consists_of: String,
          must: {
            be_6_characters: {
-             is: ->(value:) { value.all? { |id| id.size == 6 } },
+             is: ->(value:, internal:) { value.all? { |id| id.size == 6 } },
              message: lambda do |service:, internal:, value:, code:, reason:|
                "Wrong IDs in `#{internal.name}`"
              end
@@ -371,7 +371,7 @@ output :invoice_numbers,
        consists_of: String,
        must: {
          be_6_characters: {
-           is: ->(value:) { value.all? { |id| id.size == 6 } },
+           is: ->(value:, output:) { value.all? { |id| id.size == 6 } },
            message: lambda do |service:, output:, value:, code:|
              "Wrong IDs in `#{output.name}`"
            end
