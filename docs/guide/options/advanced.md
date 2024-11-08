@@ -358,7 +358,7 @@ internal :invoice_numbers,
          must: {
            be_6_characters: {
              is: ->(value:) { value.all? { |id| id.size == 6 } },
-             message: lambda do |service:, internal:, value:, code:|
+             message: lambda do |service:, internal:, value:, code:, reason:|
                "Wrong IDs in `#{internal.name}`"
              end
            }
