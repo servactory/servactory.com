@@ -13,7 +13,7 @@ next: Группирование действий в сервисе
 
 ```ruby{2}
 make :something,
-     if: ->(**) { Settings.features.preview.enabled }
+     if: ->(context:) { Settings.features.preview.enabled }
 
 def something
   # ...
@@ -26,7 +26,7 @@ end
 
 ```ruby{2}
 make :something,
-     unless: ->(**) { Settings.features.preview.disabled }
+     unless: ->(context:) { Settings.features.preview.disabled }
 
 def something
   # ...

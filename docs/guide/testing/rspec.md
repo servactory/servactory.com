@@ -17,6 +17,30 @@ This documentation will attempt to detail the migration process should such a si
 
 :::
 
+## Installation
+
+::: code-group
+
+```ruby [spec/rails_helper.rb]
+require "servactory/test_kit/rspec/helpers"
+require "servactory/test_kit/rspec/matchers"
+```
+
+:::
+
+::: code-group
+
+```ruby [spec/rails_helper.rb]
+RSpec.configure do |config|
+  config.include Servactory::TestKit::Rspec::Helpers
+  config.include Servactory::TestKit::Rspec::Matchers
+
+  # ...
+end
+```
+
+:::
+
 ## Helpers
 
 ### Helper `allow_service_as_success!`
@@ -83,6 +107,38 @@ before do
     ApplicationService::Exceptions::Failure.new(
       message: "Some error"
     )
+  end
+end
+```
+
+### Options
+
+#### Option `with`
+
+The methods `allow_service_as_success!`, `allow_service_as_success`,
+`allow_service_as_failure!`, and `allow_service_as_failure` support the `with` option.
+
+By default, this option does not require passing service arguments and will automatically
+determine this data based on the `info` method.
+
+```ruby
+before do
+  allow_service_as_success!(
+    UsersService::Accept,
+    with: { user: user } # [!code focus]
+  )
+end
+```
+
+```ruby
+before do
+  allow_service_as_success!(
+    UsersService::Accept,
+    with: { user: user } # [!code focus]
+  ) do
+    {
+      user: user
+    }
   end
 end
 ```
@@ -335,7 +391,7 @@ it do
   expect(perform).to(
     have_output(:event)
       .nested(:id)
-      .with("14fe213e-1b0a-4a68-bca9-ce082db0f2c6")
+      .contains("14fe213e-1b0a-4a68-bca9-ce082db0f2c6")
   )
 end
 ```
@@ -348,7 +404,7 @@ Checks the value of the output attribute.
 it do
   expect(perform).to(
     have_output(:full_name)
-      .with("John Fitzgerald Kennedy")
+      .contains("John Fitzgerald Kennedy")
   )
 end
 ```

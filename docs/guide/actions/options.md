@@ -13,7 +13,7 @@ Before calling the method, the condition described in `if` will be checked.
 
 ```ruby{2}
 make :something,
-     if: ->(**) { Settings.features.preview.enabled }
+     if: ->(context:) { Settings.features.preview.enabled }
 
 def something
   # ...
@@ -26,7 +26,7 @@ The opposite of the `if` option.
 
 ```ruby{2}
 make :something,
-     unless: ->(**) { Settings.features.preview.disabled }
+     unless: ->(context:) { Settings.features.preview.disabled }
 
 def something
   # ...

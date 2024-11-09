@@ -118,7 +118,7 @@ module ApplicationService
             equivalent: {
               must: {
                 be_6_characters: {
-                  is: ->(value:) { value.all? { |id| id.size == 6 } },
+                  is: ->(value:, input:) { value.all? { |id| id.size == 6 } },
                   message: lambda do |input:, **|
                     "Wrong IDs in `#{input.name}`"
                   end
@@ -179,7 +179,7 @@ module ApplicationService
             equivalent: {
               must: {
                 be_6_characters: {
-                  is: ->(value:) { value.all? { |id| id.size == 6 } },
+                  is: ->(value:, internal:) { value.all? { |id| id.size == 6 } },
                   message: lambda do |internal:, **|
                     "Wrong IDs in `#{internal.name}`"
                   end
@@ -215,7 +215,7 @@ module ApplicationService
             equivalent: {
               must: {
                 be_6_characters: {
-                  is: ->(value:) { value.all? { |id| id.size == 6 } },
+                  is: ->(value:, output:) { value.all? { |id| id.size == 6 } },
                   message: lambda do |output:, **|
                     "Wrong IDs in `#{output.name}`"
                   end

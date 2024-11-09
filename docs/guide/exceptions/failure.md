@@ -56,8 +56,24 @@ make :check!
 def check!
   return if inputs.invoice_number.start_with?("AA")
 
-  fail_input!(:invoice_number, message: "Invalid invoice number")
+  fail_input!(
+    :invoice_number,
+    message: "Invalid invoice number",
+    meta: {
+      received_invoice_number: inputs.invoice_number
+    }
+  )
 end
+```
+
+Example of information that the exception `ApplicationService::Exceptions::Input` might provide:
+
+```ruby
+exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
+exception.detailed_message  # => Invalid invoice number (ApplicationService::Exceptions::Input)
+exception.message           # => Invalid invoice number
+exception.input_name        # => :invoice_number
+exception.meta              # => {:received_invoice_number=>"BB-7650AE"}
 ```
 
 ### Method `fail_internal!`
@@ -76,8 +92,24 @@ make :check!
 def check!
   return if internals.invoice_number.start_with?("AA")
 
-  fail_internal!(:invoice_number, message: "Invalid invoice number")
+  fail_internal!(
+    :invoice_number,
+    message: "Invalid invoice number",
+    meta: {
+      received_invoice_number: internals.invoice_number
+    }
+  )
 end
+```
+
+Example of information that the exception `ApplicationService::Exceptions::Internal` might provide:
+
+```ruby
+exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
+exception.detailed_message  # => Invalid invoice number (ApplicationService::Exceptions::Internal)
+exception.message           # => Invalid invoice number
+exception.internal_name     # => :invoice_number
+exception.meta              # => {:received_invoice_number=>"BB-7650AE"}
 ```
 
 ### Method `fail_output!`
@@ -96,8 +128,24 @@ make :check!
 def check!
   return if outputs.invoice_number.start_with?("AA")
 
-  fail_output!(:invoice_number, message: "Invalid invoice number")
+  fail_output!(
+    :invoice_number,
+    message: "Invalid invoice number",
+    meta: {
+      received_invoice_number: outputs.invoice_number
+    }
+  )
 end
+```
+
+Example of information that the exception `ApplicationService::Exceptions::Output` might provide:
+
+```ruby
+exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
+exception.detailed_message  # => Invalid invoice number (ApplicationService::Exceptions::Output)
+exception.message           # => Invalid invoice number
+exception.output_name       # => :invoice_number
+exception.meta              # => {:received_invoice_number=>"BB-7650AE"}
 ```
 
 ### Method `fail!`

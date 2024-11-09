@@ -314,7 +314,7 @@ class PaymentsService::Create < ApplicationService::Base
         consists_of: String,
         must: {
           be_6_characters: {
-            is: ->(value:) { value.all? { |id| id.size == 6 } }
+            is: ->(value:, input:) { value.all? { |id| id.size == 6 } }
           }
         }
 
@@ -331,7 +331,7 @@ class EventsService::Send < ApplicationService::Base
            consists_of: String,
            must: {
              be_6_characters: {
-               is: ->(value:) { value.all? { |id| id.size == 6 } }
+               is: ->(value:, internal:) { value.all? { |id| id.size == 6 } }
              }
            }
 
@@ -348,7 +348,7 @@ class EventsService::Send < ApplicationService::Base
          consists_of: String,
          must: {
            be_6_characters: {
-             is: ->(value:) { value.all? { |id| id.size == 6 } }
+             is: ->(value:, output:) { value.all? { |id| id.size == 6 } }
            }
          }
 

@@ -17,6 +17,30 @@ next: Расширения
 
 :::
 
+## Установка
+
+::: code-group
+
+```ruby [spec/rails_helper.rb]
+require "servactory/test_kit/rspec/helpers"
+require "servactory/test_kit/rspec/matchers"
+```
+
+:::
+
+::: code-group
+
+```ruby [spec/rails_helper.rb]
+RSpec.configure do |config|
+  config.include Servactory::TestKit::Rspec::Helpers
+  config.include Servactory::TestKit::Rspec::Matchers
+
+  # ...
+end
+```
+
+:::
+
 ## Хелперы
 
 ### Хелпер `allow_service_as_success!`
@@ -83,6 +107,38 @@ before do
     ApplicationService::Exceptions::Failure.new(
       message: "Some error"
     )
+  end
+end
+```
+
+### Опции
+
+#### Опция `with`
+
+Методы `allow_service_as_success!`, `allow_service_as_success`,
+`allow_service_as_failure!` и `allow_service_as_failure` поддерживают опцию `with`.
+
+По умолчанию эта опция не требует передачу аргументов сервиса и будет автоматически
+определять эти данные на основе метода `info`.
+
+```ruby
+before do
+  allow_service_as_success!(
+    UsersService::Accept,
+    with: { user: user } # [!code focus]
+  )
+end
+```
+
+```ruby
+before do
+  allow_service_as_success!(
+    UsersService::Accept,
+    with: { user: user } # [!code focus]
+  ) do
+    {
+      user: user
+    }
   end
 end
 ```
@@ -335,7 +391,7 @@ it do
   expect(perform).to(
     have_output(:event)
       .nested(:id)
-      .with("14fe213e-1b0a-4a68-bca9-ce082db0f2c6")
+      .contains("14fe213e-1b0a-4a68-bca9-ce082db0f2c6")
   )
 end
 ```
@@ -348,7 +404,7 @@ end
 it do
   expect(perform).to(
     have_output(:full_name)
-      .with("John Fitzgerald Kennedy")
+      .contains("John Fitzgerald Kennedy")
   )
 end
 ```
