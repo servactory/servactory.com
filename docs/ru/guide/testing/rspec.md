@@ -111,6 +111,38 @@ before do
 end
 ```
 
+### Опции
+
+#### Опция `with`
+
+Методы `allow_service_as_success!`, `allow_service_as_success`,
+`allow_service_as_failure!` и `allow_service_as_failure` поддерживают опцию `with`.
+
+По умолчанию эта опция не требует передачу аргументов сервиса и будет автоматически
+определять эти данные на основе метода `info`.
+
+```ruby
+before do
+  allow_service_as_success!(
+    UsersService::Accept,
+    with: { user: user } # [!code focus]
+  )
+end
+```
+
+```ruby
+before do
+  allow_service_as_success!(
+    UsersService::Accept,
+    with: { user: user } # [!code focus]
+  ) do
+    {
+      user: user
+    }
+  end
+end
+```
+
 ## Матчеры
 
 ### Матчер `have_service_input`

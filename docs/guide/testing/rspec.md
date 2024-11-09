@@ -111,6 +111,38 @@ before do
 end
 ```
 
+### Options
+
+#### Option `with`
+
+The methods `allow_service_as_success!`, `allow_service_as_success`,
+`allow_service_as_failure!`, and `allow_service_as_failure` support the `with` option.
+
+By default, this option does not require passing service arguments and will automatically
+determine this data based on the `info` method.
+
+```ruby
+before do
+  allow_service_as_success!(
+    UsersService::Accept,
+    with: { user: user } # [!code focus]
+  )
+end
+```
+
+```ruby
+before do
+  allow_service_as_success!(
+    UsersService::Accept,
+    with: { user: user } # [!code focus]
+  ) do
+    {
+      user: user
+    }
+  end
+end
+```
+
 ## Matchers
 
 ### Matcher `have_service_input`
