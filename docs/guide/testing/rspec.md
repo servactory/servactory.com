@@ -17,6 +17,30 @@ This documentation will attempt to detail the migration process should such a si
 
 :::
 
+## Installation
+
+::: code-group
+
+```ruby [spec/rails_helper.rb]
+require "servactory/test_kit/rspec/helpers"
+require "servactory/test_kit/rspec/matchers"
+```
+
+:::
+
+::: code-group
+
+```ruby [spec/rails_helper.rb]
+RSpec.configure do |config|
+  config.include Servactory::TestKit::Rspec::Helpers
+  config.include Servactory::TestKit::Rspec::Matchers
+
+  # ...
+end
+```
+
+:::
+
 ## Helpers
 
 ### Helper `allow_service_as_success!`

@@ -17,6 +17,30 @@ next: Расширения
 
 :::
 
+## Установка
+
+::: code-group
+
+```ruby [spec/rails_helper.rb]
+require "servactory/test_kit/rspec/helpers"
+require "servactory/test_kit/rspec/matchers"
+```
+
+:::
+
+::: code-group
+
+```ruby [spec/rails_helper.rb]
+RSpec.configure do |config|
+  config.include Servactory::TestKit::Rspec::Helpers
+  config.include Servactory::TestKit::Rspec::Matchers
+
+  # ...
+end
+```
+
+:::
+
 ## Хелперы
 
 ### Хелпер `allow_service_as_success!`
