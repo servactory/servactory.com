@@ -166,7 +166,7 @@ function sidebarReleases(): DefaultTheme.SidebarItem[] {
       text: 'Релизы',
       items: [
         { text: 'Релиз 2.9', link: '/ru/releases/2.9' },
-        // { text: 'Релиз 2.8', link: '/ru/releases/2.8' },
+        { text: 'Релиз 2.8', link: '/ru/releases/2.8' },
         { text: 'Релиз 2.7', link: '/ru/releases/2.7' },
         { text: 'Релиз 2.6', link: '/ru/releases/2.6' },
         { text: 'Релиз 2.5', link: '/ru/releases/2.5' },
