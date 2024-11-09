@@ -359,7 +359,7 @@ it do
   expect(perform).to(
     have_output(:event)
       .nested(:id)
-      .with("14fe213e-1b0a-4a68-bca9-ce082db0f2c6")
+      .contains("14fe213e-1b0a-4a68-bca9-ce082db0f2c6")
   )
 end
 ```
@@ -372,7 +372,7 @@ Checks the value of the output attribute.
 it do
   expect(perform).to(
     have_output(:full_name)
-      .with("John Fitzgerald Kennedy")
+      .contains("John Fitzgerald Kennedy")
   )
 end
 ```
