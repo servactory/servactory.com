@@ -43,7 +43,7 @@ features:
       light: /img/icons/signpost-split-light.svg
       dark: /img/icons/signpost-split-dark.svg
     details: Control error handling and behavior of services the way you need
-    link: /ru/guide/exceptions/failure
+    link: /guide/exceptions/failure
   - title: Extensions
     icon:
       light: /img/icons/plugin-light.svg
