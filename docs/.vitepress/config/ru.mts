@@ -1,7 +1,7 @@
 import type { DefaultTheme, LocaleSpecificConfig } from 'vitepress'
 
 export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
-  description: "Набор инструментов для построения надежных сервисов (Service Object) любой сложности",
+  description: "Набор инструментов для построения надежных Ruby/Rails сервисов (Service Object) любой сложности",
 
   themeConfig: {
     nav: nav(),
