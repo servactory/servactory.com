@@ -7,7 +7,7 @@ layout: home
 hero:
   name: Servactory
   text: New look at Service Object
-  tagline: A set of tools for building reliable services of any complexity
+  tagline: A set of tools for building reliable Ruby/Rails services of any complexity
   image:
     light: /img/hero-2.png
     dark: /img/hero-4.png

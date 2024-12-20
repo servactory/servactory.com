@@ -7,7 +7,7 @@ layout: home
 hero:
   name: Servactory
   text: Новый взгляд на Service Object
-  tagline: Набор инструментов для построения надежных сервисов любой сложности
+  tagline: Набор инструментов для построения надежных Ruby/Rails сервисов любой сложности
   image:
     light: /img/hero-2.png
     dark: /img/hero-4.png
