@@ -103,7 +103,7 @@ Intended for mocking a call via `call` with a failed result.
 
 ```ruby
 before do
-  allow_service_as_failure!(UsersService::Accept) do
+  allow_service_as_failure(UsersService::Accept) do
     ApplicationService::Exceptions::Failure.new(
       message: "Some error"
     )

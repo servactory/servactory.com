@@ -103,7 +103,7 @@ end
 
 ```ruby
 before do
-  allow_service_as_failure!(UsersService::Accept) do
+  allow_service_as_failure(UsersService::Accept) do
     ApplicationService::Exceptions::Failure.new(
       message: "Some error"
     )
