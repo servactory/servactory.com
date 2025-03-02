@@ -48,6 +48,12 @@ input :first_name,
 
 ## Опция `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
+::: info
+
+Начиная с версии `2.12.0` эта опция является [динамической](../options/dynamic#опция-inclusion).
+
+:::
+
 ::: code-group
 
 ```ruby [input]
@@ -192,6 +198,12 @@ output :ids,
 :::
 
 ## Опция `schema` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
+
+::: info
+
+Начиная с версии `2.12.0` эта опция является [динамической](../options/dynamic#опция-schema).
+
+:::
 
 ::: code-group
 
