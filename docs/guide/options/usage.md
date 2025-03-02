@@ -125,7 +125,14 @@ end
 
 ## Option `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
+::: info
+
+Since version `2.12.0` this option is [dynamic](../options/dynamic#option-inclusion).
+
+:::
+
 This option is validation.
+This option is dynamic.
 It will check that the passed value is in the specified array.
 The `include?` method is used.
 
@@ -211,7 +218,14 @@ output :ids,
 
 ## Option `schema` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
+::: info
+
+Since version `2.12.0` this option is [dynamic](../options/dynamic#option-schema).
+
+:::
+
 This option is validation.
+This option is dynamic.
 Requires a hash value that must describe the value structure of the output attribute.
 
 Only works with the `Hash` type.
@@ -365,19 +379,19 @@ This option is dynamic and is not part of the main options.
 
 [More information](./dynamic#option-format)
 
-## Option `min` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
-
-This option is validation.
-This option is dynamic and is not part of the main options.
-
-[More information](./dynamic#option-min)
-
 ## Option `max` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
 This option is validation.
 This option is dynamic and is not part of the main options.
 
 [More information](./dynamic#option-max)
+
+## Option `min` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
+
+This option is validation.
+This option is dynamic and is not part of the main options.
+
+[More information](./dynamic#option-min)
 
 ## Option `prepare` <Badge type="info" text="input" />
 
