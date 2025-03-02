@@ -222,28 +222,122 @@ end
 
 Проверяет вложенные типы коллекции инпута. Можно указать несколько значений.
 
-```ruby
+::: code-group
+
+```ruby [Без message]
 it do
   expect { perform }.to(
     have_input(:ids)
       .type(Array)
-      .consists_of(String) { "Input `ids` must be an array of `String`" }
       .required
+      .consists_of(String)
   )
 end
 ```
+
+```ruby [С message]
+it do
+  expect { perform }.to(
+    have_input(:ids)
+      .type(Array)
+      .required
+      .consists_of(String)
+      .message("Input `ids` must be a collection of `String`") # [!code focus]
+  )
+end
+```
+
+:::
 
 #### `inclusion`
 
 Проверяет значения опции `inclusion` инпута.
 
-```ruby
+::: code-group
+
+```ruby [Без message]
 it do
   expect { perform }.to(
     have_input(:event_name)
       .type(String)
       .required
       .inclusion(%w[created rejected approved])
+  )
+end
+```
+
+```ruby [С message]
+it do
+  expect { perform }.to(
+    have_input(:event_name)
+      .type(String)
+      .required
+      .inclusion(%w[created rejected approved])
+      .message(be_a(Proc)) # [!code focus]
+  )
+end
+```
+
+:::
+
+#### `schema` <Badge type="info" text="input (^2.12.0)" /> <Badge type="info" text="internal (^2.12.0)" /> <Badge type="info" text="output (^2.12.0)" />
+
+Проверяет значения опции `schema` инпута.
+
+::: code-group
+
+```ruby [Без message]
+it do
+  expect { perform }.to(
+    have_input(:payload)
+      .type(Hash)
+      .required
+      .schema(
+        {
+          request_id: { type: String, required: true },
+          user: {
+            # ...
+          }
+        }
+      )
+  )
+end
+```
+
+```ruby [С message]
+it do
+  expect { perform }.to(
+    have_input(:payload)
+      .type(Hash)
+      .required
+      .schema(
+        {
+          request_id: { type: String, required: true },
+          user: {
+            # ...
+          }
+        }
+      )
+      .message("Problem with the value in the schema") # [!code focus]
+  )
+end
+```
+
+:::
+
+#### `message` <Badge type="info" text="input (^2.12.0)" /> <Badge type="info" text="internal (^2.12.0)" /> <Badge type="info" text="output (^2.12.0)" />
+
+Проверяет `message` из последнего чейна.
+На текущий момент работает только с чейнами `consists_of`, `inclusion` и `schema`.
+
+```ruby
+it do
+  expect { perform }.to(
+    have_input(:ids)
+      .type(Array)
+      .required
+      .consists_of(String) # [!code focus]
+      .message("Input `ids` must be a collection of `String`") # [!code focus]
   )
 end
 ```
@@ -325,26 +419,115 @@ end
 Проверяет вложенные типы коллекции внутреннего атрибута.
 Можно указать несколько значений.
 
-```ruby
+::: code-group
+
+```ruby [Без message]
 it do
   expect { perform }.to(
     have_internal(:ids)
       .type(Array)
-      .consists_of(String) { "Input `ids` must be an array of `String`" }
+      .consists_of(String)
   )
 end
 ```
+
+```ruby [С message]
+it do
+  expect { perform }.to(
+    have_internal(:ids)
+      .type(Array)
+      .consists_of(String)
+      .message("Input `ids` must be a collection of `String`") # [!code focus]
+  )
+end
+```
+
+:::
 
 #### `inclusion`
 
 Проверяет значения опции `inclusion` внутреннего атрибута.
 
-```ruby
+::: code-group
+
+```ruby [Без message]
 it do
   expect { perform }.to(
     have_internal(:event_name)
       .type(String)
       .inclusion(%w[created rejected approved])
+  )
+end
+```
+
+```ruby [С message]
+it do
+  expect { perform }.to(
+    have_internal(:event_name)
+      .type(String)
+      .inclusion(%w[created rejected approved])
+      .message(be_a(Proc)) # [!code focus]
+  )
+end
+```
+
+:::
+
+#### `schema` <Badge type="info" text="input (^2.12.0)" /> <Badge type="info" text="internal (^2.12.0)" /> <Badge type="info" text="output (^2.12.0)" />
+
+Проверяет значения опции `schema` внутреннего атрибута.
+
+::: code-group
+
+```ruby [Без message]
+it do
+  expect { perform }.to(
+    have_internal(:payload)
+      .type(Hash)
+      .schema(
+        {
+          request_id: { type: String, required: true },
+          user: {
+            # ...
+          }
+        }
+      )
+  )
+end
+```
+
+```ruby [С message]
+it do
+  expect { perform }.to(
+    have_internal(:payload)
+      .type(Hash)
+      .schema(
+        {
+          request_id: { type: String, required: true },
+          user: {
+            # ...
+          }
+        }
+      )
+      .message("Problem with the value in the schema") # [!code focus]
+  )
+end
+```
+
+:::
+
+#### `message` <Badge type="info" text="input (^2.12.0)" /> <Badge type="info" text="internal (^2.12.0)" /> <Badge type="info" text="output (^2.12.0)" />
+
+Проверяет `message` из последнего чейна.
+На текущий момент работает только с чейнами `consists_of`, `inclusion` и `schema`.
+
+```ruby
+it do
+  expect { perform }.to(
+    have_internal(:ids)
+      .type(Array)
+      .consists_of(String) # [!code focus]
+      .message("Input `ids` must be a collection of `String`") # [!code focus]
   )
 end
 ```
