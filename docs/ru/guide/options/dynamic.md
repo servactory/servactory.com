@@ -16,11 +16,13 @@ Servactory из коробки предоставляет следующий н�
 
 - `consists_of`;
 - `format`;
-- `min`;
+- `inclusion`;
 - `max`;
-- `multiple_of`.
+- `min`;
+- `multiple_of`;
+- `schema`.
 
-По умолчанию включена только опция `consists_of`.
+По умолчанию включены следующие опции `consists_of`, `inclusion` и `schema`.
 Для работы остальных необходимо применить готовые наборы в конфигурации хелперов
 опций для каждого из существующих атрибутов.
 
@@ -29,14 +31,14 @@ Servactory из коробки предоставляет следующий н�
 ### Опция `consists_of` <Badge type="tip" text="Начиная с 2.6.0" />
 
 - Набор: `Servactory::ToolKit::DynamicOptions::ConsistsOf`
-- Основан на: `must`
+- Основано на: `must`
 - Включено по умолчанию: Да
 - [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/consists_of.rb)
 
 ### Опция `format`
 
 - Набор: `Servactory::ToolKit::DynamicOptions::Format`
-- Основан на: `must`
+- Основано на: `must`
 - Включено по умолчанию: Нет
 - [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/format.rb)
 
@@ -110,57 +112,17 @@ output :data,
 
 :::
 
-### Опция `min`
+### Опция `inclusion` <Badge type="tip" text="Начиная с 2.12.0" />
 
-- Набор: `Servactory::ToolKit::DynamicOptions::Min`
-- Основан на: `must`
-- Включено по умолчанию: Нет
-- [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/min.rb)
-
-#### Установка и использование
-
-::: code-group
-
-```ruby [Установка]
-input_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Min.use
-])
-
-internal_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Min.use(:minimum)
-])
-
-output_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Min.use
-])
-```
-
-```ruby [Использование]
-input :data,
-      type: Integer,
-      min: 1
-
-internal :data,
-         type: String,
-         minimum: { is: 1 }
-
-output :data,
-       type: Array,
-       min: {
-         is: 1,
-         message: lambda do |output:, value:, option_value:, **|
-           "The size of the `#{output.name}` value must be greater than or " \
-             "equal to `#{option_value}` (got: `#{value}`)"
-         end
-       }
-```
-
-:::
+- Набор: `Servactory::ToolKit::DynamicOptions::Inclusion`
+- Основано на: `must`
+- Включено по умолчанию: Да
+- [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/inclusion.rb)
 
 ### Опция `max`
 
 - Набор: `Servactory::ToolKit::DynamicOptions::Max`
-- Основан на: `must`
+- Основано на: `must`
 - Включено по умолчанию: Нет
 - [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/max.rb)
 
@@ -204,10 +166,57 @@ output :data,
 
 :::
 
+### Опция `min`
+
+- Набор: `Servactory::ToolKit::DynamicOptions::Min`
+- Основано на: `must`
+- Включено по умолчанию: Нет
+- [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/min.rb)
+
+#### Установка и использование
+
+::: code-group
+
+```ruby [Установка]
+input_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Min.use
+])
+
+internal_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Min.use(:minimum)
+])
+
+output_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Min.use
+])
+```
+
+```ruby [Использование]
+input :data,
+      type: Integer,
+      min: 1
+
+internal :data,
+         type: String,
+         minimum: { is: 1 }
+
+output :data,
+       type: Array,
+       min: {
+         is: 1,
+         message: lambda do |output:, value:, option_value:, **|
+           "The size of the `#{output.name}` value must be greater than or " \
+             "equal to `#{option_value}` (got: `#{value}`)"
+         end
+       }
+```
+
+:::
+
 ### Опция `multiple_of`
 
 - Набор: `Servactory::ToolKit::DynamicOptions::MultipleOf`
-- Основан на: `must`
+- Основано на: `must`
 - Включено по умолчанию: Нет
 - [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/multiple_of.rb)
 
@@ -250,6 +259,13 @@ output :data,
 ```
 
 :::
+
+### Опция `schema` <Badge type="tip" text="Начиная с 2.12.0" />
+
+- Набор: `Servactory::ToolKit::DynamicOptions::Schema`
+- Основано на: `must`
+- Включено по умолчанию: Да
+- [Исходный код](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/schema.rb)
 
 ## Пользовательские опции
 

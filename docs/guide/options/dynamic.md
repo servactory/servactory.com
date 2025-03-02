@@ -15,11 +15,13 @@ Servactory out of the box provides the following set of dynamic options:
 
 - `consists_of`;
 - `format`;
-- `min`;
+- `inclusion`;
 - `max`;
-- `multiple_of`.
+- `min`;
+- `multiple_of`;
+- `schema`.
 
-By default, only the `consists_of` option is enabled.
+By default, the following options are enabled: `consists_of`, `inclusion`, and `schema`.
 For the rest to work, you need to use ready-made sets in the configuration
 of option helpers for each of the existing attributes.
 
@@ -105,52 +107,12 @@ output :data,
 
 :::
 
-### Option `min`
+### Option `inclusion` <Badge type="tip" text="Since 2.12.0" />
 
-- Kit: `Servactory::ToolKit::DynamicOptions::Min`
+- Kit: `Servactory::ToolKit::DynamicOptions::Inclusion`
 - Based on: `must`
-- Enabled by default: No
-- [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/min.rb)
-
-#### Installation and usage
-
-::: code-group
-
-```ruby [Installation]
-input_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Min.use
-])
-
-internal_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Min.use(:minimum)
-])
-
-output_option_helpers([
-  Servactory::ToolKit::DynamicOptions::Min.use
-])
-```
-
-```ruby [Usage]
-input :data,
-      type: Integer,
-      min: 1
-
-internal :data,
-         type: String,
-         minimum: { is: 1 }
-
-output :data,
-       type: Array,
-       min: {
-         is: 1,
-         message: lambda do |output:, value:, option_value:, **|
-           "The size of the `#{output.name}` value must be greater than or " \
-             "equal to `#{option_value}` (got: `#{value}`)"
-         end
-       }
-```
-
-:::
+- Enabled by default: Yes
+- [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/inclusion.rb)
 
 ### Option `max`
 
@@ -192,6 +154,53 @@ output :data,
          is: 10,
          message: lambda do |output:, value:, option_value:, **|
            "The size of the `#{output.name}` value must be less than or " \
+             "equal to `#{option_value}` (got: `#{value}`)"
+         end
+       }
+```
+
+:::
+
+### Option `min`
+
+- Kit: `Servactory::ToolKit::DynamicOptions::Min`
+- Based on: `must`
+- Enabled by default: No
+- [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/min.rb)
+
+#### Installation and usage
+
+::: code-group
+
+```ruby [Installation]
+input_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Min.use
+])
+
+internal_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Min.use(:minimum)
+])
+
+output_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Min.use
+])
+```
+
+```ruby [Usage]
+input :data,
+      type: Integer,
+      min: 1
+
+internal :data,
+         type: String,
+         minimum: { is: 1 }
+
+output :data,
+       type: Array,
+       min: {
+         is: 1,
+         message: lambda do |output:, value:, option_value:, **|
+           "The size of the `#{output.name}` value must be greater than or " \
              "equal to `#{option_value}` (got: `#{value}`)"
          end
        }
@@ -245,6 +254,13 @@ output :data,
 ```
 
 :::
+
+### Option `schema` <Badge type="tip" text="Since 2.12.0" />
+
+- Kit: `Servactory::ToolKit::DynamicOptions::Schema`
+- Based on: `must`
+- Enabled by default: Yes
+- [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/schema.rb)
 
 ## Custom options
 
