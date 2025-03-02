@@ -150,7 +150,7 @@ exception.meta              # => {:received_invoice_number=>"BB-7650AE"}
 
 ### Method `fail!`
 
-Designed to describe user errors.
+Designed to describe custom errors.
 
 The `fail!` method allows you to pass the error text,
 additional information through the `meta` attribute,
