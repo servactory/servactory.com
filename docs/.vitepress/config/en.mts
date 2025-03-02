@@ -165,6 +165,9 @@ function sidebarDatory(): DefaultTheme.SidebarItem[] {
 //     {
 //       text: 'Releases',
 //       items: [
+//         { text: 'Release 2.12', link: '/releases/2.12' },
+//         { text: 'Release 2.11', link: '/releases/2.11' },
+//         { text: 'Release 2.10', link: '/releases/2.10' },
 //         { text: 'Release 2.9', link: '/releases/2.9' },
 //         { text: 'Release 2.8', link: '/releases/2.8' },
 //         { text: 'Release 2.7', link: '/releases/2.7' },

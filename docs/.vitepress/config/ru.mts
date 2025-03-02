@@ -28,7 +28,7 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
 function nav(): DefaultTheme.NavItem[] {
   return [
     { text: 'Руководство', link: '/ru/getting-started', activeMatch: '/guide/' },
-    { text: 'Релизы', link: '/ru/releases/2.9', activeMatch: '/releases/' },
+    { text: 'Релизы', link: '/ru/releases/2.12', activeMatch: '/releases/' },
     { text: 'Datory', link: '/ru/datory/getting-started', activeMatch: '/datory/' },
     // { text: 'v1', link: 'https://v1.servactory.com/ru' },
   ]
@@ -165,6 +165,9 @@ function sidebarReleases(): DefaultTheme.SidebarItem[] {
     {
       text: 'Релизы',
       items: [
+        { text: 'Релиз 2.12', link: '/ru/releases/2.12' },
+        { text: 'Релиз 2.11', link: '/ru/releases/2.11' },
+        { text: 'Релиз 2.10', link: '/ru/releases/2.10' },
         { text: 'Релиз 2.9', link: '/ru/releases/2.9' },
         { text: 'Релиз 2.8', link: '/ru/releases/2.8' },
         { text: 'Релиз 2.7', link: '/ru/releases/2.7' },
