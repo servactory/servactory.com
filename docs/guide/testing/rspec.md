@@ -565,6 +565,25 @@ it do
 end
 ```
 
+#### `contains`
+
+:::info
+
+In release `2.9.0` the `with` chain was renamed to `contains`.
+
+:::
+
+Checks the value of the output attribute.
+
+```ruby
+it do
+  expect(perform).to(
+    have_output(:full_name)
+      .contains("John Fitzgerald Kennedy")
+  )
+end
+```
+
 #### `nested`
 
 Points to the nested value of the output attribute.
@@ -575,19 +594,6 @@ it do
     have_output(:event)
       .nested(:id)
       .contains("14fe213e-1b0a-4a68-bca9-ce082db0f2c6")
-  )
-end
-```
-
-#### `with`
-
-Checks the value of the output attribute.
-
-```ruby
-it do
-  expect(perform).to(
-    have_output(:full_name)
-      .contains("John Fitzgerald Kennedy")
   )
 end
 ```

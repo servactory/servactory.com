@@ -565,6 +565,25 @@ it do
 end
 ```
 
+#### `contains`
+
+:::info
+
+В релизе `2.9.0` чейн `with` был переименован в `contains`.
+
+:::
+
+Проверяет значение выходящего атрибута.
+
+```ruby
+it do
+  expect(perform).to(
+    have_output(:full_name)
+      .contains("John Fitzgerald Kennedy")
+  )
+end
+```
+
 #### `nested`
 
 Указывает на вложенное значение выходящего атрибута.
@@ -575,19 +594,6 @@ it do
     have_output(:event)
       .nested(:id)
       .contains("14fe213e-1b0a-4a68-bca9-ce082db0f2c6")
-  )
-end
-```
-
-#### `with`
-
-Проверяет значение выходящего атрибута.
-
-```ruby
-it do
-  expect(perform).to(
-    have_output(:full_name)
-      .contains("John Fitzgerald Kennedy")
   )
 end
 ```
