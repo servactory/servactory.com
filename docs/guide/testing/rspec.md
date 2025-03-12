@@ -69,13 +69,13 @@ Intended for mocking a call via `call` with a successful result.
 
 ```ruby
 before do
-  allow_service_as_success!(UsersService::Accept)
+  allow_service_as_success(UsersService::Accept)
 end
 ```
 
 ```ruby
 before do
-  allow_service_as_success!(UsersService::Accept) do
+  allow_service_as_success(UsersService::Accept) do
     {
       user: user
     }
