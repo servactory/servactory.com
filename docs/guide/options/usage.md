@@ -310,7 +310,7 @@ Each expected hash key must be described in the following format:
 }
 ```
 
-The following options are allowed: `type`, `required` and the optional `default`.
+The following options are allowed: mandatory `type`, `required` and optional `default`, `prepare`.
 
 If the `type` value is `Hash`, then nesting can be described in the same format.
 
