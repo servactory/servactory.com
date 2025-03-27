@@ -119,7 +119,7 @@ RSpec.describe UsersService::Create, type: :service do
     end
 
     context "when required data for work is valid" do
-      it { expect(result).to be_success_service }
+      it { expect(perform).to be_success_service }
 
       it do
         expect(perform).to(
