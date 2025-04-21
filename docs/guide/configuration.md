@@ -234,17 +234,7 @@ end
 
 ### Aliases for `make`
 
-::: code-group
-
-```ruby {2} [app/services/application_service/base.rb]
-configuration do
-  action_aliases %i[execute]
-end
-```
-
-:::
-
-### Shortcuts for `make`
+The `action_aliases` configuration allows you to add alternatives to `make`.
 
 ::: code-group
 
@@ -252,8 +242,107 @@ end
 module ApplicationService
   class Base < Servactory::Base
     configuration do
-      action_shortcuts %i[assign perform]
+      action_aliases %i[execute]
     end
+  end
+end
+```
+
+:::
+
+### Customization for `make`
+
+The `action_shortcuts` configuration allows you to implement a shortcut when using `make`.
+
+The values specified in the configuration are used instead of `make` and are also a prefix to the instance method.
+
+#### Simple mode
+
+In simple mode, values are passed as an array of symbols.
+
+::: code-group
+
+```ruby {4-6} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      action_shortcuts(
+        %i[assign perform]
+      )
+    end
+  end
+end
+```
+
+:::
+
+::: details Example of use
+
+```ruby
+class CMSService::API::Posts::Create < CMSService::API::Base
+  # ...
+  
+  assign :model
+
+  perform :request
+
+  private
+
+  def assign_model
+    # Build model for API request
+  end
+
+  def perform_request
+    # Perform API request
+  end
+  
+  # ...
+end
+```
+
+:::
+
+#### Advanced mode <Badge type="tip" text="Since 2.14.0" />
+
+In advanced mode, values are passed as a hash.
+
+::: code-group
+
+```ruby {6-11} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      action_shortcuts(
+        %i[assign],
+        {
+          restrict: {             # replacement for make
+            prefix: :create,      # method name prefix
+            suffix: :restriction  # method name suffix
+          }
+        }
+      )
+    end
+  end
+end
+```
+
+:::
+
+::: details Example of use
+
+```ruby
+class PaymentsService::Restrictions::Create < ApplicationService::Base
+  input :payment, type: Payment
+
+  # The exclamation mark will be moved to the end of the method name
+  restrict :payment!
+
+  private
+
+  def create_payment_restriction!
+    inputs.payment.restrictions.create!(
+      reason: "Suspicion of fraud"
+    )
   end
 end
 ```

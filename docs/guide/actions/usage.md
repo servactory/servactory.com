@@ -14,6 +14,9 @@ Service methods are called using the `make` method.
 
 ### Minimal
 
+In its minimal form, calling methods via `make` is optional.
+The `call` method can be used instead.
+
 ```ruby
 class PostsService::Create < ApplicationService::Base
   def call
@@ -56,7 +59,7 @@ You can find out more about a group of multiple actions (methods) in the [groupi
 
 ## Aliases for `make`
 
-Through the `action_aliases` configuration it is possible to add an alias for the `make` method.
+Through the `action_aliases` configuration it is possible to add alternatives to the `make` method.
 
 ```ruby {2,5}
 configuration do
@@ -70,29 +73,74 @@ def something
 end
 ```
 
-## Shortcuts for `make`
+## Customization for `make`
 
 Add frequently used words that are used as prefixes in method names through the `action_shortcuts` configuration.
 It won't make the names of methods shorter, but that will shorten the lines using the `make` method and improve the readability of the service code, making it more expressive.
 
-```ruby {2,5,6,9,13}
+### Simple mode
+
+In simple mode, values are passed as an array of symbols.
+
+```ruby
 configuration do
   action_shortcuts %i[assign perform]
 end
+```
 
-assign :api_model
-perform :api_request
-make :process_result
+```ruby
+class CMSService::API::Posts::Create < CMSService::API::Base
+  # ...
 
-def assign_api_model
-  internals.api_model = APIModel.new
+  assign :model
+
+  perform :request
+
+  private
+
+  def assign_model
+    # Build model for API request
+  end
+
+  def perform_request
+    # Perform API request
+  end
+
+  # ...
 end
+```
 
-def perform_api_request
-  internals.response = APIClient.resource.create(internals.api_model)
+### Advanced mode <Badge type="tip" text="Since 2.14.0" />
+
+In advanced mode, values are passed as a hash.
+
+```ruby
+configuration do
+  action_shortcuts(
+    %i[assign],
+    {
+      restrict: {           # replacement for make
+      prefix: :create,      # method name prefix
+      suffix: :restriction  # method name suffix
+      }
+    }
+  )
 end
+```
 
-def process_result
-  ARModel.create!(internals.response)
+```ruby
+class PaymentsService::Restrictions::Create < ApplicationService::Base
+  input :payment, type: Payment
+
+  # The exclamation mark will be moved to the end of the method name
+  restrict :payment!
+
+  private
+
+  def create_payment_restriction!
+    inputs.payment.restrictions.create!(
+      reason: "Suspicion of fraud"
+    )
+  end
 end
 ```

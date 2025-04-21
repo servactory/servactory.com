@@ -7,7 +7,7 @@ next: RSpec
 
 # Конфигурация
 
-Сервисы конфигурируются через `configuration` метод, который может быть расположен, например, в базовом классе.
+Сервисы конфигурируются через метод `configuration`, который может быть расположен, например, в базовом классе.
 
 ## Примеры конфигурации
 
@@ -234,17 +234,7 @@ end
 
 ### Алиасы для `make`
 
-::: code-group
-
-```ruby {2} [app/services/application_service/base.rb]
-configuration do
-  action_aliases %i[execute]
-end
-```
-
-:::
-
-### Сокращения для `make`
+Конфигурация `action_aliases` позволяет добавить альтернативные варианты для `make`.
 
 ::: code-group
 
@@ -252,8 +242,107 @@ end
 module ApplicationService
   class Base < Servactory::Base
     configuration do
-      action_shortcuts %i[assign perform]
+      action_aliases %i[execute]
     end
+  end
+end
+```
+
+:::
+
+### Кастомизация для `make`
+
+Конфигурация `action_shortcuts` позволяет реализовать сокращение при использовании `make`.
+
+Указываемые значения в конфигурации используются вместо `make`, а также являются префиксом метода инстанса.
+
+#### Простой режим
+
+В простом режиме значения передаются в виде массива символов.
+
+::: code-group
+
+```ruby {4-6} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      action_shortcuts(
+        %i[assign perform]
+      )
+    end
+  end
+end
+```
+
+:::
+
+::: details Пример использования
+
+```ruby
+class CMSService::API::Posts::Create < CMSService::API::Base
+  # ...
+  
+  assign :model
+
+  perform :request
+
+  private
+
+  def assign_model
+    # Build model for API request
+  end
+
+  def perform_request
+    # Perform API request
+  end
+  
+  # ...
+end
+```
+
+:::
+
+#### Расширенный режим <Badge type="tip" text="Начиная с 2.14.0" />
+
+В расширенном режиме значения передаются в виде хеша.
+
+::: code-group
+
+```ruby {6-11} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      action_shortcuts(
+        %i[assign],
+        {
+          restrict: {             # замена для make
+            prefix: :create,      # префикс имени метода
+            suffix: :restriction  # суффикс имени метода
+          }
+        }
+      )
+    end
+  end
+end
+```
+
+:::
+
+::: details Пример использования
+
+```ruby
+class PaymentsService::Restrictions::Create < ApplicationService::Base
+  input :payment, type: Payment
+
+  # Восклицательный знак будет перемещен в конец имени метода
+  restrict :payment!
+
+  private
+
+  def create_payment_restriction!
+    inputs.payment.restrictions.create!(
+      reason: "Suspicion of fraud"
+    )
   end
 end
 ```

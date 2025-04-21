@@ -14,6 +14,9 @@ next: Опции для действий в сервисе
 
 ### Минимальный
 
+В минимальном виде вызов методов через `make` необязателен.
+Вместо него можно использовать метод `call`.
+
 ```ruby
 class PostsService::Create < ApplicationService::Base
   def call
@@ -56,7 +59,7 @@ end
 
 ## Алиасы для `make`
 
-Через конфигурацию `action_aliases` можно добавить алиас для метода `make`.
+Через конфигурацию `action_aliases` можно добавить альтернативные варианты для метода `make`.
 
 ```ruby {2,5}
 configuration do
@@ -70,29 +73,74 @@ def something
 end
 ```
 
-## Сокращения для `make`
+## Кастомизация для `make`
 
 Через конфигурацию `action_shortcuts` можно добавить часто используемые слова, которые используются в виде префиксов в именах методов.
 Имена самих методов короче не станут, но это позволит сократить строки с применением метода `make` и улучшить читаемость кода сервиса, сделав его выразительнее.
 
-```ruby {2,5,6,9,13}
+### Простой режим
+
+В простом режиме значения передаются в виде массива символов.
+
+```ruby
 configuration do
   action_shortcuts %i[assign perform]
 end
+```
 
-assign :api_model
-perform :api_request
-make :process_result
+```ruby
+class CMSService::API::Posts::Create < CMSService::API::Base
+  # ...
 
-def assign_api_model
-  internals.api_model = APIModel.new
+  assign :model
+
+  perform :request
+
+  private
+
+  def assign_model
+    # Build model for API request
+  end
+
+  def perform_request
+    # Perform API request
+  end
+
+  # ...
 end
+```
 
-def perform_api_request
-  internals.response = APIClient.resource.create(internals.api_model)
+### Расширенный режим <Badge type="tip" text="Начиная с 2.14.0" />
+
+В расширенном режиме значения передаются в виде хеша.
+
+```ruby
+configuration do
+  action_shortcuts(
+    %i[assign],
+    {
+      restrict: {             # замена для make
+        prefix: :create,      # префикс имени метода
+        suffix: :restriction  # суффикс имени метода
+      }
+    }
+  )
 end
+```
 
-def process_result
-  ARModel.create!(internals.response)
+```ruby
+class PaymentsService::Restrictions::Create < ApplicationService::Base
+  input :payment, type: Payment
+
+  # Восклицательный знак будет перемещен в конец имени метода
+  restrict :payment!
+
+  private
+
+  def create_payment_restriction!
+    inputs.payment.restrictions.create!(
+      reason: "Suspicion of fraud"
+    )
+  end
 end
 ```
