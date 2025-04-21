@@ -258,7 +258,7 @@ The values specified in the configuration are used instead of `make` and are als
 
 #### Simple mode
 
-In simple mode, values are passed as a character symbols.
+In simple mode, values are passed as an array of symbols.
 
 ::: code-group
 
@@ -303,6 +303,8 @@ end
 :::
 
 #### Advanced mode <Badge type="tip" text="Since 2.14.0" />
+
+In advanced mode, values are passed as a hash.
 
 ::: code-group
 

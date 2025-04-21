@@ -304,6 +304,8 @@ end
 
 #### Расширенный режим <Badge type="tip" text="Начиная с 2.14.0" />
 
+В расширенном режиме значения передаются в виде хеша.
+
 ::: code-group
 
 ```ruby {6-11} [app/services/application_service/base.rb]
