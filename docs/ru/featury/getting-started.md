@@ -1,5 +1,5 @@
 ---
-title: Начало работы — Datory
+title: Начало работы — Featury
 description: Описание и примеры использования
 prev: false
 next: false
@@ -22,7 +22,7 @@ next: false
 Добавьте это в файл `Gemfile`:
 
 ```ruby
-gem "datory"
+gem "featury"
 ```
 
 Затем выполните:

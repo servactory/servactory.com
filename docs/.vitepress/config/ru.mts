@@ -30,6 +30,7 @@ function nav(): DefaultTheme.NavItem[] {
     { text: 'Руководство', link: '/ru/getting-started', activeMatch: '/guide/' },
     { text: 'Релизы', link: '/ru/releases/2.14', activeMatch: '/releases/' },
     { text: 'Datory', link: '/ru/datory/getting-started', activeMatch: '/datory/' },
+    { text: 'Featury', link: '/ru/featury/getting-started', activeMatch: '/featury/' },
     // { text: 'v1', link: 'https://v1.servactory.com/ru' },
   ]
 }
@@ -40,6 +41,7 @@ function sidebar(): DefaultTheme.Sidebar {
     '/ru/getting-started': { base: '', items: sidebarGuide() },
     '/ru/guide/': { base: '', items: sidebarGuide() },
     '/ru/datory/': { base: '', items: sidebarDatory() },
+    '/ru/featury/': { base: '', items: sidebarFeatury() },
     '/ru/releases/': { base: '', items: sidebarReleases() },
   }
 }
@@ -151,6 +153,36 @@ function sidebarDatory(): DefaultTheme.SidebarItem[] {
     { text: 'Code of Conduct', link: 'https://github.com/servactory/datory/blob/main/CODE_OF_CONDUCT.md' },
     { text: 'Contributing', link: 'https://github.com/servactory/datory/blob/main/CONTRIBUTING.md' },
     { text: 'GitHub', link: 'https://github.com/servactory/datory' },
+  ]
+}
+
+function sidebarFeatury(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Servactory',
+      items: [
+        { text: 'Назад к Servactory', link: '/ru/getting-started' }
+      ]
+    },
+    {
+      text: 'Введение',
+      items: [
+        { text: 'Начало работы', link: '/ru/featury/getting-started' },
+      ]
+    },
+    {
+      text: 'Руководство',
+      items: [
+        { text: 'Действия', link: '/ru/featury/guide/actions' },
+        { text: 'Коллбеки', link: '/ru/featury/guide/callbacks' },
+        { text: 'Фичи', link: '/ru/featury/guide/features' },
+        { text: 'Информация', link: '/ru/featury/guide/info' },
+      ],
+    },
+    { text: 'Changelog', link: 'https://github.com/servactory/featury/blob/main/CHANGELOG.md' },
+    { text: 'Code of Conduct', link: 'https://github.com/servactory/featury/blob/main/CODE_OF_CONDUCT.md' },
+    { text: 'Contributing', link: 'https://github.com/servactory/featury/blob/main/CONTRIBUTING.md' },
+    { text: 'GitHub', link: 'https://github.com/servactory/featury' },
   ]
 }
 
