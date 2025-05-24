@@ -30,6 +30,7 @@ function nav(): DefaultTheme.NavItem[] {
     { text: 'Guide', link: '/getting-started' },
     // { text: 'Releases', link: '/releases/2.4' },
     { text: 'Datory', link: '/datory/getting-started', activeMatch: '/datory/' },
+    { text: 'Featury', link: '/featury/getting-started', activeMatch: '/featury/' },
     // { text: 'v1', link: 'https://v1.servactory.com' },
   ]
 }
@@ -40,6 +41,7 @@ function sidebar(): DefaultTheme.Sidebar {
     '/getting-started': { base: '', items: sidebarGuide() },
     '/guide/': { base: '', items: sidebarGuide() },
     '/datory/': { base: '', items: sidebarDatory() },
+    '/featury/': { base: '', items: sidebarFeatury() },
     // '/releases/': { base: '', items: sidebarReleases() },
   }
 }
@@ -151,6 +153,36 @@ function sidebarDatory(): DefaultTheme.SidebarItem[] {
     { text: 'Code of Conduct', link: 'https://github.com/servactory/datory/blob/main/CODE_OF_CONDUCT.md' },
     { text: 'Contributing', link: 'https://github.com/servactory/datory/blob/main/CONTRIBUTING.md' },
     { text: 'GitHub', link: 'https://github.com/servactory/datory' },
+  ]
+}
+
+function sidebarFeatury(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Servactory',
+      items: [
+        { text: 'Back to Servactory', link: '/getting-started' }
+      ]
+    },
+    {
+      text: 'Introduction',
+      items: [
+        { text: 'Getting Started', link: '/featury/getting-started' },
+      ]
+    },
+    {
+      text: 'Guide',
+      items: [
+        { text: 'Actions', link: '/featury/guide/actions' },
+        { text: 'Callbacks', link: '/featury/guide/callbacks' },
+        { text: 'Features', link: '/featury/guide/features' },
+        { text: 'Info', link: '/featury/guide/info' },
+      ],
+    },
+    { text: 'Changelog', link: 'https://github.com/servactory/featury/blob/main/CHANGELOG.md' },
+    { text: 'Code of Conduct', link: 'https://github.com/servactory/featury/blob/main/CODE_OF_CONDUCT.md' },
+    { text: 'Contributing', link: 'https://github.com/servactory/featury/blob/main/CONTRIBUTING.md' },
+    { text: 'GitHub', link: 'https://github.com/servactory/featury' },
   ]
 }
 
