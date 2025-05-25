@@ -51,7 +51,6 @@ export const sharedConfig = defineConfig({
     siteTitle: false,
 
     socialLinks: [
-      { icon: 'discord', link: 'https://discord.gg/q7rje6EfTy' },
       { icon: 'github', link: 'https://github.com/servactory/servactory' },
     ],
 
