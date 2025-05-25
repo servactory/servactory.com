@@ -39,10 +39,12 @@ bundle install
 ## Подготовка
 
 Для начала рекомендуется подготовить базовый класс для дальнейшего наследования.
-Этот базовый класс должен внутри себя содержать действия с интеграцией инструмента для фичей в проекте,
-например, Flipper, моделью ActiveRecord или с чем-нибудь другим.
+Этот базовый класс должен внутри себя содержать действия с интеграцией инструмента для фичей в проекте.
+Например, это может быть модель ActiveRecord, Flipper или что-нибудь другое.
 
-### Для Flipper
+### Модель ActiveRecord
+
+В качестве примера будет использоваться модель `FeatureFlag`.
 
 ::: code-group
 
@@ -50,19 +52,35 @@ bundle install
 module ApplicationFeature
   class Base < Featury::Base
     action :enabled? do |features:, **options|
-      features.all? { |feature| Flipper.enabled?(feature, *options.values) }
+      features.all? do |feature|
+        FeatureFlag
+          .find_or_create_by!(code: feature, actor: options[:user])
+          .enabled?
+      end
     end
 
     action :disabled? do |features:, **options|
-      features.any? { |feature| !Flipper.enabled?(feature, *options.values) }
+      features.any? do |feature|
+        !FeatureFlag
+          .find_or_create_by!(code: feature, actor: options[:user])
+          .enabled?
+      end
     end
 
     action :enable do |features:, **options|
-      features.all? { |feature| Flipper.enable(feature, *options.values) }
+      features.all? do |feature|
+        FeatureFlag
+          .find_or_create_by!(code: feature, actor: options[:user])
+          .update!(enabled: true)
+      end
     end
 
     action :disable do |features:, **options|
-      features.all? { |feature| Flipper.disable(feature, *options.values) }
+      features.all? do |feature|
+        FeatureFlag
+          .find_or_create_by!(code: feature, actor: options[:user])
+          .update!(enabled: false)
+      end
     end
 
     before do |action:, features:|
@@ -75,3 +93,5 @@ module ApplicationFeature
   end
 end
 ```
+
+:::

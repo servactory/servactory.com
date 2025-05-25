@@ -39,10 +39,12 @@ bundle install
 ## Preparation
 
 As a first step, it is recommended to prepare the base class for further inheritance.
-This base class should contain actions inside itself with integration of the feature tool in the project,
-for example, Flipper, ActiveRecord model or something else.
+This base class should contain actions within itself with the integration of the tool for features in the project.
+For example, it could be an ActiveRecord model, Flipper, or something else.
 
-### For Flipper
+### ActiveRecord model
+
+The `FeatureFlag` model will be used as an example.
 
 ::: code-group
 
@@ -50,19 +52,35 @@ for example, Flipper, ActiveRecord model or something else.
 module ApplicationFeature
   class Base < Featury::Base
     action :enabled? do |features:, **options|
-      features.all? { |feature| Flipper.enabled?(feature, *options.values) }
+      features.all? do |feature|
+        FeatureFlag
+          .find_or_create_by!(code: feature, actor: options[:user])
+          .enabled?
+      end
     end
 
     action :disabled? do |features:, **options|
-      features.any? { |feature| !Flipper.enabled?(feature, *options.values) }
+      features.any? do |feature|
+        !FeatureFlag
+          .find_or_create_by!(code: feature, actor: options[:user])
+          .enabled?
+      end
     end
 
     action :enable do |features:, **options|
-      features.all? { |feature| Flipper.enable(feature, *options.values) }
+      features.all? do |feature|
+        FeatureFlag
+          .find_or_create_by!(code: feature, actor: options[:user])
+          .update!(enabled: true)
+      end
     end
 
     action :disable do |features:, **options|
-      features.all? { |feature| Flipper.disable(feature, *options.values) }
+      features.all? do |feature|
+        FeatureFlag
+          .find_or_create_by!(code: feature, actor: options[:user])
+          .update!(enabled: false)
+      end
     end
 
     before do |action:, features:|
@@ -75,3 +93,5 @@ module ApplicationFeature
   end
 end
 ```
+
+:::
