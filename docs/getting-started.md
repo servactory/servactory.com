@@ -1,11 +1,11 @@
 ---
 title: Getting started
-description: Description and examples of use
+description: Requirements, conventions, installation and example of basic preparation
 prev: Why Servactory
 next: Service call and result of work
 ---
 
-# Getting started
+# Getting started with Servactory
 
 ## Conventions
 
