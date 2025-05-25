@@ -35,3 +35,43 @@ And execute:
 ```shell
 bundle install
 ```
+
+## Preparation
+
+As a first step, it is recommended to prepare the base class for further inheritance.
+This base class should contain actions inside itself with integration of the feature tool in the project,
+for example, Flipper, ActiveRecord model or something else.
+
+### For Flipper
+
+::: code-group
+
+```ruby [app/features/application_feature/base.rb]
+module ApplicationFeature
+  class Base < Featury::Base
+    action :enabled? do |features:, **options|
+      features.all? { |feature| Flipper.enabled?(feature, *options.values) }
+    end
+
+    action :disabled? do |features:, **options|
+      features.any? { |feature| !Flipper.enabled?(feature, *options.values) }
+    end
+
+    action :enable do |features:, **options|
+      features.all? { |feature| Flipper.enable(feature, *options.values) }
+    end
+
+    action :disable do |features:, **options|
+      features.all? { |feature| Flipper.disable(feature, *options.values) }
+    end
+
+    before do |action:, features:|
+      Slack::API::Notify.call!(action:, features:)
+    end
+
+    after :enabled?, :disabled? do |action:, features:|
+      Slack::API::Notify.call!(action:, features:)
+    end
+  end
+end
+```

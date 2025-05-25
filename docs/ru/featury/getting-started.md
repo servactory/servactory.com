@@ -35,3 +35,43 @@ gem "featury"
 ```shell
 bundle install
 ```
+
+## Подготовка
+
+Для начала рекомендуется подготовить базовый класс для дальнейшего наследования.
+Этот базовый класс должен внутри себя содержать действия с интеграцией инструмента для фичей в проекте,
+например, Flipper, моделью ActiveRecord или с чем-нибудь другим.
+
+### Для Flipper
+
+::: code-group
+
+```ruby [app/features/application_feature/base.rb]
+module ApplicationFeature
+  class Base < Featury::Base
+    action :enabled? do |features:, **options|
+      features.all? { |feature| Flipper.enabled?(feature, *options.values) }
+    end
+
+    action :disabled? do |features:, **options|
+      features.any? { |feature| !Flipper.enabled?(feature, *options.values) }
+    end
+
+    action :enable do |features:, **options|
+      features.all? { |feature| Flipper.enable(feature, *options.values) }
+    end
+
+    action :disable do |features:, **options|
+      features.all? { |feature| Flipper.disable(feature, *options.values) }
+    end
+
+    before do |action:, features:|
+      Slack::API::Notify.call!(action:, features:)
+    end
+
+    after :enabled?, :disabled? do |action:, features:|
+      Slack::API::Notify.call!(action:, features:)
+    end
+  end
+end
+```
