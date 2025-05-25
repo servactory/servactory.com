@@ -30,3 +30,33 @@ And execute:
 ```shell
 bundle install
 ```
+
+## Preparation
+
+As a first step, it is recommended to prepare the base class for further inheritance.
+
+### For DTOs
+
+::: code-group
+
+```ruby [app/dtos/application_dto/base.rb]
+module ApplicationDTO
+  class Base < Datory::Base
+  end
+end
+```
+
+:::
+
+### For forms
+
+::: code-group
+
+```ruby [app/forms/application_form/base.rb]
+module ApplicationForm
+  class Base < Datory::Base
+  end
+end
+```
+
+:::

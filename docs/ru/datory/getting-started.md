@@ -30,3 +30,33 @@ gem "datory"
 ```shell
 bundle install
 ```
+
+## Подготовка
+
+Для начала рекомендуется подготовить базовый класс для дальнейшего наследования.
+
+### Для DTO
+
+::: code-group
+
+```ruby [app/dtos/application_dto/base.rb]
+module ApplicationDTO
+  class Base < Datory::Base
+  end
+end
+```
+
+:::
+
+### Для форм
+
+::: code-group
+
+```ruby [app/forms/application_form/base.rb]
+module ApplicationForm
+  class Base < Datory::Base
+  end
+end
+```
+
+:::
