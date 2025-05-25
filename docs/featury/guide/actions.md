@@ -5,7 +5,7 @@ prev: false
 next: false
 ---
 
-# Actions
+# Actions of Featury
 
 To work with feature flags via Featury, need to create actions.
 Each action involves implementing logic over the names of the received feature flags and additional options.

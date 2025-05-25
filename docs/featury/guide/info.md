@@ -5,7 +5,7 @@ prev: false
 next: false
 ---
 
-# Info
+# Information about Featury object
 
 Information can be obtained about each Featury object.
 
