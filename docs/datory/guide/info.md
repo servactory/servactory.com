@@ -1,6 +1,6 @@
 ---
-title: Info — Datory
-description: Description and examples of use
+title: Information about Datory object
+description: Description and examples of using the method to obtain information about a Datory object
 prev: false
 next: false
 ---

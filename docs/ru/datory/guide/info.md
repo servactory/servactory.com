@@ -1,6 +1,6 @@
 ---
-title: Информация — Datory
-description: Описание и примеры использования
+title: Информация об объекте Datory
+description: Описание и примеры использования получения информации об объекте Datory
 prev: false
 next: false
 ---
