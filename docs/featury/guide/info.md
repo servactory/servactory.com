@@ -11,7 +11,7 @@ Information can be obtained about each Featury object.
 
 ## Method `info`
 
-```ruby [Пример]
+```ruby [Example]
 info = User::OnboardingFeature.info
 ```
 

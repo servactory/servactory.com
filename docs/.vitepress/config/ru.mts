@@ -174,7 +174,7 @@ function sidebarFeatury(): DefaultTheme.SidebarItem[] {
       text: 'Руководство',
       items: [
         { text: 'Действия', link: '/ru/featury/guide/actions' },
-        { text: 'Коллбеки', link: '/ru/featury/guide/callbacks' },
+        { text: 'Колбэки', link: '/ru/featury/guide/callbacks' },
         { text: 'Фичи', link: '/ru/featury/guide/features' },
         { text: 'Информация', link: '/ru/featury/guide/info' },
       ],
