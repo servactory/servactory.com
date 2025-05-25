@@ -1,11 +1,11 @@
 ---
-title: Getting started — Datory
-description: Description and examples of use
+title: Getting started with Featury
+description: Requirements, conventions, installation and example of basic preparation
 prev: false
 next: false
 ---
 
-# Getting started
+# Getting started with Featury
 
 ## Conventions
 
