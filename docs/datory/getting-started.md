@@ -1,11 +1,11 @@
 ---
-title: Getting started — Datory
-description: Description and examples of use
+title: Getting started with Datory
+description: Requirements, conventions, installation and example of basic preparation
 prev: false
 next: false
 ---
 
-# Getting started
+# Getting started with Datory
 
 ## Version support
 
