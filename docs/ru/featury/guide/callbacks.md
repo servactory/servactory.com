@@ -1,5 +1,5 @@
 ---
-title: Колбэк объекта Featury
+title: Колбэки объекта Featury
 description: Описание и примеры использования колбэков объекта Featury
 prev: false
 next: false
