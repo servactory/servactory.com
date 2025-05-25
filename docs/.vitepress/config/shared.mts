@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export const sharedConfig = defineConfig({
   title: "Servactory",
-  titleTemplate: ":title — Servactory",
+  titleTemplate: ":title | Servactory",
 
   head: [
     [
@@ -51,7 +51,6 @@ export const sharedConfig = defineConfig({
     siteTitle: false,
 
     socialLinks: [
-      { icon: 'discord', link: 'https://discord.gg/q7rje6EfTy' },
       { icon: 'github', link: 'https://github.com/servactory/servactory' },
     ],
 

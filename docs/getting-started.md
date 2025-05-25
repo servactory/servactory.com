@@ -1,15 +1,15 @@
 ---
 title: Getting started
-description: Description and examples of use
+description: Requirements, conventions, installation and example of basic preparation
 prev: Why Servactory
 next: Service call and result of work
 ---
 
-# Getting started
+# Getting started with Servactory
 
 ## Conventions
 
-- All services are subclasses of `Servactory::Base` and are located in the `app/services` directory. It is common practice to create and inherit from `ApplicationService::Base`, which is a subclass of `Servactory::Base`.
+- All services are subclasses of `Servactory::Base` and are located in the `app/services` directory. It is common practice to create and inherit from `ApplicationService::Base` class, which is a subclass of `Servactory::Base`.
 - Name services by what they do, not by what they accept. Use verbs in names. For example, `UsersService::Create` instead of `UsersService::Creation`.
 
 ## Version support
