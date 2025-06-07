@@ -27,7 +27,7 @@ next: false
 Add this to `Gemfile`:
 
 ```ruby
-gem "datory"
+gem "featury"
 ```
 
 And execute:
