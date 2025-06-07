@@ -1,15 +1,17 @@
 ---
-title: Information about Featury object
-description: Description and examples of using the method to obtain information about a Featury object
+title: Featury Object Information
+description: Description and examples of getting information about features in Featury
 prev: false
 next: false
 ---
 
-# Information about Featury object
+# Featury Object Information
 
-Information can be obtained about each Featury object.
+Featury provides methods for getting information about features and their structure. This can be useful for debugging, documentation, and validation.
 
-## Method `info`
+## `info` method
+
+The `info` method returns detailed information about a feature, including all feature flags and groups.
 
 ```ruby [Example]
 info = User::OnboardingFeature.info
@@ -18,5 +20,5 @@ info = User::OnboardingFeature.info
 ```ruby
 info.features # Feature flags of the current class.
 info.groups   # Feature flag groups of the current class.
-info.tree     # Tree of feature flags from the current class.
+info.tree     # Feature flag tree from the current class.
 ```

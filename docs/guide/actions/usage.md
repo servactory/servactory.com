@@ -1,21 +1,21 @@
 ---
-title: Using actions in service
-description: Description and examples of using actions (methods) in the service
-prev: Dynamic options
-next: Options for actions in service
+title: Using Actions in a Service
+description: Description and examples of using actions (methods) in a service
+prev: Dynamic Options
+next: Options for Actions in a Service
 ---
 
-# Using actions
+# Using Actions
 
-Actions in the service are sequential calls to methods.
+Actions in a service are sequential method calls.
 Service methods are called using the `make` method.
 
 ## Examples
 
 ### Minimal
 
-In its minimal form, calling methods via `make` is optional.
-The `call` method can be used instead.
+In its minimal form, calling methods through `make` is optional.
+Instead, you can use the `call` method.
 
 ```ruby
 class PostsService::Create < ApplicationService::Base
@@ -25,7 +25,7 @@ class PostsService::Create < ApplicationService::Base
 end
 ```
 
-### Several methods
+### Multiple Methods
 
 ```ruby{4-6,8,12,16}
 class PostsService::Create < ApplicationService::Base
@@ -51,15 +51,15 @@ end
 
 ## Options
 
-You can find out more about options in the [options](../actions/options) section.
+For more information about options, see the [options](../actions/options) section.
 
-## Group of multiple actions
+## Group of Multiple Actions
 
-You can find out more about a group of multiple actions (methods) in the [grouping](../actions/grouping) section.
+For more information about a group of multiple actions (methods), see the [grouping](../actions/grouping) section.
 
 ## Aliases for `make`
 
-Through the `action_aliases` configuration it is possible to add alternatives to the `make` method.
+You can add alternative options for the `make` method through the `action_aliases` configuration.
 
 ```ruby {2,5}
 configuration do
@@ -75,10 +75,10 @@ end
 
 ## Customization for `make`
 
-Add frequently used words that are used as prefixes in method names through the `action_shortcuts` configuration.
-It won't make the names of methods shorter, but that will shorten the lines using the `make` method and improve the readability of the service code, making it more expressive.
+Through the `action_shortcuts` configuration, you can add frequently used words that are used as prefixes in method names.
+The method names themselves won't become shorter, but this will allow you to shorten the lines with the `make` method and improve the readability of the service code, making it more expressive.
 
-### Simple mode
+### Simple Mode
 
 In simple mode, values are passed as an array of symbols.
 
@@ -110,18 +110,18 @@ class CMSService::API::Posts::Create < CMSService::API::Base
 end
 ```
 
-### Advanced mode <Badge type="tip" text="Since 2.14.0" />
+### Extended Mode <Badge type="tip" text="Since 2.14.0" />
 
-In advanced mode, values are passed as a hash.
+In extended mode, values are passed as a hash.
 
 ```ruby
 configuration do
   action_shortcuts(
     %i[assign],
     {
-      restrict: {           # replacement for make
-      prefix: :create,      # method name prefix
-      suffix: :restriction  # method name suffix
+      restrict: {             # replacement for make
+        prefix: :create,      # method name prefix
+        suffix: :restriction  # method name suffix
       }
     }
   )

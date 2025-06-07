@@ -1,6 +1,6 @@
 ---
 title: Сериализация — Datory
-description: Описание и примеры использования
+description: Описание и примеры использования сериализации в Datory
 prev: false
 next: false
 ---

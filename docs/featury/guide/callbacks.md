@@ -1,6 +1,6 @@
 ---
-title: Callbacks of the Featury object
-description: Description and examples of using callbacks of the Featury object
+title: Featury Object Callbacks
+description: Description and examples of using Featury object callbacks
 prev: false
 next: false
 ---

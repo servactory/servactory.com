@@ -1,6 +1,6 @@
 ---
 title: Десериализация — Datory
-description: Описание и примеры использования
+description: Описание и примеры использования десериализации в Datory
 prev: false
 next: false
 ---
