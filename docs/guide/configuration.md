@@ -1,17 +1,17 @@
 ---
 title: Configuration
 description: Description and examples of service configuration
-prev: Service failures and error handling
+prev: Failures and Error Handling
 next: RSpec
 ---
 
 # Configuration
 
-Services are configured through the `configuration` method, which can be placed, for example, in the base class.
+Services are configured through the `configuration` method, which can be located, for example, in the base class.
 
-## Configuration examples
+## Configuration Examples
 
-### For exceptions
+### For Exceptions
 
 ::: code-group
 
@@ -43,7 +43,7 @@ end
 
 :::
 
-### For result <Badge type="tip" text="Since 2.5.0" />
+### For Result <Badge type="tip" text="Since 2.5.0" />
 
 ::: code-group
 
@@ -67,7 +67,7 @@ end
 
 :::
 
-### Collection mode
+### Collection Mode
 
 ::: code-group
 
@@ -83,7 +83,7 @@ end
 
 :::
 
-### Hash mode
+### Hash Mode
 
 ::: code-group
 
@@ -101,7 +101,7 @@ end
 
 ### Helpers for `input`
 
-Custom helpers for `input` can be based on the `must` and `prepare` options.
+Custom helpers for `input` can be based on `must` and `prepare` options.
 
 #### Example with `must`
 
@@ -162,7 +162,7 @@ end
 
 ### Helpers for `internal`
 
-Custom helpers for `output` can be based on the `must` option.
+Custom helpers for `internal` can be based on the `must` option.
 
 #### Example with `must`
 
@@ -234,7 +234,7 @@ end
 
 ### Aliases for `make`
 
-The `action_aliases` configuration allows you to add alternatives to `make`.
+The `action_aliases` configuration allows adding alternative options for `make`.
 
 ::: code-group
 

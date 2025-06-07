@@ -1,17 +1,18 @@
 ---
-title: Dynamic options for attributes
+title: Dynamic Options for Attributes
 description: Description and examples of using dynamic options for all service attributes
-prev: Advanced options mode
-next: Using actions in service
+prev: Advanced Options Mode
+next: Using Actions in a Service
 ---
 
-# Dynamic options <Badge type="tip" text="Since 2.4.0" />
+# Dynamic Options <Badge type="tip" text="Since 2.4.0" />
 
-Dynamic options are additional `must`-based options that can take values as arguments.
+Dynamic options are additional options based on `must`
+that can accept values as arguments.
 Dynamic options are similar to [custom helpers](../attributes/input#custom),
-but what sets them apart is their ability to work with arguments.
+but what distinguishes them is the ability to work with arguments.
 
-Servactory out of the box provides the following set of dynamic options:
+Servactory provides the following set of dynamic options out of the box:
 
 - `consists_of`;
 - `format`;
@@ -22,26 +23,26 @@ Servactory out of the box provides the following set of dynamic options:
 - `schema`.
 
 By default, the following options are enabled: `consists_of`, `inclusion`, and `schema`.
-For the rest to work, you need to use ready-made sets in the configuration
-of option helpers for each of the existing attributes.
+To use the others, you need to apply ready-made sets in the option helpers configuration
+for each of the existing attributes.
 
-## Ready-made options
+## Ready-made Options
 
-### Option `consists_of` <Badge type="tip" text="Since 2.6.0" />
+### `consists_of` Option <Badge type="tip" text="Since 2.6.0" />
 
-- Kit: `Servactory::ToolKit::DynamicOptions::ConsistsOf`
+- Set: `Servactory::ToolKit::DynamicOptions::ConsistsOf`
 - Based on: `must`
 - Enabled by default: Yes
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/consists_of.rb)
 
-### Option `format`
+### `format` Option
 
-- Kit: `Servactory::ToolKit::DynamicOptions::Format`
+- Set: `Servactory::ToolKit::DynamicOptions::Format`
 - Based on: `must`
 - Enabled by default: No
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/format.rb)
 
-#### Supported formats
+#### Supported Formats
 
 - `uuid`;
 - `email`;
@@ -54,7 +55,7 @@ of option helpers for each of the existing attributes.
 
 #### Customization
 
-You can overwrite existing formats and add your own.
+You can override existing formats and add your own.
 To do this, use the `formats` attribute in the `use` method:
 
 ```ruby
@@ -63,12 +64,16 @@ Servactory::ToolKit::DynamicOptions::Format.use(
     email: {
       pattern: /@/,
       validator: ->(value:) { value.present? }
+    },
+    invoice: {
+      pattern: /^([A]{2})-([0-9A-Z]{6})$/,
+      validator: ->(value:) { value.present? }
     }
   }
 )
 ```
 
-#### Installation and usage
+#### Installation and Usage
 
 ::: code-group
 
@@ -107,21 +112,21 @@ output :data,
 
 :::
 
-### Option `inclusion` <Badge type="tip" text="Since 2.12.0" />
+### `inclusion` Option <Badge type="tip" text="Since 2.12.0" />
 
-- Kit: `Servactory::ToolKit::DynamicOptions::Inclusion`
+- Set: `Servactory::ToolKit::DynamicOptions::Inclusion`
 - Based on: `must`
 - Enabled by default: Yes
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/inclusion.rb)
 
-### Option `max`
+### `max` Option
 
-- Kit: `Servactory::ToolKit::DynamicOptions::Max`
+- Set: `Servactory::ToolKit::DynamicOptions::Max`
 - Based on: `must`
 - Enabled by default: No
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/max.rb)
 
-#### Installation and usage
+#### Installation and Usage
 
 ::: code-group
 
@@ -161,14 +166,14 @@ output :data,
 
 :::
 
-### Option `min`
+### `min` Option
 
-- Kit: `Servactory::ToolKit::DynamicOptions::Min`
+- Set: `Servactory::ToolKit::DynamicOptions::Min`
 - Based on: `must`
 - Enabled by default: No
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/min.rb)
 
-#### Installation and usage
+#### Installation and Usage
 
 ::: code-group
 
@@ -208,20 +213,20 @@ output :data,
 
 :::
 
-### Option `multiple_of`
+### `multiple_of` Option
 
-- Kit: `Servactory::ToolKit::DynamicOptions::MultipleOf`
+- Set: `Servactory::ToolKit::DynamicOptions::MultipleOf`
 - Based on: `must`
 - Enabled by default: No
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/multiple_of.rb)
 
-#### Installation and usage
+#### Installation and Usage
 
 ::: code-group
 
 ```ruby [Installation]
 input_option_helpers([
- Servactory::ToolKit::DynamicOptions::MultipleOf.use
+  Servactory::ToolKit::DynamicOptions::MultipleOf.use
 ])
 
 internal_option_helpers([
@@ -255,18 +260,19 @@ output :data,
 
 :::
 
-### Option `schema` <Badge type="tip" text="Since 2.12.0" />
+### `schema` Option <Badge type="tip" text="Since 2.12.0" />
 
-- Kit: `Servactory::ToolKit::DynamicOptions::Schema`
+- Set: `Servactory::ToolKit::DynamicOptions::Schema`
 - Based on: `must`
 - Enabled by default: Yes
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/schema.rb)
 
-## Custom options
+## Custom Options
 
 You can create your own dynamic options.
 
-Use the prepared template provided below to implement your own dynamic option.
+Use the prepared template provided below to implement
+your own dynamic option.
 
 It is recommended to place the class file in the
 `app/services/application_service/dynamic_options` directory of your project.
@@ -284,27 +290,27 @@ module ApplicationService
       end
 
       def condition_for_input_with(input:, value:, option:)
-        # There should be conditions here that are intended for the input attribute
+        # Here should be conditions intended for the input attribute
       end
 
       def condition_for_internal_with(internal:, value:, option:)
-        # There should be conditions here that are intended for the internal attribute
+        # Here should be conditions intended for the internal attribute
       end
 
       def condition_for_output_with(output:, value:, option:)
-        # There should be conditions here that are intended for the output attribute
+        # Here should be conditions intended for the output attribute
       end
 
       def message_for_input_with(service:, input:, value:, option_value:, **)
-        # There should be a message text here in case the condition is not met
+        # Here should be the message text in case the condition is not met
       end
 
       def message_for_internal_with(service:, internal:, value:, option_value:, **)
-        # There should be a message text here in case the condition is not met
+        # Here should be the message text in case the condition is not met
       end
 
       def message_for_output_with(service:, output:, value:, option_value:, **)
-        # There should be a message text here in case the condition is not met
+        # Here should be the message text in case the condition is not met
       end
     end
   end

@@ -1,15 +1,15 @@
 ---
-title: Advanced operating mode for attribute options
-description: Description and examples of using advanced operating modes of options for all service attributes
-prev: Options for service attributes
-next: Dynamic options
+title: Advanced Mode for Attribute Options
+description: Description and examples of using advanced modes for options of all service attributes
+prev: Options for Service Attributes
+next: Dynamic Options
 ---
 
-# Advanced mode
+# Advanced Mode
 
-Advanced mode involves more detailed work with the attribute option.
+Advanced mode implies more detailed work with an attribute option.
 
-## Option `required` <Badge type="info" text="input" />
+## `required` Option <Badge type="info" text="input" />
 
 ::: code-group
 
@@ -27,7 +27,7 @@ input :first_name,
 ::: info
 
 Before version `2.6.0`, `service_class_name:` was used instead of `service:`.
-In the `2.6.0` release, this attribute was replaced by `service:`,
+In release `2.6.0`, this attribute was replaced with `service:`,
 which is an object with prepared data.
 
 :::
@@ -46,11 +46,11 @@ input :first_name,
 
 :::
 
-## Option `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
+## `inclusion` Option <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 ::: info
 
-Since version `2.12.0` this option is [dynamic](../options/dynamic#option-inclusion).
+Since version `2.12.0`, this option is [dynamic](../options/dynamic#option-inclusion).
 
 :::
 
@@ -85,7 +85,7 @@ output :event_name,
 ::: info
 
 Before version `2.6.0`, `service_class_name:` was used instead of `service:`.
-In the `2.6.0` release, this attribute was replaced by `service:`,
+In release `2.6.0`, this attribute was replaced with `service:`,
 which is an object with prepared data.
 
 :::
@@ -127,11 +127,11 @@ output :event_name,
 
 :::
 
-## Option `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
+## `consists_of` Option <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 ::: info
 
-Since version `2.6.0` this option is [dynamic](../options/dynamic#option-consists-of).
+Since version `2.6.0`, this option is [dynamic](../options/dynamic#option-consists-of).
 
 :::
 
@@ -171,7 +171,7 @@ output :ids,
 ```ruby [input]
 input :ids,
       type: Array,
-      # The default array element type is String
+      # Array element type is String by default
       consists_of: {
         message: "ID can only be of String type"
       }
@@ -180,7 +180,7 @@ input :ids,
 ```ruby [internal]
 internal :ids,
          type: Array,
-         # The default array element type is String
+         # Array element type is String by default
          consists_of: {
            message: "ID can only be of String type"
          }
@@ -189,7 +189,7 @@ internal :ids,
 ```ruby [output]
 output :ids,
        type: Array,
-       # The default array element type is String
+       # Array element type is String by default
        consists_of: {
          message: "ID can only be of String type"
        }
@@ -197,11 +197,11 @@ output :ids,
 
 :::
 
-## Option `schema` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
+## `schema` Option <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 ::: info
 
-Since version `2.12.0` this option is [dynamic](../options/dynamic#option-schema).
+Since version `2.12.0`, this option is [dynamic](../options/dynamic#option-schema).
 
 :::
 
@@ -294,11 +294,11 @@ output :payload,
 
 :::
 
-## Option `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
+## `must` Option <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 ::: info
 
-The `must` option can work only in advanced mode.
+The `must` option can only work in advanced mode.
 
 :::
 
@@ -342,7 +342,7 @@ output :invoice_numbers,
 ::: info
 
 Before version `2.6.0`, `service_class_name:` was used instead of `service:`.
-In the `2.6.0` release, this attribute was replaced by `service:`,
+In release `2.6.0`, this attribute was replaced with `service:`,
 which is an object with prepared data.
 
 :::

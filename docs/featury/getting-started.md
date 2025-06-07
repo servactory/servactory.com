@@ -1,18 +1,28 @@
 ---
-title: Getting started with Featury
-description: Requirements, conventions, installation and example of basic preparation
+title: Getting Started with Featury
+description: Guide to installing and configuring Featury
 prev: false
 next: false
 ---
 
-# Getting started with Featury
+# Getting Started with Featury
 
-## Conventions
+## What is Featury?
 
-- All feature classes are subclasses of `Featury::Base` and are located in the `app/features` directory. It is common practice to create and inherit from `FeatureService::Base` class, which is a subclass of `Featury::Base`.
-- Name features based on the process they relate to. Use nouns in names and try to equate them with model names whenever possible. For example, name the feature class `User::OnboardingFeature` instead of `User::OnboardFeature`.
+Featury is a library for managing feature flags in Ruby/Rails applications. It provides a convenient API for working with feature flags and their groups.
 
-## Version support
+## Development Conventions
+
+Featury follows certain conventions to ensure code consistency:
+
+- All feature classes must inherit from `Featury::Base` and be placed in the `app/features` directory
+- It is recommended to create a base class `ApplicationFeature::Base` that inherits from `Featury::Base`
+- Feature names should reflect their belonging to the process
+- Use nouns in feature names (e.g., `User::OnboardingFeature` instead of `User::OnboardFeature`)
+
+## Version Support
+
+Featury supports the following Ruby and Rails versions:
 
 | Ruby/Rails  | 8.0 | 7.2 | 7.1 | 7.0 | 6.1 | 6.0 | 5.2 | 5.1 | 5.0 |
 |-------------|---|---|---|---|---|---|---|---|---|
@@ -24,33 +34,40 @@ next: false
 
 ## Installation
 
-Add this to `Gemfile`:
+### Adding the Gem
+
+Add Featury to your `Gemfile`:
 
 ```ruby
-gem "datory"
+gem "featury"
 ```
 
-And execute:
+### Installing Dependencies
+
+Run the command to install the gem:
 
 ```shell
 bundle install
 ```
 
-## Preparation
+## Environment Setup
 
-As a first step, it is recommended to prepare the base class for further inheritance.
-This base class should contain actions within itself with the integration of the tool for features in the project.
+### Creating a Base Class
+
+To start, it is recommended to prepare a base class for further inheritance.
+This base class should contain actions with integration of the feature tool in the project.
 For example, it could be an ActiveRecord model, Flipper, or something else.
 
-### ActiveRecord model
+### Example with ActiveRecord
 
-The `FeatureFlag` model will be used as an example.
+The `FeatureFlag` model will be used as an example:
 
 ::: code-group
 
 ```ruby [app/features/application_feature/base.rb]
 module ApplicationFeature
   class Base < Featury::Base
+    # Check if feature is enabled
     action :enabled? do |features:, **options|
       features.all? do |feature|
         FeatureFlag
@@ -59,6 +76,7 @@ module ApplicationFeature
       end
     end
 
+    # Check if feature is disabled
     action :disabled? do |features:, **options|
       features.any? do |feature|
         !FeatureFlag
@@ -67,6 +85,7 @@ module ApplicationFeature
       end
     end
 
+    # Enable feature
     action :enable do |features:, **options|
       features.all? do |feature|
         FeatureFlag
@@ -75,6 +94,7 @@ module ApplicationFeature
       end
     end
 
+    # Disable feature
     action :disable do |features:, **options|
       features.all? do |feature|
         FeatureFlag
@@ -83,10 +103,12 @@ module ApplicationFeature
       end
     end
 
+    # Hook before executing any action
     before do |action:, features:|
       Slack::API::Notify.call!(action:, features:)
     end
 
+    # Hook after executing enabled? and disabled? actions
     after :enabled?, :disabled? do |action:, features:|
       Slack::API::Notify.call!(action:, features:)
     end
@@ -95,3 +117,43 @@ end
 ```
 
 :::
+
+## Creating the First Feature
+
+### Feature Example
+
+```ruby
+class User::OnboardingFeature < ApplicationFeature::Base
+  # Prefix for feature flags
+  prefix :onboarding
+
+  # User resource
+  resource :user, type: User
+
+  # Condition for working with the feature
+  condition ->(resources:) { resources.user.onboarding_awaiting? }
+
+  # Set of feature flags
+  features :passage, :integration
+
+  # Groups of feature flags
+  groups BillingFeature,
+         PaymentSystemFeature
+end
+```
+
+### Usage
+
+```ruby
+# Check if feature is enabled
+User::OnboardingFeature.enabled?(user: current_user)
+
+# Enable feature
+User::OnboardingFeature.enable(user: current_user)
+
+# Check if feature is disabled
+User::OnboardingFeature.disabled?(user: current_user)
+
+# Disable feature
+User::OnboardingFeature.disable(user: current_user)
+```
