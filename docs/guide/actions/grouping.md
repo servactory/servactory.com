@@ -1,17 +1,17 @@
 ---
-title: Grouping actions in service
-description: Description and examples of grouping actions (methods) in service
-prev: Options for actions in service
-next: Early successful termination
+title: Grouping Actions in a Service
+description: Description and examples of grouping actions (methods) in a service
+prev: Options for Actions in a Service
+next: Early Successful Completion
 ---
 
-# Grouping actions
+# Grouping Actions
 
-You can use the `stage` method to group multiple methods into one execution group.
+You can group the execution of several methods using the `stage` method.
 
-:::info
+::: info
 
-Usage of the `position` option for `make` will sort only in `stage`.
+Using the `position` option for `make` will only sort within `stage`.
 
 :::
 
@@ -39,6 +39,8 @@ end
 
 ### Option `only_unless`
 
+The opposite of the `only_if` option.
+
 ```ruby {2}
 stage do
   only_unless ->(context:) { Settings.features.preview.disabled }
@@ -49,11 +51,9 @@ stage do
 end
 ```
 
-The opposite of the `only_if` option.
-
 ### Option `wrap_in`
 
-Group of methods in `stage` can be wrapped in something.
+The group of methods in `stage` can be wrapped in something.
 For example, it could be `ActiveRecord::Base.transaction` from Rails.
 
 ```ruby {2}
@@ -68,7 +68,7 @@ end
 
 ### Option `rollback`
 
-If an exception occurs in one of the methods in the group or in `wrap_in`, this can be handled using the `rollback` method.
+If an exception occurs in one of the methods in the group or in `wrap_in`, it can be handled using the `rollback` method.
 
 ```ruby {3,12}
 stage do

@@ -1,15 +1,19 @@
 ---
 title: Атрибуты — Datory
-description: Описание и примеры использования
+description: Описание и примеры использования атрибутов в Datory
 prev: false
 next: false
 ---
 
 # Атрибуты
 
-## Базовые
+Атрибуты в Datory позволяют определять структуру данных для сериализации и десериализации. Они поддерживают различные типы данных и опции для валидации.
+
+## Базовые атрибуты
 
 ### attribute
+
+Базовый метод для определения атрибута с полным контролем над типами и опциями.
 
 ::: code-group
 
@@ -25,6 +29,8 @@ attribute :uuid, from: [String, NilClass], to: :id, as: [String, NilClass], form
 
 ### string
 
+Хелпер для определения строкового атрибута.
+
 ::: code-group
 
 ```ruby [Обязательный]
@@ -38,6 +44,8 @@ string? :uuid, to: :id
 :::
 
 ### integer
+
+Хелпер для определения целочисленного атрибута с поддержкой диапазона значений.
 
 ::: code-group
 
@@ -53,6 +61,8 @@ integer? :rating, min: 1, max: 10
 
 ### float
 
+Хелпер для определения атрибута с плавающей точкой.
+
 ::: code-group
 
 ```ruby [Обязательный]
@@ -66,6 +76,8 @@ float? :rating
 :::
 
 ### boolean
+
+Хелпер для определения булевого атрибута.
 
 ::: code-group
 
@@ -94,9 +106,11 @@ boolean! :published
 
 О поддерживаемых значениях для `format` вы можете узнать [здесь](../../../guide/options/dynamic.md#опция-format).
 
-## Хелперы
+## Специальные хелперы
 
 ### uuid
+
+Хелпер для работы с UUID.
 
 ::: code-group
 
@@ -123,6 +137,8 @@ string? :id, format: :uuid
 :::
 
 ### money
+
+Хелпер для работы с денежными значениями.
 
 ::: code-group
 
@@ -152,6 +168,8 @@ string? :box_office_currency
 
 ### duration
 
+Хелпер для работы с длительностью.
+
 ::: code-group
 
 ```ruby [Пример]
@@ -177,6 +195,8 @@ attribute :episode_duration, from: [String, NilClass], as: [ActiveSupport::Durat
 :::
 
 ### date
+
+Хелпер для работы с датами.
 
 ::: code-group
 
@@ -204,6 +224,8 @@ attribute :premiered_on, from: [String, NilClass], as: [Date, NilClass], format:
 
 ### time
 
+Хелпер для работы со временем.
+
 ::: code-group
 
 ```ruby [Пример]
@@ -230,6 +252,8 @@ attribute :premiered_at, from: [String, NilClass], as: [Time, NilClass], format:
 
 ### datetime
 
+Хелпер для работы с датой и временем.
+
 ::: code-group
 
 ```ruby [Пример]
@@ -253,3 +277,4 @@ attribute :premiered_at, from: [String, NilClass], as: [DateTime, NilClass], for
 ```
 
 :::
+

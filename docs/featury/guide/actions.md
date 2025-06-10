@@ -5,17 +5,17 @@ prev: false
 next: false
 ---
 
-# Actions of Featury
+# Featury Actions
 
-To work with feature flags via Featury, need to create actions.
-Each action involves implementing logic over the names of the received feature flags and additional options.
+To work with feature flags via Featury, you need to create actions.
+Each action involves implementing logic for the names of the received feature flags and additional options.
 
 ## Example
 
-As an example, let's imagine that we have an ActiveRecord model that is responsible for all the project's feature flags.
-It's called `FeatureFlag`.
+As an example, let's imagine we have an ActiveRecord model responsible for all feature flags in the project.
+It is called `FeatureFlag`.
 
-Let's also imagine that working with feature flags in a project requires 4 actions:
+Also, let's assume that the project requires 4 actions to work with feature flags:
 
 - `enabled?`
 - `disabled?`

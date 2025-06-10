@@ -1,19 +1,19 @@
 ---
-title: Using options in attributes
+title: Using Options in Attributes
 description: Description and examples of using options for all service attributes
-prev: Service output attributes
-next: Advanced options mode
+prev: Output Attributes
+next: Advanced Options Mode
 ---
 
-# Using options in attributes
+# Using Options in Attributes
 
 ## Option `type` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
-This option is validation.
-It will check that the passed value corresponds to the specified type (class).
-The `is_a?` method is used.
+This option is for validation.
+It will check that the passed value matches the specified type (class).
+Uses the `is_a?` method.
 
-Always required to specify. May contain one or more classes.
+Always required. Must contain one or more classes.
 
 ::: code-group
 
@@ -50,9 +50,9 @@ end
 
 ## Option `required` <Badge type="info" text="input" />
 
-This option is validation.
+This option is for validation.
 It will check that the passed value is not empty.
-The `present?` method is used.
+Uses the `present?` method.
 
 By default, `required` is set to `true`.
 
@@ -78,8 +78,8 @@ end
 
 ## Option `default` <Badge type="info" text="input" />
 
-This option is not validation.
-It will assign a value to the attribute if one was not passed to the service.
+This option is not for validation.
+It will assign a value to the attribute if it was not passed to the service.
 
 ::: code-group
 
@@ -100,9 +100,9 @@ end
 
 ## Option `as` <Badge type="info" text="input" />
 
-This option is not validation.
-It will indicate the new name of the attribute to work within the service.
-The original name inside the service will no longer be available.
+This option is not for validation.
+It will specify a new name for the attribute to be used inside the service.
+The original name will become unavailable inside the service.
 
 ::: code-group
 
@@ -127,14 +127,14 @@ end
 
 ::: info
 
-Since version `2.12.0` this option is [dynamic](../options/dynamic#option-inclusion).
+Starting from version `2.12.0`, this option is [dynamic](../options/dynamic#inclusion-option).
 
 :::
 
-This option is validation.
+This option is for validation.
 This option is dynamic.
-It will check that the passed value is in the specified array.
-The `include?` method is used.
+It will check that the passed value is included in the specified array.
+Uses the `include?` method.
 
 ::: code-group
 
@@ -178,21 +178,21 @@ end
 
 ::: info
 
-Since version `2.6.0` this option is [dynamic](../options/dynamic#option-consists-of).
+Starting from version `2.6.0`, this option is [dynamic](../options/dynamic#consists-of-option).
 
 :::
 
-This option is validation.
+This option is for validation.
 This option is dynamic.
 It will check that each value in the collection matches the specified type (class).
 Checks nested values.
-The `is_a?` method is used.
+Uses the `is_a?` method.
 
 Works only with `Array` and `Set` types.
-You can add a custom type through the [`collection_mode_class_names`](../configuration#collection-mode) configuration.
+You can add your own type through the [`collection_mode_class_names`](../configuration#collection-mode) configuration.
 
-Explicit use of this option is optional.
-The default value is `String`.
+Explicit use of this option is not required.
+By default, it is set to `String`.
 
 ::: code-group
 
@@ -220,19 +220,19 @@ output :ids,
 
 ::: info
 
-Since version `2.12.0` this option is [dynamic](../options/dynamic#option-schema).
+Starting from version `2.12.0`, this option is [dynamic](../options/dynamic#schema-option).
 
 :::
 
-This option is validation.
+This option is for validation.
 This option is dynamic.
-Requires a hash value that must describe the value structure of the output attribute.
+Requires a hash value that should describe the structure of the attribute value.
 
-Only works with the `Hash` type.
-You can add a custom type through the [`hash_mode_class_names`](../configuration#hash-mode) configuration.
+Works only with the `Hash` type.
+You can add your own type through the [`hash_mode_class_names`](../configuration#hash-mode) configuration.
 
-Explicit use of this option is optional.
-If the schema value is not specified, the validation will be skipped.
+Explicit use of this option is not required.
+If the schema value is not specified, validation will be skipped.
 By default, no value is specified.
 
 ::: code-group
@@ -302,7 +302,7 @@ output :payload,
 
 :::
 
-Each expected hash key must be described in the following format:
+Each expected hash key should be described in this format:
 
 ```ruby
 {
@@ -310,14 +310,14 @@ Each expected hash key must be described in the following format:
 }
 ```
 
-The following options are allowed: mandatory `type`, `required` and optional `default`, `prepare`.
+The following options are allowed: required `type`, `required` and optional `default`, `prepare`.
 
-If the `type` value is `Hash`, then nesting can be described in the same format.
+If `Hash` is specified as the `type` value, then you can describe nesting in the same format.
 
 ## Option `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
-This option is validation.
-Allows you to create your own validations.
+This option is for validation.
+Allows you to create custom validations.
 
 ::: code-group
 
@@ -374,35 +374,37 @@ end
 
 ## Option `format` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
-This option is validation.
-This option is dynamic and is not part of the main options.
+This option is for validation.
+This option is dynamic and is not part of the core options set.
 
-[More information](./dynamic#option-format)
+[Learn more](./dynamic#format-option)
 
 ## Option `max` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
-This option is validation.
-This option is dynamic and is not part of the main options.
+This option is for validation.
+This option is dynamic and is not part of the core options set.
 
-[More information](./dynamic#option-max)
+[Learn more](./dynamic#max-option)
 
 ## Option `min` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
-This option is validation.
-This option is dynamic and is not part of the main options.
+This option is for validation.
+This option is dynamic and is not part of the core options set.
 
-[More information](./dynamic#option-min)
+[Learn more](./dynamic#min-option)
+
+:::
 
 ## Option `prepare` <Badge type="info" text="input" />
 
-This option is not validation.
+This option is not for validation.
 It is used to prepare the passed value.
 
 ::: warning
 
 Use the `prepare` option carefully and only for simple preparatory actions.
 For example, as shown below.
-Any logic that is more complex than that in the example below is better applied through the [`make`](../actions/usage) action.
+Any logic that is more complex than the example below should be implemented through the [`make`](../actions/usage) action.
 
 :::
 

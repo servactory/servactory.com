@@ -1,20 +1,20 @@
 ---
 title: Extensions
-description: Description and examples of implementation of custom extensions
+description: Description and examples of implementing custom extensions
 prev: RSpec
 next: Internationalization (I18n)
 ---
 
 # Extensions <Badge type="tip" text="Since 2.0.0" />
 
-You can expand the basic functionality by adding your own extensions.
+You can extend the base functionality by adding your own extensions.
 
 It is recommended to create extensions in the `app/services/application_service/extensions` directory.
 Also, as a recommendation, create extensions in their own directory.
 
-## Example of implementation
+## Implementation Example
 
-### Connecting
+### Connection
 
 You can add extensions using the `with_extensions` method.
 
@@ -34,7 +34,7 @@ end
 
 :::
 
-### Extension code
+### Extension Code
 
 ::: code-group
 

@@ -1,15 +1,15 @@
 ---
-title: Service failures and error handling
-description: Description and examples of use of service failures
-prev: Early successful termination
+title: Failure and Error Handling
+description: Description and examples of using service failures and errors
+prev: Early Successful Completion
 next: Configuration
 ---
 
-# Failure and error handling
+# Failure and Error Handling
 
-## Description of methods and exceptions
+## Description of Methods and Exceptions
 
-The service can be terminated prematurely by calling one of these methods:
+The service execution can be terminated prematurely by calling one of these methods:
 
 - `fail_input!`;
 - `fail_internal!`;
@@ -17,38 +17,38 @@ The service can be terminated prematurely by calling one of these methods:
 - `fail!`;
 - `fail_result!`.
 
-These methods will in turn throw an exception.
+These methods will in turn raise an exception.
 
-From the list above, only the following methods can be processed after being called via `call`:
+From the list above, only the following methods can be handled after calling via `call`:
 
 - `fail!`;
 - `fail_result!`.
 
-The remaining methods will always throw an exception.
+The other methods will always raise an exception.
 
-In addition, there are automatic checks for input, internal and output attributes.
-In case of, for example, validation problems with these attributes, the corresponding exception will also be raised.
-This behavior will be identical to what happens when these methods are called:
+In addition, there are automatic checks for input, internal, and output attributes.
+In case of validation issues with these attributes, the corresponding exception will also be raised.
+This behavior will be identical to what happens when calling these methods:
 
 - `fail_input!`;
 - `fail_internal!`;
 - `fail_output!`.
 
-There may be logic inside the service that will throw its own exceptions.
-For example, this could be `ActiveRecord::RecordInvalid`.
+The service may contain logic that will raise its own exceptions.
+For example, it could be `ActiveRecord::RecordInvalid`.
 For such cases, the `fail_on!` method was developed at the class level.
 
 ## Methods
 
 ### Method `fail_input!`
 
-Designed to throw an exception on behalf of the input attribute.
+Designed to raise an exception on behalf of an input attribute.
 
-The `fail_input!` method allows you to pass the error text,
+The `fail_input!` method allows you to pass an error message,
 additional information through the `meta` attribute,
-and also requires you to specify the name of the input attribute.
+and requires specifying the name of the input attribute.
 
-Any call to the service will throw an exception with the class `ApplicationService::Exceptions::Input`.
+When calling the service, an exception with the class `ApplicationService::Exceptions::Input` will be raised.
 
 ```ruby{6}
 make :check!
@@ -66,7 +66,7 @@ def check!
 end
 ```
 
-Example of information that the exception `ApplicationService::Exceptions::Input` might provide:
+Example of information that can be provided by the `ApplicationService::Exceptions::Input` exception:
 
 ```ruby
 exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
@@ -78,13 +78,13 @@ exception.meta              # => {:received_invoice_number=>"BB-7650AE"}
 
 ### Method `fail_internal!`
 
-Designed to throw an exception on behalf of the internal attribute.
+Designed to raise an exception on behalf of an internal attribute.
 
-The `fail_internal!` method allows you to pass the error text,
+The `fail_internal!` method allows you to pass an error message,
 additional information through the `meta` attribute,
-and also requires you to specify the name of the internal attribute.
+and requires specifying the name of the internal attribute.
 
-Any call to the service will throw an exception with the class `ApplicationService::Exceptions::Internal`.
+When calling the service, an exception with the class `ApplicationService::Exceptions::Internal` will be raised.
 
 ```ruby{6}
 make :check!
@@ -102,7 +102,7 @@ def check!
 end
 ```
 
-Example of information that the exception `ApplicationService::Exceptions::Internal` might provide:
+Example of information that can be provided by the `ApplicationService::Exceptions::Internal` exception:
 
 ```ruby
 exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
@@ -114,13 +114,13 @@ exception.meta              # => {:received_invoice_number=>"BB-7650AE"}
 
 ### Method `fail_output!`
 
-Designed to throw an exception on behalf of the output attribute.
+Designed to raise an exception on behalf of an output attribute.
 
-The `fail_output!` method allows you to pass the error text,
+The `fail_output!` method allows you to pass an error message,
 additional information through the `meta` attribute,
-and also requires you to specify the name of the output attribute.
+and requires specifying the name of the output attribute.
 
-Any call to the service will throw an exception with the class `ApplicationService::Exceptions::Output`.
+When calling the service, an exception with the class `ApplicationService::Exceptions::Output` will be raised.
 
 ```ruby{6}
 make :check!
@@ -138,7 +138,7 @@ def check!
 end
 ```
 
-Example of information that the exception `ApplicationService::Exceptions::Output` might provide:
+Example of information that can be provided by the `ApplicationService::Exceptions::Output` exception:
 
 ```ruby
 exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
@@ -152,14 +152,14 @@ exception.meta              # => {:received_invoice_number=>"BB-7650AE"}
 
 Designed to describe custom errors.
 
-The `fail!` method allows you to pass the error text,
+The `fail!` method allows you to pass an error message,
 additional information through the `meta` attribute,
-and also allows you to specify `type`.
+and allows you to specify `type`.
 
-By default, `type` is `base`, but you can pass any value for further processing.
+By default, `type` has the value `base`, but you can pass any value for further processing.
 
-When calling a service through the `call!` method, an exception with the class `Servactory::Exceptions::Failure` will be thrown.
-When calling a method via the `call` method, the error will be logged and available in the `Result`.
+When calling the service via the `call!` method, an exception with the class `Servactory::Exceptions::Failure` will be raised.
+When calling the method via the `call` method, the error will be recorded and available in `Result`.
 
 ```ruby{6}
 make :check!
@@ -194,7 +194,7 @@ exception.meta              # => {:invoice_number=>"BB-7650AE"}
 
 Requires `Result` and internally calls the `fail!` method.
 
-Designed for shorthand writing of code for passing an error from one service to the current one.
+Designed for concise code writing to pass an error from one service to the current one.
 For example, from an API service to an application service.
 
 ```ruby
@@ -213,13 +213,13 @@ fail!(
 
 ### Method `fail_on!` <Badge type="tip" text="Since 2.5.0" />
 
-Intended to catch specified exceptions.
+Designed to catch specified exceptions.
 
-The `fail_on!` method allows you to pass the class of the exception or exceptions,
-and also allows you to customize the text of the message.
+The `fail_on!` method allows you to pass an exception class or classes,
+and also allows you to customize the message text.
 
-Instead of the specified exceptions, the `fail!` method call will be used.
-Information about the original exception will be passed to the `fail!` method via `meta`.
+Instead of the specified exceptions, the `fail!` method will be used.
+Information about the original exception will be passed to the `fail!` method through `meta`.
 
 #### Usage
 
@@ -234,7 +234,7 @@ module ApplicationService
 end
 ```
 
-If you need to customize the text of the message, you can do it as follows:
+If you need to customize the message text, you can do it like this:
 
 ```ruby
 fail_on! ActiveRecord::RecordNotFound,

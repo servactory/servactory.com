@@ -96,7 +96,6 @@ class User::OnboardingFeature < ApplicationFeature
 
   features :passage # [!code focus]
 end
-
 ```
 
 ```ruby [Several]
@@ -143,3 +142,4 @@ class User::OnboardingFeature < ApplicationFeature
   groups BillingFeature, # [!code focus]
          PaymentSystemFeature # [!code focus]
 end
+```
