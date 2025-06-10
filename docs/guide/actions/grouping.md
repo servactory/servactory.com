@@ -23,7 +23,7 @@ stage do
 end
 ```
 
-### `only_if` Option
+### Option `only_if`
 
 Before calling methods inside `stage`, the condition described in `only_if` will be checked.
 
@@ -37,7 +37,7 @@ stage do
 end
 ```
 
-### `only_unless` Option
+### Option `only_unless`
 
 The opposite of the `only_if` option.
 
@@ -51,7 +51,7 @@ stage do
 end
 ```
 
-### `wrap_in` Option
+### Option `wrap_in`
 
 The group of methods in `stage` can be wrapped in something.
 For example, it could be `ActiveRecord::Base.transaction` from Rails.
@@ -66,7 +66,7 @@ stage do
 end
 ```
 
-### `rollback` Option
+### Option `rollback`
 
 If an exception occurs in one of the methods in the group or in `wrap_in`, it can be handled using the `rollback` method.
 

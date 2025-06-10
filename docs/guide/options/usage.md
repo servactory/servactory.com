@@ -7,7 +7,7 @@ next: Advanced Options Mode
 
 # Using Options in Attributes
 
-## `type` Option <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
+## Option `type` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
 This option is for validation.
 It will check that the passed value matches the specified type (class).
@@ -48,7 +48,7 @@ end
 
 :::
 
-## `required` Option <Badge type="info" text="input" />
+## Option `required` <Badge type="info" text="input" />
 
 This option is for validation.
 It will check that the passed value is not empty.
@@ -76,7 +76,7 @@ end
 
 :::
 
-## `default` Option <Badge type="info" text="input" />
+## Option `default` <Badge type="info" text="input" />
 
 This option is not for validation.
 It will assign a value to the attribute if it was not passed to the service.
@@ -98,7 +98,7 @@ end
 
 :::
 
-## `as` Option <Badge type="info" text="input" />
+## Option `as` <Badge type="info" text="input" />
 
 This option is not for validation.
 It will specify a new name for the attribute to be used inside the service.
@@ -123,7 +123,7 @@ end
 
 :::
 
-## `inclusion` Option <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
+## Option `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 ::: info
 
@@ -174,7 +174,7 @@ end
 
 :::
 
-## `consists_of` Option <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
+## Option `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 ::: info
 
@@ -216,7 +216,7 @@ output :ids,
 
 :::
 
-## `schema` Option <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
+## Option `schema` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 ::: info
 
@@ -314,7 +314,7 @@ The following options are allowed: required `type`, `required` and optional `def
 
 If `Hash` is specified as the `type` value, then you can describe nesting in the same format.
 
-## `must` Option <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
+## Option `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 This option is for validation.
 Allows you to create custom validations.
@@ -372,21 +372,21 @@ end
 
 :::
 
-## `format` Option <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
+## Option `format` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
 This option is for validation.
 This option is dynamic and is not part of the core options set.
 
 [Learn more](./dynamic#format-option)
 
-## `max` Option <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
+## Option `max` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
 This option is for validation.
 This option is dynamic and is not part of the core options set.
 
 [Learn more](./dynamic#max-option)
 
-## `min` Option <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
+## Option `min` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
 This option is for validation.
 This option is dynamic and is not part of the core options set.
@@ -395,7 +395,7 @@ This option is dynamic and is not part of the core options set.
 
 :::
 
-## `prepare` Option <Badge type="info" text="input" />
+## Option `prepare` <Badge type="info" text="input" />
 
 This option is not for validation.
 It is used to prepare the passed value.

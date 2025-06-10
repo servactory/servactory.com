@@ -28,14 +28,14 @@ for each of the existing attributes.
 
 ## Ready-made Options
 
-### `consists_of` Option <Badge type="tip" text="Since 2.6.0" />
+### Option `consists_of` <Badge type="tip" text="Since 2.6.0" />
 
 - Set: `Servactory::ToolKit::DynamicOptions::ConsistsOf`
 - Based on: `must`
 - Enabled by default: Yes
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/consists_of.rb)
 
-### `format` Option
+### Option `format`
 
 - Set: `Servactory::ToolKit::DynamicOptions::Format`
 - Based on: `must`
@@ -112,14 +112,14 @@ output :data,
 
 :::
 
-### `inclusion` Option <Badge type="tip" text="Since 2.12.0" />
+### Option `inclusion` <Badge type="tip" text="Since 2.12.0" />
 
 - Set: `Servactory::ToolKit::DynamicOptions::Inclusion`
 - Based on: `must`
 - Enabled by default: Yes
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/inclusion.rb)
 
-### `max` Option
+### Option `max`
 
 - Set: `Servactory::ToolKit::DynamicOptions::Max`
 - Based on: `must`
@@ -166,7 +166,7 @@ output :data,
 
 :::
 
-### `min` Option
+### Option `min`
 
 - Set: `Servactory::ToolKit::DynamicOptions::Min`
 - Based on: `must`
@@ -213,7 +213,7 @@ output :data,
 
 :::
 
-### `multiple_of` Option
+### Option `multiple_of`
 
 - Set: `Servactory::ToolKit::DynamicOptions::MultipleOf`
 - Based on: `must`
@@ -260,7 +260,7 @@ output :data,
 
 :::
 
-### `schema` Option <Badge type="tip" text="Since 2.12.0" />
+### Option `schema` <Badge type="tip" text="Since 2.12.0" />
 
 - Set: `Servactory::ToolKit::DynamicOptions::Schema`
 - Based on: `must`

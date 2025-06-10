@@ -40,7 +40,7 @@ For such cases, the `fail_on!` method was developed at the class level.
 
 ## Methods
 
-### `fail_input!` Method
+### Method `fail_input!`
 
 Designed to raise an exception on behalf of an input attribute.
 
@@ -76,7 +76,7 @@ exception.input_name        # => :invoice_number
 exception.meta              # => {:received_invoice_number=>"BB-7650AE"}
 ```
 
-### `fail_internal!` Method
+### Method `fail_internal!`
 
 Designed to raise an exception on behalf of an internal attribute.
 
@@ -112,7 +112,7 @@ exception.internal_name     # => :invoice_number
 exception.meta              # => {:received_invoice_number=>"BB-7650AE"}
 ```
 
-### `fail_output!` Method
+### Method `fail_output!`
 
 Designed to raise an exception on behalf of an output attribute.
 
@@ -148,7 +148,7 @@ exception.output_name       # => :invoice_number
 exception.meta              # => {:received_invoice_number=>"BB-7650AE"}
 ```
 
-### `fail!` Method
+### Method `fail!`
 
 Designed to describe custom errors.
 
@@ -190,7 +190,7 @@ exception.type              # => :base
 exception.meta              # => {:invoice_number=>"BB-7650AE"}
 ```
 
-### `fail_result!` Method <Badge type="tip" text="Since 2.1.0" />
+### Method `fail_result!` <Badge type="tip" text="Since 2.1.0" />
 
 Requires `Result` and internally calls the `fail!` method.
 
@@ -211,7 +211,7 @@ fail!(
 )
 ```
 
-### `fail_on!` Method <Badge type="tip" text="Since 2.5.0" />
+### Method `fail_on!` <Badge type="tip" text="Since 2.5.0" />
 
 Designed to catch specified exceptions.
 

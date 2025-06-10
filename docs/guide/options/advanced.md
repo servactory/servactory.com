@@ -9,7 +9,7 @@ next: Dynamic Options
 
 Advanced mode implies more detailed work with an attribute option.
 
-## `required` Option <Badge type="info" text="input" />
+## Option `required` <Badge type="info" text="input" />
 
 ::: code-group
 
@@ -46,7 +46,7 @@ input :first_name,
 
 :::
 
-## `inclusion` Option <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
+## Option `inclusion` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 ::: info
 
@@ -127,7 +127,7 @@ output :event_name,
 
 :::
 
-## `consists_of` Option <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
+## Option `consists_of` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 ::: info
 
@@ -197,7 +197,7 @@ output :ids,
 
 :::
 
-## `schema` Option <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
+## Option `schema` <Badge type="info" text="input (^2.0.0)" /> <Badge type="info" text="internal (^2.0.0)" /> <Badge type="info" text="output (^2.0.0)" />
 
 ::: info
 
@@ -294,7 +294,7 @@ output :payload,
 
 :::
 
-## `must` Option <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
+## Option `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
 ::: info
 
