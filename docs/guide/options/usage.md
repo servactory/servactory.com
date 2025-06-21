@@ -311,8 +311,9 @@ Each expected hash key must be described in the following format:
 ```
 
 The following options are allowed: mandatory `type`, `required` and optional `default`, `prepare`.
+The `default` and `prepare` options are only available when used within `input`.
 
-If the `type` value is `Hash`, then nesting can be described in the same format.
+If `type` also specifies a `Hash` value, then nesting can be described in the same format.
 
 ## Option `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 

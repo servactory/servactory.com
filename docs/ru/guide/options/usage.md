@@ -311,8 +311,9 @@ output :payload,
 ```
 
 Допускаются следующие опции: обязательные `type`, `required` и опциональные `default`, `prepare`.
+Опции `default` и `prepare` доступны только при использовании внутри `input`.
 
-Если в `type` указывается значение `Hash`, то можно описать вложенность в таком же формате.
+Если в `type` также указывается значение `Hash`, то можно описать вложенность в таком же формате.
 
 ## Опция `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
