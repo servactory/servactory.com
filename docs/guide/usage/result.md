@@ -71,22 +71,26 @@ You can learn more about the unsuccessful operation of the service [here](../exc
 
 ## Result processing
 
-After calling a service via `call`, you can process its result.
+After calling a service via `call`, you must process its result.
 
 There are two options for this - using the `success?` and `failure?` methods or using the `on_success` and `on_failure` hooks.
 
 ### Methods
 
+#### Method `success?`
+
 ```ruby
 service_result = NotificatorService::Slack::Error::Send.call(...)
 
-return if service_result.success? # or `unless service_result.failure?`
+return if service_result.success?
 
 fail!(
-  message: "The message was not sent to Slack", 
+  message: "The message was not sent to Slack",
   meta: { reason: service_result.error.message }
 )
 ```
+
+#### Method `failure?`
 
 You can pass a type to the `failure?` method. You can find out more about the types [here](../exceptions/failure#method-fail).
 This gives you the opportunity to specify the type you are interested in when handling a failed result.
@@ -95,10 +99,43 @@ By default, `type` is `all`, which means any type fails, including your own type
 ```ruby
 service_result = NotificatorService::Slack::Error::Send.call(...)
 
-return unless service_result.failure?(:all)
+return unless service_result.failure?
 
 fail!(
   message: "The message was not sent to Slack", 
+  meta: { reason: service_result.error.message }
+)
+```
+
+You can also check for a specific failure type, for example, `validation`.
+
+```ruby
+service_result = NotificatorService::Slack::Error::Send.call(...)
+
+return unless service_result.failure?(:validation)
+
+fail!(
+    message: "The message was not sent to Slack",
+    meta: { reason: service_result.error.message }
+)
+```
+
+For convenience in checking failure types, you can also use predicate methods.
+
+::: warning
+
+Note that `Result` contains output attributes that also have predicate methods.
+Avoid conflicts.
+
+:::
+
+```ruby
+service_result = NotificatorService::Slack::Error::Send.call(...)
+
+return unless service_result.all?
+
+fail!(
+  message: "The message was not sent to Slack",
   meta: { reason: service_result.error.message }
 )
 ```
