@@ -71,11 +71,13 @@ service_result.error
 
 ## Обработка результата
 
-После вызова сервиса через `call` вы можете обработать его результат.
+После вызова сервиса через `call` вы должны обработать его результат.
 
 Для этого существует два варианта — при помощи методов `success?` и `failure?` или при помощи хуков `on_success` и `on_failure`.
 
 ### Методы
+
+#### Метод `success?`
 
 ```ruby
 service_result = NotificatorService::Slack::Error::Send.call(...)
@@ -83,10 +85,12 @@ service_result = NotificatorService::Slack::Error::Send.call(...)
 return if service_result.success? # или `unless service_result.failure?`
 
 fail!(
-  message: "The message was not sent to Slack", 
+  message: "The message was not sent to Slack",
   meta: { reason: service_result.error.message }
 )
 ```
+
+#### Метод `failure?`
 
 В метод `failure?` можно передать тип. Подробнее про типы вы можете узнать [здесь](../exceptions/failure#метод-fail).
 Это дает возможность указать интересующий вас тип при обработке неудачного результата.
@@ -95,10 +99,43 @@ fail!(
 ```ruby
 service_result = NotificatorService::Slack::Error::Send.call(...)
 
-return unless service_result.failure?(:all)
+return unless service_result.failure?
 
 fail!(
   message: "The message was not sent to Slack", 
+  meta: { reason: service_result.error.message }
+)
+```
+
+Также можно проверить конкретный тип неудачи, например, `validation`.
+
+```ruby
+service_result = NotificatorService::Slack::Error::Send.call(...)
+
+return unless service_result.failure?(:validation)
+
+fail!(
+    message: "The message was not sent to Slack",
+    meta: { reason: service_result.error.message }
+)
+```
+
+Для удобства проверки типов неудач можно также использовать методы предикаты.
+
+::: warning
+
+Учтите что в `Result` присутствуют выходящие атрибуты, которые также имеют методы предикаты.
+Избегайте конфликтов.
+
+:::
+
+```ruby
+service_result = NotificatorService::Slack::Error::Send.call(...)
+
+return unless service_result.all?
+
+fail!(
+  message: "The message was not sent to Slack",
   meta: { reason: service_result.error.message }
 )
 ```
