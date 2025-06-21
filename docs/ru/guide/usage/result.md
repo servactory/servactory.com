@@ -82,7 +82,7 @@ service_result.error
 ```ruby
 service_result = NotificatorService::Slack::Error::Send.call(...)
 
-return if service_result.success? # или `unless service_result.failure?`
+return if service_result.success?
 
 fail!(
   message: "The message was not sent to Slack",
