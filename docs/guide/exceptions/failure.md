@@ -161,6 +161,10 @@ By default, `type` is `base`, but you can pass any value for further processing.
 When calling a service through the `call!` method, an exception with the class `Servactory::Exceptions::Failure` will be thrown.
 When calling a method via the `call` method, the error will be logged and available in the `Result`.
 
+#### Examples
+
+Minimal example with default type:
+
 ```ruby{6}
 make :check!
 
@@ -170,6 +174,8 @@ def check!
   fail!(message: "Invalid invoice number")
 end
 ```
+
+Extended example with default type and metadata:
 
 ```ruby{2,4-6}
 fail!(
@@ -181,6 +187,25 @@ fail!(
 )
 ```
 
+Example with custom `validation` type and metadata:
+
+```ruby{7,9-12}
+make :check!
+
+def check!
+  return if inputs.email.include?("@")
+
+  fail!(
+    :validation,
+    message: "Email must contain @ symbol",
+    meta: {
+      field: :email,
+      provided_value: inputs.email
+    }
+  )
+end
+```
+
 Example of information that will be provided:
 
 ```ruby
@@ -188,6 +213,15 @@ exception.detailed_message  # => Invalid invoice number (ApplicationService::Exc
 exception.message           # => Invalid invoice number
 exception.type              # => :base
 exception.meta              # => {:invoice_number=>"BB-7650AE"}
+```
+
+For the example with `validation` type:
+
+```ruby
+exception.detailed_message  # => Email must contain @ symbol (ApplicationService::Exceptions::Failure)
+exception.message           # => Email must contain @ symbol
+exception.type              # => :validation
+exception.meta              # => {:field=>:email, :provided_value=>"user.example.com"}
 ```
 
 ### Method `fail_result!` <Badge type="tip" text="Since 2.1.0" />
