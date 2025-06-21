@@ -161,6 +161,10 @@ exception.meta              # => {:received_invoice_number=>"BB-7650AE"}
 При вызове сервиса через метод `call!` будет вызвано исключение с классом `Servactory::Exceptions::Failure`.
 При вызове метода через метод `call` ошибка будет зафиксирована и доступна в `Result`.
 
+#### Примеры
+
+Минимальный пример с типом по умолчанию:
+
 ```ruby{6}
 make :check!
 
@@ -170,6 +174,8 @@ def check!
   fail!(message: "Invalid invoice number")
 end
 ```
+
+Расширенный пример с типом по умолчанию и метаданными:
 
 ```ruby{2,4-6}
 fail!(
@@ -181,6 +187,25 @@ fail!(
 )
 ```
 
+Пример с пользовательским типом `validation` и метаданными:
+
+```ruby{7,9-12}
+make :check!
+
+def check!
+  return if inputs.email.include?("@")
+
+  fail!(
+    :validation,
+    message: "Email must contain @ symbol",
+    meta: {
+      field: :email,
+      provided_value: inputs.email
+    }
+  )
+end
+```
+
 Пример информации, которая будет предоставлена:
 
 ```ruby
@@ -188,6 +213,15 @@ exception.detailed_message  # => Invalid invoice number (ApplicationService::Exc
 exception.message           # => Invalid invoice number
 exception.type              # => :base
 exception.meta              # => {:invoice_number=>"BB-7650AE"}
+```
+
+Для примера с типом `validation`:
+
+```ruby
+exception.detailed_message  # => Email must contain @ symbol (ApplicationService::Exceptions::Failure)
+exception.message           # => Email must contain @ symbol
+exception.type              # => :validation
+exception.meta              # => {:field=>:email, :provided_value=>"user.example.com"}
 ```
 
 ### Метод `fail_result!` <Badge type="tip" text="Начиная с 2.1.0" />
