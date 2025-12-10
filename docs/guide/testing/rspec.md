@@ -738,7 +738,7 @@ it { expect(perform).to be_success_service }
 
 ```ruby
 it do
-  expect(result.child_result).to(
+  expect(result).to(
     be_success_service
       .with_output(:id, "...")
   )
@@ -749,7 +749,7 @@ end
 
 ```ruby
 it do
-  expect(result.child_result).to(
+  expect(result).to(
     be_success_service
       .with_outputs(
         id: "...",
