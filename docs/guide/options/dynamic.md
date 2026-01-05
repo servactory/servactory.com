@@ -63,6 +63,10 @@ Servactory::ToolKit::DynamicOptions::Format.use(
     email: {
       pattern: /@/,
       validator: ->(value:) { value.present? }
+    },
+    invoice: {
+      pattern: /^([A]{2})-([0-9A-Z]{6})$/,
+      validator: ->(value:) { value.present? }
     }
   }
 )

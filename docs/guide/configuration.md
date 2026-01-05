@@ -162,7 +162,7 @@ end
 
 ### Helpers for `internal`
 
-Custom helpers for `output` can be based on the `must` option.
+Custom helpers for `internal` can be based on the `must` option.
 
 #### Example with `must`
 

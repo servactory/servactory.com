@@ -1,5 +1,6 @@
 ---
 title: Почему Servactory
+description: Введение в Servactory — унифицированный подход к разработке надежных Ruby/Rails сервисов
 prev: false
 next: Начало работы
 ---

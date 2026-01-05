@@ -32,7 +32,7 @@ class NotificatorService::Slack::Error::Send < ApplicationService::Base
   end
   
   def send_message!
-    # Here is the API request in Slack
+    # Здесь выполняется API запрос в Slack
   end
 end
 ```

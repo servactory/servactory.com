@@ -371,6 +371,8 @@ class EventsService::Send < ApplicationService::Base
 end
 ```
 
+:::
+
 ## Опция `format` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
 Эта опция является валидацией.
@@ -391,8 +393,6 @@ end
 Эта опция является динамической и не входит в набор основных опций.
 
 [Подробнее](./dynamic#опция-min)
-
-:::
 
 ## Опция `prepare` <Badge type="info" text="input" />
 
