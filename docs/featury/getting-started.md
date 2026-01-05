@@ -1,6 +1,6 @@
 ---
 title: Getting started with Featury
-description: Requirements, conventions, installation and example of basic preparation
+description: Featury is a feature flag and feature object framework for Ruby applications
 prev: false
 next: false
 ---

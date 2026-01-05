@@ -1,6 +1,7 @@
 ---
 title: Servactory
 titleTemplate: :title — New look at Service Object
+description: A service object framework for Ruby on Rails with typed inputs, outputs, and structured actions
 
 layout: home
 
