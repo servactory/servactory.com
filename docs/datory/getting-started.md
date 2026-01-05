@@ -1,6 +1,6 @@
 ---
 title: Getting started with Datory
-description: Requirements, conventions, installation and example of basic preparation
+description: Datory is a data mapping tool for serialization and deserialization in Ruby applications
 prev: false
 next: false
 ---

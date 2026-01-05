@@ -1,5 +1,6 @@
 ---
 title: Why Servactory
+description: Introduction to Servactory - unified approach to building reliable Ruby/Rails services
 prev: false
 next: Getting started
 ---

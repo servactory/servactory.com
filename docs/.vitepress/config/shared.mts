@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import llmstxt from 'vitepress-plugin-llms'
 
 // https://vitepress.dev/reference/site-config
 export const sharedConfig = defineConfig({
@@ -97,5 +98,23 @@ export const sharedConfig = defineConfig({
 
   sitemap: {
     hostname: 'https://servactory.com'
+  },
+
+  vite: {
+    plugins: [
+      llmstxt({
+        domain: 'https://servactory.com',
+        ignoreFiles: [
+          'ru/**',
+          'CHANGELOG.md',
+          'CODE_OF_CONDUCT.md',
+          'CONTRIBUTING.md'
+        ],
+        customTemplateVariables: {
+          title: 'Servactory',
+          description: 'A service object framework for Ruby on Rails applications. Servactory provides a structured approach to organizing business logic using service objects with typed inputs, outputs, and actions.',
+        }
+      })
+    ]
   }
 })
