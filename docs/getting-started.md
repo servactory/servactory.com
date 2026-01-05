@@ -9,8 +9,8 @@ next: Service call and result of work
 
 ## Conventions
 
-- All services are subclasses of `Servactory::Base` and are located in the `app/services` directory. It is common practice to create and inherit from `ApplicationService::Base` class, which is a subclass of `Servactory::Base`.
-- Name services by what they do, not by what they accept. Use verbs in names. For example, `UsersService::Create` instead of `UsersService::Creation`.
+- Services inherit from `Servactory::Base` and reside in `app/services`. Common practice: create `ApplicationService::Base` as your project's base class.
+- Name services by what they do, not what they accept. Use verbs. Example: `UsersService::Create` instead of `UsersService::Creation`.
 
 ## Version support
 
@@ -38,17 +38,17 @@ bundle install
 
 ## Preparation
 
-As a first step, it is recommended to prepare the base class for further inheritance.
+First, prepare the base class for inheritance.
 
 ### Automatically <Badge type="tip" text="Since 2.5.0" />
 
-To quickly prepare your environment for work, you can use the rake task:
+Run the generator:
 
 ```shell
 bundle exec rails g servactory:install
 ```
 
-This will create all the necessary files.
+This creates all necessary files.
 
 ### Manually
 
@@ -106,14 +106,13 @@ end
 
 ## First service
 
-Now you can create your first service.
-To do this, you can use the rake task:
+Create your first service:
 
 ```shell
 bundle exec rails g servactory:service users_service/create first_name middle_name last_name
 ```
 
-You can also immediately prepare a spec file for testing the service:
+Generate a spec file:
 
 ```shell
 bundle exec rails g servactory:rspec users_service/create first_name middle_name last_name

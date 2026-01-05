@@ -9,11 +9,9 @@ next: Advanced options mode
 
 ## Option `type` <Badge type="info" text="input" /> <Badge type="info" text="internal" /> <Badge type="info" text="output" />
 
-This option is validation.
-It will check that the passed value corresponds to the specified type (class).
-The `is_a?` method is used.
+Validation option. Checks that the passed value matches the specified type (class) using `is_a?`.
 
-Always required to specify. May contain one or more classes.
+Required. May contain one or more classes.
 
 ::: code-group
 
@@ -50,11 +48,9 @@ end
 
 ## Option `required` <Badge type="info" text="input" />
 
-This option is validation.
-It will check that the passed value is not empty.
-The `present?` method is used.
+Validation option. Checks that the passed value is not empty using `present?`.
 
-By default, `required` is set to `true`.
+Defaults to `true`.
 
 ::: code-group
 
@@ -78,8 +74,7 @@ end
 
 ## Option `default` <Badge type="info" text="input" />
 
-This option is not validation.
-It will assign a value to the attribute if one was not passed to the service.
+Non-validation option. Assigns a value if none was passed to the service.
 
 ::: code-group
 
@@ -100,9 +95,7 @@ end
 
 ## Option `as` <Badge type="info" text="input" />
 
-This option is not validation.
-It will indicate the new name of the attribute to work within the service.
-The original name inside the service will no longer be available.
+Non-validation option. Specifies an alias for the attribute within the service. The original name becomes unavailable inside the service.
 
 ::: code-group
 
@@ -131,10 +124,7 @@ Since version `2.12.0` this option is [dynamic](../options/dynamic#option-inclus
 
 :::
 
-This option is validation.
-This option is dynamic.
-It will check that the passed value is in the specified array.
-The `include?` method is used.
+Dynamic validation option. Checks that the passed value is in the specified array using `include?`.
 
 ::: code-group
 
@@ -182,17 +172,11 @@ Since version `2.6.0` this option is [dynamic](../options/dynamic#option-consist
 
 :::
 
-This option is validation.
-This option is dynamic.
-It will check that each value in the collection matches the specified type (class).
-Checks nested values.
-The `is_a?` method is used.
+Dynamic validation option. Checks that each value in the collection matches the specified type (class), including nested values, using `is_a?`.
 
-Works only with `Array` and `Set` types.
-You can add a custom type through the [`collection_mode_class_names`](../configuration#collection-mode) configuration.
+Works only with `Array` and `Set` types. Add custom types via [`collection_mode_class_names`](../configuration#collection-mode) configuration.
 
-Explicit use of this option is optional.
-The default value is `String`.
+Optional. Defaults to `String`.
 
 ::: code-group
 
@@ -224,16 +208,11 @@ Since version `2.12.0` this option is [dynamic](../options/dynamic#option-schema
 
 :::
 
-This option is validation.
-This option is dynamic.
-Requires a hash value that must describe the value structure of the output attribute.
+Dynamic validation option. Requires a hash value describing the attribute's value structure.
 
-Only works with the `Hash` type.
-You can add a custom type through the [`hash_mode_class_names`](../configuration#hash-mode) configuration.
+Works only with `Hash` type. Add custom types via [`hash_mode_class_names`](../configuration#hash-mode) configuration.
 
-Explicit use of this option is optional.
-If the schema value is not specified, the validation will be skipped.
-By default, no value is specified.
+Optional. If unspecified, validation is skipped. No default value.
 
 ::: code-group
 
@@ -302,7 +281,7 @@ output :payload,
 
 :::
 
-Each expected hash key must be described in the following format:
+Describe each expected hash key in this format:
 
 ```ruby
 {
@@ -310,15 +289,13 @@ Each expected hash key must be described in the following format:
 }
 ```
 
-The following options are allowed: mandatory `type`, `required` and optional `default`, `prepare`.
-The `default` and `prepare` options are only available when used within `input`.
+Allowed options: required `type`, `required` and optional `default`, `prepare`. The `default` and `prepare` options are only available within `input`.
 
-If `type` also specifies a `Hash` value, then nesting can be described in the same format.
+If `type` specifies `Hash`, describe nesting in the same format.
 
 ## Option `must` <Badge type="info" text="input" /> <Badge type="info" text="internal (^2.2.0)" /> <Badge type="info" text="output (^2.2.0)" />
 
-This option is validation.
-Allows you to create your own validations.
+Validation option. Create custom validations.
 
 ::: code-group
 
@@ -375,35 +352,23 @@ end
 
 ## Option `format` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
-This option is validation.
-This option is dynamic and is not part of the main options.
-
-[More information](./dynamic#option-format)
+Dynamic validation option (not part of main options). See [more](./dynamic#option-format).
 
 ## Option `max` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
-This option is validation.
-This option is dynamic and is not part of the main options.
-
-[More information](./dynamic#option-max)
+Dynamic validation option (not part of main options). See [more](./dynamic#option-max).
 
 ## Option `min` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
-This option is validation.
-This option is dynamic and is not part of the main options.
-
-[More information](./dynamic#option-min)
+Dynamic validation option (not part of main options). See [more](./dynamic#option-min).
 
 ## Option `prepare` <Badge type="info" text="input" />
 
-This option is not validation.
-It is used to prepare the passed value.
+Non-validation option. Prepares the passed value.
 
 ::: warning
 
-Use the `prepare` option carefully and only for simple preparatory actions.
-For example, as shown below.
-Any logic that is more complex than that in the example below is better applied through the [`make`](../actions/usage) action.
+Use `prepare` carefully for simple preparatory actions only. Complex logic is better applied via [`make`](../actions/usage) actions.
 
 :::
 

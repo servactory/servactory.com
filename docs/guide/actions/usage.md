@@ -51,15 +51,15 @@ end
 
 ## Options
 
-You can find out more about options in the [options](../actions/options) section.
+See the [options](../actions/options) section for details.
 
 ## Group of multiple actions
 
-You can find out more about a group of multiple actions (methods) in the [grouping](../actions/grouping) section.
+See the [grouping](../actions/grouping) section for details.
 
 ## Aliases for `make`
 
-Through the `action_aliases` configuration it is possible to add alternatives to the `make` method.
+Add alternatives to the `make` method via `action_aliases` configuration.
 
 ```ruby {2,5}
 configuration do
@@ -75,8 +75,8 @@ end
 
 ## Customization for `make`
 
-Add frequently used words that are used as prefixes in method names through the `action_shortcuts` configuration.
-It won't make the names of methods shorter, but that will shorten the lines using the `make` method and improve the readability of the service code, making it more expressive.
+Add frequently used method name prefixes via `action_shortcuts` configuration.
+Method names stay the same length, but `make` lines become shorter and more readable.
 
 ### Simple mode
 

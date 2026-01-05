@@ -7,11 +7,11 @@ next: Options for service attributes
 
 # Output attributes
 
-All attributes that the service should return as a result through the `Result` class must be added using the `output` method.
+Add all return attributes via the `output` method. These are available through the `Result` class.
 
 ## Usage
 
-The assignment and use of service output attributes is done through the `outputs=`/`outputs` methods.
+Assign and access output attributes via `outputs=`/`outputs` methods.
 
 ```ruby{8,22}
 class UsersService::Create < ApplicationService::Base
@@ -42,19 +42,15 @@ end
 
 ## Options
 
-You can find out more about options in the [using options](../options/usage) section.
+See [using options](../options/usage) for details.
 
 ## Helpers
 
-Servactory allows you to add custom helpers for project purposes.
-
-By "helper" we mean some shorthand spelling that, when used, expands into a specific option.
+Servactory supports custom helpers for project purposes. Helpers are shorthand that expand into specific options.
 
 ### Custom
 
-Custom helpers can be added using the `output_option_helpers` method in `configuration`.
-
-Such helpers can be based on existing options.
+Add custom helpers via `output_option_helpers` in `configuration`. Helpers can be based on existing options.
 
 [Configuration example](../configuration#helpers-for-output)
 
@@ -77,8 +73,7 @@ end
 
 ### Method `only`
 
-If necessary, you can filter `outputs` using the `only` method.
-This will return a Hash with the specified attributes.
+Filter `outputs` with the `only` method. Returns a Hash with specified attributes.
 
 ```ruby{2}
 outputs.full_name =
@@ -90,8 +85,7 @@ outputs.full_name =
 
 ### Method `except`
 
-If necessary, you can filter `outputs` using the `except` method.
-This will return a Hash without the specified attributes.
+Filter `outputs` with the `except` method. Returns a Hash without specified attributes.
 
 ```ruby{2}
 outputs.full_name =
@@ -103,7 +97,7 @@ outputs.full_name =
 
 ### Predicate methods
 
-Any output attribute can be accessed as a predicate method.
+Access any output attribute as a predicate method.
 
 ```ruby{8}
 # ...

@@ -7,12 +7,9 @@ next: Service input attributes
 
 # Service information
 
-From outside the service, you can get information about its input, internal and output attributes.
+Services expose information about input, internal, and output attributes externally. Useful for complex service processing or testing.
 
-This can be useful, for example, when implementing complex service processing.
-Or for testing.
-
-For example, the service describes the following attributes:
+Example service with attributes:
 
 ```ruby
 class BuildFullName < ApplicationService::Base
@@ -28,7 +25,7 @@ class BuildFullName < ApplicationService::Base
 end
 ```
 
-You can obtain information about them in the following ways:
+Access attribute information:
 
 ```ruby
 BuildFullName.info

@@ -7,20 +7,19 @@ next: Service information
 
 # Service result
 
-After the call, the service has the result of its work, if an exception was not thrown before.
-The result of the work can be successful or failure.
+Each service call returns a result (unless an exception is thrown). The result is either successful or failed.
 
 ## Successful result
 
-A successful result is the result of the service when everything inside went without any problems.
+A successful result indicates all operations completed without problems.
 
-In that case, this example:
+Example:
 
 ```ruby
 service_result = UsersService::Accept.call(user: User.first)
 ```
 
-Will return this:
+Returns:
 
 ```ruby
 # => <ApplicationService::Result @failure?=false, @success?=true, @user=..., @user?=true>
@@ -28,13 +27,11 @@ Will return this:
 
 ## Failed result
 
-A failed result is the result of a service running when an expected problem occurred internally.
-An expected problem means that an exception was not thrown, and the problem that arose, for example, was caused through one of the `fail!` methods.
+A failed result indicates an expected problem occurred internally. Expected problems don't throw exceptions—they're triggered via `fail!` methods.
 
-A failed service result can only be present when called via the `.call` method.
-This is necessary, for example, to be able to process the result of a response from an external API.
+Failed results only occur when using the `.call` method. This enables processing responses from external APIs.
 
-An example of the result when a problem occurs:
+Example result on failure:
 
 ```ruby
 # => <ApplicationService::Result @error=There is some problem with the user, @failure?=true, @success?=false>
@@ -42,11 +39,9 @@ An example of the result when a problem occurs:
 
 ## Result content
 
-`Result` regardless of success or failure has a data set.
+`Result` contains data regardless of outcome.
 
-Upon successful operation, all output attributes are available,
-and the `success?` and `failure?` helper methods are also available,
-which can help determine the scenario for further work.
+On success, all output attributes are available. The `success?` and `failure?` helper methods determine the outcome.
 
 ```ruby
 service_result = UsersService::Accept.call(user: User.first)
@@ -55,7 +50,7 @@ service_result.success? # => true
 service_result.failure? # => false
 ```
 
-If the service fails, `Result` will also contain `error` with a full description of the error.
+On failure, `Result` also contains `error` with the full error description.
 
 ```ruby
 service_result = UsersService::Accept.call(user: User.first)
@@ -67,13 +62,13 @@ service_result.error
 # => #<ApplicationService::Exceptions::Failure: There is some problem with the user>
 ```
 
-You can learn more about the unsuccessful operation of the service [here](../exceptions/failure).
+Learn more about service failures [here](../exceptions/failure).
 
 ## Result processing
 
-After calling a service via `call`, you must process its result.
+Process the result after calling via `call`.
 
-There are two options for this - using the `success?` and `failure?` methods or using the `on_success` and `on_failure` hooks.
+Two options: `success?`/`failure?` methods or `on_success`/`on_failure` hooks.
 
 ### Methods
 
@@ -92,9 +87,7 @@ fail!(
 
 #### Method `failure?`
 
-You can pass a type to the `failure?` method. You can find out more about the types [here](../exceptions/failure#method-fail).
-This gives you the opportunity to specify the type you are interested in when handling a failed result.
-By default, `type` is `all`, which means any type fails, including your own types.
+Pass a type to `failure?` to check specific failure types. See [failure types](../exceptions/failure#method-fail). Default type is `all` (matches any failure type).
 
 ```ruby
 service_result = NotificatorService::Slack::Error::Send.call(...)
@@ -107,7 +100,7 @@ fail!(
 )
 ```
 
-You can also check for a specific failure type, for example, `validation`.
+Check for a specific failure type:
 
 ```ruby
 service_result = NotificatorService::Slack::Error::Send.call(...)
@@ -120,12 +113,11 @@ fail!(
 )
 ```
 
-For convenience in checking failure types, you can also use predicate methods.
+Predicate methods provide convenient type checking:
 
 ::: warning
 
-Note that `Result` contains output attributes that also have predicate methods.
-Avoid conflicts.
+`Result` output attributes also have predicate methods. Avoid naming conflicts.
 
 :::
 
@@ -142,7 +134,7 @@ fail!(
 
 ### Hooks
 
-This is an alternative way to process the result.
+Alternative approach to result processing:
 
 ```ruby
 NotificatorService::Slack::Error::Send
@@ -155,9 +147,7 @@ NotificatorService::Slack::Error::Send
   end
 ```
 
-The `on_success` method has an `outputs` argument that provides access to all output attributes.
-
-You can also pass a type to the `on_failure` method.
+The `on_success` method provides `outputs` argument with all output attributes. Pass a type to `on_failure`:
 
 ```ruby
 NotificatorService::Slack::Error::Send

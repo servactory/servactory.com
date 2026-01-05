@@ -7,11 +7,11 @@ next: Service result
 
 # Service call
 
-The service can only be called through the `.call` and `.call!` methods.
+Services are called via `.call` or `.call!` methods.
 
 ## Method `.call!`
 
-Calling a service via the `.call!` method will throw an exception if any problem occurs within the service.
+The `.call!` method throws an exception if any problem occurs within the service.
 
 ::: code-group
 
@@ -33,8 +33,7 @@ UsersService::Accept.call!(user: User.first)
 
 ## Method `.call`
 
-Calling a service via the `.call` method will throw an exception only if there are problems with input attributes.
-All other errors will be logged and provided via the `Result` class.
+The `.call` method throws an exception only for input attribute problems. Other errors are captured and provided via the `Result` class.
 
 ::: code-group
 

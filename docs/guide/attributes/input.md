@@ -7,12 +7,11 @@ next: Service internal attributes
 
 # Input attributes
 
-All attributes that the service should expect when called must be added using the `input` method.
-If the service receives attributes that were not added via the `input` method, it will return an error.
+Add all expected attributes via the `input` method. Unexpected attributes cause an error.
 
 ## Usage
 
-The use of the attributes included in the service is done through the `inputs` method.
+Access input attributes via the `inputs` method.
 
 ```ruby{2-4,15-17}
 class UsersService::Create < ApplicationService::Base
@@ -43,17 +42,15 @@ end
 
 ## Options
 
-You can find out more about options in the [using options](../options/usage) section.
+See [using options](../options/usage) for details.
 
 ## Helpers
 
-Servactory has a set of ready-made helpers, and also allows you to add custom helpers for project purposes.
-
-By "helper" we mean some shorthand spelling that, when used, expands into a specific option.
+Servactory provides built-in helpers and supports custom helpers. Helpers are shorthand that expand into specific options.
 
 ### Helper `optional`
 
-This helper is equivalent to the `required: false` option.
+Equivalent to `required: false`.
 
 ```ruby{6}
 class UsersService::Create < ApplicationService::Base
@@ -73,9 +70,7 @@ end
 
 ### Custom
 
-Custom helpers can be added using the `input_option_helpers` method in `configuration`.
-
-Such helpers can be based on existing options.
+Add custom helpers via `input_option_helpers` in `configuration`. Helpers can be based on existing options.
 
 [Configuration example](../configuration#helpers-for-input)
 
@@ -109,8 +104,7 @@ end
 
 ### Method `only`
 
-If necessary, you can filter `inputs` using the `only` method.
-This will return a Hash with the specified attributes.
+Filter `inputs` with the `only` method. Returns a Hash with specified attributes.
 
 ```ruby{2}
 outputs.full_name =
@@ -122,8 +116,7 @@ outputs.full_name =
 
 ### Method `except`
 
-If necessary, you can filter `inputs` using the `except` method.
-This will return a Hash without the specified attributes.
+Filter `inputs` with the `except` method. Returns a Hash without specified attributes.
 
 ```ruby{2}
 outputs.full_name =
@@ -135,7 +128,7 @@ outputs.full_name =
 
 ### Predicate methods
 
-Any input attribute can be accessed as a predicate method.
+Access any input attribute as a predicate method.
 
 ```ruby{6}
 input :first_name, type: String

@@ -7,7 +7,7 @@ next: Early successful termination
 
 # Grouping actions
 
-You can use the `stage` method to group multiple methods into one execution group.
+Group multiple methods into one execution group via the `stage` method.
 
 :::info
 
@@ -25,7 +25,7 @@ end
 
 ### Option `only_if`
 
-Before calling methods inside `stage`, the condition described in `only_if` will be checked.
+Checks the `only_if` condition before calling methods inside `stage`.
 
 ```ruby {2}
 stage do
@@ -39,22 +39,22 @@ end
 
 ### Option `only_unless`
 
+The opposite of the `only_if` option.
+
 ```ruby {2}
 stage do
   only_unless ->(context:) { Settings.features.preview.disabled }
-  
+
   make :create_user!
   make :create_blog_for_user!
   make :create_post_for_user_blog!
 end
 ```
 
-The opposite of the `only_if` option.
-
 ### Option `wrap_in`
 
-Group of methods in `stage` can be wrapped in something.
-For example, it could be `ActiveRecord::Base.transaction` from Rails.
+Wrap methods in `stage` with a wrapper.
+Example: `ActiveRecord::Base.transaction` from Rails.
 
 ```ruby {2}
 stage do
@@ -68,7 +68,7 @@ end
 
 ### Option `rollback`
 
-If an exception occurs in one of the methods in the group or in `wrap_in`, this can be handled using the `rollback` method.
+Handle exceptions from methods in the group or from `wrap_in` via the `rollback` method.
 
 ```ruby {3,12}
 stage do
