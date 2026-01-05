@@ -1,6 +1,7 @@
 ---
 title: Servactory
 titleTemplate: :title — Новый взгляд на Service Object
+description: Фреймворк сервис-объектов для Ruby on Rails с типизированными входами, выходами и структурированными действиями
 
 layout: home
 
