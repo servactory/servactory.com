@@ -9,7 +9,7 @@ next: Grouping actions in service
 
 ## Option `if`
 
-Before calling the method, the condition described in `if` will be checked.
+Checks the `if` condition before calling the method.
 
 ```ruby{2}
 make :something,
@@ -36,8 +36,8 @@ end
 ## Option `position`
 
 All methods have a position.
-If a method needs to be called at a different time than it was added via `make`, then the `position` option can be used.
-Can be useful at service inheritance.
+Use `position` to call a method at a different time than it was added via `make`.
+Useful for service inheritance.
 
 ```ruby{3,14}
 class SomeApiService::Base < ApplicationService::Base

@@ -11,9 +11,9 @@ next: Extensions
 
 :::warning
 
-This functionality was added in the `2.5.0` release and is currently experimental.
-Some matchers may be changed without maintaining compatibility.
-This documentation will attempt to detail the migration process should such a situation arise.
+This functionality is experimental.
+Some matchers may change without maintaining compatibility.
+Migration instructions will be documented if changes occur.
 
 :::
 
@@ -171,7 +171,7 @@ end
 
 ### Helper `allow_service_as_success!`
 
-Intended for mocking a call via `call!` with a successful result.
+Mocks a `.call!` invocation with a successful result.
 
 ```ruby
 before do
@@ -191,7 +191,7 @@ end
 
 ### Helper `allow_service_as_success`
 
-Intended for mocking a call via `call` with a successful result.
+Mocks a `.call` invocation with a successful result.
 
 ```ruby
 before do
@@ -211,7 +211,7 @@ end
 
 ### Helper `allow_service_as_failure!`
 
-Intended for mocking a call via `call!` with a failed result.
+Mocks a `.call!` invocation with a failed result.
 
 ```ruby
 before do
@@ -225,7 +225,7 @@ end
 
 ### Helper `allow_service_as_failure`
 
-Intended for mocking a call via `call` with a failed result.
+Mocks a `.call` invocation with a failed result.
 
 ```ruby
 before do

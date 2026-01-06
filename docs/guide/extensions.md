@@ -7,16 +7,16 @@ next: Internationalization (I18n)
 
 # Extensions <Badge type="tip" text="Since 2.0.0" />
 
-You can expand the basic functionality by adding your own extensions.
+Expand basic functionality by adding custom extensions.
 
-It is recommended to create extensions in the `app/services/application_service/extensions` directory.
-Also, as a recommendation, create extensions in their own directory.
+Create extensions in the `app/services/application_service/extensions` directory.
+Place each extension in its own subdirectory.
 
 ## Example of implementation
 
 ### Connecting
 
-You can add extensions using the `with_extensions` method.
+Add extensions via the `with_extensions` method.
 
 ::: code-group
 

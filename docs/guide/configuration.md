@@ -7,7 +7,7 @@ next: RSpec
 
 # Configuration
 
-Services are configured through the `configuration` method, which can be placed, for example, in the base class.
+Configure services via the `configuration` method, typically placed in the base class.
 
 ## Configuration examples
 
@@ -101,7 +101,7 @@ end
 
 ### Helpers for `input`
 
-Custom helpers for `input` can be based on the `must` and `prepare` options.
+Base custom helpers for `input` on the `must` and `prepare` options.
 
 #### Example with `must`
 
@@ -162,7 +162,7 @@ end
 
 ### Helpers for `internal`
 
-Custom helpers for `output` can be based on the `must` option.
+Base custom helpers for `internal` on the `must` option.
 
 #### Example with `must`
 
@@ -198,7 +198,7 @@ end
 
 ### Helpers for `output`
 
-Custom helpers for `output` can be based on the `must` option.
+Base custom helpers for `output` on the `must` option.
 
 #### Example with `must`
 
@@ -234,7 +234,7 @@ end
 
 ### Aliases for `make`
 
-The `action_aliases` configuration allows you to add alternatives to `make`.
+Add alternatives to `make` via `action_aliases` configuration.
 
 ::: code-group
 
@@ -252,9 +252,9 @@ end
 
 ### Customization for `make`
 
-The `action_shortcuts` configuration allows you to implement a shortcut when using `make`.
+Implement shortcuts for `make` via `action_shortcuts` configuration.
 
-The values specified in the configuration are used instead of `make` and are also a prefix to the instance method.
+Values replace `make` and serve as prefix to the instance method.
 
 #### Simple mode
 
@@ -351,8 +351,8 @@ end
 
 ### Predicate methods <Badge type="tip" text="Since 2.5.0" />
 
-By default, predicate methods for all attributes are enabled.
-You can turn them off if necessary.
+Predicate methods for all attributes are enabled by default.
+Disable them if necessary.
 
 ::: code-group
 

@@ -7,7 +7,7 @@ next: Dynamic options
 
 # Advanced mode
 
-Advanced mode involves more detailed work with the attribute option.
+Advanced mode enables detailed control over attribute options.
 
 ## Option `required` <Badge type="info" text="input" />
 
@@ -298,7 +298,7 @@ output :payload,
 
 ::: info
 
-The `must` option can work only in advanced mode.
+The `must` option works only in advanced mode.
 
 :::
 

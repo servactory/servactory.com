@@ -9,9 +9,9 @@ next: Getting started
 
 ## About Servactory
 
-Servactory is a standardization of a unified approach to the development of reliable services of any complexity.
+Servactory standardizes building reliable services of any complexity.
 
-With Servactory you can do something simple, just like that:
+Create simple services:
 
 ```ruby
 class MinimalService < ApplicationService::Base
@@ -21,13 +21,13 @@ class MinimalService < ApplicationService::Base
 end
 ```
 
-And then call with:
+Then call:
 
 ```ruby
 MinimalService.call! # or MinimalService.call
 ```
 
-Or create something more complex:
+Or build complex services:
 
 ```ruby
 class NotificationsService::Send < ApplicationService::Base
@@ -81,7 +81,7 @@ class NotificationsService::Send < ApplicationService::Base
 end
 ```
 
-With a call like this:
+Call like this:
 
 ```ruby
 # comment = Comment.first
@@ -96,13 +96,10 @@ NotificationsService::Send.call!(comment:, provider:)
 
 ### Unified approach
 
-The Ruby language is flexible and versatile.
-This fact indicates that the services in the applications begin to vary greatly, implementing a different development approach.
-Over time, this case complicates the development in the project and can make it difficult to understand the services.
+Ruby's flexibility leads to inconsistent service implementations across applications. Over time, this inconsistency complicates development and makes services harder to understand.
 
-Servactory standardizes the approach to development by offering the implementation of services only through the proposed API, describing the logic within classes uniformly.
+Servactory enforces a consistent API for service implementation, ensuring uniform logic structure across all classes.
 
 ### Testing
 
-Services written under Servactory are tested like standard Ruby classes.
-As a result of the unified approach to the development of services, their testing also becomes uniform.
+Test Servactory services like standard Ruby classes. The unified approach ensures consistent testing patterns.

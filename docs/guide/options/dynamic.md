@@ -7,9 +7,8 @@ next: Using actions in service
 
 # Dynamic options <Badge type="tip" text="Since 2.4.0" />
 
-Dynamic options are additional `must`-based options that can take values as arguments.
-Dynamic options are similar to [custom helpers](../attributes/input#custom),
-but what sets them apart is their ability to work with arguments.
+Dynamic options are `must`-based options that accept values as arguments.
+Unlike [custom helpers](../attributes/input#custom), dynamic options work with arguments.
 
 Servactory out of the box provides the following set of dynamic options:
 
@@ -21,9 +20,8 @@ Servactory out of the box provides the following set of dynamic options:
 - `multiple_of`;
 - `schema`.
 
-By default, the following options are enabled: `consists_of`, `inclusion`, and `schema`.
-For the rest to work, you need to use ready-made sets in the configuration
-of option helpers for each of the existing attributes.
+By default, `consists_of`, `inclusion`, and `schema` are enabled.
+Enable the rest via ready-made sets in the option helpers configuration for each attribute.
 
 ## Ready-made options
 
@@ -54,14 +52,17 @@ of option helpers for each of the existing attributes.
 
 #### Customization
 
-You can overwrite existing formats and add your own.
-To do this, use the `formats` attribute in the `use` method:
+Overwrite existing formats or add custom ones via the `formats` attribute in the `use` method:
 
 ```ruby
 Servactory::ToolKit::DynamicOptions::Format.use(
   formats: {
     email: {
       pattern: /@/,
+      validator: ->(value:) { value.present? }
+    },
+    invoice: {
+      pattern: /^([A]{2})-([0-9A-Z]{6})$/,
       validator: ->(value:) { value.present? }
     }
   }
@@ -264,12 +265,9 @@ output :data,
 
 ## Custom options
 
-You can create your own dynamic options.
+Create custom dynamic options using the template below.
 
-Use the prepared template provided below to implement your own dynamic option.
-
-It is recommended to place the class file in the
-`app/services/application_service/dynamic_options` directory of your project.
+Place the class file in `app/services/application_service/dynamic_options`.
 
 ### Template
 
