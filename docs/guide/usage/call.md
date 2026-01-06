@@ -33,7 +33,7 @@ UsersService::Accept.call!(user: User.first)
 
 ## Method `.call`
 
-The `.call` method throws an exception only for input attribute problems. Other errors are captured and provided via the `Result` class.
+The `.call` method throws an exception for input, internal, and output attribute problems. Other errors are captured and provided via the `Result` class.
 
 ::: code-group
 

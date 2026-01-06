@@ -7,7 +7,7 @@ next: Service internal attributes
 
 # Input attributes
 
-Add all expected attributes via the `input` method. Unexpected attributes cause an error.
+Add all expected attributes via the `input` method. Unexpected arguments (not defined as input attributes) cause an error.
 
 ## Usage
 
