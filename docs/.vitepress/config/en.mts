@@ -28,7 +28,7 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
 function nav(): DefaultTheme.NavItem[] {
   return [
     { text: 'Guide', link: '/getting-started' },
-    // { text: 'Releases', link: '/releases/2.4' },
+    { text: 'Releases', link: '/releases/3.0', activeMatch: '/releases/' },
     { text: 'Datory', link: '/datory/getting-started', activeMatch: '/datory/' },
     { text: 'Featury', link: '/featury/getting-started', activeMatch: '/featury/' },
     // { text: 'v1', link: 'https://v1.servactory.com' },
@@ -42,7 +42,7 @@ function sidebar(): DefaultTheme.Sidebar {
     '/guide/': { base: '', items: sidebarGuide() },
     '/datory/': { base: '', items: sidebarDatory() },
     '/featury/': { base: '', items: sidebarFeatury() },
-    // '/releases/': { base: '', items: sidebarReleases() },
+    '/releases/': { base: '', items: sidebarReleases() },
   }
 }
 
@@ -186,33 +186,35 @@ function sidebarFeatury(): DefaultTheme.SidebarItem[] {
   ]
 }
 
-// function sidebarReleases(): DefaultTheme.SidebarItem[] {
-//   return [
-//     {
-//       text: 'Guide',
-//       items: [
-//         { text: 'Return to guide', link: '/guide/usage/call' }
-//       ]
-//     },
-//     {
-//       text: 'Releases',
-//       items: [
-//         { text: 'Release 2.16', link: '/releases/2.16' },
-//         { text: 'Release 2.15', link: '/releases/2.15' },
-//         { text: 'Release 2.14', link: '/releases/2.14' },
-//         { text: 'Release 2.13', link: '/releases/2.13' },
-//         { text: 'Release 2.12', link: '/releases/2.12' },
-//         { text: 'Release 2.11', link: '/releases/2.11' },
-//         { text: 'Release 2.10', link: '/releases/2.10' },
-//         { text: 'Release 2.9', link: '/releases/2.9' },
-//         { text: 'Release 2.8', link: '/releases/2.8' },
-//         { text: 'Release 2.7', link: '/releases/2.7' },
-//         { text: 'Release 2.6', link: '/releases/2.6' },
-//         { text: 'Release 2.5', link: '/releases/2.5' },
-//         { text: 'Release 2.4', link: '/releases/2.4' },
-//         { text: 'Release 2.3', link: '/releases/2.3' },
-//         { text: 'Release 2.2', link: '/releases/2.2' },
-//       ]
-//     }
-//   ]
-// }
+function sidebarReleases(): DefaultTheme.SidebarItem[] {
+  return [
+    {
+      text: 'Guide',
+      items: [
+        { text: 'Return to guide', link: '/guide/usage/call' }
+      ]
+    },
+    {
+      text: 'Releases',
+      items: [
+        { text: 'Release 3.0', link: '/releases/3.0' },
+        { text: 'Release 2.16', link: '/releases/2.16' },
+        { text: 'Release 2.15', link: '/releases/2.15' },
+        { text: 'Release 2.14', link: '/releases/2.14' },
+        { text: 'Release 2.13', link: '/releases/2.13' },
+        { text: 'Release 2.12', link: '/releases/2.12' },
+        { text: 'Release 2.11', link: '/releases/2.11' },
+        { text: 'Release 2.10', link: '/releases/2.10' },
+        { text: 'Release 2.9', link: '/releases/2.9' },
+        { text: 'Release 2.8', link: '/releases/2.8' },
+        { text: 'Release 2.7', link: '/releases/2.7' },
+        { text: 'Release 2.6', link: '/releases/2.6' },
+        { text: 'Release 2.5', link: '/releases/2.5' },
+        { text: 'Release 2.4', link: '/releases/2.4' },
+        { text: 'Release 2.3', link: '/releases/2.3' },
+        { text: 'Release 2.2', link: '/releases/2.2' },
+      ]
+    },
+    { text: 'GitHub', link: 'https://github.com/servactory/servactory/releases' },
+  ]
+}
