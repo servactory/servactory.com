@@ -1,23 +1,22 @@
 ---
-title: RSpec — Testing services
-description: Description and examples of service testing using RSpec
+title: RSpec (Legacy) — Тестирование сервисов
+description: Описание и примеры тестирования сервисов с применением RSpec
 outline:
   level: deep
-prev: Configuration
-next: Extensions
+prev: RSpec
+next: Расширения
 ---
 
-# RSpec <Badge type="tip" text="Since 2.5.0" />
+# RSpec (Legacy) <Badge type="tip" text="Начиная с 2.5.0" />
 
 :::warning
 
-This functionality is experimental.
-Some matchers may change without maintaining compatibility.
-Migration instructions will be documented if changes occur.
+Этот функционал является устаревшим (deprecated) и будет поддерживаться только для обратной совместимости.
+Для новых тестов рекомендуется использовать [новые хелперы](./fluent).
 
 :::
 
-## Installation
+## Установка
 
 ::: code-group
 
@@ -41,11 +40,11 @@ end
 
 :::
 
-## Example
+## Пример
 
-### Structure
+### Структура
 
-- `.call!` or `call`:
+- `.call!` или `call`:
   - `subject`;
   - `validations`:
     - `inputs`;
@@ -57,7 +56,7 @@ end
   - `when required data for work is invalid`:
     - `be_failure_service`.
 
-### File
+### Файл
 
 ::: code-group
 
@@ -143,7 +142,7 @@ RSpec.describe UsersService::Create, type: :service do
 end
 ```
 
-```ruby [Service]
+```ruby [Сервис]
 class UsersService::Create < ApplicationService::Base
   input :first_name, type: String
   input :middle_name, type: String, required: false
@@ -167,11 +166,11 @@ end
 
 :::
 
-## Helpers
+## Хелперы
 
-### Helper `allow_service_as_success!`
+### Хелпер `allow_service_as_success!`
 
-Mocks a `.call!` invocation with a successful result.
+Выполняет мок вызова `.call!` с успешным результатом.
 
 ```ruby
 before do
@@ -189,9 +188,9 @@ before do
 end
 ```
 
-### Helper `allow_service_as_success`
+### Хелпер `allow_service_as_success`
 
-Mocks a `.call` invocation with a successful result.
+Выполняет мок вызова `.call` с успешным результатом.
 
 ```ruby
 before do
@@ -209,9 +208,9 @@ before do
 end
 ```
 
-### Helper `allow_service_as_failure!`
+### Хелпер `allow_service_as_failure!`
 
-Mocks a `.call!` invocation with a failed result.
+Выполняет мок вызова `.call!` с неудачным результатом.
 
 ```ruby
 before do
@@ -223,9 +222,9 @@ before do
 end
 ```
 
-### Helper `allow_service_as_failure`
+### Хелпер `allow_service_as_failure`
 
-Mocks a `.call` invocation with a failed result.
+Выполняет мок вызова `.call` с неудачным результатом.
 
 ```ruby
 before do
@@ -237,15 +236,15 @@ before do
 end
 ```
 
-### Options
+### Опции
 
-#### Option `with`
+#### Опция `with`
 
-The methods `allow_service_as_success!`, `allow_service_as_success`,
-`allow_service_as_failure!`, and `allow_service_as_failure` support the `with` option.
+Методы `allow_service_as_success!`, `allow_service_as_success`,
+`allow_service_as_failure!` и `allow_service_as_failure` поддерживают опцию `with`.
 
-By default, this option does not require passing service arguments and will automatically
-determine this data based on the `info` method.
+По умолчанию эта опция не требует передачи аргументов сервиса и автоматически
+определяет данные на основе метода `info`.
 
 ```ruby
 before do
@@ -269,15 +268,13 @@ before do
 end
 ```
 
-## Matchers
+## Матчеры
 
-### Matcher `have_service_input`
-
-Alias: `have_input`
+### Матчер `have_input` <Badge type="info" text="have_service_input" />
 
 #### `type`
 
-Checks the input type. Intended for one meaning.
+Проверяет тип инпута. Предназначен для одного значения.
 
 ```ruby
 it do
@@ -290,7 +287,7 @@ end
 
 #### `types`
 
-Checks input types. Intended for multiple values.
+Проверяет типы инпута. Предназначен для нескольких значений.
 
 ```ruby
 it do
@@ -303,7 +300,7 @@ end
 
 #### `required`
 
-Checks whether the input is required.
+Проверяет обязательность инпута.
 
 ```ruby
 it do
@@ -317,7 +314,7 @@ end
 
 #### `optional`
 
-Checks whether the input is optional.
+Проверяет опциональность инпута.
 
 ```ruby
 it do
@@ -331,7 +328,7 @@ end
 
 #### `default`
 
-Checks the default value of the input.
+Проверяет дефолтное значение инпута.
 
 ```ruby
 it do
@@ -346,11 +343,11 @@ end
 
 #### `consists_of`
 
-Checks the nested types of the input collection. You can specify multiple values.
+Проверяет вложенные типы коллекции инпута. Можно указать несколько значений.
 
 ::: code-group
 
-```ruby [Without message]
+```ruby [Без message]
 it do
   expect { perform }.to(
     have_input(:ids)
@@ -361,7 +358,7 @@ it do
 end
 ```
 
-```ruby [With message]
+```ruby [С message]
 it do
   expect { perform }.to(
     have_input(:ids)
@@ -377,11 +374,11 @@ end
 
 #### `inclusion`
 
-Checks the values of the `inclusion` option of the input.
+Проверяет значения опции `inclusion` инпута.
 
 ::: code-group
 
-```ruby [Without message]
+```ruby [Без message]
 it do
   expect { perform }.to(
     have_input(:event_name)
@@ -392,7 +389,7 @@ it do
 end
 ```
 
-```ruby [With message]
+```ruby [С message]
 it do
   expect { perform }.to(
     have_input(:event_name)
@@ -408,11 +405,11 @@ end
 
 #### `schema` <Badge type="info" text="input (^2.12.0)" /> <Badge type="info" text="internal (^2.12.0)" /> <Badge type="info" text="output (^2.12.0)" />
 
-Checks the values of the `schema` option of the input.
+Проверяет значения опции `schema` инпута.
 
 ::: code-group
 
-```ruby [Without message]
+```ruby [Без message]
 it do
   expect { perform }.to(
     have_input(:payload)
@@ -430,7 +427,7 @@ it do
 end
 ```
 
-```ruby [With message]
+```ruby [С message]
 it do
   expect { perform }.to(
     have_input(:payload)
@@ -453,8 +450,8 @@ end
 
 #### `message` <Badge type="info" text="input (^2.12.0)" /> <Badge type="info" text="internal (^2.12.0)" /> <Badge type="info" text="output (^2.12.0)" />
 
-Checks `message` from the last chain.
-Currently only works with `consists_of`, `inclusion` and `schema` chains.
+Проверяет `message` из последнего чейна.
+Работает только с чейнами `consists_of`, `inclusion` и `schema`.
 
 ```ruby
 it do
@@ -470,8 +467,8 @@ end
 
 #### `must`
 
-Checks for the presence of the expected key in the `must` input.
-You can specify multiple values.
+Проверяет наличие ожидаемого ключа в `must` инпута.
+Можно указать несколько значений.
 
 ```ruby
 it do
@@ -487,7 +484,7 @@ end
 
 #### `valid_with`
 
-This chain will try to check the actual behavior of the input based on the data passed.
+Проверяет реальное поведение инпута на основе переданных данных.
 
 ```ruby
 subject(:perform) { described_class.call!(**attributes) }
@@ -510,13 +507,11 @@ it do
 end
 ```
 
-### Matcher `have_service_internal`
-
-Alias: `have_internal`
+### Матчер `have_internal` <Badge type="info" text="have_service_internal" />
 
 #### `type`
 
-Checks the type of an internal attribute. Intended for one meaning.
+Проверяет тип внутреннего атрибута. Предназначен для одного значения.
 
 ```ruby
 it do
@@ -529,7 +524,7 @@ end
 
 #### `types`
 
-Checks the types of an internal attribute. Intended for multiple values.
+Проверяет типы внутреннего атрибута. Предназначен для нескольких значений.
 
 ```ruby
 it do
@@ -542,12 +537,12 @@ end
 
 #### `consists_of`
 
-Checks the nested types of an internal attribute collection.
-You can specify multiple values.
+Проверяет вложенные типы коллекции внутреннего атрибута.
+Можно указать несколько значений.
 
 ::: code-group
 
-```ruby [Without message]
+```ruby [Без message]
 it do
   expect { perform }.to(
     have_internal(:ids)
@@ -557,7 +552,7 @@ it do
 end
 ```
 
-```ruby [With message]
+```ruby [С message]
 it do
   expect { perform }.to(
     have_internal(:ids)
@@ -572,11 +567,11 @@ end
 
 #### `inclusion`
 
-Checks the values of the `inclusion` option of an internal attribute.
+Проверяет значения опции `inclusion` внутреннего атрибута.
 
 ::: code-group
 
-```ruby [Without message]
+```ruby [Без message]
 it do
   expect { perform }.to(
     have_internal(:event_name)
@@ -586,7 +581,7 @@ it do
 end
 ```
 
-```ruby [With message]
+```ruby [С message]
 it do
   expect { perform }.to(
     have_internal(:event_name)
@@ -601,14 +596,14 @@ end
 
 #### `schema` <Badge type="info" text="input (^2.12.0)" /> <Badge type="info" text="internal (^2.12.0)" /> <Badge type="info" text="output (^2.12.0)" />
 
-Checks the values of the `schema` option of an internal attribute.
+Проверяет значения опции `schema` внутреннего атрибута.
 
 ::: code-group
 
-```ruby [Without message]
+```ruby [Без message]
 it do
   expect { perform }.to(
-    have_input(:payload)
+    have_internal(:payload)
       .type(Hash)
       .schema(
         {
@@ -622,10 +617,10 @@ it do
 end
 ```
 
-```ruby [With message]
+```ruby [С message]
 it do
   expect { perform }.to(
-    have_input(:payload)
+    have_internal(:payload)
       .type(Hash)
       .schema(
         {
@@ -644,13 +639,13 @@ end
 
 #### `message` <Badge type="info" text="input (^2.12.0)" /> <Badge type="info" text="internal (^2.12.0)" /> <Badge type="info" text="output (^2.12.0)" />
 
-Checks `message` from the last chain.
-Currently only works with `consists_of`, `inclusion` and `schema` chains.
+Проверяет `message` из последнего чейна.
+Работает только с чейнами `consists_of`, `inclusion` и `schema`.
 
 ```ruby
 it do
   expect { perform }.to(
-    have_input(:ids)
+    have_internal(:ids)
       .type(Array)
       .consists_of(String) # [!code focus]
       .message("Input `ids` must be a collection of `String`") # [!code focus]
@@ -660,8 +655,8 @@ end
 
 #### `must`
 
-Checks for the presence of the expected key in the `must` internal attribute.
-You can specify multiple values.
+Проверяет наличие ожидаемого ключа в `must` внутреннего атрибута.
+Можно указать несколько значений.
 
 ```ruby
 it do
@@ -674,13 +669,11 @@ it do
 end
 ```
 
-### Matcher `have_service_output`
-
-Alias: `have_output`
+### Матчер `have_output` <Badge type="info" text="have_service_output" />
 
 #### `instance_of`
 
-Checks the type of the output attribute.
+Проверяет тип выходящего атрибута.
 
 ```ruby
 it do
@@ -695,11 +688,11 @@ end
 
 :::info
 
-In release `2.9.0` the `with` chain was renamed to `contains`.
+В релизе `2.9.0` чейн `with` был переименован в `contains`.
 
 :::
 
-Checks the value of the output attribute.
+Проверяет значение выходящего атрибута.
 
 ```ruby
 it do
@@ -712,7 +705,7 @@ end
 
 #### `nested`
 
-Points to the nested value of the output attribute.
+Указывает на вложенное значение выходящего атрибута.
 
 ```ruby
 it do
@@ -724,7 +717,7 @@ it do
 end
 ```
 
-### Matcher `be_success_service`
+### Матчер `be_success_service`
 
 ::: code-group
 
@@ -760,7 +753,7 @@ it do
 end
 ```
 
-### Matcher `be_failure_service`
+### Матчер `be_failure_service`
 
 ::: code-group
 

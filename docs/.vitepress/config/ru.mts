@@ -101,7 +101,8 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
         {
           text: 'Тестирование',
           items: [
-            { text: 'RSpec', link: '/ru/guide/testing/rspec' },
+            { text: 'RSpec', link: '/ru/guide/testing/rspec/fluent' },
+            { text: 'RSpec (Legacy)', link: '/ru/guide/testing/rspec/legacy' },
           ]
         },
         { text: 'Расширения', link: '/ru/guide/extensions' },
