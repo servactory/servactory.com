@@ -12,7 +12,7 @@ next: Extensions
 :::warning
 
 This functionality is deprecated and will be maintained for backward compatibility only.
-For new tests, we recommend using the [new helpers](./fluent).
+For new tests, we recommend using the [new testing API](./fluent).
 
 :::
 

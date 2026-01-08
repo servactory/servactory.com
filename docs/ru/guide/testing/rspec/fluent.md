@@ -236,7 +236,6 @@ RSpec.describe OrderService::Create, type: :service do
         it do
           expect { perform }.to(
             have_input(:product_id)
-              .valid_with(attributes)
               .type(String)
               .required
           )
@@ -245,7 +244,6 @@ RSpec.describe OrderService::Create, type: :service do
         it do
           expect { perform }.to(
             have_input(:quantity)
-              .valid_with(attributes)
               .type(Integer)
               .required
           )
@@ -268,8 +266,6 @@ RSpec.describe OrderService::Create, type: :service do
           .with(product_id: "PROD-001", quantity: 5)
           .succeeds(available: true, unit_price: 100)
       end
-
-      it { expect(perform).to be_success_service }
 
       it do
         expect(perform).to(
@@ -352,7 +348,7 @@ end
 ```ruby
 it do
   expect { perform }.to(
-    have_input(:ids)
+    have_input(:id)
       .types(Integer, String)
   )
 end
@@ -463,6 +459,35 @@ end
 
 :::
 
+#### `target`
+
+Проверяет значения опции `target` инпута.
+
+::: code-group
+
+```ruby [Без message]
+it do
+  expect { perform }.to(
+    have_input(:service_class)
+      .type(Class)
+      .target([MyFirstService, MySecondService])
+  )
+end
+```
+
+```ruby [С message]
+it do
+  expect { perform }.to(
+    have_input(:service_class)
+      .type(Class)
+      .target([MyFirstService, MySecondService])
+      .message("Must be a valid service class") # [!code focus]
+  )
+end
+```
+
+:::
+
 #### `schema` <Badge type="info" text="input (^2.12.0)" /> <Badge type="info" text="internal (^2.12.0)" /> <Badge type="info" text="output (^2.12.0)" />
 
 Проверяет значения опции `schema` инпута.
@@ -542,31 +567,6 @@ it do
 end
 ```
 
-#### `valid_with`
-
-Проверяет реальное поведение инпута на основе переданных данных.
-
-```ruby
-subject(:perform) { described_class.call!(**attributes) }
-
-let(:attributes) do
-  {
-    first_name: first_name,
-    middle_name: middle_name,
-    last_name: last_name
-  }
-end
-
-it do
-  expect { perform }.to(
-    have_input(:first_name)
-      .valid_with(attributes)
-      .type(String)
-      .required
-  )
-end
-```
-
 ### Матчер `have_internal` <Badge type="info" text="have_service_internal" />
 
 #### `type`
@@ -589,7 +589,7 @@ end
 ```ruby
 it do
   expect { perform }.to(
-    have_internal(:ids)
+    have_internal(:id)
       .types(Integer, String)
   )
 end
@@ -648,6 +648,35 @@ it do
       .type(String)
       .inclusion(%w[created rejected approved])
       .message(be_a(Proc)) # [!code focus]
+  )
+end
+```
+
+:::
+
+#### `target`
+
+Проверяет значения опции `target` внутреннего атрибута.
+
+::: code-group
+
+```ruby [Без message]
+it do
+  expect { perform }.to(
+    have_internal(:service_class)
+      .type(Class)
+      .target([MyFirstService, MySecondService])
+  )
+end
+```
+
+```ruby [С message]
+it do
+  expect { perform }.to(
+    have_internal(:service_class)
+      .type(Class)
+      .target([MyFirstService, MySecondService])
+      .message("Must be a valid service class") # [!code focus]
   )
 end
 ```
