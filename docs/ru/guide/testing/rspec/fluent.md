@@ -301,12 +301,14 @@ RSpec.describe UsersService::Create, type: :service do
             .fails(type: :invalid_email, message: "Email is not valid")
         end
 
-        it "returns expected error" do
+        it "returns expected error", :aggregate_failures do
           expect { perform }.to(
-            raise_error(
-              ApplicationService::Exceptions::Failure,
-              "Email is not valid"
-            )
+            raise_error do |exception|
+              expect(exception).to be_a(ApplicationService::Exceptions::Failure)
+              expect(exception.type).to eq(:invalid_email)
+              expect(exception.message).to eq("Email is not valid")
+              expect(exception.meta).to be_nil
+            end
           )
         end
       end
