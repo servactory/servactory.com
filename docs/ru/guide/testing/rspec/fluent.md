@@ -217,25 +217,27 @@ allow_service!(ServiceClass)
 ::: code-group
 
 ```ruby [RSpec]
-RSpec.describe OrderService::Create, type: :service do
+RSpec.describe UsersService::Create, type: :service do
   describe ".call!" do
     subject(:perform) { described_class.call!(**attributes) }
 
     let(:attributes) do
       {
-        product_id:,
-        quantity:
+        email:,
+        first_name:,
+        last_name:
       }
     end
 
-    let(:product_id) { "PROD-001" }
-    let(:quantity) { 5 }
+    let(:email) { "john@example.com" }
+    let(:first_name) { "John" }
+    let(:last_name) { "Kennedy" }
 
     describe "validations" do
       describe "inputs" do
         it do
           expect { perform }.to(
-            have_input(:product_id)
+            have_input(:email)
               .type(String)
               .required
           )
@@ -243,9 +245,26 @@ RSpec.describe OrderService::Create, type: :service do
 
         it do
           expect { perform }.to(
-            have_input(:quantity)
-              .type(Integer)
+            have_input(:first_name)
+              .type(String)
               .required
+          )
+        end
+
+        it do
+          expect { perform }.to(
+            have_input(:last_name)
+              .type(String)
+              .optional
+          )
+        end
+      end
+
+      describe "internals" do
+        it do
+          expect { perform }.to(
+            have_internal(:email_verification)
+              .type(Servactory::Result)
           )
         end
       end
@@ -253,38 +272,42 @@ RSpec.describe OrderService::Create, type: :service do
       describe "outputs" do
         it do
           expect(perform).to(
-            have_output(:order_total)
-              .instance_of(Integer)
+            have_output(:user)
+              .instance_of(User)
           )
         end
       end
     end
 
-    context "when required data for work is valid" do
+    describe "and the data required for work is also valid" do
       before do
-        allow_service!(InventoryService)
-          .with(product_id: "PROD-001", quantity: 5)
-          .succeeds(available: true, unit_price: 100)
+        allow_service!(EmailVerificationService)
+          .with(email: "john@example.com")
+          .succeeds(valid: true, normalized: "john@example.com")
       end
 
       it do
         expect(perform).to(
           be_success_service
-            .with_output(:order_total, 500)
+            .with_output(:user, be_a(User))
         )
       end
     end
 
-    context "when inventory service fails" do
-      before do
-        allow_service!(InventoryService)
-          .fails(type: :out_of_stock, message: "Product not available")
-      end
+    describe "but the data required for work is invalid" do
+      describe "because email verification fails" do
+        before do
+          allow_service!(EmailVerificationService)
+            .fails(type: :invalid_email, message: "Email is not valid")
+        end
 
-      it "raises expected exception", :aggregate_failures do
-        expect { perform }.to raise_error(ApplicationService::Exceptions::Failure) do |exception|
-          expect(exception.type).to eq(:out_of_stock)
-          expect(exception.message).to eq("Product not available")
+        it "returns expected error" do
+          expect { perform }.to(
+            raise_error(
+              ApplicationService::Exceptions::Failure,
+              "Email is not valid"
+            )
+          )
         end
       end
     end
@@ -293,31 +316,32 @@ end
 ```
 
 ```ruby [Сервис]
-class OrderService::Create < ApplicationService::Base
-  input :product_id, type: String
-  input :quantity, type: Integer
+class UsersService::Create < ApplicationService::Base
+  input :email, type: String
+  input :first_name, type: String
+  input :last_name, type: String, required: false
 
-  output :order_total, type: Integer
+  internal :email_verification, type: Servactory::Result
 
-  make :check_inventory
-  make :calculate_total
+  output :user, type: User
+
+  make :verify_email
+  make :create_user
 
   private
 
-  def check_inventory
-    InventoryService.call!(
-      product_id: inputs.product_id,
-      quantity: inputs.quantity
+  def verify_email
+    internals.email_verification = EmailVerificationService.call!(
+      email: inputs.email
     )
   end
 
-  def calculate_total
-    inventory = InventoryService.call!(
-      product_id: inputs.product_id,
-      quantity: inputs.quantity
+  def create_user
+    outputs.user = User.create!(
+      email: internals.email_verification.normalized,
+      first_name: inputs.first_name,
+      last_name: inputs.last_name
     )
-
-    outputs.order_total = inventory.unit_price * inputs.quantity
   end
 end
 ```
