@@ -103,6 +103,7 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
           items: [
             { text: 'RSpec', link: '/ru/guide/testing/rspec/fluent' },
             { text: 'RSpec (Legacy)', link: '/ru/guide/testing/rspec/legacy' },
+            { text: 'Миграция', link: '/ru/guide/testing/rspec/migration' },
           ]
         },
         { text: 'Расширения', link: '/ru/guide/extensions' },

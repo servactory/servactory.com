@@ -4,7 +4,7 @@ description: Description and examples of service testing using RSpec
 outline:
   level: deep
 prev: RSpec
-next: Extensions
+next: Migration
 ---
 
 # RSpec (Legacy) <Badge type="tip" text="Since 2.5.0" />
@@ -13,6 +13,7 @@ next: Extensions
 
 This functionality is deprecated and will be maintained for backward compatibility only.
 For new tests, we recommend using the [new testing API](./fluent).
+See the [migration guide](./migration) for step-by-step instructions.
 
 :::
 
