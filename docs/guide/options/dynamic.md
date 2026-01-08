@@ -18,7 +18,8 @@ Servactory out of the box provides the following set of dynamic options:
 - `max`;
 - `min`;
 - `multiple_of`;
-- `schema`.
+- `schema`;
+- `target`.
 
 By default, `consists_of`, `inclusion`, and `schema` are enabled.
 Enable the rest via ready-made sets in the option helpers configuration for each attribute.
@@ -262,6 +263,53 @@ output :data,
 - Based on: `must`
 - Enabled by default: Yes
 - [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/schema.rb)
+
+### Option `target` <Badge type="tip" text="Since 3.0.0" />
+
+- Kit: `Servactory::ToolKit::DynamicOptions::Target`
+- Based on: `must`
+- Enabled by default: No
+- [Source code](https://github.com/servactory/servactory/blob/main/lib/servactory/tool_kit/dynamic_options/target.rb)
+
+#### Installation and usage
+
+::: code-group
+
+```ruby [Installation]
+input_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Target.use
+])
+
+internal_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Target.use(:expect)
+])
+
+output_option_helpers([
+  Servactory::ToolKit::DynamicOptions::Target.use
+])
+```
+
+```ruby [Usage]
+input :service_class,
+      type: Class,
+      target: MyFirstService
+
+internal :service_class,
+         type: Class,
+         expect: { in: [MyFirstService, MySecondService] }
+
+output :service_class,
+       type: Class,
+       target: {
+         in: [MyFirstService, MySecondService],
+         message: lambda do |output:, value:, option_value:, **|
+           "Output `#{output.name}`: #{value.inspect} is not allowed. " \
+             "Allowed: #{Array(option_value).map(&:name).join(', ')}"
+         end
+       }
+```
+
+:::
 
 ## Custom options
 

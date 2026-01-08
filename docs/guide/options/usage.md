@@ -362,6 +362,10 @@ Dynamic validation option (not part of main options). See [more](./dynamic#optio
 
 Dynamic validation option (not part of main options). See [more](./dynamic#option-min).
 
+## Option `target` <Badge type="info" text="input (^3.0.0)" /> <Badge type="info" text="internal (^3.0.0)" /> <Badge type="info" text="output (^3.0.0)" />
+
+Dynamic validation option for Class-typed attributes (not part of main options). See [more](./dynamic#option-target).
+
 ## Option `prepare` <Badge type="info" text="input" />
 
 Non-validation option. Prepares the passed value.
