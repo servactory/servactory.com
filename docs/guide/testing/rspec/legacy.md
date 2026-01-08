@@ -4,7 +4,7 @@ description: Description and examples of service testing using RSpec
 outline:
   level: deep
 prev: RSpec
-next: Migration
+next: RSpec Migration
 ---
 
 # RSpec (Legacy) <Badge type="tip" text="Since 2.5.0" />

@@ -124,6 +124,36 @@ end
 
 :::
 
+### Failure with Custom Exception Class
+
+::: code-group
+
+```ruby [Legacy]
+before do
+  allow_service_as_failure!(PaymentService) do
+    {
+      exception: CustomPaymentException.new(
+        type: :declined,
+        message: "Insufficient funds"
+      )
+    }
+  end
+end
+```
+
+```ruby [Fluent]
+before do
+  allow_service!(PaymentService)
+    .fails(
+      CustomPaymentException,
+      type: :declined,
+      message: "Insufficient funds"
+    )
+end
+```
+
+:::
+
 ## New Features in Fluent API
 
 ### Sequential Calls

@@ -4,7 +4,7 @@ description: Описание и примеры тестирования сер�
 outline:
   level: deep
 prev: RSpec
-next: Миграция
+next: Миграция RSpec
 ---
 
 # RSpec (Legacy) <Badge type="tip" text="Начиная с 2.5.0" />
