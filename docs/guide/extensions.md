@@ -210,12 +210,13 @@ Extensions form a call chain. `super` passes execution to the next module:
 ```ruby
 def call!(**)
   # Before logic (runs first)
-  validate_something!
+  settings = self.class.stroma.settings[:actions][:my_extension]
+  fail!(message: "Not configured") if settings[:required] && settings[:value].blank?
 
   super  # Calls next extension or service actions
 
   # After logic (runs after service completes)
-  log_result!
+  Rails.logger.info("Service completed: #{self.class.name}")
 end
 ```
 
@@ -225,6 +226,100 @@ end
 | After | Logic after `super` | Logging, publishing |
 | Around | Wrap `super` | Transactions, timing |
 | Short-circuit | Skip `super` | Caching, early return |
+
+### Organizing complex extensions
+
+For extensions with complex logic, isolate it into dedicated `Tools` classes instead of adding methods to the extension module. This pattern is used internally by Servactory.
+
+**File structure:**
+
+```
+extensions/authorization/
+├── dsl.rb
+└── tools/
+    └── permission_checker.rb
+```
+
+::: code-group
+
+```ruby [dsl.rb]
+module ApplicationService
+  module Extensions
+    module Authorization
+      module DSL
+        def self.included(base)
+          base.extend(ClassMethods)
+          base.include(InstanceMethods)
+        end
+
+        module ClassMethods
+          private
+
+          def authorize_with(method_name)
+            stroma.settings[:actions][:authorization][:method_name] = method_name
+          end
+        end
+
+        module InstanceMethods
+          private
+
+          def call!(incoming_arguments: {}, **)
+            method_name = self.class.stroma.settings[:actions][:authorization][:method_name]
+
+            if method_name.present?
+              Tools::PermissionChecker.call!(self, incoming_arguments, method_name)
+            end
+
+            super
+          end
+        end
+      end
+    end
+  end
+end
+```
+
+```ruby [tools/permission_checker.rb]
+module ApplicationService
+  module Extensions
+    module Authorization
+      module Tools
+        class PermissionChecker
+          def self.call!(...)
+            new(...).call!
+          end
+
+          def initialize(context, arguments, method_name)
+            @context = context
+            @arguments = arguments
+            @method_name = method_name
+          end
+
+          def call!
+            authorized = @context.send(@method_name, @arguments)
+
+            return if authorized
+
+            @context.fail!(
+              :unauthorized,
+              message: "Not authorized to perform this action"
+            )
+          end
+        end
+      end
+    end
+  end
+end
+```
+
+:::
+
+**Benefits:**
+
+- Logic is isolated in dedicated classes
+- No method pollution in extension modules
+- Easy to test each Tool in isolation
+- Scales well for complex extensions
 
 ## Stroma settings
 

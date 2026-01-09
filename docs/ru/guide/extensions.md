@@ -210,12 +210,13 @@ end
 ```ruby
 def call!(**)
   # Логика до (выполняется первой)
-  validate_something!
+  settings = self.class.stroma.settings[:actions][:my_extension]
+  fail!(message: "Not configured") if settings[:required] && settings[:value].blank?
 
   super  # Вызывает следующее расширение или действия сервиса
 
   # Логика после (выполняется после завершения сервиса)
-  log_result!
+  Rails.logger.info("Service completed: #{self.class.name}")
 end
 ```
 
@@ -225,6 +226,100 @@ end
 | After | Логика после `super` | Логирование, публикация |
 | Around | Обёртка `super` | Транзакции, замер времени |
 | Short-circuit | Пропуск `super` | Кэширование, ранний возврат |
+
+### Организация сложных расширений
+
+Для расширений со сложной логикой выносите её в отдельные классы `Tools` вместо добавления методов в модуль расширения. Этот паттерн используется внутри Servactory.
+
+**Структура файлов:**
+
+```
+extensions/authorization/
+├── dsl.rb
+└── tools/
+    └── permission_checker.rb
+```
+
+::: code-group
+
+```ruby [dsl.rb]
+module ApplicationService
+  module Extensions
+    module Authorization
+      module DSL
+        def self.included(base)
+          base.extend(ClassMethods)
+          base.include(InstanceMethods)
+        end
+
+        module ClassMethods
+          private
+
+          def authorize_with(method_name)
+            stroma.settings[:actions][:authorization][:method_name] = method_name
+          end
+        end
+
+        module InstanceMethods
+          private
+
+          def call!(incoming_arguments: {}, **)
+            method_name = self.class.stroma.settings[:actions][:authorization][:method_name]
+
+            if method_name.present?
+              Tools::PermissionChecker.call!(self, incoming_arguments, method_name)
+            end
+
+            super
+          end
+        end
+      end
+    end
+  end
+end
+```
+
+```ruby [tools/permission_checker.rb]
+module ApplicationService
+  module Extensions
+    module Authorization
+      module Tools
+        class PermissionChecker
+          def self.call!(...)
+            new(...).call!
+          end
+
+          def initialize(context, arguments, method_name)
+            @context = context
+            @arguments = arguments
+            @method_name = method_name
+          end
+
+          def call!
+            authorized = @context.send(@method_name, @arguments)
+
+            return if authorized
+
+            @context.fail!(
+              :unauthorized,
+              message: "Not authorized to perform this action"
+            )
+          end
+        end
+      end
+    end
+  end
+end
+```
+
+:::
+
+**Преимущества:**
+
+- Логика изолирована в отдельных классах
+- Нет загрязнения модулей расширений методами
+- Легко тестировать каждый Tool изолированно
+- Хорошо масштабируется для сложных расширений
 
 ## Настройки Stroma
 
