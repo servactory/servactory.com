@@ -627,7 +627,7 @@ end
 
 | Аспект | 2.x | 3.0 |
 |--------|-----|-----|
-| Хранение | Переменные класса (`@@var`) | `stroma.settings[:key][:ext][:setting]` |
+| Хранение | `attr_accessor` (class instance variable) | `stroma.settings[:key][:ext][:setting]` |
 | Доступ | `self.class.send(:var)` | `self.class.stroma.settings[:key][:ext][:setting]` |
 | Наследование | Ручная обработка | Автоматическое глубокое копирование |
 

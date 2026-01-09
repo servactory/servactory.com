@@ -627,7 +627,7 @@ end
 
 | Aspect | 2.x | 3.0 |
 |--------|-----|-----|
-| Storage | Class variables (`@@var`) | `stroma.settings[:key][:ext][:setting]` |
+| Storage | `attr_accessor` (class instance variable) | `stroma.settings[:key][:ext][:setting]` |
 | Access | `self.class.send(:var)` | `self.class.stroma.settings[:key][:ext][:setting]` |
 | Inheritance | Manual handling | Automatic deep copy |
 
