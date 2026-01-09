@@ -159,8 +159,8 @@ extensions/my_extension/
 ```ruby
 class ApplicationService::Base < Servactory::Base
   extensions do
-    before :actions, AuthorizationExtension::DSL
-    after :actions, PublishableExtension::DSL
+    before :actions, ApplicationService::Extensions::Authorization::DSL
+    after :actions, ApplicationService::Extensions::Publishable::DSL
   end
 end
 ```
