@@ -267,7 +267,8 @@ module ApplicationService
             method_name = self.class.stroma.settings[:actions][:authorization][:method_name]
 
             if method_name.present?
-              Tools::PermissionChecker.call!(self, incoming_arguments, method_name)
+              # PORO-класс для логики расширения, не Servactory сервис
+              Tools::PermissionChecker.check!(self, incoming_arguments, method_name)
             end
 
             super
@@ -285,8 +286,8 @@ module ApplicationService
     module Authorization
       module Tools
         class PermissionChecker
-          def self.call!(...)
-            new(...).call!
+          def self.check!(...)
+            new(...).check!
           end
 
           def initialize(context, arguments, method_name)
@@ -295,7 +296,7 @@ module ApplicationService
             @method_name = method_name
           end
 
-          def call!
+          def check!
             authorized = @context.send(@method_name, @arguments)
 
             return if authorized
