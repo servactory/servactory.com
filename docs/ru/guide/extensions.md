@@ -425,7 +425,7 @@ class OrdersService::Create < ApplicationService::Base
   end
 
   def charge_payment
-    PaymentsService::Charge.call!(amount: outputs.order.total)
+    PaymentsService::Charge.call!(amount: outputs.order.total_amount)
   end
 end
 ```
@@ -577,7 +577,7 @@ class PaymentsService::Process < ApplicationService::Base
   def charge_payment
     result = PaymentsService::Charge.call!(
       payment_method: inputs.payment_method,
-      amount: inputs.order.total
+      amount: inputs.order.total_amount
     )
     outputs.payment = result.payment
   end
