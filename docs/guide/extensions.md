@@ -693,6 +693,10 @@ end
 
 ## Migration from 2.x
 
+::: warning
+`Servactory::DSL.with_extensions(...)` is deprecated and will be removed in future releases. Please migrate to the new `extensions do` block syntax.
+:::
+
 ### Syntax changes
 
 ::: code-group
