@@ -425,7 +425,7 @@ class OrdersService::Create < ApplicationService::Base
   end
 
   def charge_payment
-    PaymentGateway.charge(outputs.order.total)
+    PaymentsService::Charge.call!(amount: outputs.order.total)
   end
 end
 ```
@@ -562,7 +562,7 @@ class PaymentsService::Process < ApplicationService::Base
   input :order, type: Order
   input :payment_method, type: PaymentMethod
 
-  output :transaction, type: Transaction
+  output :payment, type: Payment
 
   make :reserve_inventory
   make :charge_payment
@@ -571,14 +571,15 @@ class PaymentsService::Process < ApplicationService::Base
   private
 
   def reserve_inventory
-    InventoryService.reserve(inputs.order.items)
+    InventoryService::Reserve.call!(items: inputs.order.items)
   end
 
   def charge_payment
-    outputs.transaction = PaymentGateway.charge(
-      inputs.payment_method,
-      inputs.order.total
+    result = PaymentsService::Charge.call!(
+      payment_method: inputs.payment_method,
+      amount: inputs.order.total
     )
+    outputs.payment = result.payment
   end
 
   def confirm_order
@@ -586,8 +587,8 @@ class PaymentsService::Process < ApplicationService::Base
   end
 
   def cleanup_resources
-    InventoryService.release(inputs.order.items)
-    outputs.transaction&.refund
+    InventoryService::Release.call!(items: inputs.order.items)
+    PaymentsService::Refund.call!(payment: outputs.payment) if outputs.payment.present?
   end
 end
 ```
