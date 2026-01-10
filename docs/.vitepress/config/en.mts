@@ -107,6 +107,12 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
           ]
         },
         { text: 'Extensions', link: '/guide/extensions' },
+        {
+          text: 'Rails',
+          items: [
+            { text: 'Generators', link: '/guide/rails/generators' }
+          ]
+        },
         { text: 'I18n', link: '/guide/i18n' },
       ]
     },

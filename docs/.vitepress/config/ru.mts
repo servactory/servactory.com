@@ -107,6 +107,12 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
           ]
         },
         { text: 'Расширения', link: '/ru/guide/extensions' },
+        {
+          text: 'Rails',
+          items: [
+            { text: 'Генераторы', link: '/ru/guide/rails/generators' }
+          ]
+        },
         { text: 'I18n', link: '/ru/guide/i18n' },
       ]
     },

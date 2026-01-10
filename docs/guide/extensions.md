@@ -2,7 +2,7 @@
 title: Extensions
 description: Expand service functionality with custom extensions using the Stroma hook system
 prev: RSpec Migration
-next: Internationalization (I18n)
+next: Rails Generators
 ---
 
 # Extensions <Badge type="tip" text="Since 3.0.0" />

@@ -50,6 +50,8 @@ bundle exec rails g servactory:install
 
 This creates all necessary files.
 
+See [Rails Generators](/guide/rails/generators) for all available options and generators.
+
 ### Manually
 
 #### ApplicationService::Exceptions
