@@ -80,7 +80,7 @@ bundle exec rails g servactory:service users_service/create
 bundle exec rails g servactory:service orders_service/process user:User amount:integer
 
 # Nested namespace
-bundle exec rails g servactory:service admin/reports/generate start_date:date end_date:date
+bundle exec rails g servactory:service admin/reports/generate started_on:date ended_on:date
 ```
 
 ## RSpec generator

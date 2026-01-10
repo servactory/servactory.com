@@ -1,6 +1,6 @@
 ---
 title: Генераторы Rails
-description: Генерация сервисов, спецификаций и расширений с помощью генераторов Servactory
+description: Генерация сервисов, тестов и расширений с помощью генераторов Servactory
 prev: Расширения
 next: Интернационализация (I18n)
 ---
@@ -80,7 +80,7 @@ bundle exec rails g servactory:service users_service/create
 bundle exec rails g servactory:service orders_service/process user:User amount:integer
 
 # Вложенный namespace
-bundle exec rails g servactory:service admin/reports/generate start_date:date end_date:date
+bundle exec rails g servactory:service admin/reports/generate started_on:date ended_on:date
 ```
 
 ## Генератор RSpec
