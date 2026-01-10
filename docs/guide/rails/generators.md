@@ -5,11 +5,11 @@ prev: Extensions
 next: Internationalization (I18n)
 ---
 
-# Rails Generators <Badge type="tip" text="Since 2.5.0" />
+# Rails Generators
 
 Servactory provides Rails generators for common tasks.
 
-## Installation generator
+## Installation generator <Badge type="tip" text="Since 2.5.0" />
 
 Sets up the base service infrastructure.
 
@@ -45,7 +45,7 @@ bundle exec rails g servactory:install --namespace=MyApp::Services
 bundle exec rails g servactory:install --path=lib/services
 ```
 
-## Service generator
+## Service generator <Badge type="tip" text="Since 2.5.0" />
 
 Creates a new service with typed inputs.
 
@@ -83,7 +83,7 @@ bundle exec rails g servactory:service orders_service/process user:User amount:i
 bundle exec rails g servactory:service admin/reports/generate started_on:date ended_on:date
 ```
 
-## RSpec generator
+## RSpec generator <Badge type="tip" text="Since 2.5.0" />
 
 Creates an RSpec test file for a service.
 

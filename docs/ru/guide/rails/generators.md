@@ -5,11 +5,11 @@ prev: Расширения
 next: Интернационализация (I18n)
 ---
 
-# Генераторы Rails <Badge type="tip" text="Начиная с 2.5.0" />
+# Генераторы Rails
 
 Servactory предоставляет генераторы Rails для типовых задач.
 
-## Генератор установки
+## Генератор установки <Badge type="tip" text="Начиная с 2.5.0" />
 
 Создаёт базовую инфраструктуру сервисов.
 
@@ -45,7 +45,7 @@ bundle exec rails g servactory:install --namespace=MyApp::Services
 bundle exec rails g servactory:install --path=lib/services
 ```
 
-## Генератор сервисов
+## Генератор сервисов <Badge type="tip" text="Начиная с 2.5.0" />
 
 Создаёт новый сервис с типизированными входными данными.
 
@@ -83,7 +83,7 @@ bundle exec rails g servactory:service orders_service/process user:User amount:i
 bundle exec rails g servactory:service admin/reports/generate started_on:date ended_on:date
 ```
 
-## Генератор RSpec
+## Генератор RSpec <Badge type="tip" text="Начиная с 2.5.0" />
 
 Создаёт файл RSpec теста для сервиса.
 
