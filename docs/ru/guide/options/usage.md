@@ -362,6 +362,10 @@ end
 
 Динамическая опция валидации (не входит в основные). См. [подробнее](./dynamic#опция-min).
 
+## Опция `target` <Badge type="info" text="input (^3.0.0)" /> <Badge type="info" text="internal (^3.0.0)" /> <Badge type="info" text="output (^3.0.0)" />
+
+Динамическая опция валидации для атрибутов типа Class (не входит в основные). См. [подробнее](./dynamic#опция-target).
+
 ## Опция `prepare` <Badge type="info" text="input" />
 
 Не является валидацией. Подготавливает переданное значение.

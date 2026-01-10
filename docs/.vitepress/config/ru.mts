@@ -28,7 +28,7 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
 function nav(): DefaultTheme.NavItem[] {
   return [
     { text: 'Руководство', link: '/ru/getting-started', activeMatch: '/guide/' },
-    { text: 'Релизы', link: '/ru/releases/2.16', activeMatch: '/releases/' },
+    { text: 'Релизы', link: '/ru/releases/3.0', activeMatch: '/releases/' },
     { text: 'Datory', link: '/ru/datory/getting-started', activeMatch: '/datory/' },
     { text: 'Featury', link: '/ru/featury/getting-started', activeMatch: '/featury/' },
     // { text: 'v1', link: 'https://v1.servactory.com/ru' },
@@ -101,10 +101,18 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
         {
           text: 'Тестирование',
           items: [
-            { text: 'RSpec', link: '/ru/guide/testing/rspec' },
+            { text: 'RSpec', link: '/ru/guide/testing/rspec/fluent' },
+            { text: 'RSpec (Legacy)', link: '/ru/guide/testing/rspec/legacy' },
+            { text: 'Миграция', link: '/ru/guide/testing/rspec/migration' },
           ]
         },
         { text: 'Расширения', link: '/ru/guide/extensions' },
+        {
+          text: 'Rails',
+          items: [
+            { text: 'Генераторы', link: '/ru/guide/rails/generators' }
+          ]
+        },
         { text: 'I18n', link: '/ru/guide/i18n' },
       ]
     },
@@ -197,6 +205,7 @@ function sidebarReleases(): DefaultTheme.SidebarItem[] {
     {
       text: 'Релизы',
       items: [
+        { text: 'Релиз 3.0', link: '/ru/releases/3.0' },
         { text: 'Релиз 2.16', link: '/ru/releases/2.16' },
         { text: 'Релиз 2.15', link: '/ru/releases/2.15' },
         { text: 'Релиз 2.14', link: '/ru/releases/2.14' },

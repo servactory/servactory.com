@@ -50,6 +50,8 @@ bundle exec rails g servactory:install
 
 Создаст все необходимые файлы.
 
+Подробнее о всех генераторах см. в разделе [Генераторы Rails](/ru/guide/rails/generators).
+
 ### Вручную
 
 #### ApplicationService::Exceptions
