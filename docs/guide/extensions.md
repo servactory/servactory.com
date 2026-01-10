@@ -7,7 +7,7 @@ next: Internationalization (I18n)
 
 # Extensions <Badge type="tip" text="Since 3.0.0" />
 
-Extensions allow you to expand base service functionality through the Stroma hook system.
+Extensions allow you to expand base service functionality through the [Stroma](https://github.com/servactory/stroma) hook system.
 Define custom behavior that runs before or after service execution stages.
 
 Create extensions in the `app/services/application_service/extensions` directory.
