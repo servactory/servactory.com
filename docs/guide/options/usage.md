@@ -297,6 +297,12 @@ If `type` specifies `Hash`, describe nesting in the same format.
 
 Validation option. Create custom validations.
 
+::: warning Since 3.0.0
+
+The `is` lambda must return exactly `true`, not a truthy value. Values like `1`, `"string"`, or `[]` will fail validation.
+
+:::
+
 ::: code-group
 
 ```ruby{5-9} [input]
