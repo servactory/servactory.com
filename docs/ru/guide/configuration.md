@@ -367,3 +367,25 @@ end
 ```
 
 :::
+
+### Корневой ключ для I18n <Badge type="tip" text="Начиная с 2.6.0" />
+
+Переопределяйте корневой ключ по умолчанию для переводов (`servactory`).
+
+::: code-group
+
+```ruby {4} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      i18n_root_key :my_app
+    end
+  end
+end
+```
+
+:::
+
+Это изменяет поиск переводов с `servactory.*` на `my_app.*`.
+
+Смотрите также [Интернационализация (I18n)](/ru/guide/i18n).

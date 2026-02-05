@@ -1,19 +1,19 @@
 ---
-title: RSpec — Тестирование сервисов
+title: RSpec (Legacy) — Тестирование сервисов
 description: Описание и примеры тестирования сервисов с применением RSpec
 outline:
   level: deep
-prev: Конфигурация
-next: Расширения
+prev: RSpec
+next: Миграция RSpec
 ---
 
-# RSpec <Badge type="tip" text="Начиная с 2.5.0" />
+# RSpec (Legacy) <Badge type="tip" text="Начиная с 2.5.0" />
 
 :::warning
 
-Этот функционал является экспериментальным.
-Некоторые матчеры могут измениться без сохранения совместимости.
-Инструкции по миграции будут задокументированы при возникновении изменений.
+Этот функционал является устаревшим (deprecated) и будет поддерживаться только для обратной совместимости.
+Для новых тестов рекомендуется использовать [новый API тестирования](./fluent).
+Смотрите [руководство по миграции](./migration) для пошаговых инструкций.
 
 :::
 
@@ -271,9 +271,7 @@ end
 
 ## Матчеры
 
-### Матчер `have_service_input`
-
-Алиас: `have_input`
+### Матчер `have_input` <Badge type="info" text="have_service_input" />
 
 #### `type`
 
@@ -510,9 +508,7 @@ it do
 end
 ```
 
-### Матчер `have_service_internal`
-
-Алиас: `have_internal`
+### Матчер `have_internal` <Badge type="info" text="have_service_internal" />
 
 #### `type`
 
@@ -674,9 +670,7 @@ it do
 end
 ```
 
-### Матчер `have_service_output`
-
-Алиас: `have_output`
+### Матчер `have_output` <Badge type="info" text="have_service_output" />
 
 #### `instance_of`
 

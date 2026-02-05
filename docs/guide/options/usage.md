@@ -297,6 +297,12 @@ If `type` specifies `Hash`, describe nesting in the same format.
 
 Validation option. Create custom validations.
 
+::: warning Since 3.0.0
+
+The `is` lambda must return exactly `true`, not a truthy value. Values like `1`, `"string"`, or `[]` will fail validation.
+
+:::
+
 ::: code-group
 
 ```ruby{5-9} [input]
@@ -361,6 +367,10 @@ Dynamic validation option (not part of main options). See [more](./dynamic#optio
 ## Option `min` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
 Dynamic validation option (not part of main options). See [more](./dynamic#option-min).
+
+## Option `target` <Badge type="info" text="input (^3.0.0)" /> <Badge type="info" text="internal (^3.0.0)" /> <Badge type="info" text="output (^3.0.0)" />
+
+Dynamic validation option for Class-typed attributes (not part of main options). See [more](./dynamic#option-target).
 
 ## Option `prepare` <Badge type="info" text="input" />
 

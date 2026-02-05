@@ -2,14 +2,16 @@
 /guide/actions                      /guide/actions/usage
 /guide/options/modes                /guide/options/advanced
 /guide/failures                     /guide/exceptions/failure
-/guide/testing                      /guide/testing/rspec
+/guide/testing                      /guide/testing/rspec/fluent
+/guide/testing/rspec                /guide/testing/rspec/legacy
 /datory                             /datory/getting-started
 /featury                            /featury/getting-started
 /ru/guide/call-and-result           /ru/guide/usage/call
 /ru/guide/actions                   /ru/guide/actions/usage
 /ru/guide/options/modes             /ru/guide/options/advanced
 /ru/guide/failures                  /ru/guide/exceptions/failure
-/ru/guide/testing                   /ru/guide/testing/rspec
+/ru/guide/testing                   /ru/guide/testing/rspec/fluent
+/ru/guide/testing/rspec             /ru/guide/testing/rspec/legacy
 /ru/datory                          /ru/datory/getting-started
 /ru/featury                         /ru/featury/getting-started
 

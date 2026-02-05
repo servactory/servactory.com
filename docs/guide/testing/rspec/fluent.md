@@ -4,18 +4,12 @@ description: Description and examples of service testing using RSpec
 outline:
   level: deep
 prev: Configuration
-next: Extensions
+next: RSpec (Legacy)
 ---
 
-# RSpec <Badge type="tip" text="Since 2.5.0" />
+# RSpec <Badge type="tip" text="Since 3.0.0" />
 
-:::warning
-
-This functionality is experimental.
-Some matchers may change without maintaining compatibility.
-Migration instructions will be documented if changes occur.
-
-:::
+This page documents the recommended testing helpers with method chaining support.
 
 ## Installation
 
@@ -41,23 +35,184 @@ end
 
 :::
 
+## Helpers
+
+### Helper `allow_service`
+
+Mocks a `.call` invocation with a specified result.
+
+Returns a builder object that supports method chaining.
+
+```ruby
+before do
+  allow_service(PaymentService)
+    .succeeds(transaction_id: "txn_123", status: :completed)
+end
+```
+
+### Helper `allow_service!`
+
+Mocks a `.call!` invocation with a specified result.
+
+When failure is configured, raises an exception instead of returning a Result with error.
+
+```ruby
+before do
+  allow_service!(PaymentService)
+    .succeeds(transaction_id: "txn_123", status: :completed)
+end
+```
+
+### Chainable Methods
+
+#### `succeeds`
+
+Configures the mock to return a successful result with specified outputs.
+
+```ruby
+allow_service(PaymentService)
+  .succeeds(transaction_id: "txn_123", status: :completed)
+```
+
+#### `fails`
+
+Configures the mock to return a failure result.
+
+```ruby
+allow_service(PaymentService)
+  .fails(type: :payment_declined, message: "Card declined")
+```
+
+With meta information:
+
+```ruby
+allow_service(PaymentService)
+  .fails(type: :validation, message: "Invalid amount", meta: { field: :amount })
+```
+
+With custom exception class:
+
+```ruby
+allow_service(PaymentService)
+  .fails(
+    CustomException,
+    type: :payment_declined,
+    message: "Card declined"
+  )
+```
+
+#### `with`
+
+Specifies the expected inputs for the mock to match.
+
+```ruby
+allow_service(PaymentService)
+  .with(amount: 100, currency: "USD")
+  .succeeds(transaction_id: "txn_100")
+```
+
+The `with` method supports argument matchers (see [Argument Matchers](#argument-matchers)).
+
+#### `then_succeeds`
+
+Configures sequential return values for multiple calls.
+
+```ruby
+allow_service(RetryService)
+  .succeeds(status: :pending)
+  .then_succeeds(status: :completed)
+```
+
+#### `then_fails`
+
+Configures sequential return with failure on subsequent call.
+
+```ruby
+allow_service(RetryService)
+  .succeeds(status: :pending)
+  .then_fails(type: :timeout, message: "Request timed out")
+```
+
+### Argument Matchers
+
+#### `including`
+
+Matches inputs containing at least the specified key-value pairs.
+
+```ruby
+allow_service(OrderService)
+  .with(including(quantity: 5))
+  .succeeds(total: 500)
+```
+
+```ruby
+allow_service(OrderService)
+  .with(including(product_id: "PROD-001", quantity: 5))
+  .succeeds(total: 1000)
+```
+
+#### `excluding`
+
+Matches inputs that do not contain the specified keys.
+
+```ruby
+allow_service(OrderService)
+  .with(excluding(secret_key: anything))
+  .succeeds(total: 750)
+```
+
+#### `any_inputs`
+
+Matches any arguments passed to the service.
+
+```ruby
+allow_service(NotificationService)
+  .with(any_inputs)
+  .succeeds(sent: true)
+```
+
+#### `no_inputs`
+
+Matches when no arguments are passed.
+
+```ruby
+allow_service(HealthCheckService)
+  .with(no_inputs)
+  .succeeds(healthy: true)
+```
+
+### Automatic Validation
+
+The helpers automatically validate inputs and outputs against the service definition.
+
+#### Input Validation
+
+When using `with`, the helper validates that specified inputs exist in the service:
+
+```ruby
+# Raises ValidationError: unknown_input is not defined in ServiceClass
+allow_service!(ServiceClass)
+  .with(unknown_input: "value")
+  .succeeds(result: "ok")
+```
+
+#### Output Validation
+
+The helper validates that specified outputs exist and match expected types:
+
+```ruby
+# Raises ValidationError: unknown_output is not defined in ServiceClass
+allow_service!(ServiceClass)
+  .succeeds(unknown_output: "value")
+```
+
+```ruby
+# Raises ValidationError: order_number expects Integer, got String
+allow_service!(ServiceClass)
+  .succeeds(order_number: "not_an_integer")
+```
+
 ## Example
-
-### Structure
-
-- `.call!` or `call`:
-  - `subject`;
-  - `validations`:
-    - `inputs`;
-    - `internals`;
-    - `outputs`;
-  - `when required data for work is valid`:
-    - `be_success_service`;
-    - `have_output`.
-  - `when required data for work is invalid`:
-    - `be_failure_service`.
-
-### File
 
 ::: code-group
 
@@ -68,22 +223,21 @@ RSpec.describe UsersService::Create, type: :service do
 
     let(:attributes) do
       {
+        email:,
         first_name:,
-        middle_name:,
         last_name:
       }
     end
 
+    let(:email) { "john@example.com" }
     let(:first_name) { "John" }
-    let(:middle_name) { "Fitzgerald" }
     let(:last_name) { "Kennedy" }
 
     describe "validations" do
       describe "inputs" do
         it do
           expect { perform }.to(
-            have_input(:first_name)
-              .valid_with(attributes)
+            have_input(:email)
               .type(String)
               .required
           )
@@ -91,19 +245,26 @@ RSpec.describe UsersService::Create, type: :service do
 
         it do
           expect { perform }.to(
-            have_input(:middle_name)
-              .valid_with(attributes)
+            have_input(:first_name)
               .type(String)
-              .optional
+              .required
           )
         end
 
         it do
           expect { perform }.to(
             have_input(:last_name)
-              .valid_with(attributes)
               .type(String)
-              .required
+              .optional
+          )
+        end
+      end
+
+      describe "internals" do
+        it do
+          expect { perform }.to(
+            have_internal(:email_verification)
+              .type(Servactory::Result)
           )
         end
       end
@@ -111,30 +272,43 @@ RSpec.describe UsersService::Create, type: :service do
       describe "outputs" do
         it do
           expect(perform).to(
-            have_output(:full_name)
-              .instance_of(String)
+            have_output(:user)
+              .instance_of(User)
           )
         end
       end
     end
 
-    context "when required data for work is valid" do
-      it { expect(perform).to be_success_service }
+    describe "and the data required for work is also valid" do
+      before do
+        allow_service!(EmailVerificationService)
+          .with(email: "john@example.com")
+          .succeeds(valid: true, normalized: "john@example.com")
+      end
 
       it do
         expect(perform).to(
-          have_output(:full_name)
-            .contains("John Fitzgerald Kennedy")
+          be_success_service
+            .with_output(:user, be_a(User))
         )
       end
+    end
 
-      describe "even if `middle_name` is not specified" do
-        let(:middle_name) { nil }
+    describe "but the data required for work is invalid" do
+      describe "because email verification fails" do
+        before do
+          allow_service!(EmailVerificationService)
+            .fails(type: :invalid_email, message: "Email is not valid")
+        end
 
-        it do
-          expect(perform).to(
-            have_output(:full_name)
-              .contains("John Kennedy")
+        it "returns expected error", :aggregate_failures do
+          expect { perform }.to(
+            raise_error do |exception|
+              expect(exception).to be_a(ApplicationService::Exceptions::Failure)
+              expect(exception.type).to eq(:invalid_email)
+              expect(exception.message).to eq("Email is not valid")
+              expect(exception.meta).to be_nil
+            end
           )
         end
       end
@@ -145,135 +319,40 @@ end
 
 ```ruby [Service]
 class UsersService::Create < ApplicationService::Base
+  input :email, type: String
   input :first_name, type: String
-  input :middle_name, type: String, required: false
-  input :last_name, type: String
+  input :last_name, type: String, required: false
 
-  output :full_name, type: String
+  internal :email_verification, type: Servactory::Result
 
-  make :assign_full_name
+  output :user, type: User
+
+  make :verify_email
+  make :create_user
 
   private
 
-  def assign_full_name
-    outputs.full_name = [
-      inputs.first_name,
-      inputs.middle_name,
-      inputs.last_name
-    ].compact.join(" ")
+  def verify_email
+    internals.email_verification = EmailVerificationService.call!(
+      email: inputs.email
+    )
+  end
+
+  def create_user
+    outputs.user = User.create!(
+      email: internals.email_verification.normalized,
+      first_name: inputs.first_name,
+      last_name: inputs.last_name
+    )
   end
 end
 ```
 
 :::
 
-## Helpers
-
-### Helper `allow_service_as_success!`
-
-Mocks a `.call!` invocation with a successful result.
-
-```ruby
-before do
-  allow_service_as_success!(UsersService::Accept)
-end
-```
-
-```ruby
-before do
-  allow_service_as_success!(UsersService::Accept) do
-    {
-      user: user
-    }
-  end
-end
-```
-
-### Helper `allow_service_as_success`
-
-Mocks a `.call` invocation with a successful result.
-
-```ruby
-before do
-  allow_service_as_success(UsersService::Accept)
-end
-```
-
-```ruby
-before do
-  allow_service_as_success(UsersService::Accept) do
-    {
-      user: user
-    }
-  end
-end
-```
-
-### Helper `allow_service_as_failure!`
-
-Mocks a `.call!` invocation with a failed result.
-
-```ruby
-before do
-  allow_service_as_failure!(UsersService::Accept) do
-    ApplicationService::Exceptions::Failure.new(
-      message: "Some error"
-    )
-  end
-end
-```
-
-### Helper `allow_service_as_failure`
-
-Mocks a `.call` invocation with a failed result.
-
-```ruby
-before do
-  allow_service_as_failure(UsersService::Accept) do
-    ApplicationService::Exceptions::Failure.new(
-      message: "Some error"
-    )
-  end
-end
-```
-
-### Options
-
-#### Option `with`
-
-The methods `allow_service_as_success!`, `allow_service_as_success`,
-`allow_service_as_failure!`, and `allow_service_as_failure` support the `with` option.
-
-By default, this option does not require passing service arguments and will automatically
-determine this data based on the `info` method.
-
-```ruby
-before do
-  allow_service_as_success!(
-    UsersService::Accept,
-    with: { user: user } # [!code focus]
-  )
-end
-```
-
-```ruby
-before do
-  allow_service_as_success!(
-    UsersService::Accept,
-    with: { user: user } # [!code focus]
-  ) do
-    {
-      user: user
-    }
-  end
-end
-```
-
 ## Matchers
 
-### Matcher `have_service_input`
-
-Alias: `have_input`
+### Matcher `have_input` <Badge type="info" text="have_service_input" />
 
 #### `type`
 
@@ -295,7 +374,7 @@ Checks input types. Intended for multiple values.
 ```ruby
 it do
   expect { perform }.to(
-    have_input(:ids)
+    have_input(:id)
       .types(Integer, String)
   )
 end
@@ -406,6 +485,35 @@ end
 
 :::
 
+#### `target`
+
+Checks the values of the `target` option of the input.
+
+::: code-group
+
+```ruby [Without message]
+it do
+  expect { perform }.to(
+    have_input(:service_class)
+      .type(Class)
+      .target([MyFirstService, MySecondService])
+  )
+end
+```
+
+```ruby [With message]
+it do
+  expect { perform }.to(
+    have_input(:service_class)
+      .type(Class)
+      .target([MyFirstService, MySecondService])
+      .message("Must be a valid service class") # [!code focus]
+  )
+end
+```
+
+:::
+
 #### `schema` <Badge type="info" text="input (^2.12.0)" /> <Badge type="info" text="internal (^2.12.0)" /> <Badge type="info" text="output (^2.12.0)" />
 
 Checks the values of the `schema` option of the input.
@@ -485,34 +593,7 @@ it do
 end
 ```
 
-#### `valid_with`
-
-This chain will try to check the actual behavior of the input based on the data passed.
-
-```ruby
-subject(:perform) { described_class.call!(**attributes) }
-
-let(:attributes) do
-  {
-    first_name: first_name,
-    middle_name: middle_name,
-    last_name: last_name
-  }
-end
-
-it do
-  expect { perform }.to(
-    have_input(:first_name)
-      .valid_with(attributes)
-      .type(String)
-      .required
-  )
-end
-```
-
-### Matcher `have_service_internal`
-
-Alias: `have_internal`
+### Matcher `have_internal` <Badge type="info" text="have_service_internal" />
 
 #### `type`
 
@@ -534,7 +615,7 @@ Checks the types of an internal attribute. Intended for multiple values.
 ```ruby
 it do
   expect { perform }.to(
-    have_internal(:ids)
+    have_internal(:id)
       .types(Integer, String)
   )
 end
@@ -563,7 +644,7 @@ it do
     have_internal(:ids)
       .type(Array)
       .consists_of(String)
-      .message("Input `ids` must be a collection of `String`") # [!code focus]
+      .message("Internal `ids` must be a collection of `String`") # [!code focus]
   )
 end
 ```
@@ -599,6 +680,35 @@ end
 
 :::
 
+#### `target`
+
+Checks the values of the `target` option of an internal attribute.
+
+::: code-group
+
+```ruby [Without message]
+it do
+  expect { perform }.to(
+    have_internal(:service_class)
+      .type(Class)
+      .target([MyFirstService, MySecondService])
+  )
+end
+```
+
+```ruby [With message]
+it do
+  expect { perform }.to(
+    have_internal(:service_class)
+      .type(Class)
+      .target([MyFirstService, MySecondService])
+      .message("Must be a valid service class") # [!code focus]
+  )
+end
+```
+
+:::
+
 #### `schema` <Badge type="info" text="input (^2.12.0)" /> <Badge type="info" text="internal (^2.12.0)" /> <Badge type="info" text="output (^2.12.0)" />
 
 Checks the values of the `schema` option of an internal attribute.
@@ -608,7 +718,7 @@ Checks the values of the `schema` option of an internal attribute.
 ```ruby [Without message]
 it do
   expect { perform }.to(
-    have_input(:payload)
+    have_internal(:payload)
       .type(Hash)
       .schema(
         {
@@ -625,7 +735,7 @@ end
 ```ruby [With message]
 it do
   expect { perform }.to(
-    have_input(:payload)
+    have_internal(:payload)
       .type(Hash)
       .schema(
         {
@@ -650,10 +760,10 @@ Currently only works with `consists_of`, `inclusion` and `schema` chains.
 ```ruby
 it do
   expect { perform }.to(
-    have_input(:ids)
+    have_internal(:ids)
       .type(Array)
       .consists_of(String) # [!code focus]
-      .message("Input `ids` must be a collection of `String`") # [!code focus]
+      .message("Internal `ids` must be a collection of `String`") # [!code focus]
   )
 end
 ```
@@ -674,9 +784,7 @@ it do
 end
 ```
 
-### Matcher `have_service_output`
-
-Alias: `have_output`
+### Matcher `have_output` <Badge type="info" text="have_service_output" />
 
 #### `instance_of`
 

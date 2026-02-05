@@ -297,6 +297,12 @@ output :payload,
 
 Опция валидации. Создавайте собственные валидации.
 
+::: warning Начиная с 3.0.0
+
+Лямбда `is` должна возвращать именно `true`, а не истинное значение. Такие значения как `1`, `"string"` или `[]` не пройдут валидацию.
+
+:::
+
 ::: code-group
 
 ```ruby{5-9} [input]
@@ -361,6 +367,10 @@ end
 ## Опция `min` <Badge type="info" text="input (^2.4.0)" /> <Badge type="info" text="internal (^2.4.0)" /> <Badge type="info" text="output (^2.4.0)" />
 
 Динамическая опция валидации (не входит в основные). См. [подробнее](./dynamic#опция-min).
+
+## Опция `target` <Badge type="info" text="input (^3.0.0)" /> <Badge type="info" text="internal (^3.0.0)" /> <Badge type="info" text="output (^3.0.0)" />
+
+Динамическая опция валидации для атрибутов типа Class (не входит в основные). См. [подробнее](./dynamic#опция-target).
 
 ## Опция `prepare` <Badge type="info" text="input" />
 

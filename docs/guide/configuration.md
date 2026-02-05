@@ -367,3 +367,25 @@ end
 ```
 
 :::
+
+### Root key for I18n <Badge type="tip" text="Since 2.6.0" />
+
+Override the default root key for translations (`servactory`).
+
+::: code-group
+
+```ruby {4} [app/services/application_service/base.rb]
+module ApplicationService
+  class Base < Servactory::Base
+    configuration do
+      i18n_root_key :my_app
+    end
+  end
+end
+```
+
+:::
+
+This changes the translation lookup from `servactory.*` to `my_app.*`.
+
+See also [Internationalization (I18n)](/guide/i18n).
