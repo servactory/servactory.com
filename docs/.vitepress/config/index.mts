@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import { sharedConfig } from './shared.mjs'
 import { enConfig } from './en.mjs'
 import { ruConfig } from './ru.mjs'
+import { jaConfig } from './ja.mjs'
 
 export default defineConfig({
   ...sharedConfig,
@@ -18,6 +19,12 @@ export default defineConfig({
       lang: 'ru-RU',
       link: '/ru/',
       ...ruConfig
+    },
+    ja: {
+      label: 'Japanese',
+      lang: 'ja-JP',
+      link: '/ja/',
+      ...jaConfig
     }
   },
 })

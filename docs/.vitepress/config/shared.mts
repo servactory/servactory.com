@@ -81,6 +81,29 @@ export const sharedConfig = defineConfig({
                 }
               }
             }
+          },
+          ja: {
+            translations: {
+              button: {
+                buttonText: "検索",
+                buttonAriaLabel: "検索"
+              },
+              modal: {
+                displayDetails: '詳細リストを表示',
+                resetButtonTitle: '検索をリセット',
+                backButtonTitle: '検索を閉じる',
+                noResultsText: '検索結果なし:',
+                footer: {
+                  selectText: '選択',
+                  selectKeyAriaLabel: 'enter',
+                  navigateText: 'ナビゲーション',
+                  navigateUpKeyAriaLabel: 'up arrow',
+                  navigateDownKeyAriaLabel: 'down arrow',
+                  closeText: '閉じる',
+                  closeKeyAriaLabel: 'escape'
+                }
+              }
+            }
           }
         }
       }
@@ -106,6 +129,7 @@ export const sharedConfig = defineConfig({
         domain: 'https://servactory.com',
         ignoreFiles: [
           'ru/**',
+          'ja/**',
           'CHANGELOG.md',
           'CODE_OF_CONDUCT.md',
           'CONTRIBUTING.md'
