@@ -14,7 +14,7 @@ Add internal private attributes via the `internal` method.
 Assign and access internal attributes via `internals=`/`internals` methods.
 
 ```ruby{6,14,22}
-class UsersService::Create < ApplicationService::Base
+class Users::Create < ApplicationService::Base
   input :first_name, type: String
   input :middle_name, type: String
   input :last_name, type: String
@@ -57,7 +57,7 @@ Add custom helpers via `internal_option_helpers` in `configuration`. Helpers can
 #### Example with `must`
 
 ```ruby{5}
-class PaymentsService::Create < ApplicationService::Base
+class Payments::Create < ApplicationService::Base
   # ...
 
   internal :invoice_numbers,

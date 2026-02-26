@@ -111,11 +111,11 @@ end
 Создайте первый сервис:
 
 ```shell
-bundle exec rails g servactory:service users_service/create first_name middle_name last_name
+bundle exec rails g servactory:service users/create first_name middle_name last_name
 ```
 
 Сгенерируйте спек файл:
 
 ```shell
-bundle exec rails g servactory:rspec users_service/create first_name middle_name last_name
+bundle exec rails g servactory:rspec users/create first_name middle_name last_name
 ```

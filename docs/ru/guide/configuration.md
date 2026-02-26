@@ -279,7 +279,7 @@ end
 ::: details Пример использования
 
 ```ruby
-class CMSService::API::Posts::Create < CMSService::API::Base
+class CMS::API::Posts::Create < CMS::API::Base
   # ...
   
   assign :model
@@ -331,7 +331,7 @@ end
 ::: details Пример использования
 
 ```ruby
-class PaymentsService::Restrictions::Create < ApplicationService::Base
+class Payments::Restrictions::Create < ApplicationService::Base
   input :payment, type: Payment
 
   # Восклицательный знак будет перемещен в конец имени метода

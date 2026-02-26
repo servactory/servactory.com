@@ -28,7 +28,7 @@ This guide helps you migrate from the Legacy RSpec helpers to the new Fluent API
 
 ```ruby [Legacy]
 before do
-  allow_service_as_success!(UsersService::Create) do
+  allow_service_as_success!(Users::Create) do
     { user: user }
   end
 end
@@ -36,7 +36,7 @@ end
 
 ```ruby [Fluent]
 before do
-  allow_service!(UsersService::Create)
+  allow_service!(Users::Create)
     .succeeds(user: user)
 end
 ```

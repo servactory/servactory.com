@@ -217,7 +217,7 @@ allow_service!(ServiceClass)
 ::: code-group
 
 ```ruby [RSpec]
-RSpec.describe UsersService::Create, type: :service do
+RSpec.describe Users::Create, type: :service do
   describe ".call!" do
     subject(:perform) { described_class.call!(**attributes) }
 
@@ -318,7 +318,7 @@ end
 ```
 
 ```ruby [Service]
-class UsersService::Create < ApplicationService::Base
+class Users::Create < ApplicationService::Base
   input :email, type: String
   input :first_name, type: String
   input :last_name, type: String, required: false

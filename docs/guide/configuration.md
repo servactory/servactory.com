@@ -279,7 +279,7 @@ end
 ::: details Example of use
 
 ```ruby
-class CMSService::API::Posts::Create < CMSService::API::Base
+class CMS::API::Posts::Create < CMS::API::Base
   # ...
   
   assign :model
@@ -331,7 +331,7 @@ end
 ::: details Example of use
 
 ```ruby
-class PaymentsService::Restrictions::Create < ApplicationService::Base
+class Payments::Restrictions::Create < ApplicationService::Base
   input :payment, type: Payment
 
   # The exclamation mark will be moved to the end of the method name

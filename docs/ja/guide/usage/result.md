@@ -16,7 +16,7 @@ next: サービス情報
 例:
 
 ```ruby
-service_result = UsersService::Accept.call(user: User.first)
+service_result = Users::Accept.call(user: User.first)
 ```
 
 返却値:
@@ -44,7 +44,7 @@ service_result = UsersService::Accept.call(user: User.first)
 成功時にはすべてのoutputアトリビュートが利用可能です。ヘルパーメソッド`success?`と`failure?`で結果を判定します。
 
 ```ruby
-service_result = UsersService::Accept.call(user: User.first)
+service_result = Users::Accept.call(user: User.first)
 
 service_result.success? # => true
 service_result.failure? # => false
@@ -53,7 +53,7 @@ service_result.failure? # => false
 失敗時には`Result`にエラーの詳細な説明を含む`error`も格納されます。
 
 ```ruby
-service_result = UsersService::Accept.call(user: User.first)
+service_result = Users::Accept.call(user: User.first)
 
 service_result.success? # => false
 service_result.failure? # => true
@@ -75,7 +75,7 @@ service_result.error
 #### メソッド`success?`
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return if service_result.success?
 
@@ -90,7 +90,7 @@ fail!(
 `failure?`に型を渡すと特定の失敗タイプを確認できます。[失敗タイプ](../exceptions/failure#メソッドfail)を参照してください。デフォルトの型は`all`（すべての失敗タイプに一致）です。
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return unless service_result.failure?
 
@@ -103,7 +103,7 @@ fail!(
 特定の失敗タイプを確認する場合:
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return unless service_result.failure?(:validation)
 
@@ -122,7 +122,7 @@ fail!(
 :::
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return unless service_result.all?
 
@@ -137,7 +137,7 @@ fail!(
 結果処理の代替アプローチです:
 
 ```ruby
-NotificatorService::Slack::Error::Send
+Notifications::Slack::Error::Send
   .call(...)
   .on_failure do |exception:| 
     fail!(
@@ -150,7 +150,7 @@ NotificatorService::Slack::Error::Send
 `on_success`メソッドはすべてのoutputアトリビュートを含む`outputs`引数を提供します。`on_failure`に型を渡すこともできます:
 
 ```ruby
-NotificatorService::Slack::Error::Send
+Notifications::Slack::Error::Send
   .call(...)
   .on_success do |outputs:|
     notification.update!(original_data: outputs.response)

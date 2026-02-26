@@ -16,7 +16,7 @@ next: 応用オプションモード
 ::: code-group
 
 ```ruby{2,3} [input]
-class NotificationsService::Create < ApplicationService::Base
+class Notifications::Create < ApplicationService::Base
   input :user, type: User
   input :need_to_notify, type: [TrueClass, FalseClass]
 
@@ -25,7 +25,7 @@ end
 ```
 
 ```ruby{4} [internal]
-class NotificationsService::Create < ApplicationService::Base
+class Notifications::Create < ApplicationService::Base
   # ...
 
   internal :inviter, type: User
@@ -35,7 +35,7 @@ end
 ```
 
 ```ruby{4} [output]
-class NotificationsService::Create < ApplicationService::Base
+class Notifications::Create < ApplicationService::Base
   # ...
 
   output :notification, type: Notification
@@ -55,7 +55,7 @@ end
 ::: code-group
 
 ```ruby{7} [input]
-class UsersService::Create < ApplicationService::Base
+class Users::Create < ApplicationService::Base
   input :first_name,
         type: String
 
@@ -79,7 +79,7 @@ end
 ::: code-group
 
 ```ruby{7} [input]
-class UsersService::Create < ApplicationService::Base
+class Users::Create < ApplicationService::Base
   # ...
 
   input :middle_name,
@@ -100,7 +100,7 @@ end
 ::: code-group
 
 ```ruby{3,10} [input]
-class NotificationsService::Create < ApplicationService::Base
+class Notifications::Create < ApplicationService::Base
   input :user,
         as: :recipient,
         type: User
@@ -129,7 +129,7 @@ end
 ::: code-group
 
 ```ruby{4} [input]
-class EventsService::Send < ApplicationService::Base
+class Events::Send < ApplicationService::Base
   input :event_name,
         type: String,
         inclusion: %w[created rejected approved]
@@ -139,7 +139,7 @@ end
 ```
 
 ```ruby{6} [internal]
-class EventsService::Send < ApplicationService::Base
+class Events::Send < ApplicationService::Base
   # ...
 
   internal :event_name,
@@ -151,7 +151,7 @@ end
 ```
 
 ```ruby{6} [output]
-class EventsService::Send < ApplicationService::Base
+class Events::Send < ApplicationService::Base
   # ...
 
   output :event_name,
@@ -306,7 +306,7 @@ output :payload,
 ::: code-group
 
 ```ruby{5-9} [input]
-class PaymentsService::Create < ApplicationService::Base
+class Payments::Create < ApplicationService::Base
   input :invoice_numbers,
         type: Array,
         consists_of: String,
@@ -321,7 +321,7 @@ end
 ```
 
 ```ruby{7-11} [internal]
-class EventsService::Send < ApplicationService::Base
+class Events::Send < ApplicationService::Base
   # ...
 
   internal :invoice_numbers,
@@ -338,7 +338,7 @@ end
 ```
 
 ```ruby{7-11} [output]
-class EventsService::Send < ApplicationService::Base
+class Events::Send < ApplicationService::Base
   # ...
 
   output :invoice_numbers,
@@ -385,7 +385,7 @@ Class型のアトリビュート用のダイナミックバリデーションオ
 ::: code-group
 
 ```ruby{5,10} [input]
-class PaymentsService::Create < ApplicationService::Base
+class Payments::Create < ApplicationService::Base
   input :amount_cents,
         as: :amount,
         type: Integer,

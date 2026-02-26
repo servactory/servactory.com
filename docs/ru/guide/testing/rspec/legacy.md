@@ -62,7 +62,7 @@ end
 ::: code-group
 
 ```ruby [RSpec]
-RSpec.describe UsersService::Create, type: :service do
+RSpec.describe Users::Create, type: :service do
   describe ".call!" do
     subject(:perform) { described_class.call!(**attributes) }
 
@@ -144,7 +144,7 @@ end
 ```
 
 ```ruby [Сервис]
-class UsersService::Create < ApplicationService::Base
+class Users::Create < ApplicationService::Base
   input :first_name, type: String
   input :middle_name, type: String, required: false
   input :last_name, type: String
@@ -175,13 +175,13 @@ end
 
 ```ruby
 before do
-  allow_service_as_success!(UsersService::Accept)
+  allow_service_as_success!(Users::Accept)
 end
 ```
 
 ```ruby
 before do
-  allow_service_as_success!(UsersService::Accept) do
+  allow_service_as_success!(Users::Accept) do
     {
       user: user
     }
@@ -195,13 +195,13 @@ end
 
 ```ruby
 before do
-  allow_service_as_success(UsersService::Accept)
+  allow_service_as_success(Users::Accept)
 end
 ```
 
 ```ruby
 before do
-  allow_service_as_success(UsersService::Accept) do
+  allow_service_as_success(Users::Accept) do
     {
       user: user
     }
@@ -215,7 +215,7 @@ end
 
 ```ruby
 before do
-  allow_service_as_failure!(UsersService::Accept) do
+  allow_service_as_failure!(Users::Accept) do
     ApplicationService::Exceptions::Failure.new(
       message: "Some error"
     )
@@ -229,7 +229,7 @@ end
 
 ```ruby
 before do
-  allow_service_as_failure(UsersService::Accept) do
+  allow_service_as_failure(Users::Accept) do
     ApplicationService::Exceptions::Failure.new(
       message: "Some error"
     )
@@ -250,7 +250,7 @@ end
 ```ruby
 before do
   allow_service_as_success!(
-    UsersService::Accept,
+    Users::Accept,
     with: { user: user } # [!code focus]
   )
 end
@@ -259,7 +259,7 @@ end
 ```ruby
 before do
   allow_service_as_success!(
-    UsersService::Accept,
+    Users::Accept,
     with: { user: user } # [!code focus]
   ) do
     {

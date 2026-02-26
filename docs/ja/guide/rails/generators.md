@@ -74,10 +74,10 @@ bundle exec rails g servactory:service NAME [inputs...]
 
 ```shell
 # Basic service
-bundle exec rails g servactory:service users_service/create
+bundle exec rails g servactory:service users/create
 
 # With typed inputs
-bundle exec rails g servactory:service orders_service/process user:User amount:integer
+bundle exec rails g servactory:service orders/process user:User amount:integer
 
 # Nested namespace
 bundle exec rails g servactory:service admin/reports/generate started_on:date ended_on:date
@@ -101,10 +101,10 @@ bundle exec rails g servactory:rspec NAME [inputs...]
 
 ```shell
 # Generate spec matching service inputs
-bundle exec rails g servactory:rspec users_service/create first_name last_name email
+bundle exec rails g servactory:rspec users/create first_name last_name email
 
 # For existing service
-bundle exec rails g servactory:rspec orders_service/process
+bundle exec rails g servactory:rspec orders/process
 ```
 
 ## 拡張機能ジェネレーター <Badge type="tip" text="3.0.0以降" />

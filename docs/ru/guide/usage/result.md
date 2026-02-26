@@ -16,7 +16,7 @@ next: Информация о сервисе
 Пример:
 
 ```ruby
-service_result = UsersService::Accept.call(user: User.first)
+service_result = Users::Accept.call(user: User.first)
 ```
 
 Возвращает:
@@ -44,7 +44,7 @@ service_result = UsersService::Accept.call(user: User.first)
 При успехе доступны все output атрибуты. Методы-хелперы `success?` и `failure?` определяют результат.
 
 ```ruby
-service_result = UsersService::Accept.call(user: User.first)
+service_result = Users::Accept.call(user: User.first)
 
 service_result.success? # => true
 service_result.failure? # => false
@@ -53,7 +53,7 @@ service_result.failure? # => false
 При неудаче `Result` также содержит `error` с полным описанием ошибки.
 
 ```ruby
-service_result = UsersService::Accept.call(user: User.first)
+service_result = Users::Accept.call(user: User.first)
 
 service_result.success? # => false
 service_result.failure? # => true
@@ -75,7 +75,7 @@ service_result.error
 #### Метод `success?`
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return if service_result.success?
 
@@ -90,7 +90,7 @@ fail!(
 Передайте тип в `failure?` для проверки конкретных типов неудач. См. [типы неудач](../exceptions/failure#метод-fail). Тип по умолчанию — `all` (любой тип неудачи).
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return unless service_result.failure?
 
@@ -103,7 +103,7 @@ fail!(
 Проверка конкретного типа неудачи:
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return unless service_result.failure?(:validation)
 
@@ -122,7 +122,7 @@ Output атрибуты `Result` также имеют методы-предик
 :::
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return unless service_result.all?
 
@@ -137,7 +137,7 @@ fail!(
 Альтернативный подход к обработке результата:
 
 ```ruby
-NotificatorService::Slack::Error::Send
+Notifications::Slack::Error::Send
   .call(...)
   .on_failure do |exception:| 
     fail!(
@@ -150,7 +150,7 @@ NotificatorService::Slack::Error::Send
 Метод `on_success` предоставляет аргумент `outputs` со всеми output атрибутами. Передайте тип в `on_failure`:
 
 ```ruby
-NotificatorService::Slack::Error::Send
+Notifications::Slack::Error::Send
   .call(...)
   .on_success do |outputs:|
     notification.update!(original_data: outputs.response)

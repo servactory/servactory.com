@@ -14,7 +14,7 @@ Add all return attributes via the `output` method. These are available through t
 Assign and access output attributes via `outputs=`/`outputs` methods.
 
 ```ruby{8,22}
-class UsersService::Create < ApplicationService::Base
+class Users::Create < ApplicationService::Base
   input :first_name, type: String
   input :middle_name, type: String
   input :last_name, type: String
@@ -57,7 +57,7 @@ Add custom helpers via `output_option_helpers` in `configuration`. Helpers can b
 #### Example with `must`
 
 ```ruby{5}
-class PaymentsService::Create < ApplicationService::Base
+class Payments::Create < ApplicationService::Base
   # ...
 
   output :invoice_numbers,

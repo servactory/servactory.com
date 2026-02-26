@@ -111,11 +111,11 @@ end
 最初のサービスを作成します:
 
 ```shell
-bundle exec rails g servactory:service users_service/create first_name middle_name last_name
+bundle exec rails g servactory:service users/create first_name middle_name last_name
 ```
 
 スペックファイルを生成します:
 
 ```shell
-bundle exec rails g servactory:rspec users_service/create first_name middle_name last_name
+bundle exec rails g servactory:rspec users/create first_name middle_name last_name
 ```

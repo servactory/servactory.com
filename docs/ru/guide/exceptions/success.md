@@ -16,7 +16,7 @@ next: Неудачи и обработка ошибок
 Пример: сервис нотификации, работающий в зависимости от среды.
 
 ```ruby
-class NotificatorService::Slack::Error::Send < ApplicationService::Base
+class Notifications::Slack::Error::Send < ApplicationService::Base
   # ...
   
   make :check_environment!

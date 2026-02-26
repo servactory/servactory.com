@@ -41,7 +41,7 @@ end
 ### Использование в сервисе
 
 ```ruby {5}
-class PostsService::Create < ApplicationService::Base
+class Posts::Create < ApplicationService::Base
   input :user, type: User
   input :title, type: String
 
@@ -423,7 +423,7 @@ end
 ```
 
 ```ruby [Использование]
-class PostsService::Delete < ApplicationService::Base
+class Posts::Delete < ApplicationService::Base
   input :post, type: Post
   input :user, type: User
 
@@ -496,7 +496,7 @@ end
 ```
 
 ```ruby [Использование]
-class OrdersService::Create < ApplicationService::Base
+class Orders::Create < ApplicationService::Base
   transactional! transaction_class: ActiveRecord::Base
 
   input :user, type: User
@@ -521,7 +521,7 @@ class OrdersService::Create < ApplicationService::Base
   end
 
   def charge_payment
-    PaymentsService::Charge.call!(amount: outputs.order.total_amount)
+    Payments::Charge.call!(amount: outputs.order.total_amount)
   end
 end
 ```
@@ -582,7 +582,7 @@ end
 ```
 
 ```ruby [Использование]
-class UsersService::Create < ApplicationService::Base
+class Users::Create < ApplicationService::Base
   publishes :user_created, with: :user_payload, event_bus: EventPublisher
 
   input :email, type: String
@@ -652,7 +652,7 @@ end
 ```
 
 ```ruby [Использование]
-class PaymentsService::Process < ApplicationService::Base
+class Payments::Process < ApplicationService::Base
   on_rollback :cleanup_resources
 
   input :order, type: Order
@@ -667,11 +667,11 @@ class PaymentsService::Process < ApplicationService::Base
   private
 
   def reserve_inventory
-    InventoryService::Reserve.call!(items: inputs.order.items)
+    Inventory::Reserve.call!(items: inputs.order.items)
   end
 
   def charge_payment
-    result = PaymentsService::Charge.call!(
+    result = Payments::Charge.call!(
       payment_method: inputs.payment_method,
       amount: inputs.order.total_amount
     )
@@ -683,8 +683,8 @@ class PaymentsService::Process < ApplicationService::Base
   end
 
   def cleanup_resources
-    InventoryService::Release.call!(items: inputs.order.items)
-    PaymentsService::Refund.call!(payment: outputs.payment) if outputs.payment.present?
+    Inventory::Release.call!(items: inputs.order.items)
+    Payments::Refund.call!(payment: outputs.payment) if outputs.payment.present?
   end
 end
 ```
