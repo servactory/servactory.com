@@ -701,6 +701,16 @@ end
 
 ::: code-group
 
+```ruby [3.x (Current)]
+module ApplicationService
+  class Base < Servactory::Base
+    extensions do
+      before :actions, ApplicationService::Extensions::StatusActive::DSL
+    end
+  end
+end
+```
+
 ```ruby [2.x (Legacy)]
 module ApplicationService
   class Base
@@ -711,29 +721,39 @@ module ApplicationService
 end
 ```
 
-```ruby [3.0 (Current)]
-module ApplicationService
-  class Base < Servactory::Base
-    extensions do
-      before :actions, ApplicationService::Extensions::StatusActive::DSL
-    end
-  end
-end
-```
-
 :::
 
 ### Settings storage changes
 
-| Aspect | 2.x | 3.0 |
+| Aspect | 3.x | 2.x |
 |--------|-----|-----|
-| Storage | `attr_accessor` (class instance variable) | `stroma.settings[:key][:ext][:setting]` |
-| Access | `self.class.send(:var)` | `self.class.stroma.settings[:key][:ext][:setting]` |
-| Inheritance | Manual handling | Automatic deep copy |
+| Storage | `stroma.settings[:key][:ext][:setting]` | `attr_accessor` (class instance variable) |
+| Access | `self.class.stroma.settings[:key][:ext][:setting]` | `self.class.send(:var)` |
+| Inheritance | Automatic deep copy | Manual handling |
 
 ### Extension code changes
 
 ::: code-group
+
+```ruby [3.x (Current)]
+module ClassMethods
+  private
+
+  def status_active!(model_name)
+    stroma.settings[:actions][:status_active][:model_name] = model_name
+  end
+end
+
+module InstanceMethods
+  private
+
+  def call!(**)
+    model_name = self.class.stroma.settings[:actions][:status_active][:model_name]
+    # ...
+    super
+  end
+end
+```
 
 ```ruby [2.x (Legacy)]
 module ClassMethods
@@ -754,26 +774,6 @@ module InstanceMethods
 
     model_name = self.class.send(:status_active_model_name)
     # ...
-  end
-end
-```
-
-```ruby [3.0 (Current)]
-module ClassMethods
-  private
-
-  def status_active!(model_name)
-    stroma.settings[:actions][:status_active][:model_name] = model_name
-  end
-end
-
-module InstanceMethods
-  private
-
-  def call!(**)
-    model_name = self.class.stroma.settings[:actions][:status_active][:model_name]
-    # ...
-    super
   end
 end
 ```

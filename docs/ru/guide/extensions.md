@@ -701,6 +701,16 @@ end
 
 ::: code-group
 
+```ruby [3.x (текущий)]
+module ApplicationService
+  class Base < Servactory::Base
+    extensions do
+      before :actions, ApplicationService::Extensions::StatusActive::DSL
+    end
+  end
+end
+```
+
 ```ruby [2.x (устаревший)]
 module ApplicationService
   class Base
@@ -711,29 +721,39 @@ module ApplicationService
 end
 ```
 
-```ruby [3.0 (текущий)]
-module ApplicationService
-  class Base < Servactory::Base
-    extensions do
-      before :actions, ApplicationService::Extensions::StatusActive::DSL
-    end
-  end
-end
-```
-
 :::
 
 ### Изменения хранения настроек
 
-| Аспект | 2.x | 3.0 |
+| Аспект | 3.x | 2.x |
 |--------|-----|-----|
-| Хранение | `attr_accessor` (class instance variable) | `stroma.settings[:key][:ext][:setting]` |
-| Доступ | `self.class.send(:var)` | `self.class.stroma.settings[:key][:ext][:setting]` |
-| Наследование | Ручная обработка | Автоматическое глубокое копирование |
+| Хранение | `stroma.settings[:key][:ext][:setting]` | `attr_accessor` (class instance variable) |
+| Доступ | `self.class.stroma.settings[:key][:ext][:setting]` | `self.class.send(:var)` |
+| Наследование | Автоматическое глубокое копирование | Ручная обработка |
 
 ### Изменения кода расширений
 
 ::: code-group
+
+```ruby [3.x (текущий)]
+module ClassMethods
+  private
+
+  def status_active!(model_name)
+    stroma.settings[:actions][:status_active][:model_name] = model_name
+  end
+end
+
+module InstanceMethods
+  private
+
+  def call!(**)
+    model_name = self.class.stroma.settings[:actions][:status_active][:model_name]
+    # ...
+    super
+  end
+end
+```
 
 ```ruby [2.x (устаревший)]
 module ClassMethods
@@ -754,26 +774,6 @@ module InstanceMethods
 
     model_name = self.class.send(:status_active_model_name)
     # ...
-  end
-end
-```
-
-```ruby [3.0 (текущий)]
-module ClassMethods
-  private
-
-  def status_active!(model_name)
-    stroma.settings[:actions][:status_active][:model_name] = model_name
-  end
-end
-
-module InstanceMethods
-  private
-
-  def call!(**)
-    model_name = self.class.stroma.settings[:actions][:status_active][:model_name]
-    # ...
-    super
   end
 end
 ```

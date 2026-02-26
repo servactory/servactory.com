@@ -701,6 +701,16 @@ end
 
 ::: code-group
 
+```ruby [3.x (現行)]
+module ApplicationService
+  class Base < Servactory::Base
+    extensions do
+      before :actions, ApplicationService::Extensions::StatusActive::DSL
+    end
+  end
+end
+```
+
 ```ruby [2.x (レガシー)]
 module ApplicationService
   class Base
@@ -711,29 +721,39 @@ module ApplicationService
 end
 ```
 
-```ruby [3.0 (現行)]
-module ApplicationService
-  class Base < Servactory::Base
-    extensions do
-      before :actions, ApplicationService::Extensions::StatusActive::DSL
-    end
-  end
-end
-```
-
 :::
 
 ### 設定ストレージの変更
 
-| 観点 | 2.x | 3.0 |
+| 観点 | 3.x | 2.x |
 |------|-----|-----|
-| ストレージ | `attr_accessor` (class instance variable) | `stroma.settings[:key][:ext][:setting]` |
-| アクセス | `self.class.send(:var)` | `self.class.stroma.settings[:key][:ext][:setting]` |
-| 継承 | 手動処理 | 自動ディープコピー |
+| ストレージ | `stroma.settings[:key][:ext][:setting]` | `attr_accessor` (class instance variable) |
+| アクセス | `self.class.stroma.settings[:key][:ext][:setting]` | `self.class.send(:var)` |
+| 継承 | 自動ディープコピー | 手動処理 |
 
 ### 拡張機能コードの変更
 
 ::: code-group
+
+```ruby [3.x (現行)]
+module ClassMethods
+  private
+
+  def status_active!(model_name)
+    stroma.settings[:actions][:status_active][:model_name] = model_name
+  end
+end
+
+module InstanceMethods
+  private
+
+  def call!(**)
+    model_name = self.class.stroma.settings[:actions][:status_active][:model_name]
+    # ...
+    super
+  end
+end
+```
 
 ```ruby [2.x (レガシー)]
 module ClassMethods
@@ -754,26 +774,6 @@ module InstanceMethods
 
     model_name = self.class.send(:status_active_model_name)
     # ...
-  end
-end
-```
-
-```ruby [3.0 (現行)]
-module ClassMethods
-  private
-
-  def status_active!(model_name)
-    stroma.settings[:actions][:status_active][:model_name] = model_name
-  end
-end
-
-module InstanceMethods
-  private
-
-  def call!(**)
-    model_name = self.class.stroma.settings[:actions][:status_active][:model_name]
-    # ...
-    super
   end
 end
 ```
