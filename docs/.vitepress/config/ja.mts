@@ -18,6 +18,10 @@ export const jaConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       text: 'GitHubでこのページを編集'
     },
 
+    lastUpdated: {
+      text: '最終更新日'
+    },
+
     // footer: {
     //   message: 'Released under the MIT License',
     //   copyright: 'Copyright © 2023'

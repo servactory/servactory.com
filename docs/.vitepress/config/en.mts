@@ -18,6 +18,10 @@ export const enConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       text: 'Edit this page on GitHub'
     },
 
+    lastUpdated: {
+      text: 'Last updated'
+    },
+
     // footer: {
     //   message: 'Released under the MIT License',
     //   copyright: 'Copyright © 2023'

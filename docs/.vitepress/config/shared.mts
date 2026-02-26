@@ -39,6 +39,8 @@ export const sharedConfig = defineConfig({
 
   cleanUrls: true,
 
+  lastUpdated: true,
+
   appearance: 'dark',
 
   themeConfig: {
@@ -121,6 +123,29 @@ export const sharedConfig = defineConfig({
 
   sitemap: {
     hostname: 'https://servactory.com'
+  },
+
+  transformHead(ctx) {
+    const canonicalUrl = `https://servactory.com/${ctx.page}`
+      .replace(/index\.md$/, '')
+      .replace(/\.md$/, '')
+
+    const ogLocale = ctx.siteData.lang.replace('-', '_')
+
+    return [
+      ['link', { rel: 'canonical', href: canonicalUrl }],
+      ['meta', { property: 'og:title', content: ctx.title }],
+      ['meta', { property: 'og:description', content: ctx.description }],
+      ['meta', { property: 'og:url', content: canonicalUrl }],
+      ['meta', { property: 'og:type', content: 'website' }],
+      ['meta', { property: 'og:site_name', content: 'Servactory' }],
+      ['meta', { property: 'og:locale', content: ogLocale }],
+      ['meta', { property: 'og:image', content: 'https://servactory.com/img/og-image.png' }],
+      ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+      ['meta', { name: 'twitter:title', content: ctx.title }],
+      ['meta', { name: 'twitter:description', content: ctx.description }],
+      ['meta', { name: 'twitter:image', content: 'https://servactory.com/img/og-image.png' }],
+    ]
   },
 
   vite: {
