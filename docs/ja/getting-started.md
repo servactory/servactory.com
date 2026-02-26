@@ -9,8 +9,8 @@ next: サービスの呼び出しと実行結果
 
 ## 規約
 
-- サービスは`Servactory::Base`を継承し、`app/services`に配置します。一般的な方法: プロジェクトの基底クラスとして`ApplicationService::Base`を作成します。
-- サービスは受け取るものではなく、実行する内容に基づいて命名します。動詞を使用してください。例: `UsersService::Creation`ではなく`UsersService::Create`。
+- サービスは`Servactory::Base`を継承し、`app/services`に配置します。一般的な方法: サービス用の基底クラスとして`ApplicationService::Base`を作成します。
+- ドメインごとに名前空間でサービスをグループ化し、クラス名にはアクションを表す動詞を使用します。例: `Users::Create`、`Orders::Process`。名前空間に`Service`を含めないでください — `app/services`ディレクトリがそのコンテキストを提供します。
 
 ## バージョンサポート
 
