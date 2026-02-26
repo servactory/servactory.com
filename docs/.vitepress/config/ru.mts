@@ -18,6 +18,10 @@ export const ruConfig: LocaleSpecificConfig<DefaultTheme.Config> = {
       text: 'Редактировать эту страницу на GitHub'
     },
 
+    lastUpdated: {
+      text: 'Последнее обновление'
+    },
+
     // footer: {
     //   message: 'Released under the MIT License',
     //   copyright: 'Copyright © 2023'
