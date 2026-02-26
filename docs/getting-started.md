@@ -9,8 +9,8 @@ next: Service call and result of work
 
 ## Conventions
 
-- Services inherit from `Servactory::Base` and reside in `app/services`. Common practice: create `ApplicationService::Base` as your project's base class.
-- Name services by what they do, not what they accept. Use verbs. Example: `UsersService::Create` instead of `UsersService::Creation`.
+- Services inherit from `Servactory::Base` and reside in `app/services`. Common practice: create `ApplicationService::Base` as the base class for your services.
+- Group services by domain using namespaces, and name each class as a verb describing its action. Example: `Users::Create`, `Orders::Process`. Avoid adding `Service` to the namespace — the `app/services` directory already provides that context.
 
 ## Version support
 
@@ -111,11 +111,11 @@ end
 Create your first service:
 
 ```shell
-bundle exec rails g servactory:service users_service/create first_name middle_name last_name
+bundle exec rails g servactory:service users/create first_name middle_name last_name
 ```
 
 Generate a spec file:
 
 ```shell
-bundle exec rails g servactory:rspec users_service/create first_name middle_name last_name
+bundle exec rails g servactory:rspec users/create first_name middle_name last_name
 ```

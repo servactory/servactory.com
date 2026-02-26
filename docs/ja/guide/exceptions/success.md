@@ -16,7 +16,7 @@ Servactoryにとってこれも例外ですが、成功の例外です。
 例: 環境に応じて動作する通知サービス。
 
 ```ruby
-class NotificatorService::Slack::Error::Send < ApplicationService::Base
+class Notifications::Slack::Error::Send < ApplicationService::Base
   # ...
   
   make :check_environment!

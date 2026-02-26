@@ -9,8 +9,8 @@ next: Вызов сервиса и результат его работы
 
 ## Соглашения
 
-- Сервисы наследуются от `Servactory::Base` и находятся в `app/services`. Рекомендуется создать `ApplicationService::Base` как базовый класс проекта.
-- Называйте сервисы по действию, а не по входным данным. Используйте глаголы. Пример: `UsersService::Create` вместо `UsersService::Creation`.
+- Сервисы наследуются от `Servactory::Base` и находятся в `app/services`. Рекомендуется создать `ApplicationService::Base` как базовый класс для сервисов проекта.
+- Группируйте сервисы по домену с помощью пространств имён, а сам класс называйте глаголом, описывающим действие. Пример: `Users::Create`, `Orders::Process`. Избегайте добавления `Service` в пространство имён — директория `app/services` уже обеспечивает этот контекст.
 
 ## Поддержка версий
 
@@ -111,11 +111,11 @@ end
 Создайте первый сервис:
 
 ```shell
-bundle exec rails g servactory:service users_service/create first_name middle_name last_name
+bundle exec rails g servactory:service users/create first_name middle_name last_name
 ```
 
 Сгенерируйте спек файл:
 
 ```shell
-bundle exec rails g servactory:rspec users_service/create first_name middle_name last_name
+bundle exec rails g servactory:rspec users/create first_name middle_name last_name
 ```

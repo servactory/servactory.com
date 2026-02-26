@@ -67,7 +67,7 @@ end
 `ApplicationService::Exceptions::Input`例外が提供する情報の例:
 
 ```ruby
-exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
+exception.service           # => <Actor: @class_name="Invoices::Check", @i18n_root_key="servactory">
 exception.detailed_message  # => Invalid invoice number (ApplicationService::Exceptions::Input)
 exception.message           # => Invalid invoice number
 exception.input_name        # => :invoice_number
@@ -102,7 +102,7 @@ end
 `ApplicationService::Exceptions::Internal`例外が提供する情報の例:
 
 ```ruby
-exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
+exception.service           # => <Actor: @class_name="Invoices::Check", @i18n_root_key="servactory">
 exception.detailed_message  # => Invalid invoice number (ApplicationService::Exceptions::Internal)
 exception.message           # => Invalid invoice number
 exception.internal_name     # => :invoice_number
@@ -137,7 +137,7 @@ end
 `ApplicationService::Exceptions::Output`例外が提供する情報の例:
 
 ```ruby
-exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
+exception.service           # => <Actor: @class_name="Invoices::Check", @i18n_root_key="servactory">
 exception.detailed_message  # => Invalid invoice number (ApplicationService::Exceptions::Output)
 exception.message           # => Invalid invoice number
 exception.output_name       # => :invoice_number

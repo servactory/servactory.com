@@ -74,10 +74,10 @@ bundle exec rails g servactory:service NAME [inputs...]
 
 ```shell
 # Базовый сервис
-bundle exec rails g servactory:service users_service/create
+bundle exec rails g servactory:service users/create
 
 # С типизированными входными данными
-bundle exec rails g servactory:service orders_service/process user:User amount:integer
+bundle exec rails g servactory:service orders/process user:User amount:integer
 
 # Вложенный namespace
 bundle exec rails g servactory:service admin/reports/generate started_on:date ended_on:date
@@ -101,10 +101,10 @@ bundle exec rails g servactory:rspec NAME [inputs...]
 
 ```shell
 # Генерация спеки с входными данными сервиса
-bundle exec rails g servactory:rspec users_service/create first_name last_name email
+bundle exec rails g servactory:rspec users/create first_name last_name email
 
 # Для существующего сервиса
-bundle exec rails g servactory:rspec orders_service/process
+bundle exec rails g servactory:rspec orders/process
 ```
 
 ## Генератор расширений <Badge type="tip" text="Начиная с 3.0.0" />

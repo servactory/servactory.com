@@ -67,7 +67,7 @@ end
 Example of information that the exception `ApplicationService::Exceptions::Input` might provide:
 
 ```ruby
-exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
+exception.service           # => <Actor: @class_name="Invoices::Check", @i18n_root_key="servactory">
 exception.detailed_message  # => Invalid invoice number (ApplicationService::Exceptions::Input)
 exception.message           # => Invalid invoice number
 exception.input_name        # => :invoice_number
@@ -102,7 +102,7 @@ end
 Example of information that the exception `ApplicationService::Exceptions::Internal` might provide:
 
 ```ruby
-exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
+exception.service           # => <Actor: @class_name="Invoices::Check", @i18n_root_key="servactory">
 exception.detailed_message  # => Invalid invoice number (ApplicationService::Exceptions::Internal)
 exception.message           # => Invalid invoice number
 exception.internal_name     # => :invoice_number
@@ -137,7 +137,7 @@ end
 Example of information that the exception `ApplicationService::Exceptions::Output` might provide:
 
 ```ruby
-exception.service           # => <Actor: @class_name="InvoiceService::Check", @i18n_root_key="servactory">
+exception.service           # => <Actor: @class_name="Invoices::Check", @i18n_root_key="servactory">
 exception.detailed_message  # => Invalid invoice number (ApplicationService::Exceptions::Output)
 exception.message           # => Invalid invoice number
 exception.output_name       # => :invoice_number

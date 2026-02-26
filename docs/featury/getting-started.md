@@ -9,8 +9,8 @@ next: false
 
 ## Conventions
 
-- All feature classes are subclasses of `Featury::Base` and are located in the `app/features` directory. It is common practice to create and inherit from `FeatureService::Base` class, which is a subclass of `Featury::Base`.
-- Name features based on the process they relate to. Use nouns in names and try to equate them with model names whenever possible. For example, name the feature class `User::OnboardingFeature` instead of `User::OnboardFeature`.
+- All feature classes are subclasses of `Featury::Base` and are located in the `app/features` directory. Common practice: create `ApplicationFeature::Base` as the base class for your features.
+- Use namespaces that match model names, and name the class as a noun describing the process. Use noun forms: `RegistrationFeature`, not `RegisterFeature`. Example: `User::RegistrationFeature`, `Order::FulfillmentFeature`.
 
 ## Version support
 

@@ -18,7 +18,7 @@ In its minimal form, calling methods via `make` is optional.
 The `call` method can be used instead.
 
 ```ruby
-class PostsService::Create < ApplicationService::Base
+class Posts::Create < ApplicationService::Base
   def call
     # something
   end
@@ -28,7 +28,7 @@ end
 ### Several methods
 
 ```ruby{4-6,8,12,16}
-class PostsService::Create < ApplicationService::Base
+class Posts::Create < ApplicationService::Base
   # ...
 
   make :assign_api_model
@@ -89,7 +89,7 @@ end
 ```
 
 ```ruby
-class CMSService::API::Posts::Create < CMSService::API::Base
+class CMS::API::Posts::Create < CMS::API::Base
   # ...
 
   assign :model
@@ -129,7 +129,7 @@ end
 ```
 
 ```ruby
-class PaymentsService::Restrictions::Create < ApplicationService::Base
+class Payments::Restrictions::Create < ApplicationService::Base
   input :payment, type: Payment
 
   # The exclamation mark will be moved to the end of the method name

@@ -14,7 +14,7 @@ Add all expected attributes via the `input` method. Unexpected arguments (not de
 Access input attributes via the `inputs` method.
 
 ```ruby{2-4,15-17}
-class UsersService::Create < ApplicationService::Base
+class Users::Create < ApplicationService::Base
   input :first_name, type: String
   input :middle_name, type: String
   input :last_name, type: String
@@ -53,7 +53,7 @@ Servactory provides built-in helpers and supports custom helpers. Helpers are sh
 Equivalent to `required: false`.
 
 ```ruby{6}
-class UsersService::Create < ApplicationService::Base
+class Users::Create < ApplicationService::Base
   input :first_name,
         type: String
 
@@ -77,7 +77,7 @@ Add custom helpers via `input_option_helpers` in `configuration`. Helpers can be
 #### Example with `must`
 
 ```ruby{3}
-class PaymentsService::Create < ApplicationService::Base
+class Payments::Create < ApplicationService::Base
   input :invoice_numbers,
         :must_be_6_characters,
         type: Array,
@@ -90,7 +90,7 @@ end
 #### Example with `prepare`
 
 ```ruby{3}
-class PaymentsService::Create < ApplicationService::Base
+class Payments::Create < ApplicationService::Base
   input :amount_cents,
         :to_money,
         as: :amount,

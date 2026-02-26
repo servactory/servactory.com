@@ -16,7 +16,7 @@ A successful result indicates all operations completed without problems.
 Example:
 
 ```ruby
-service_result = UsersService::Accept.call(user: User.first)
+service_result = Users::Accept.call(user: User.first)
 ```
 
 Returns:
@@ -44,7 +44,7 @@ Example result on failure:
 On success, all output attributes are available. The `success?` and `failure?` helper methods determine the outcome.
 
 ```ruby
-service_result = UsersService::Accept.call(user: User.first)
+service_result = Users::Accept.call(user: User.first)
 
 service_result.success? # => true
 service_result.failure? # => false
@@ -53,7 +53,7 @@ service_result.failure? # => false
 On failure, `Result` also contains `error` with the full error description.
 
 ```ruby
-service_result = UsersService::Accept.call(user: User.first)
+service_result = Users::Accept.call(user: User.first)
 
 service_result.success? # => false
 service_result.failure? # => true
@@ -75,7 +75,7 @@ Two options: `success?`/`failure?` methods or `on_success`/`on_failure` hooks.
 #### Method `success?`
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return if service_result.success?
 
@@ -90,7 +90,7 @@ fail!(
 Pass a type to `failure?` to check specific failure types. See [failure types](../exceptions/failure#method-fail). Default type is `all` (matches any failure type).
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return unless service_result.failure?
 
@@ -103,7 +103,7 @@ fail!(
 Check for a specific failure type:
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return unless service_result.failure?(:validation)
 
@@ -122,7 +122,7 @@ Predicate methods provide convenient type checking:
 :::
 
 ```ruby
-service_result = NotificatorService::Slack::Error::Send.call(...)
+service_result = Notifications::Slack::Error::Send.call(...)
 
 return unless service_result.all?
 
@@ -137,7 +137,7 @@ fail!(
 Alternative approach to result processing:
 
 ```ruby
-NotificatorService::Slack::Error::Send
+Notifications::Slack::Error::Send
   .call(...)
   .on_failure do |exception:| 
     fail!(
@@ -150,7 +150,7 @@ NotificatorService::Slack::Error::Send
 The `on_success` method provides `outputs` argument with all output attributes. Pass a type to `on_failure`:
 
 ```ruby
-NotificatorService::Slack::Error::Send
+Notifications::Slack::Error::Send
   .call(...)
   .on_success do |outputs:|
     notification.update!(original_data: outputs.response)

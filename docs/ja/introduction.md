@@ -30,7 +30,7 @@ MinimalService.call! # or MinimalService.call
 または複雑なサービスを構築できます:
 
 ```ruby
-class NotificationsService::Send < ApplicationService::Base
+class Notifications::Send < ApplicationService::Base
   input :comment, type: Comment
   input :provider, type: NotificationProvider
 
@@ -64,7 +64,7 @@ class NotificationsService::Send < ApplicationService::Base
   end
 
   def send_notification
-    service_result = NotificatorService::API::Send.call(notification: outputs.notification)
+    service_result = Notifications::API::Send.call(notification: outputs.notification)
 
     return fail!(message: service_result.error.message) if service_result.failure?
 
@@ -87,9 +87,9 @@ end
 # comment = Comment.first
 # provider = NotificationProvider.first
 
-NotificationsService::Send.call!(comment:, provider:)
+Notifications::Send.call!(comment:, provider:)
 # Or
-# NotificationsService::Send.call(comment:, provider:)
+# Notifications::Send.call(comment:, provider:)
 ```
 
 ## Servactoryを使う理由

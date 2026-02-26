@@ -16,7 +16,7 @@ next: Результат работы сервиса
 ::: code-group
 
 ```ruby [Call]
-UsersService::Accept.call!(user: User.first)
+Users::Accept.call!(user: User.first)
 ```
 
 ```ruby [Success]
@@ -24,7 +24,7 @@ UsersService::Accept.call!(user: User.first)
 ```
 
 ```ruby [Failure]
-# => ApplicationService::Exceptions::Input: [UsersService::Accept] Required input `user` is missing
+# => ApplicationService::Exceptions::Input: [Users::Accept] Required input `user` is missing
 
 # => ApplicationService::Exceptions::Failure: There is some problem with the user
 ```
@@ -38,7 +38,7 @@ UsersService::Accept.call!(user: User.first)
 ::: code-group
 
 ```ruby [Call]
-UsersService::Accept.call(user: User.first)
+Users::Accept.call(user: User.first)
 ```
 
 ```ruby [Success]
@@ -46,7 +46,7 @@ UsersService::Accept.call(user: User.first)
 ```
 
 ```ruby [Failure]
-# => ApplicationService::Exceptions::Input: [UsersService::Accept] Required input `user` is missing
+# => ApplicationService::Exceptions::Input: [Users::Accept] Required input `user` is missing
 
 # => #<ApplicationService::Result @error=There is some problem with the user, @failure?=true, @success?=false>
 ```

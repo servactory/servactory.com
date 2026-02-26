@@ -40,14 +40,14 @@ Use `position` to call a method at a different time than it was added via `make`
 Useful for service inheritance.
 
 ```ruby{3,14}
-class SomeApiService::Base < ApplicationService::Base
+class SomeApi::Base < ApplicationService::Base
   make :api_request!,
        position: 2
 
   # ...
 end
 
-class SomeApiService::Posts::Create < SomeApiService::Base
+class SomeApi::Posts::Create < SomeApi::Base
   input :post_name, type: String
 
   # ...

@@ -16,7 +16,7 @@ For Servactory this is also an exception, but a successful one.
 Example: a notification service that operates depending on the environment.
 
 ```ruby
-class NotificatorService::Slack::Error::Send < ApplicationService::Base
+class Notifications::Slack::Error::Send < ApplicationService::Base
   # ...
   
   make :check_environment!

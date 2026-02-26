@@ -9,8 +9,8 @@ next: false
 
 ## 規約
 
-- すべてのフィーチャークラスは`Featury::Base`のサブクラスであり、`app/features`ディレクトリに配置します。一般的な方法として`ApplicationFeature::Base`クラスを作成し、`Featury::Base`のサブクラスとして継承します。
-- フィーチャーは関連するプロセスに基づいて命名します。名前には名詞を使用し、可能な限りモデル名と一致させてください。例: `User::OnboardFeature`ではなく`User::OnboardingFeature`と命名します。
+- すべてのフィーチャークラスは`Featury::Base`のサブクラスであり、`app/features`ディレクトリに配置します。一般的な方法: フィーチャー用の基底クラスとして`ApplicationFeature::Base`を作成します。
+- モデル名と一致する名前空間を使用し、クラス名にはプロセスを表す名詞を使用します。名詞形を使用してください: `RegisterFeature`ではなく`RegistrationFeature`。例: `User::RegistrationFeature`、`Order::FulfillmentFeature`。
 
 ## バージョンサポート
 
